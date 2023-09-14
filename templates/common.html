@@ -1,0 +1,89 @@
+<!-- # templates/common.html # -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}Annual Performance Report Base Template{% endblock title %}</title>
+        <!-- 612pt by 792pt page size -->
+        <style>
+        @page {
+            size: letter portrait; 
+
+            @frame apr_header_frame {
+                -pdf-frame-content: apr_header_content;
+                left: 1.0in; 
+                top: 0.5in; 
+                width: 7.0in; 
+                height: 0.5in;
+            }
+
+            @frame apr_content_frame {
+                left: 1.0in; 
+                top: 1.0in; 
+                width: 7.0in;
+                height: 9.0in; 
+            }
+
+            @frame apr_footer_frame {
+                -pdf-frame-content: apr_footer_content;
+                left: 1.0in; 
+                width: 7.0in;
+                top: 10.0in; 
+                height: 0.5in;
+            }
+        }
+        * {
+            font-family: Times-Roman;
+        }
+        h1 {
+            -pdf-keep-with-next: true
+        }
+        table {
+            border-collapse: collapse;
+            border: 2px solid black;
+        }
+        table th {
+            border: 2px solid black;
+            padding: 0.5em;
+            vertical-align: bottom;
+            text-align: start;
+        }
+        table td {
+            border: 1px solid black;
+            padding: 0.5em;
+            vertical-align: bottom;
+        }
+        .question {
+            font-weight: bold;
+        }
+        .narrative {
+            border-width: 2px;
+            border-style: solid;
+        }
+    </style>
+</head>
+<body>
+    <div id="apr_header_content">
+        <p>Conducted by U.S. Department of Education&nbsp;&nbsp;&nbsp;&nbsp;CONTROLLED UNCLASSIFIED INFORMATION&nbsp;&nbsp;&nbsp;&nbsp;OMB No. {{apr.omb_control_number}} Expires {{apr.expiration_date}}</p>
+    </div>
+    {% block apr_title %}
+    <h1>Annual Performance Report</h1>
+    {% endblock apr_title %}
+    <pdf:spacer height="7.5in"/>
+    <div id="cui_notice">
+        <p style="text-align:center;"><b>Sensitive in Accordance with 32 CFR 2002</b></p>
+        <p style="text-align:center;">Controlled by: Department of Education, {{apr.cui_official}}</p>
+    </div>
+    <pdf:nextpage/>
+    {% block apr %}
+    <h1>Annual Performance Report</h1>
+    {% endblock apr %}
+    <div hidden id="apr_footer_content">
+        <p style="text-align:center;">page
+            <pdf:pagenumber/>
+            of
+            <pdf:pagecount/>
+        </p>
+    </div>
+</body>
+</html>

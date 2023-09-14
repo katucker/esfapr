@@ -1,0 +1,404 @@
+<!-- # templates/esser_year1_apr.html # -->
+{% extends "common.html" %}
+{% block title %}{{apr.stateCode|e}} {{apr.reportingYear|e}} Elementary and Secondary School Emergency Relief Annual Report{% endblock title %}
+{% block apr_title %}
+<p style="text-align:center;">Education Stabiliztion Fund - Elementary and Secondary School Emergency Relief Fund
+    (ESSER Fund) Recipient Data Collection Form</p>
+{% endblock apr_title %}
+{% block apr %}
+<main>
+    <nav aria-labelledby="contents">
+        <h1 id="contents">Contents</h1>
+        <p><a href="#intro">Introduction</a></p>
+        <p><a href="#section1">Section 1 - Overall ESSER Fund Grant for SEA</a></p>
+        <p><a href="#section2">Section 2 - SEA Reserve (up to 10% of total allocation)</a></p>
+        <p><a href="#section3">Section 3 - Mandatory Subgrants to LEAs, Section 18003(c) (at least 90% of the ESSER Fund grant)</a></p>
+        <p><a href="#section4">Section 4 - Student Participation and Engagement</a></p>
+        <p><a href="#section5">Section 5 - Full-Time Equivalent (FTE) Positions</a></p>
+    </nav>
+    <section id="intro" role="region" aria-label="introduction">
+        <h1>ESSER Fund Reporting Form</h1>
+        <p><label class="question" for="stateCode">State Educational Agency:</label> <span id="stateCode" data-stateCode="{{apr.stateCode|e}}">{{ apr.stateCode|e }}</span></p>
+        <p><label class="question" for="prNumber">PR/Award number:</label> <span id="prNumber" data-prNumber="{{ apr.prNumber|e }}">{{ apr.prNumber|e }}</span></p>
+        <p><label class="question" for="repName">State Director:</label> <span id="repName" data-repName="{{ apr.repName|e }}">{{ apr.repName|e }}</span></p>
+        <p><label class="question" for="repPosition">Position:</label> <span id="repPosition" data-repPosition="{{apr.repPosition|e}}">{{ apr.repPosition|e }}</span></p>
+        <p><label class="question" for="repOffice">Office:</label> <span id="repOffice" data-repOffice="{{apr.repOffice|e}}">{{ apr.repOffice|e }}</span></p>
+        <p><label class="question" for="repPhone">Telephone:</label> <span id="repPhone" data-repPhone="{{apr.repPhone|e}}">{{ apr.repPhone|e }}</span></p>
+        <p><label class="question" for="repEmail">E-mail Address:</label> <span id="repEmail" data-repEmail="{{apr.repEmail|e}}">
+            {{ apr.repEmail|e }}</span></p>
+ 
+    <p>Instructions: States and outlying areas that received Elementary and Secondary School Emergency Relief (ESSER) or Education Stabilization Fund (ESF)-State Education Agencies (ESF-SEA) funds should fill out this form. References to ESSER include ESF-SEA. To fulfill the annual ESSER fund reporting requirements, answer all questions based on the reporting period shown in the Annual Reporting table below.</p>
+
+    <details>
+        <summary>Annual Reporting Periods</summary>
+        <p><b>Annual Reporting:</b> This report should be completed based on activities in the applicable reporting period.</p>
+        <table cellspacing="0" width="100%" id="reporting_schedule" summary="A schedule of reporting periods showing the due date for each report and what time span each covers." repeat="1">
+            <thead>
+                <tr>
+                    <th scope="col">Annual Report</th>
+                    <th scope="col">Due Date</th>
+                    <th scope="col">Applicable Reporting Period</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr id="first_reporting_period">
+                    <td>First Annual Report</td>
+                    <td>February 1, 2021</td>
+                    <td>March 13, 2020 - September 30, 2020</td>
+                </tr>
+                <tr id="second_reporting_period">
+                    <td>Second Annual Report</td>
+                    <td>February 1, 2022</td>
+                    <td>October 1, 2020 - September 30, 2021</td>
+                </tr>
+                <tr id="third_reporting_period">
+                    <td>Third Annual Report</td>
+                    <td>February 1, 2023</td>
+                    <td>October 1, 2021 - September 30, 2022</td>
+                </tr>
+            </tbody>
+        </table>
+    </details>
+</section>
+<section id="overall_grant" role="region" aria-labelledby="section1">
+    <h1 id="section1">Section 1 - Overall ESSER Fund Grant for SEA</h1>
+    <p>a. <label class="question" for="grantAmountAllocated"> The total grant amount allocated to the State educational agency (SEA):</label> <span id="grantAmountAllocated" 
+        data-grantAmountAllocated="{{apr.grantAmountAllocated}}">{{apr.grantAmountAllocated|dollars}}</span>
+    </p>
+    <p>b. <label class="question" for="grantAmountExpended"> The total grant amount allocated to the State educational agency (SEA):</label> <span id="grantAmountExpended" 
+        data-grantAmountExpended="{{apr.grantAmountExpended}}">{{apr.grantAmountExpended|dollars}}</span>
+    </p>
+</section>
+<section id="sea_reserve" role="region" aria-labelledby="section2">
+    <h1 id="section2">Section 2 - SEA Reserve (up to 10% of total allocation)</h1>
+    <p>1. <label class="question" for="repTotalAmountReserved"> The total amount reserved:</label> <span id="repTotalAmountReserved" 
+        data-repTotalAmountReserved="{{apr.repTotalAmountReserved}}">{{apr.repTotalAmountReserved|dollars}}</span>
+        (This value may not exceed 10% of the value reported in Section 1.a for ESSER; for ESF-SEA funds a “reasonable and necessary” amount).
+    </p>
+    <p>
+        The SEA Reserve funds includes each of the following:
+        <ul id="sea_reserve_components">
+            <li><label class="question" for="repTotalRetainedAdminCosts">The total amount the SEA retained for administrative costs</label>: <span id="repTotalRetainedAdminCosts"
+                data-repTotalRetainedAdminCosts="{{apr.repTotalRetainedAdminCosts}}">{{apr.repTotalRetainedAdminCosts|dollars}}</span> 
+            </li>
+            <li><label class="question" for="repTotalRetainedFundAmount">The total amount of funds the SEA retained for state activities from the SEA Reserve, other than funds for administrative costs</label>: <span id="repTotalRetainedFundAmount"
+                data-repTotalRetainedFundAmount="{{apr.repTotalRetainedFundAmount}}">{{apr.repTotalRetainedFundAmount|dollars}}</span> 
+            </li>
+            <li><label class="question" for="repTotalNonSeaFundAmount">The total amount of funds awarded to non-SEA entities, for example through grants and contracts, from the SEA Reserve</label>: <span id="repTotalNonSeaFundAmount"
+                data-repTotalNonSeaFundAmount="{{apr.repTotalNonSeaFundAmount}}">{{apr.repTotalNonSeaFundAmount|dollars}}</span> 
+            </li>
+        </ul>
+    </p>
+    <p>2. If the SEA has awarded funds from the SEA Reserve, provide information on the entities awarded ESSER funds from the SEA Reserve below.</p>
+    <p> a. <label class="question" for="usedFundsAwardedToLocalEdAgencies">Did the SEA award SEA Reserve Funds to local educational agencies (LEAs)?</label>
+        <span id="usedFundsAwardedToLocalEdAgencies" data-usedFundsAwardedToLocalEdAgencies="{{apr.usedFundsAwardedToLocalEdAgencies|yes_no}}">{{apr.usedFundsAwardedToLocalEdAgencies|yes_no}}</span>
+    </p>
+    {% if apr.usedFundsAwardedToLocalEdAgencies %}
+        <p>If Yes, then complete the information below.</p>
+        <hr>
+        {% for sub in apr.subawards %}
+            {% if sub.awardedAmountToLeaFromSeaReserve is gt 0.0 %}
+            <details>
+            <summary>
+                <label class="question" for="res_lea_name{{loop.index}}">Name of LEA awarded SEA Reserve funds</label>: <span id="res_lea_name{{loop.index}}" data-res_lea_name{{loop.index}}="{{sub.leaName|e}}">{{sub.leaName|e}}</span>
+                <p><label class="question" for="res_lea_duns{{loop.index}}">DUNS#</label>: <span id="res_lea_duns{{loop.index}}" data-res_lea_duns{{loop.index}}="{{sub.dunsNumber|e}}">{{sub.dunsNumber|e}}</span></p>
+            </summary>
+            <p><label class="question" for="res_lea_awarded{{loop.index}}">Total amount awarded to the LEA from the SEA Reserve</label>: <span id="res_lea_awarded{{loop.index}}" data-res_lea_awarded{{loop.index}}="{{sub.awardedAmountToLeaFromSeaReserve}}">{{sub.awardedAmountToLeaFromSeaReserve|dollars}}</span></p>
+            <p><label class="question" for="">Who the LEA is serving from these funds</label>: <span id="res_lea_pop_served{{loop.index}}" data-lea_pop_served{{loop.index}}="{{sub.servedPopulation|e}}">{{sub.servedPopulation|e}}</span></p>
+            <p><label class="question" for="res_lea_expended_public{{loop.index}}">Amount expended by the LEA for Public Schools</label>: <span id="res_lea_expended_public{{loop.index}}" data-res_lea_expended_public{{loop.index}}="{{sub.fundsExpendedForPublicSchools}}">{{sub.fundsExpendedForPublicSchools|dollars}}</span></p>
+            <p><label class="question" for="res_lea_expended_nonpublic{{loop.index}}">Amount expended by the LEA for equitable services for Non-public School students and teachers</label>: <span id="res_lea_expended_nonpublic{{loop.index}}" data-res_lea_expended_nonpublic{{loop.index}}="{{sub.fundsExpendedForNonPublicSchools}}">{{sub.fundsExpendedForNonPublicSchools|dollars}}</span></p>
+            <p><label class="question" for="res_lea_expended_total{{loop.index}}">Total amount expended by the LEA from the SEA Reserve</label>: <span id="res_lea_expended_total{{loop.index}}" data-res_lea_expended_total{{loop.index}}="{{sub.fundsExpendedTotal}}">{{sub.fundsExpendedTotal|dollars}}</span></p>
+            <h2>Uses of SEA Reserve funds</h2>
+            <p><span id="res_lea_ed_tech{{loop.index}}" data-res_lea_ed_tech{{loop.index}}="{{sub.usedFundsForEducationalTechnology|yes_no}}">{{sub.usedFundsForEducationalTechnology|check}}</span> <label class="question" for="res_lea_ed_tech{{loop.index}}">Purchasing educational technology (including hardware, software, and connectivity), which may include assistive technology or adaptive equipment</label></p>
+            {% if sub.usedFundsForEducationalTechnology %}
+                <p>i. <label class="question" for="res_lea_internet{{loop.index}}">Did this LEA use SEA Reserve funds to provide home Internet access for any students?</label> <span id="res_lea_internet{{loop.index}}" data-res_lea_internet{{loop.index}}="sub.usedFundsToProvideInternet|yes_no">{{sub.usedFundsToProvideInternet|yes_no}}</span></p>
+                {% if sub.usedFundsToProvideInternet %}
+                    <p>If yes, what types of home Internet services were provided by the district using SEA Reserve funds?</p>
+                    <p><span id="res_lea_hotspot{{loop.index}}" data-res_lea_hotspot{{loop.index}}="{{sub.usedFundsForMobileHotspots|yes_no}}">{{sub.usedFundsForMobileHotspots|check}}</span> <label class="question" for="res_lea_hotspot{{loop.index}}">Mobile hotspots with paid data plans</label></p>
+                    <p><span id="res_lea_devices{{loop.index}}" data-res_lea_devices{{loop.index}}="{{sub.usedFundsForInternetDevices|yes_no}}">{{sub.usedFundsForInternetDevices|check}}</span> <label class="question" for="res_lea_devices{{loop.index}}">Internet connected devices with paid data plans</label></p>
+                    <p><span id="res_lea_home{{loop.index}}" data-res_lea_home{{loop.index}}="{{sub.usedFundsForHomeInternet|yes_no}}">{{sub.usedFundsForHomeInternet|check}}</span> <label class="question" for="res_lea_home{{loop.index}}">District pays for the cost of home Internet subscription for student</label></p>
+                    <p><span id="res_lea_district{{loop.index}}" data-res_lea_district{{loop.index}}="{{sub.usedFundsForDistrictInternet|yes_no}}">{{sub.usedFundsForDistrictInternet|check}}</span> <label class="question" for="res_lea_district{{loop.index}}">District provides home Internet access through a district-managed wireless network</label></p>
+                    <p><span id="res_lea_other{{loop.index}}" data-res_lea_other{{loop.index}}="{{sub.usedFundsForOtherInternet|yes_no}}">{{sub.usedFundsForOtherInternet|check}}</span> <label class="question" for="res_lea_other{{loop.index}}">Other</label>
+                        {%if sub.usedFundsForOtherInternet %} <label class="question" for="res_lea_other_internet_desc{{loop.index}}">Description</label>: <span id="res_lea_other_internet_desc{{loop.index}}" data-res_lea_other_internet_desc{{loop.index}}="{{sub.usedFundsForOtherInternetDescription|e}}">{{sub.usedFundsForOtherInternetDescription|e}}</span>{% endif %}
+                    </p>
+                {% endif %}
+                <p>ii. Among students enrolled on September 30, 2020, what proportion of students by district had a dedicated LEA-provided device funded by SEA Reserve funds for the following grade bands? For the purposes of this survey, include desktop, laptop, and tablet computers (including Chromebooks and iPads). Do not include smartphone devices. “Elementary” is defined as “a school classified as elementary by state and local practice and composed of any span of grades not above grade 8” and “Secondary” is defined as “a school comprising any span of grades beginning with the next grade following an elementary or middle school (usually 7, 8, or 9) and ending with or below grade 12. Both junior high schools and senior high schools are included.</p>
+                <p><label class="question" for="res_lea_dedicated{{loop.index}}">Did this LEA use SEA Reserve funds to provide dedicated learning devices to any students?</label> <span id="res_lea_dedicated{{loop.index}}" data-res_lea_dedicated{{loop.inde}}="sub.usedFundsForDedicatedLearningDevices|yes_no">{{sub.usedFundsForDedicatedLearningDevices|yes_no}}</span></p>
+                {% if sub.usedFundsForDedicatedLearningDevices %}
+                    <table cellspacing="0" width="100%" id="res_lea_device_allocation{{loop.index}}" summary="The number and proportion of students that received dedicated learning devices, by grade level." repeat="1">
+                        <thead>
+                            <tr>
+                                <th scope="col">Grade level</th>
+                                <th scope="col">Students with dedicated device provided by the LEA</th>
+                                <th scope="col">Students enrolled on September 30, 2020</th>
+                                <th scope="col">Proporition of students with an LEA-provided device</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Elementary</td>
+                                <td id="res_lea_elementary_devices{{loop.index}}" data-res_lea_elementary_devices{{loop.index}}="sub.elementaryStudentsWithDedicatedDevice">{{sub.elementaryStudentsWithDedicatedDevice}}</td>
+                                <td id="res_lea_elementary_enrolled{{loop.index}}" data-res_lea_elementary_enrolled{{loop.index}}="sub.elementaryStudentsEnrolled">{{sub.elementaryStudentsEnrolled}}</td>
+                                <td id="res_lea_elementary_proportion{{loop.index}}" data-res_lea_elementary_proportion{{loop.index}}="sub.elementaryStudentProportionWithDevices">{{sub.elementaryStudentProportionWithDevices|percent}}</td>
+                            </tr>
+                            <tr>
+                                <td>Secondary</td>
+                                <td id="res_lea_secondary_devices{{loop.index}}" data-res_lea_secondary_devices{{loop.index}}="sub.secondaryStudentsWithDedicatedDevice">{{sub.secondaryStudentsWithDedicatedDevice}}</td>
+                                <td id="res_lea_secondary_enrolled{{loop.index}}" data-res_lea_secondary_enrolled{{loop.index}}="sub.secondaryStudentsEnrolled">{{sub.secondaryStudentsEnrolled}}</td>
+                                <td id="res_lea_secondary_proportion{{loop.index}}" data-res_lea_secondary_proportion{{loop.index}}="sub.secondaryStudentProportionWithDevices">{{sub.secondaryStudentProportionWithDevices|percent}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                {% endif %}
+            {% endif %}
+            <p><span id="res_lea_disadvantaged{{loop.index}}" data-res_lea_disadvantaged{{loop.index}}="{{sub.usedFundsToAssistDisadvantaged|yes_no}}">{{sub.usedFundsToAssistDisadvantaged|check}}</span> <label class="question" for="res_lea_disadvantaged{{loop.index}}">Activities focused specifically to addressing the unique needs of low-income children or students, children with disabilities, English learners, racial and ethnic minorities, students experiencing homelessness, and foster care youth</label></p>
+            <p><span id="res_lea_mental_health{{loop.index}}" data-res_lea_mental_health{{loop.index}}="{{sub.usedFundsForMentalHealth|yes_no}}">{{sub.usedFundsForMentalHealth|check}}</span> <label class="question" for="res_lea_mental_health{{loop.index}}">Providing mental health services and supports.</label></p>
+            <p><span id="res_lea_sanitization{{loop.index}}" data-res_lea_sanitization{{loop.index}}="{{sub.usedFundsForSanitization|yes_no}}">{{sub.usedFundsForSanitization|check}}</span> <label class="question" for="res_lea_sanitization{{loop.index}}">Sanitization and minimizing the spread of infectious diseases, including cleaning supplies and staff training to address sanitization and minimizing the spread of infectious diseases.</label></p>
+            <p><span id="res_lea_summer{{loop.index}}" data-res_lea_summer{{loop.index}}="{{sub.usedFundsForSummerAndAfterSchool|yes_no}}">{{sub.usedFundsForSummerAndAfterSchool|check}}</span> <label class="question" for="res_lea_summer{{loop.index}}">Summer learning and supplemental afterschool programs</label></p>
+            <p><span id="res_lea_other{{loop.index}}" data-res_lea_other{{loop.index}}="{{sub.usedFundsForOther|yes_no}}">{{sub.usedFundsForOther|check}}</span> <label class="question" for="res_lea_other{{loop.index}}">Other (uses of funds not included above)</label>
+                {% if sub.usedFundsForOther %} <label class="question" for="res_lea_other_description{{loop.index}}">Description</label>: <span id="res_lea_other_description{{loop.index}}">{{sub.usedFundsForOtherDescription|e}}</span>{% endif %}
+            </p>
+            </details>
+            <hr>
+        {% endif %}
+        {% endfor %}
+    {% endif %}
+    <p> b. <label class="question" for="usedFundsAwardedToNonLea">Did the SEA award SEA Reserve Funds to entities other than LEAs?</label>
+        <span id="usedFundsAwardedToNonLea" data-usedFundsAwardedToNonLea="{{apr.usedFundsAwardedToNonLea|yes_no}}">{{apr.usedFundsAwardedToNonLea|yes_no}}</span>
+    </p>
+    {% if apr.usedFundsAwardedToNonLea %}
+        <p>If Yes, then complete the information below.</p>
+        <hr>
+        {% for sub in apr.subawards|selectattr("nonLeaName") %}
+            <details>
+                <summary>
+                    <label class="question" for="res_nonlea_name{{loop.index}}">Name of non-LEA entity awarded SEA Reserve funds</label>: <span id="res_nonlea_name{{loop.index}}" data-res_nonlea_name{{loop.index}}="{{sub.nonLeaName|e}}">{{sub.nonLeaName|e}}</span><
+                    <p><label class="question" for="res_nonlea_duns{{loop.index}}">DUNS#</label>: <span id="res_nonlea_duns{{loop.index}}" data-res_nonlea_duns{{loop.index}}="{{sub.dunsNumber|e}}">{{sub.dunsNumber|e}}</span></p>
+                </summary>
+            <p><label class="question" for="res_nonlea_awarded{{loop.index}}">Total amount awarded to the entity from the SEA Reserve</label>: <span id="res_nonlea_awarded{{loop.index}}" data-res_nonlea_awarded{{loop.index}}="{{sub.awardedAmount}}">{{sub.awardedAmount|dollars}}</span></p>
+            <p><label class="question" for="res_nonlea_expended{{loop.index}}">Of total funds awarded, amount expended by the entity from the SEA Reserve</label>: <span id="res_nonlea_expended{{loop.index}}" data-res_nonlea_expended{{loop.index}}="{{sub.fundsExpendedTotal}}">{{sub.fundsExpendedTotal|dollars}}</span></p>
+            <h2>Uses of SEA Reserve funds</h2>
+            <p><span id="res_nonlea_ed_tech{{loop.index}}" data-res_nonlea_ed_tech{{loop.index}}="{{sub.usedFundsForEducationalTechnology|yes_no}}">{{sub.usedFundsForEducationalTechnology|check}}</span> <label class="question" for="res_nonlea_ed_tech{{loop.index}}">Purchasing educational technology (including hardware, software, and connectivity), which may include assistive technology or adaptive equipment</label></p>
+            {% if sub.usedFundsForEducationalTechnology %}
+                <p>i. <label class="question" for="res_nonlea_internet{{loop.index}}">Did this non-LEA entity use SEA Reserve funds to provide home Internet access for any students?</label> <span id="res_lea_internet{{loop.index}}" data-res_lea_internet{{loop.index}}="sub.usedFundsToProvideInternet|yes_no">{{sub.usedFundsToProvideInternet|yes_no}}</span></p>
+                {% if sub.usedFundsToProvideInternet %}
+                    <p>If yes, what types of home Internet services were provided by the non-LEA entity using SEA Reserve funds?</p>
+                    <p><span id="res_nonlea_hotspot{{loop.index}}" data-res_nonlea_hotspot{{loop.index}}="{{sub.usedFundsForMobileHotspots|yes_no}}">{{sub.usedFundsForMobileHotspots|check}}</span> <label class="question" for="res_nonlea_hotspot{{loop.index}}">Mobile hotspots with paid data plans</label></p>
+                    <p><span id="res_nonlea_devices{{loop.index}}" data-res_nonlea_devices{{loop.index}}="{{sub.usedFundsForInternetDevices|yes_no}}">{{sub.usedFundsForInternetDevices|check}}</span> <label class="question" for="res_nonlea_devices{{loop.index}}">Internet connected devices with paid data plans</label></p>
+                    <p><span id="res_nonlea_home{{loop.index}}" data-res_nonlea_home{{loop.index}}="{{sub.usedFundsForHomeInternet|yes_no}}">{{sub.usedFundsForHomeInternet|check}}</span> <label class="question" for="res_nonlea_home{{loop.index}}">District pays for the cost of home Internet subscription for student</label></p>
+                    <p><span id="res_nonlea_district{{loop.index}}" data-res_nonlea_district{{loop.index}}="{{sub.usedFundsForDistrictInternet|yes_no}}">{{sub.usedFundsForDistrictInternet|check}}</span> <label class="question" for="res_nonlea_district{{loop.index}}">District provides home Internet access through a district-managed wireless network</label></p>
+                    <p><span id="res_nonlea_other{{loop.index}}" data-res_nonlea_other{{loop.index}}="{{sub.usedFundsForOtherInternet|yes_no}}">{{sub.usedFundsForOtherInternet|check}}</span> <label class="question" for="res_nonlea_other{{loop.index}}">Other</label>
+                        {%if sub.usedFundsForOtherInternet %} <label class="question" for="res_nonlea_other_internet_desc{{loop.index}}">Description</label>: <span id="res_nonlea_other_internet_desc{{loop.index}}" data-res_nonlea_other_internet_desc{{loop.index}}="{{sub.usedFundsForOtherInternetDescription|e}}">{{sub.usedFundsForOtherInternetDescription|e}}</span>{% endif %}
+                    </p>
+                {% endif %}
+            {% endif %}
+            <p><span id="res_nonlea_disadvantaged{{loop.index}}" data-res_nonlea_disadvantaged{{loop.index}}="{{sub.usedFundsToAssistDisadvantaged|yes_no}}">{{sub.usedFundsToAssistDisadvantaged|check}}</span> <label class="question" for="res_nonlea_disadvantaged{{loop.index}}">Activities focused specifically to addressing the unique needs of low-income children or students, children with disabilities, English learners, racial and ethnic minorities, students experiencing homelessness, and foster care youth</label></p>
+            <p><span id="res_nonlea_mental_health{{loop.index}}" data-res_nonlea_mental_health{{loop.index}}="{{sub.usedFundsForMentalHealth|yes_no}}">{{sub.usedFundsForMentalHealth|check}}</span> <label class="question" for="res_nonlea_mental_health{{loop.index}}">Providing mental health services and supports.</label></p>
+            <p><span id="res_nonlea_sanitization{{loop.index}}" data-res_nonlea_sanitization{{loop.index}}="{{sub.usedFundsForSanitization|yes_no}}">{{sub.usedFundsForSanitization|check}}</span> <label class="question" for="res_nonlea_sanitization{{loop.index}}">Sanitization and minimizing the spread of infectious diseases, including cleaning supplies and staff training to address sanitization and minimizing the spread of infectious diseases.</label></p>
+            <p><span id="res_nonlea_summer{{loop.index}}" data-res_nonlea_summer{{loop.index}}="{{sub.usedFundsForSummerAndAfterSchool|yes_no}}">{{sub.usedFundsForSummerAndAfterSchool|check}}</span> <label class="question" for="res_nonlea_summer{{loop.index}}">Summer learning and supplemental afterschool programs</label></p>
+            <p><span id="res_nonlea_other{{loop.index}}" data-res_nonlea_other{{loop.index}}="{{sub.usedFundsForOther|yes_no}}">{{sub.usedFundsForOther|check}}</span> <label class="question" for="res_nonlea_other{{loop.index}}">Other (uses of funds not included above)</label>
+                {% if sub.usedFundsForOther %} <label class="question" for="res_nonlea_other_description{{loop.index}}">Description</label>: <span id="res_nonlea_other_description{{loop.index}}">{{sub.usedFundsForOtherDescription|e}}</span>{% endif %}
+            </p>
+            </details>
+            <hr>
+        {% endfor %}
+    {% endif %}
+</section>
+<section id="mandatory_subgrants" role="region" aria-labelledby="section3">
+    <h1 id="section3">Section 3 - Mandatory Subgrants to LEAs, Section 18003(c) (at least 90% of the ESSER Fund grant)</h1>
+    <p>3. Provide the amount of LEA expenditures of ESSER subgrant funds. (If the SEA operates as a unitary system then report for the entire SEA. The total amount reported for subgrant amounts to LEAs may not exceed total grant amount (Section 1) minus total amount reserved (Section 2, Question 1).)</p>
+    <hr>
+    {% for sub in apr.subawards|selectattr("leaName") %}
+        <details>
+            <summary>
+                <label class="question" for="lea_name{{loop.index}}">LEA name</label>: <span id="lea_name{{loop.index}}" data-lea_name{{loop.index}}="{{sub.leaName|e}}">{{sub.leaName|e}}</span>
+                <p><label class="question" for="lea_duns{{loop.index}}">DUNS#</label>: <span id="lea_duns{{loop.index}}" data-lea_duns{{loop.index}}="{{sub.dunsNumber|e}}">{{sub.dunsNumber|e}}</span></p>
+            </summary>
+        <p><label class="question" for="lea_awarded{{loop.index}}">Total subgrant amount awarded to the LEA</label>: <span id="lea_awarded{{loop.index}}" data-lea_awarded{{loop.index}}="{{sub.totalSubgrantAwarded}}">{{sub.totalSubgrantAwarded|dollars}}</span></p>
+        <p><label class="question" for="lea_expended_public{{loop.index}}">Amount expended by the LEA for Public Schools</label>: <span id="lea_expended_public{{loop.index}}" data-lea_expended_public{{loop.index}}="{{sub.subGrantfundsExpendedForPublicSchools}}">{{sub.subGrantfundsExpendedForPublicSchools|dollars}}</span></p>
+        <p><label class="question" for="lea_expended_nonpublic{{loop.index}}">Amount expended by the LEA for equitable services for Non-public School students and teachers</label>: <span id="lea_expended_nonpublic{{loop.index}}" data-lea_expended_nonpublic{{loop.index}}="{{sub.subGrantfundsExpendedForNonPublicSchools}}">{{sub.subGrantfundsExpendedForNonPublicSchools|dollars}}</span></p>
+        <table cellspacing="0" width="100%" id="lea_activity_expenditures{{loop.index}}" summary="The amount expended by the LEA within each uses of funds category." repeat="1">
+            <thead>
+                <tr>
+                    <th scope="col">Uses of Funds category</th>
+                    <th scope="col">Total amount expended</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Purchasing educational technology (including hardware, software, and connectivity), which may include assistive technology or adaptive equipment.</td>
+                    <td id="lea_edtech_expenditure{{loop.index}}" data-lea_edtech_expenditure{{loop.index}}="sub.subGrantusedFundsForEducationalTechnology">{{sub.subGrantusedFundsForEducationalTechnology|dollars}}</td>
+                </tr>
+                <tr>
+                    <td>Activities focused specifically to addressing the unique needs of low-income children or students, children with disabilities, English learners, racial and ethnic minorities, students experiencing homelessness, and foster care youth.</td>
+                    <td id="lea_disadvanted_expenditure{{loop.index}}" data-lea_disadvanted_expenditure{{loop.index}}="sub.subGrantusedFundsToAssistDisadvantaged">{{sub.subGrantusedFundsToAssistDisadvantaged|dollars}}</td>
+                </tr>
+                <tr>
+                    <td>Providing mental health services and supports.</td>
+                    <td id="lea_mental_health_expenditure{{loop.index}}" data-lea_mental_health_expenditure{{loop.index}}="sub.subGrantusedFundsForMentalHealth">{{sub.subGrantusedFundsForMentalHealth|dollars}}</td>
+                </tr>
+                <tr>
+                    <td>Sanitization and minimizing the spread of infectious diseases, including cleaning supplies and staff training to address sanitization and minimizing the spread of infectious diseases.</td>
+                    <td id="lea_sanitization_expenditure{{loop.index}}" data-lea_sanitization_expenditure{{loop.index}}="sub.sanitization_expenditure">{{sub.sanitization_expenditure|dollars}}</td>
+                </tr>
+                <tr>
+                    <td>Summer learning and supplemental afterschool programs.</td>
+                    <td id="lea_summer_expenditure{{loop.index}}" data-lea_summer_expenditure{{loop.index}}="sub.subGrantusedFundsForSummerAndAfterSchool">{{sub.subGrantusedFundsForSummerAndAfterSchool|dollars}}</td>
+                </tr>
+                <tr>
+                    <td>Other (uses of funds not included above){% if sub.subGrantusedFundsForOtherDescription %} Description: {{sub.subGrantusedFundsForOtherDescription}}{% endif %}</td>
+                    <td id="lea_other_expenditure{{loop.index}}" data-lea_other_expenditure{{loop.index}}="sub.subGrantusedFundsForOther">{{sub.subGrantusedFundsForOther|dollars}}</td>
+                </tr>
+            </tbody>
+        </table>
+        {% if sub.subGrantusedFundsForEducationalTechnology is gt 0.0 %}
+            <p><label class="question" for="lea_edtech_internet{{loop.index}}">3.i. Did this LEA use ESSER funds to provide home Internet access for any students?</label> <span id="lea_edtech_internet{{loop.index}}" data-lea_edtech_internet{{loop.index}}="{{sub.subGrantusedFundsToProvideInternet|yes_no}}">{{sub.subGrantusedFundsToProvideInternet|yes_no}}</span></p>
+            {% if sub.subGrantusedFundsToProvideInternet %}
+                <p>If yes, what types of home Internet services were provided by the district using ESSER funds?</p>
+                <p><span id="lea_hotspot{{loop.index}}" data-lea_hotspot{{loop.index}}="{{sub.subGrantusedFundsForMobileHotspots|yes_no}}">{{sub.subGrantusedFundsForMobileHotspots|check}}</span> <label class="question" for="lea_hotspot{{loop.index}}">Mobile hotspots with paid data plans</label></p>
+                <p><span id="lea_devices{{loop.index}}" data-lea_devices{{loop.index}}="{{sub.subGrantusedFundsForInternetDevices|yes_no}}">{{sub.subGrantusedFundsForInternetDevices|check}}</span> <label class="question" for="lea_devices{{loop.index}}">Internet connected devices with paid data plans</label></p>
+                <p><span id="lea_home{{loop.index}}" data-lea_home{{loop.index}}="{{sub.subGrantusedFundsForHomeInternet|yes_no}}">{{sub.subGrantusedFundsForHomeInternet|check}}</span> <label class="question" for="lea_home{{loop.index}}">District pays for the cost of home Internet subscription for student</label></p>
+                <p><span id="lea_district{{loop.index}}" data-lea_district{{loop.index}}="{{sub.subGrantusedFundsForDistrictInternet|yes_no}}">{{sub.subGrantusedFundsForDistrictInternet|check}}</span> <label class="question" for="lea_district{{loop.index}}">District provides home Internet access through a district-managed wireless network</label></p>
+                <p><span id="lea_internet_other{{loop.index}}" data-lea_internet_other{{loop.index}}="{{sub.subGrantusedFundsForOtherInternet|yes_no}}">{{sub.subGrantusedFundsForOtherInternet|check}}</span> <label class="question" for="lea_internet_other{{loop.index}}">Other</label>
+                {% if sub.subGrantusedFundsForOtherInternet %} <label class="question" for="lea_internet_other_description{{loop.index}}">Description</label>: <span id="lea_internet_other_description{{loop.index}}" data-lea_internet_other_description{{loop.index}}="{{sub.subGrantusedFundsForOtherInternetDescription}}">{{sub.subGrantusedFundsForOtherInternetDescription}}</span>{% endif %}</p>
+            {% endif %}
+            <p>3.ii. Among students enrolled on September 30, 2020, what proportion of students by district had a dedicated LEA-provided device funded by ESSER for the following grade bands? For the purposes of this survey, include desktop, laptop, and tablet computers (including Chromebooks and iPads). Do not include smartphone devices. “Elementary” is defined as “a school classified as elementary by state and local practice and composed of any span of grades not above grade 8” and “Secondary” is defined as “a school comprising any span of grades beginning with the next grade following an elementary or middle school (usually 7, 8, or 9) and ending with or below grade 12. Both junior high schools and senior high schools are included.”</p>
+            <p><label class="question" for="lea_dedicated{{loop.index}}">Did the LEA use ESSER funds to provide dedicated learning devices to any students?</label> <span id="lea_dedicated{{loop.index}}" data-lea_dedicated{{loop.index}}="{{sub.subGrantusedFundsForDedicatedLearningDevices|yes_no}}">{{sub.subGrantusedFundsForDedicatedLearningDevices|yes_no}}</span></p>
+            {% if sub.subGrantusedFundsForDedicatedLearningDevices %}
+                <table cellspacing="0" width="100%" id="lea_device_allocation{{loop.index}}" summary="The number and proportion of students that received dedicated learning devices, by grade level." repeat="1">
+                    <thead>
+                        <tr>
+                            <th scope="col">Grade level</th>
+                            <th scope="col">Students with dedicated device provided by the LEA</th>
+                            <th scope="col">Students enrolled on September 30, 2020</th>
+                            <th scope="col">Proporition of students with an LEA-provided device</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Elementary</td>
+                            <td id="lea_elementary_devices{{loop.index}}" data-lea_elementary_devices{{loop.index}}="sub.subGrantelementaryStudentsWithDedicatedDevice">{{sub.subGrantelementaryStudentsWithDedicatedDevice}}</td>
+                            <td id="lea_elementary_enrolled{{loop.index}}" data-lea_elementary_enrolled{{loop.index}}="sub.subGrantelementaryStudentsEnrolled">{{sub.subGrantelementaryStudentsEnrolled}}</td>
+                            <td id="lea_elementary_proportion{{loop.index}}" data-lea_elementary_proportion{{loop.index}}="sub.subGrantelementaryStudentProportionWithDevices">{{sub.subGrantelementaryStudentProportionWithDevices|percent}}</td>
+                        </tr>
+                        <tr>
+                            <td>Secondary</td>
+                            <td id="lea_secondary_devices{{loop.index}}" data-lea_secondary_devices{{loop.index}}="sub.subGrantsecondaryStudentsWithDedicatedDevice">{{sub.subGrantsecondaryStudentsWithDedicatedDevice}}</td>
+                            <td id="lea_secondary_enrolled{{loop.index}}" data-lea_secondary_enrolled{{loop.index}}="sub.subGrantsecondaryStudentsEnrolled">{{sub.subGrantsecondaryStudentsEnrolled}}</td>
+                            <td id="lea_secondary_proportion{{loop.index}}" data-lea_secondary_proportion{{loop.index}}="sub.subGrantsecondaryStudentProportionWithDevices">{{sub.subGrantsecondaryStudentProportionWithDevices|percent}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            {% endif %}
+        {% endif %}
+        </details>
+        <hr>
+    {% endfor %}
+</section>
+<section id="participation" role="region" aria-labelledby="section4">
+    <h1 id="section4">Section 4 - Student Participation and Engagement</h1>
+    <p>4. If the LEA used ESSER Act funds to develop, initiate and/or implement remote learning, please mark all methods used to document student participation and engagement during remote learning: (mark yes for methods used for 50% or more of the students within the grade level in the LEA). “Elementary” is defined as “a school classified as elementary by state and local practice and composed of any span of grades not above grade 8” and “Secondary” is defined as “a school comprising any span of grades beginning with the next grade following an elementary or middle school (usually 7, 8, or 9) and ending with or below grade 12. Both junior high schools and senior high schools are included.”</p>
+    <hr>
+    {% for sub in apr.subawards|selectattr("leaName") %}
+        <details>
+            <summary>
+                <label class="question" for="lea_participation_name{{loop.index}}">LEA name</label>: <span id="lea_participation_name{{loop.index}}" data-lea_participation_name{{loop.index}}="{{sub.leaName|e}}">{{sub.leaName|e}}</span>
+                <p><label class="question" for="lea_participation_duns{{loop.index}}">DUNS#</label>: <span id="lea_participation_duns{{loop.index}}" data-lea_participation_duns{{loop.index}}="{{sub.dunsNumber|e}}">{{sub.dunsNumber|e}}</span></p>
+            </summary>
+        <table cellspacing="0" width="100%" id="participation_methods{{loop.index}}" summary="The participation and engagement methods used by the LEA, by grade level." repeat="1">
+            <thead>
+                <tr>
+                    <th scope="col">Methods</th>
+                    <th scope="col">Used in Elementary</th>
+                    <th scope="col">Used in Secondary</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Submission of assignments</td>
+                    <td id="lea_participation_elementary_submission{{loop.index}}" data-lea_participation_elementary_submission{{loop.index}}="sub.elementarySubmissionOfAssignments|yes_no">{{sub.elementarySubmissionOfAssignments|check}}</td>
+                    <td id="lea_participation_secondary_submission{{loop.index}}" data-lea_participation_secondary_submission{{loop.index}}="sub.secondarySubmissionOfAssignments|yes_no">{{sub.secondarySubmissionOfAssignments|check}}</td>
+                </tr>
+                <tr>
+                    <td>Participation in assessments</td>
+                    <td id="lea_participation_elementary_assessment{{loop.index}}" data-lea_participation_elementary_assessment{{loop.index}}="sub.elementaryParticipationInAssignments|yes_no">{{sub.elementaryParticipationInAssignments|check}}</td>
+                    <td id="lea_participation_secondary_assessment{{loop.index}}" data-lea_participation_secondary_assessment{{loop.index}}="sub.secondaryParticipationInAssignments|yes_no">{{sub.secondaryParticipationInAssignments|check}}</td>
+                </tr>
+                <tr>
+                    <td>Tracking student logins to online learning platforms</td>
+                    <td id="lea_participation_elementary_login{{loop.index}}" data-lea_participation_elementary_login{{loop.index}}="sub.elementaryTrackingStudentLogins|yes_no">{{sub.elementaryTrackingStudentLogins|check}}</td>
+                    <td id="lea_participation_secondary_login{{loop.index}}" data-lea_participation_secondary_login{{loop.index}}="sub.secondaryTrackingStudentLogins|yes_no">{{sub.secondaryTrackingStudentLogins|check}}</td>
+                </tr>
+                <tr>
+                    <td>Participation in individual coaching or check ins</td>
+                    <td id="lea_participation_elementary_coaching{{loop.index}}" data-lea_participation_elementary_coaching{{loop.index}}="sub.elementaryParticipationInCoaching|yes_no">{{sub.elementaryParticipationInCoaching|check}}</td>
+                    <td id="lea_participation_secondary_coaching{{loop.index}}" data-lea_participation_secondary_coaching{{loop.index}}="sub.secondaryParticipationInCoaching|yes_no">{{sub.secondaryParticipationInCoaching|check}}</td>
+                </tr>
+                <tr>
+                    <td>Participation in email, text or other electronic communication</td>
+                    <td id="lea_participation_elementary_communication{{loop.index}}" data-lea_participation_elementary_communication{{loop.index}}="sub.elementaryParticipationInCommunication|yes_no">{{sub.elementaryParticipationInCommunication|check}}</td>
+                    <td id="lea_participation_secondary_communication{{loop.index}}" data-lea_participation_secondary_communication{{loop.index}}="sub.secondaryParticipationInCommunication|yes_no">{{sub.secondaryParticipationInCommunication|check}}</td>
+                </tr>
+                <tr>
+                    <td>Participation in help lines or hot lines for help with remote learning.</td>
+                    <td id="lea_participation_elementary_help{{loop.index}}" data-lea_participation_elementary_help{{loop.index}}="sub.elementaryParticiptionInRemoteHelp|yes_no">{{sub.elementaryParticiptionInRemoteHelp|check}}</td>
+                    <td id="lea_participation_secondary_help{{loop.index}}" data-lea_participation_secondary_help{{loop.index}}="sub.secondaryParticiptionInRemoteHelp|yes_no">{{sub.secondaryParticiptionInRemoteHelp|check}}</td>
+                </tr>
+                <tr>
+                    <td>Participation in synchronous online classes</td>
+                    <td id="lea_participation_elementary_online{{loop.index}}" data-lea_participation_elementary_online{{loop.index}}="sub.elementaryParticipationInOnlineClass|yes_no">{{sub.elementaryParticipationInOnlineClass|check}}</td>
+                    <td id="lea_participation_secondary_online{{loop.index}}" data-lea_participation_secondary_online{{loop.index}}="sub.secondaryParticipationInOnlineClass|yes_no">{{sub.secondaryParticipationInOnlineClass|check}}</td>
+                </tr>
+                <tr>
+                    <td>Other</td>
+                    <td id="lea_participation_elementary_other{{loop.index}}" data-lea_participation_elementary_other{{loop.index}}="sub.elementaryOtherParticipation|yes_no">{{sub.elementaryOtherParticipation|check}}</td>
+                    <td id="lea_participation_secondary_other{{loop.index}}" data-lea_participation_secondary_other{{loop.index}}="sub.secondaryOtherParticipation|yes_no">{{sub.secondaryOtherParticipation|check}}</td>
+                </tr>
+            </tbody>
+        </table>
+        </details>
+        <hr>
+    {% endfor %}
+</section>
+<section id="fte" role="region" aria-labelledby="section5">
+    <h1 id="section5">Section 5 - Full-Time Equivalent (FTE) Positions</h1>
+    <p>5. Provide the number of full-time equivalent (FTE) positions for the LEA, or non-LEA Entity as of the listed reporting dates. (The number of FTE positions includes all staff regardless of whether the position is funded by Federal, State, local, or other funds—and equals the sum of the number of full-time positions plus the full-time equivalent of the number of part-time positions.)</p>
+    <table cellspacing="0" width="100%" id="fte" summary="The number of Full-time equivalent (FTE) positions in each reporting entity at points in time." repeat="1">
+        <thead>
+            <tr>
+                <th scope="col">Name of LEA/non-LEA Entity</th>
+                <th scope="col">DUNS#</th>
+                <th scope="col">Full-time equivalent (FTE) positions as of September 30, 2018</th>
+                <th scope="col">Full-time equivalent (FTE) positions as of September 30, 2019</th>
+                <th scope="col">Full-time equivalent (FTE) positions as of March 13, 2020</th>
+                <th scope="col">Full-time equivalent (FTE) positions on September 30, 2020</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for sub in apr.subawards %}
+                <tr>
+                    <td id="entity_name{{loop.index}}">{{sub.leaName|e if sub.leaName else sub.nonLeaName|e}}</td>
+                    <td id="entity_duns{{loop.index}}">{{sub.dunsNumber|e}}</td>
+                    <td id="fte_2018_{{loop.index}}" data-fte_2018_{{loop.index}}="sub.ftePositionsAsOf09302018">{{sub.ftePositionsAsOf09302018}}</td>
+                    <td id="fte_2019_{{loop.index}}" data-fte_2018_{{loop.index}}="sub.ftePositionsAsOf09302019">{{sub.ftePositionsAsOf09302019}}</td>
+                    <td id="fte_cares_{{loop.index}}" data-fte_2018_{{loop.index}}="sub.ftePositionsAsOf03132020">{{sub.ftePositionsAsOf03132020}}</td>
+                    <td id="fte_2010_{{loop.index}}" data-fte_2018_{{loop.index}}="sub.ftePositionsAsOf09302020">{{sub.ftePositionsAsOf09302020}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+<section id="burden_statement" role="region" aria-labelledby="burden">
+    <h1 id="burden">Burden Statement</h1>
+    <p>According to the Paperwork Reduction Act of 1995, no persons are required to respond to a collection of
+        information unless such collection displays a valid OMB control number. The valid OMB control number for
+        this information collection is 1810-0749. Public reporting burden for this collection of information is
+        estimated to average 5 hours per response, including time for reviewing instructions, searching existing
+        data sources, gathering and maintaining the data needed, and completing and reviewing the collection of
+        information. Under the PRA, participants are required to respond to this collection to obtain or retain a
+        benefit. If you have any comments concerning the accuracy of the time estimate, suggestions for improving
+        this individual collection, or if you have comments or concerns regarding the status of your individual
+        form, please contact Joanne Bogart, US. Department of Education, 400 Maryland Avenue, SW, Washington, DC 20202</p>
+</section>
+</main>
+{% endblock apr %}
