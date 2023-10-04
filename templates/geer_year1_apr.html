@@ -1,0 +1,340 @@
+<!-- # templates/geer_year1_apr.html # -->
+{% extends "common.html" %}
+{% block title %}{{apr.stateCode|e}} {{apr.reportingYear|e}} Governor&apos;s Emergency Education Assistance Annual Report{% endblock title %}
+{% block apr_title %}
+<p style="text-align:center;">Education Stabiliztion Fund - Governor&apos;s Emergency Education Assistance (GEER) Program
+    Recipient Annual Reporting Data Collection Form</p>
+{% endblock apr_title %}
+{% block apr_sections %}
+<p><a href="#introduction">Introduction</a></p>
+<p><a href="#item1">1. Entity Types awarded GEER funds</a></p>
+<p><a href="#item2">2. LEA funding conditions</a></p>
+<p><a href="#item3">3. IHE funding conditions</a></p>
+<p><a href="#item4">4. LEA expenditures</a></p>
+<p><a href="#item5">5. IHE expenditures</a></p>
+<p><a href="#item6">6. Education-related entity expenditures</a></p>
+<p><a href="#item7">7. Full-time Equivalents</a></p>
+<p><a href="#item8">8. K-12 schools</a></p>
+{% endblock apr_sections %}
+{% block apr %}
+<main>
+    <form action="" name="intro" role="region" aria-labelledby="introduction">
+        <h1 id="introduction">Governor's Emergency Education Assistance Annual Reporting Form</h1>
+        <p><label class="question" for="stateCode">State:</label> <input disabled type="text" id="stateCode" data-stateCode="{{apr.stateCode|e}}" value="{{apr.stateCode|e }}"/></p>
+        <p><label class="question" for="prNumber">PR/Award number:</label> <input disabled type="text" id="prNumber" data-prNumber="{{ apr.prNumber|e }}" value="{{apr.prNumber|e }}"/></p>
+        <p><label class="question" for="repName">State Director:</label> <input disabled type="text" id="repName" data-repName="{{ apr.repName|e }}" value="{{apr.repName|e }}"/></p>
+        <p><label class="question" for="repPosition">Position:</label> <input disabled type="text" size="72" id="repPosition" data-repPosition="{{apr.repPosition|e}}" value="{{apr.repPosition|e }}"/></p>
+        <p><label class="question" for="repOffice">Office:</label> <input disabled type="text" size="72" id="repOffice" data-repOffice="{{apr.repOffice|e}}" value="{{apr.repOffice|e }}"/></p>
+        <p><label class="question" for="repPhone">Telephone:</label> <input disabled type="text" id="repPhone" data-repPhone="{{apr.repPhone|e}}" value="{{apr.repPhone|e }}"/></p>
+        <p><label class="question" for="repEmail">E-mail Address:</label> <input disabled type="text" size="72" id="repEmail" data-repEmail="{{apr.repEmail|e}}" value="{{apr.repEmail|e }}"/></p>
+        <p><b>Instructions:</b> States and outlying areas that received Governors Emergency Education Relief (GEER) or Education Stabilization Fund (ESF)-Governors funds should fill out this form. References to GEER include ESF-Governors. To fulfill the annual GEER fund reporting requirements, answer all questions based on the reporting period shown in the Annual Reporting table below.</p>
+        <details>
+            <summary>Annual Reporting Periods</summary>
+            <p><b>Annual Reporting:</b> This report should be completed based on activities in the applicable reporting periods.</p>
+            <table cellspacing="0" width="100%" id="reporting_schedule"
+                summary="A schedule of reporting periods showing the due date for each report and what time span each covers."
+                repeat="1">
+                <thead>
+                    <tr>
+                        <th scope="col">Annual Report</th>
+                        <th scope="col">Due Date</th>
+                        <th scope="col">Applicable Reporting Period</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="first_reporting_period">
+                        <th scope="row">First Annual Report</th>
+                        <td>February 1, 2021</td>
+                        <td>March 13, 2020 - September 30, 2020</td>
+                    </tr>
+                    <tr id="second_reporting_period">
+                        <th scope="row">Second Annual Report</th>
+                        <td>February 1, 2022</td>
+                        <td>October 1, 2020 - September 30, 2021</td>
+                    </tr>
+                    <tr id="third_reporting_period">
+                        <th scope="row">Third Annual Report</th>
+                        <td>February 1, 2023</td>
+                        <td>October 1, 2021 - September 30, 2022</td>
+                    </tr>
+                </tbody>
+            </table>
+        </details>
+    </form>
+    <form action="" name="geer_apr" aria-labelledby="geer_apr_data">
+        <h1 id="geer_apr_data">Annual Performance Report</h1>
+        <p><label>The total grant amount allocated to the State: <input disabled type="text" id="grantAmountAllocated" data-grantAmountAllocated="{{apr.grantAmountAllocated}}" value="{{apr.grantAmountAllocated|dollars}}"/></label></p>
+        <p><label>The total amount of the grant expended: <input disabled type="text" id="grantAmountExpended" data-grantAmountExpended="{{apr.grantAmountExpended}}" value="{{apr.grantAmountExpended|dollars}}"/></label></p>
+        <p id="item1" class="question">1. The types of entities within the State which were awarded Governors Emergency Education Relief (GEER) funds are checked below.</p>
+        <p><label><input disabled type="checkbox" id="areLeasAwardedGeerFunds" data-areLeasAwardedGeerFunds="{{apr.areLeasAwardedGeerFunds}}" {{apr.areLeasAwardedGeerFunds|check}}/> Local Educational Agencies (LEAs)</label></p>
+        <p><label><input disabled type="checkbox" id="areIhesAwardedGeerFunds" data-areIhesAwardedGeerFunds="{{apr.areIhesAwardedGeerFunds}}" {{apr.areIhesAwardedGeerFunds|check}}/> Institutions of Higher Education (IHEs)</label></p>
+        <p><label><input disabled type="checkbox" id="areEntitiesAwardedGeerFunds" data-areEntitiesAwardedGeerFunds="{{apr.areEntitiesAwardedGeerFunds}}" {{apr.areEntitiesAwardedGeerFunds|check}}/> Other Education-Related Entities</label></p>
+        <p id="item2" class="question"><label>2. Did the State place any funding conditions or requirements on GEER awards for LEAs to ensure that the funds were spent on specific purposes or activities? <input disabled type="text" id="wereAnyConditionsPlacedByStateForLeaFunds" data-wereAnyConditionsPlacedByStateForLeaFunds="{{apr.wereAnyConditionsPlacedByStateForLeaFunds|yes_no}}" value="{{apr.wereAnyConditionsPlacedByStateForLeaFunds|yes_no}}"/></label></p>
+        {% if apr.wereAnyConditionsPlacedByStateForLeaFunds %}
+        <p><label>a. Were there any changes to the State&apos;s LEA GEER award conditions or requirements since the State&apos;s initial 45-day report to the Department of Education? <input disabled type="text" id="isStateLeaGeerAwardConditionChanges" data-isStateLeaGeerAwardConditionChanges="{{apr.isStateLeaGeerAwardConditionChanges|yes_no}}" value="{{apr.isStateLeaGeerAwardConditionChanges|yes_no}}"/></label></p>
+            {% if apr.isStateLeaGeerAwardConditionChanges %}
+                <p><label>LEA GEER award condition changes: <textarea disabled rows="4" cols="72" id="stateLeaGeerAwardConditionChanges" data-stateLeaGeerAwardConditionChanges="{{apr.stateLeaGeerAwardConditionChanges|e}}">{{apr.stateLeaGeerAwardConditionChanges|e}}</textarea></label></p>
+            {% endif %}
+        <p><label>b. Did the State place any funding conditions or requirements directing LEAs to use the funds for activities related to distance-learning and remote education? <input disabled type="text" id="didStatePlaceDistanceLearningConditionsOnLeas" data-didStatePlaceDistanceLearningConditionsOnLeas="{{apr.didStatePlaceDistanceLearningConditionsOnLeas|yes_no}}" value="{{didStatePlaceDistanceLearningConditionsOnLeas|yes_no}}"/></label></p>
+            {% if apr.didStatePlaceDistanceLearningConditionsOnLeas %}
+                <p>Activities directed by the State are checked below.</p>
+                <p><label><input disabled type="checkbox" id="isSupportTechInfrastructureForLeaDistanceLearning" data-isSupportTechInfrastructureForLeaDistanceLearning="{{apr.isSupportTechInfrastructureForLeaDistanceLearning|yes_no}}" {{apr.isSupportTechInfrastructureForLeaDistanceLearning|check}}/> Support access to the technology infrastructure required for distance education </label></p>
+                <p><label>-<input disabled type="checkbox" id="isInternetAccessNeededForLeas" data-isInternetAccessNeededForLeas="{{apr.isInternetAccessNeededForLeas|yes_no}}" {{apr.isInternetAccessNeededForLeas|check}}/> For Internet Access</label></p>
+                <p><label>-<input disabled type="checkbox" id="areDevicesNeededForLeas" data-areDevicesNeededForLeas="{{apr.areDevicesNeededForLeas|yes_no}}" {{apr.areDevicesNeededForLeas|check}}/> For Devices</label></p>
+                <p><label><input disabled type="checkbox" id="isTrainingStaffNeededForLeas" data-isTrainingStaffNeededForLeas="{{apr.isTrainingStaffNeededForLeas|yes_no}}" {{apr.isTrainingStaffNeededForLeas|check}}/> Training staff/teachers for distance-learning and remote education</label></p>
+                <p><label><input disabled type="checkbox" id="provideDigitalLearningContentForLeas" data-provideDigitalLearningContentForLeas="{{apr.provideDigitalLearningContentForLeas|yes_no}}" {{apr.provideDigitalLearningContentForLeas|check}}/> Providing digital learning content, applications, and tools</label></p>
+                <p><label><input disabled type="checkbox" id="areOtherConditionsForLeas" data-areOtherConditionsForLeas="{{apr.areOtherConditionsForLeas|yes_no}}" {{apr.areOtherConditionsForLeas|check}}/> Other</label></p>
+                {% if apr.areOtherConditionsForLeas %}
+                    <p><label>Other funding condition: <textarea disabled rows="4" cols="72" id="otherConditionsForLeas" data-otherConditionsForLeas="{{apr.otherConditionsForLeas|e}}">{{apr.otherConditionsForLeas|e}}</textarea></label></p>
+                {% endif %}
+            {% endif %}
+        {% endif %}
+        <p id="item3" class="question"><label>3. Did the State place any funding conditions or requirements on GEER awards for IHEs to ensure that the funds were spent on specific purposes or activities? <input disabled type="text" id="wereAnyConditionsPlacedByStateForIheFunds" data-wereAnyConditionsPlacedByStateForIheFunds="{{apr.wereAnyConditionsPlacedByStateForIheFunds|yes_no}}" value="{{apr.wereAnyConditionsPlacedByStateForIheFunds|yes_no}}"/></label></p>
+        {% if apr.wereAnyConditionsPlacedByStateForIheFunds %}
+            <p><label>a. Were there any changes to the State&apos;s IHE GEER award conditions or requirements since the State&apos;s initial 45-day report to the Department of Education? <input disabled type="text" id="isStateIheGeerAwardConditionChanges" data-isStateIheGeerAwardConditionChanges="{{apr.isStateIheGeerAwardConditionChanges|yes_no}}" value="{{apr.isStateIheGeerAwardConditionChanges|yes_no}}"/></label></p>
+            {%if apr.isStateIheGeerAwardConditionChanges %}
+                <p><label>IHE GEER award condition changes: <textarea disabled rows="4" cols="72" id="stateIheGeerAwardConditionChanges" data-stateIheGeerAwardConditionChanges="{{apr.stateIheGeerAwardConditionChanges|e}}">{{apr.stateIheGeerAwardConditionChanges|e}}</textarea></label></p>
+            {% endif %}
+            <p><label>b. Did the State place any funding conditions or requirements directing IHEs to use the funds for activities related to distance-learning and remote education? <input disabled type="text" id="didStatePlaceDistanceLearningConditionsOnIhes" dat-didStatePlaceDistanceLearningConditionsOnIhes="{{apr.didStatePlaceDistanceLearningConditionsOnIhes|yes_no}}" value="{{apr.didStatePlaceDistanceLearningConditionsOnIhes|yes_no}}"/></label></p>
+            {% if apr.didStatePlaceDistanceLearningConditionsOnIhes %}
+                <p>Activities directed by the State are checked below.</p>
+                <p><label><input disabled type="checkbox" id="isSupportTechInfrastructureForIheDistanceLearning" data-isSupportTechInfrastructureForIheDistanceLearning="{{apr.isSupportTechInfrastructureForIheDistanceLearning|yes_no}}" {{apr.isSupportTechInfrastructureForIheDistanceLearning|check}}/> Support access to the technology infrastructure required for distance education</label></p>
+                <p><label>-<input disabled type="checkbox" id="isInternetAccessNeededForIhes" data-isInternetAccessNeededForIhes="{{apr.isInternetAccessNeededForIhes|yes_no}}" {{apr.isInternetAccessNeededForIhes|check}}/> For Internet Access</label></p>
+                <p><label>-<input disabled type="checkbox" id="areDevicesNeededForIhes" data-areDevicesNeededForIhes="{{apr.areDevicesNeededForIhes|yes_no}}" {{apr.areDevicesNeededForIhes|check}}/> For Devices</label></p>
+                <p><label><input disabled type="checkbox" id="isTrainingStaffNeededForIhes" data-isTrainingStaffNeededForIhes="{{apr.isTrainingStaffNeededForIhes|yes_no}}" {{apr.isTrainingStaffNeededForIhes|check}}/> Training staff/faculty for distance-learning and remote education</label></p>
+                <p><label><input disabled type="checkbox" id="provideDigitalLearningContentForIhes" data-provideDigitalLearningContentForIhes="{{apr.provideDigitalLearningContentForIhes|yes_no}}" {{provideDigitalLearningContentForIhes|check}}/> Providing digital learning content, applications, and tools </label></p>
+                <p><label><input disabled type="checkbox" id="areOtherConditionsForIhes" data-areOtherConditionsForIhes="{{apr.areOtherConditionsForIhes|yes_no}}" {{apr.areOtherConditionsForIhes|check}}/> Other</label></p>
+                {% if apr.areOtherConditionsForIhes %}
+                    <p><label>other funding condition: <textarea disabled rows="4" cols="72" id="otherConditionsForIhes" data-otherConditionsForIhes="{{apr.otherConditionsForIhes|e}}">{{apr.otherConditionsForIhes}}</textarea></label></p>
+                {% endif %}
+                <p><label>c. Did the State direct any IHEs to use GEER funds for emergency financial aid grants to students? <input disabled type="text" id="didStateDirectAnyIhesToUseGeerFundsForEmergency" data-didStateDirectAnyIhesToUseGeerFundsForEmergency="{{apr.didStateDirectAnyIhesToUseGeerFundsForEmergency|yes_no}}" value="{{apr.didStateDirectAnyIhesToUseGeerFundsForEmergency|yes_no}}"/></label></p>
+            {% endif %}
+        {% endif %}
+        <h2 id="item4">For each LEA awarded GEER funds from the State</h2>
+        <p>(If the SEA operates as a unitary system then report for the entire SEA.)</p>
+        <hr/>
+        {% for sub in apr.subawards|selectattr("leaName") %}
+        <details>
+            <summary>
+                <p data-dunsNumber{{loop.index}}="{{sub.dunsNumber|e}}" data-leaName{{loop.index}}="{{sub.leaName|e}}">DUNS &#35;: {{sub.dunsNumber|e}} LEA name: {{sub.leaName|e}}</p>
+            </summary>
+            <p class="question">4.a. Provide the amounts expended and select the purposes for which the funds were expended by the LEA.</p>
+            <p><label>Total amount awarded to the LEA: <input disabled type="text" id="leaawardedAmount{{loop.index}}" data-leaawardedAmount{{loop.index}}="{{sub.awardedAmount}}" value="{{sub.awardedAmount|dollars}}"/></label></p>
+            <p><label>Who the LEA is serving with the funds: <input disabled type="text" size="72" id="servedPopulation{{loop.index}}" data-servedPopulation{{loop.index}}="{{sub.servedPopulation|e}}" value="{{sub.servedPopulation|e}}"/></label></p>
+            <p><label>Amount expended by the LEA for Public Schools: <input disabled type="text" id="fundsExpendedOnPublicSchools{{loop.index}}" data-fundsExpendedOnPublicSchools{{loop.index}}="{{sub.fundsExpendedOnPublicSchools}}" value="{{sub.fundsExpendedOnPublicSchools|dollars}}"/></label></p>
+            <p><label>Amount expended by the LEA for equitable service for Non-public School students and teachers: <input disabled type="text" id="fundsExpendedOnNonPublicSchools{{loop.index}}" data-fundsExpendedOnNonPublicSchools{{loop.index}}="{{sub.fundsExpendedOnNonPublicSchools}}" value="{{sub.fundsExpendedOnNonPublicSchools|dollars}}"/></label></p>
+            <p><label>Total amount expended by the LEA: <input disabled type="text" id="fundsExpendedTotal{{loop.index}}" data-fundsExpendedTotal{{loop.index}}="{{sub.fundsExpendedTotal}}" value="{{sub.fundsExpendedTotal|dollars}}"/></label></p>
+            <p>The LEA used GEER funds for the checked purposes below.</p>
+            <p><label><input disabled type="checkbox" id="usedFundsForEducationalTechnology{{loop.index}}" data-usedFundsForEducationalTechnology{{loop.index}}="{{sub.usedFundsForEducationalTechnology|yes_no}}" {{sub.usedFundsForEducationalTechnology|check}}/> 1.  Purchasing educational technology (including hardware, software, and connectivity), which may include assistive technology or adaptive equipment.</label></p>
+            <p><label><input disabled type="checkbox" id="usedFundsToAssistDisadvantaged{{loop.index}}" data-usedFundsToAssistDisadvantaged{{loop.index}}="{{sub.usedFundsToAssistDisadvantaged|yes_no}}" {{sub.usedFundsToAssistDisadvantaged|check}}/> 2.  Activities focused specifically to addressing the unique needs of low-income children or students, children with disabilities, English learners, racial and ethnic minorities, students experiencing homelessness, and foster care youth.</label></p>
+            <p><label><input disabled type="checkbox" id="usedFundsForMentalHealth{{loop.index}}" data-usedFundsForMentalHealth{{loop.index}}="{{sub.usedFundsForMentalHealth|yes_no}}" {{sub.usedFundsForMentalHealth|check}}/> 3.  Providing mental health services and supports.</label></p>
+            <p><label><input disabled type="checkbox" id="usedFundsForSanitization{{loop.index}}" data-usedFundsForSanitization{{loop.index}}="{{sub.usedFundsForSanitization|yes_no}}" {{sub.usedFundsForSanitization|check}}/> 4.  Sanitization and minimizing the spread of infectious diseases, including cleaning supplies and staff training to address sanitization and minimizing the spread of infectious diseases.</label></p>
+            <p><label><input disabled type="checkbox" id="usedFundsForSummerAndAfterSchool{{loop.index}}" data-usedFundsForSummerAndAfterSchool{{loop.index}}="{{sub.usedFundsForSummerAndAfterSchool|yes_no}}" {{sub.usedFundsForSummerAndAfterSchool|check}}/> 5.  Summer learning and supplemental afterschool programs.</label></p>
+            <p><label><input disabled type="checkbox" id="usedFundsForOther{{loop.index}}" data-usedFundsForOther{{loop.index}}="{{sub.usedFundsForOther|yes_no}}" {{sub.usedFundsForOther|check}}/> 6.  Other (uses of funds not included above). </label></p>
+            {% if sub.usedFundsForOther %}
+                <p><label>Other use description: <textarea disabled rows="4" cols="72" id="fundsUsedForOtherDescription{{loop.index}}" data-fundsUsedForOtherDescription{{loop.index}}="{{sub.fundsUsedForOtherDescription|e}}">{{sub.fundsUsedForOtherDescription|e}}</textarea></label></p>
+            {% endif %}
+            {% if sub.usedFundsForEducationalTechnology %}
+                <p><label>b. Did this LEA use GEER funds to provide home Internet access for any students? <input disabled type="text" id="usedFundsToProvideInternet{{loop.index}}" data-usedFundsToProvideInternet{{loop.index}}="{{sub.usedFundsToProvideInternet|yes_no}}" value="{{sub.usedFundsToProvideInternet|yes_no}}"/></label></p>
+                {% if sub.usedFundsToProvideInternet %}
+                    <p>The types of home Internet services provided by the LEA are checked below.</p>
+                    <p><label><input type="checkbox" id="usedFundsForMobileHotspots{{loop.index}}" data-usedFundsForMobileHotspots{{loop.index}}="{{sub.usedFundsForMobileHotspots|yes_no}}" {{sub.usedFundsForMobileHotspots|check}}/> Mobile hotspots with paid data plans</label></p>
+                    <p><label><input type="checkbox" id="usedFundsForInternetDevices{{loop.index}}" data-usedFundsForInternetDevices{{loop.index}}="{{sub.usedFundsForInternetDevices|yes_no}}" {{sub.usedFundsForInternetDevices|check}}/> Internet connected devices with paid data plans</label></p>
+                    <p><label><input type="checkbox" id="usedFundsForHomeInternet{{loop.index}}" data-usedFundsForHomeInternet{{loop.index}}="{{sub.usedFundsForHomeInternet|yes_no}}" {{sub.usedFundsForHomeInternet|check}}/> District pays for the cost of home Internet subscription for student</label></p>
+                    <p><label><input type="checkbox" id="usedFundsForDistrictInternet{{loop.index}}" data-usedFundsForDistrictInternet{{loop.index}}="{{sub.usedFundsForDistrictInternet|yes_no}}" {{sub.usedFundsForDistrictInternet|check}}/> District provides home Internet access through a district-managed wireless network</label></p>
+                    <p><label><input type="checkbox" id="usedFundsForOtherInternet{{loop.index}}" data-usedFundsForOtherInternet{{loop.index}}="{{sub.usedFundsForOtherInternet|yes_no}}" {{sub.usedFundsForOtherInternet|check}}/> usedFundsForOtherInternetDescription</label></p>
+                    <p><label>Other Internet service description: <textarea disabled rows="4" cols="72" id="usedFundsForOtherInternetDescription{{loop.index}}" data-usedFundsForOtherInternetDescription{{loop.index}}="{{sub.usedFundsForOtherInternetDescription|e}}">{{sub.usedFundsForOtherInternetDescription|e}}</textarea></label></p>
+                    <p class="question">c. Among students enrolled on September 30, 2020, what proportion of students by district had a dedicated LEA-provided device funded by GEER for the following grade bands?</p>
+                    <p>For the purposes of this survey, include desktop, laptop, and tablet computers (including Chromebooks and iPads). Do not include smartphone devices. “Elementary” is defined as “a school classified as elementary by state and local practice and composed of any span of grades not above grade 8” and “Secondary” is defined as “a school comprising any span of grades beginning with the next grade following an elementary or middle school (usually 7, 8, or 9) and ending with or below grade 12. Both junior high schools and senior high schools are included.”</p>
+                    <p><label>Did the LEA use GEER funds to provide dedicated learning devices to any students?<input disabled type="text" id="usedFundsForDedicatedLearningDevices{{loop.index}}" data-usedFundsForDedicatedLearningDevices{{loop.index}}="{{sub.usedFundsForDedicatedLearningDevices|yes_no}}" value="{{sub.usedFundsForDedicatedLearningDevices|yes_no}}"/></label></p>
+                    {% if sub.usedFundsForDedicatedLearningDevices %}
+                        <table cellspacing="0" width="100%" id="lea_device_allocation{{loop.index}}"
+                            summary="The number and proportion of students that received dedicated learning devices, by grade level."
+                            repeat="1">
+                            <thead>
+                                <tr>
+                                    <th style="width:20%;" scope="col">Grade level</th>
+                                    <th scope="col">Students with dedicated device provided by the LEA</th>
+                                    <th scope="col">Students enrolled on September 30, 2020</th>
+                                    <th scope="col">Proporition of students with an LEA-provided device</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Elementary</th>
+                                    <td id="elementaryStudentsWithDedicatedDevice{{loop.index}}"
+                                        data-elementaryStudentsWithDedicatedDevice{{loop.index}}="{{sub.elementaryStudentsWithDedicatedDevice}}">
+                                        {{sub.elementaryStudentsWithDedicatedDevice}}</td>
+                                    <td id="elementaryStudentsEnrolled{{loop.index}}"
+                                        data-elementaryStudentsEnrolled{{loop.index}}="{{sub.elementaryStudentsEnrolled}}">
+                                        {{sub.elementaryStudentsEnrolled}}</td>
+                                    <td id="elementaryStudentProportionWithDevices{{loop.index}}"
+                                        data-elementaryStudentProportionWithDevices{{loop.index}}="{{sub.elementaryStudentProportionWithDevices}}">
+                                        {{sub.elementaryStudentProportionWithDevices|percent}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Secondary</th>
+                                    <td id="secondaryStudentsWithDedicatedDevice{{loop.index}}"
+                                        data-secondaryStudentsWithDedicatedDevice{{loop.index}}="{{sub.secondaryStudentsWithDedicatedDevice}}">
+                                        {{sub.secondaryStudentsWithDedicatedDevice}}</td>
+                                    <td id="secondaryStudentsEnrolled{{loop.index}}"
+                                        data-secondaryStudentsEnrolled{{loop.index}}="{{sub.secondaryStudentsEnrolled}}">
+                                        {{sub.secondaryStudentsEnrolled}}</td>
+                                    <td id="secondaryStudentProportionWithDevices{{loop.index}}"
+                                        data-secondaryStudentProportionWithDevices{{loop.index}}="{{sub.secondaryStudentProportionWithDevices}}">
+                                        {{sub.secondaryStudentProportionWithDevices|percent}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    {% endif %}
+                {% endif %}
+            {% endif %}
+        </details>
+        <hr/>
+        {% endfor %}
+        <p id="item5" class="question">5. For each IHE awarded GEER funds from the State, provide the amount expended and additional information if GEER funds were used by the IHE to provide financial aid to students at the IHE.</p>
+        <table cellspacing="0" width="100%" id="ihe_expenditures"
+            summary="The award amounts, expenditures, and number of students receiving aid for each IHE awarded GEER funds."
+            repeat="1">
+            <thead>
+                <tr>
+                    <th style="width:30%" scope="col">IHE name</th>
+                    <th scope="col" style="width:10%">DUNS &#35;</th>
+                    <th scope="col" style="width:15%">Amount awarded to the IHE</th>
+                    <th scope="col" style="width:15%">Amount expened by the IHE</th>
+                    <th scope="col" style="width:15%">Amount of expended funds used by the IHE to provide student financial aid grants</th>
+                    <th scope="col" style="width:15%">NUmber of students who received financial aid grants as result of GEER funds</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for sub in apr.subawards|selectattr("iheName") %}
+                <tr>
+                    <td id="iheName{{loop.index}}"
+                        data-iheName{{loop.index}}="{{sub.iheName|e}}">
+                        {{sub.iheName|e}}</td>
+                    <td id="ihedunsNumber{{loop.index}}"
+                        data-ihedunsNumber{{loop.index}}="{{sub.dunsNumber|e}}">
+                        {{sub.dunsNumber|e}}</td>
+                    <td id="iheawardedAmount{{loop.index}}"
+                        data-iheawardedAmount{{loop.index}}="{{sub.awardedAmount}}">
+                        {{sub.awardedAmount|dollars}}</td>
+                    <td id="fundsExpendedByIhe{{loop.index}}" data-fundsExpendedByIhe{{loop.index}}="{{sub.fundsExpendedByIhe}}">{{sub.fundsExpendedByIhe|dollars}}</td>
+                    <td id="fundsUsedToProvideFinancialAid{{loop.index}}" data-fundsUsedToProvideFinancialAid{{loop.index}}="{{sub.fundsUsedToProvideFinancialAid}}">{{sub.fundsUsedToProvideFinancialAid|dollars}}</td>
+                    <td id="numberOfStudentsReceivedFinancialAid{{loop.index}}" data-numberOfStudentsReceivedFinancialAid{{loop.index}}="{{subnumberOfStudentsReceivedFinancialAid}}">{{sub.numberOfStudentsReceivedFinancialAid}}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <p id="item6" class="question">6. What was the amount awarded and expended by each education-related entity? Which populations of students were or will be served by the entity? Did the funding awarded to the entity support distance-learning and remote education or provide financial support to students?</p>
+        <table cellspacing="0" width="100%" id="entity_expenditures"
+            summary="The award amounts, expenditures, populations served, and services provided by each education-related entity awarded GEER funds."
+            repeat="1">
+            <thead>
+                <tr>
+                    <th style="width:17%" scope="col">Other education-related entity</th>
+                    <th style="width:8%" scope="col">DUNS &#35;</th>
+                    <th style="width:12.5%" scope="col">Amount awarded to the entity</th>
+                    <th style="width:12.5%" scope="col">Amount expened by the entity</th>
+                    <th style="width:10%" scope="col">Served Pre-K</th>
+                    <th style="width:10%" scope="col">Served K-12</th>
+                    <th style="width:10%" scope="col">Post-sec</th>
+                    <th style="width:10%" scope="col">Supported distance learning and remote education</th>
+                    <th style="width:10%" scope="col">Provided direct financial support to students</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for sub in apr.subawards|selectattr("entityName") %}
+                <tr>
+                    <td id="entityName{{loop.index}}"
+                        data-entityName{{loop.index}}="{{sub.entityName|e}}">
+                        {{sub.entityName|e}}</td>
+                    <td id="entitydunsNumber{{loop.index}}"
+                        data-entitydunsNumber{{loop.index}}="{{sub.dunsNumber|e}}">
+                        {{sub.dunsNumber|e}}</td>
+                    <td id="entityawardedAmount{{loop.index}}"
+                        data-entityawardedAmount{{loop.index}}="{{sub.awardedAmount}}">
+                        {{sub.awardedAmount|dollars}}</td>
+                    <td id="entityfundsExpendedTotal{{loop.index}}"
+                        data-entityfundsExpendedTotal{{loop.index}}="{{sub.fundsExpendedTotal}}">
+                        {{sub.fundsExpendedTotal|dollars}}</td>
+                    <td id="isPreKServed{{loop.index}}" data-isPreKServed{{loop.index}}="{{sub.isPreKServed|yes_no}}">{{sub.isPreKServed|yes_no}}</td>
+                    <td id="isK12Served{{loop.index}}" data-isK12Served{{loop.index}}="{{sub.isK12Served|yes_no}}">{{sub.isK12Served|yes_no}}</td>
+                    <td id="isPostSecServed{{loop.index}}" data-isPostSecServed{{loop.index}}="{{sub.isPostSecServed|yes_no}}">{{sub.isPostSecServed|yes_no}}</td>
+                    <td id="isDistanceLearningSupported{{loop.index}}" data-isDistanceLearningSupported{{loop.index}}="{{sub.isDistanceLearningSupported|yes_no}}">{{sub.isDistanceLearningSupported|yes_no}}</td>
+                    <td id="isDirectFinancialSupportProvided{{loop.index}}" data-isDirectFinancialSupportProvided{{loop.index}}="{{sub.isDirectFinancialSupportProvided|yes_no}}">{{sub.isDirectFinancialSupportProvided|yes_no}}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <p id="item7" class="question">7. Provide the number of full-time equivalent (FTE) positions for the LEA, IHE, or Entity as of the listed reporting dates.</p>
+        <p>(The number of FTE positions includes all staff regardless of whether the position is funded by Federal, State, local, or other funds —including instructional and non-instructional staff and contractors—and equals the sum of the number of full-time positions plus the full-time equivalent of the number of part-time positions.)</p>
+        <table cellspacing="0" width="100%" id="fte"
+            summary="The number of full-time equivalent positions at various points in time for each entity awarded GEER funds."
+            repeat="1">
+            <thead>
+                <tr>
+                    <th style="width:32%" scope="col">LEA Name/IHE/Entity Name</th>
+                    <th style="width:8%" scope="col">DUNS &#35;</th>
+                    <th style="width:15%" scope="col">Full-time equivalent (FTE) positions as of September 30, 2018</th>
+                    <th style="width:15%" scope="col">Full-time equivalent (FTE) positions as of September 30, 2019</th>
+                    <th style="width:15%" scope="col">Full-time equivalent (FTE) positions as of March 13, 2020</th>
+                    <th style="width:15%" scope="col">Full-time equivalent (FTE) positions as of September 30, 2020</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for sub in apr.subawards %}
+                <tr>
+                    <td id="entityName{{loop.index}}"
+                        data-entityName{{loop.index}}="{{sub.entityName|e}}">
+                        {{sub.leaName|e if sub.leaName}}{{sub.iheName|e if sub.iheName}}{{sub.entityName|e if sub.entityName}}</td>
+                    <td id="dunsNumber{{loop.index}}"
+                        data-dunsNumber{{loop.index}}="{{sub.dunsNumber|e}}">
+                        {{sub.dunsNumber|e}}</td>
+                    <td id="ftePositionsAsOf09302018{{loop.index}}" data-ftePositionsAsOf09302018{{loop.index}}="{{sub.ftePositionsAsOf09302018}}">{{sub.ftePositionsAsOf09302018}}</td>
+                    <td id="ftePositionsAsOf09302019{{loop.index}}" data-ftePositionsAsOf09302019{{loop.index}}="{{sub.ftePositionsAsOf09302019}}">{{sub.ftePositionsAsOf09302019}}</td>
+                    <td id="ftePositionsAsOf03132020{{loop.index}}" data-ftePositionsAsOf03132020{{loop.index}}="{{sub.ftePositionsAsOf03132020}}">{{sub.ftePositionsAsOf03132020}}</td>
+                    <td id="ftePositionsAsOf09302020{{loop.index}}" data-ftePositionsAsOf09302020{{loop.index}}="{{sub.ftePositionsAsOf09302020}}">{{sub.ftePositionsAsOf09302020}}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <p id="item8" class="question">8. In the table below, indicate the number of K-12 schools (public and non-public) that received GEER funds or received services paid for with GEER funds</p>
+        <table cellspacing="0" width="100%" id="schools_supported"
+        summary="The number public and non-public schools in the K-12 grade levels supported by GEER funds."
+        repeat="1">
+        <thead>
+            <tr>
+                <th style="width:20%;" scope="col">School type</th>
+                <th scope="col">K-12 schools</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">Public Schools</th>
+                <td id="numberOfPublicSchoolsReceivedGeerFunds"
+                    data-numberOfPublicSchoolsReceivedGeerFunds="{{apr.numberOfPublicSchoolsReceivedGeerFunds}}">
+                    {{apr.numberOfPublicSchoolsReceivedGeerFunds}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Non-public Schools</th>
+                <td id="numberOfNonPublicSchoolsReceivedGeerFunds"
+                    data-numberOfNonPublicSchoolsReceivedGeerFunds="{{apr.numberOfNonPublicSchoolsReceivedGeerFunds}}">
+                    {{apr.numberOfNonPublicSchoolsReceivedGeerFunds}}</td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+    <section id="burden_statement" role="region" aria-labelledby="burden">
+        <h1 id="burden">Burden Statement</h1>
+        <p>According to the Paperwork Reduction Act of 1995, no persons are required to respond to a collection of
+            information unless such collection displays a valid OMB control number. The valid OMB control number for
+            this information collection is {{apr.omb_control_number}}. Public reporting burden for this collection of information is
+            estimated to average 4.1 hours per response, including time for reviewing instructions, searching existing
+            data sources, gathering and maintaining the data needed, and completing and reviewing the collection of
+            information. Under the PRA, participants are required to respond to this collection to obtain or retain a
+            benefit. If you have any comments concerning the accuracy of the time estimate, suggestions for improving
+            this individual collection, or if you have comments or concerns regarding the status of your individual
+            form, please contact Joanne Bogart, US. Department of Education, 400 Maryland Avenue, SW, Washington, DC</p>
+    </section>
+</main>
+{% endblock apr %}

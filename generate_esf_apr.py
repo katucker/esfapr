@@ -53,7 +53,6 @@ from typing import List, Iterator
 import boto3
 import openpyxl
 from jinja2 import Environment, FileSystemLoader, Template, select_autoescape
-from tqdm import tqdm
 
 from esf_workbook_actions import APRWorkbookList, ESF_APR
 
@@ -171,19 +170,6 @@ def store_html(apr_html: Iterator[str], filename: pathlib.Path) -> None:
         logging.error(f'Exception encountered storing HTML file {filename}.', exc_info=e)
         return
 
-def store_pdf(filepath: pathlib.Path) -> None:
-    try:
-            pdf_path = filepath.with_suffix(".pdf")
-            with filepath.open(mode="rt", encoding="utf-8") as hfp:
-                with pdf_path.open(mode="wb") as pfp:
-                    pisa_status = pisa.CreatePDF( src=hfp, dest=pfp)
-                    if pisa_status.err:
-                        logging.error(pisa_status)
-    except Exception as e:
-        logging.error(f'Exception encountered storing PDF file {pdf_path}.', exc_info=e)
-        return
-
-    
 def yes_no(value):
     if value:
         return 'Yes'
@@ -191,8 +177,8 @@ def yes_no(value):
 
 def check(value):
     if value:
-        return '&#x2714;'
-    return '&nbsp;'
+        return 'checked'
+    return ''
 
 def dollars(value):
     if value:
@@ -252,8 +238,6 @@ if __name__ == '__main__':
             help='Copy data files from cloud storage to the specified directory.')
         ap.add_argument('-o','--output',
             help='Generate output files in the specified directory.')
-        ap.add_argument('-p','--pdf', action='store_true', dest='pdf',
-            help='Generate a PDF in addition to an HTML output file.')
         ap.add_argument('-s','--subfund',action='append', dest='subfund',
             choices=['EANS','ESF-Gov','ESF-SEA','ESSER','GEER','HEER'],
             help='Generate APRs for the specified sub-fund(s).')
@@ -339,12 +323,11 @@ if __name__ == '__main__':
                 if filename:
                     efp = openpyxl.load_workbook(filename=filename, read_only=True, data_only=True)
                     aprs = APRWorkbookList(wb=efp, subfund=subfund, reporting_year=year, keys=args.grantees)
-                    taprs = tqdm(aprs)    
-                    for apr in taprs:
-                        taprs.set_description(f'Generating {apr.output_file_base_name}')
+                    for apr in aprs:
+                        print(f'Generating HTML APR {apr.output_file_base_name}')
                         apr_html = generate_apr(temp=temp, apr=apr)
-                        if not apr_html:
-                            taprs.set_description(f"No HTML output generated for {apr.output_file_basename}")
+                        if apr_html is None:
+                            taprs.set_description(f"No HTML output generated.")
                             continue
                         html_path = pathlib.Path(apr.output_file_base_name).with_suffix('.html')
                         if outdir:
@@ -353,8 +336,6 @@ if __name__ == '__main__':
 
                         store_html(apr_html, html_path)
 
-                        if args.pdf:
-                            store_pdf( html_path)
                 else:
                     logging.error(f'No data file for subfund {subfund} year {year}.')
 

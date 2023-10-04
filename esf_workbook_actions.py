@@ -5677,7 +5677,7 @@ _GEER_workbook_map = {
             {'name': 'provideDigitalLearningContentForLeas',
                 'index': 34, 'type': 'bool'},
             {'name': 'areOtherConditionsForLeas', 'index': 35, 'type': 'bool'},
-            {'name': 'otherConditionsForLeas', 'index': 36, 'type': 'bool'},
+            {'name': 'otherConditionsForLeas', 'index': 36, 'type': 'str'},
             {'name': 'wereAnyConditionsPlacedByStateForIheFunds',
                 'index': 37, 'type': 'bool'},
             {'name': 'isStateIheGeerAwardConditionChanges',
@@ -9021,166 +9021,17 @@ class APRWorkbookList(Iterable):
         self._reporting_year = reporting_year
         match self._subfund:
             case 'EANS':
-                self._workbook_map = _EANS_workbook_map.get(
-                    reporting_year, None)
-                if self._workbook_map:
-                    # Create a list of subordinate worksheets to process, specific to the
-                    # reporting year.
-                    match reporting_year:
-                        case '2021' | '2022':
-                            self._subs = [
-                                {'name': 'schools',
-                                 'ws': wb[self._workbook_map['school_worksheet_name']],
-                                 'map':self._workbook_map['schools'],
-                                 'key_column': self._workbook_map['school_worksheet_key_column']},
-                                {'name': 'subawards',
-                                 'ws': wb[self._workbook_map['subawards_worksheet_name']],
-                                 'map':self._workbook_map['subs'],
-                                 'key_column': self._workbook_map['subawards_worksheet_key_column']}
-                            ]
-                            self._filename_components = [4, 3]
-
+                self._workbook_map = _EANS_workbook_map.get(reporting_year, None)
             case 'ESF-Gov':
-                self._workbook_map = _ESF_Gov_workbook_map.get(
-                    reporting_year, None)
-                if self._workbook_map:
-                    if not keys:
-                        # Special handling since GEER and ESF-Gov data are stored in the
-                        # same workbook. If a list of grantees is not explicitly passed,
-                        # limit the iteration to the ESF-Gov grantees.
-                        keys = _ESF_Gov_grantees
-                    # Create a list of subordinate worksheets to process, specific to the
-                    # reporting year.
-                    match reporting_year:
-                        case '2020':
-                            self._subs = [
-                                {'name': 'subawards',
-                                 'ws': wb[self._workbook_map['subawards_worksheet_name']],
-                                 'map':self._workbook_map['subs'],
-                                 'key_column': self._workbook_map['subawards_worksheet_key_column']}
-                            ]
-                            self._filename_components = [8, 0]
-                        case '2021':
-                            self._subs = [
-                                {'name': 'geer1_lea',
-                                 'ws': wb[self._workbook_map['cares_lea_subaward_worksheet_name']],
-                                 'map':self._workbook_map['geer1_lea'],
-                                 'key_column': self._workbook_map['cares_lea_subaward_worksheet_key_column']},
-                                {'name': 'geer2_lea',
-                                 'ws': wb[self._workbook_map['crrsa_lea_subaward_worksheet_name']],
-                                 'map':self._workbook_map['geer2_lea'],
-                                 'key_column': self._workbook_map['crrsa_lea_subaward_worksheet_key_column']},
-                                {'name': 'geer1_ihe',
-                                 'ws': wb[self._workbook_map['cares_ihe_subaward_worksheet_name']],
-                                 'map':self._workbook_map['geer1_ihe'],
-                                 'key_column': self._workbook_map['cares_ihe_subaward_worksheet_key_column']},
-                                {'name': 'geer2_ihe',
-                                 'ws': wb[self._workbook_map['crrsa_ihe_subaward_worksheet_name']],
-                                 'map':self._workbook_map['geer2_ihe'],
-                                 'key_column': self._workbook_map['crrsa_ihe_subaward_worksheet_key_column']},
-                                {'name': 'geer1_other',
-                                 'ws': wb[self._workbook_map['cares_other_subaward_worksheet_name']],
-                                 'map':self._workbook_map['geer1_other'],
-                                 'key_column': self._workbook_map['cares_other_subaward_worksheet_key_column']},
-                                {'name': 'geer2_other',
-                                 'ws': wb[self._workbook_map['crrsa_other_subaward_worksheet_name']],
-                                 'map':self._workbook_map['geer2_other'],
-                                 'key_column': self._workbook_map['crrsa_other_subaward_worksheet_key_column']}]
-                            self._filename_components = [4, 3]
-
+                self._workbook_map = _ESF_Gov_workbook_map.get(reporting_year, None)
             case 'ESF-SEA':
-                self._workbook_map = _ESF_SEA_workbook_map.get(
-                    reporting_year, None)
-                if self._workbook_map:
-                    # Create a list of subordinate worksheets to process, specific to the
-                    # reporting year.
-                    match reporting_year:
-                        case '2020':
-                            self._subs = [
-                                {'name': 'subawards',
-                                 'ws': wb[self._workbook_map['subawards_worksheet_name']],
-                                 'map':self._workbook_map['subs'],
-                                 'key_column': self._workbook_map['subawards_worksheet_key_column']}
-                            ]
-                            self._filename_components = [10, 0]
-                        case '2021':
-                            self._subs = [
-                                {'name': 'cares',
-                                 'ws': wb[self._workbook_map['cares_subaward_worksheet_name']],
-                                 'map':self._workbook_map['cares'],
-                                 'key_column': self._workbook_map['cares_subaward_worksheet_key_column']},
-                                {'name': 'crrsa',
-                                 'ws': wb[self._workbook_map['crrsa_subaward_worksheet_name']],
-                                 'map':self._workbook_map['crrsa'],
-                                 'key_column': self._workbook_map['crrsa_subaward_worksheet_key_column']},
-                                {'name': 'arp',
-                                 'ws': wb[self._workbook_map['arp_subaward_worksheet_name']],
-                                 'map':self._workbook_map['arp'],
-                                 'key_column': self._workbook_map['arp_subaward_worksheet_key_column']},
-                                {'name': 'cross',
-                                 'ws': wb[self._workbook_map['cross_subaward_worksheet_name']],
-                                 'map':self._workbook_map['cross'],
-                                 'key_column': self._workbook_map['cross_subaward_worksheet_key_column']},
-                                {'name': 'schools',
-                                 'ws': wb[self._workbook_map['schools_worksheet_name']],
-                                 'map':self._workbook_map['schools'],
-                                 'key_column': self._workbook_map['schools_worksheet_key_column']}]
-                            self._filename_components = [4, 3]
+                self._workbook_map = _ESF_SEA_workbook_map.get(reporting_year, None)
             case 'ESSER':
                 self._workbook_map = _ESSER_workbook_map.get(reporting_year, None)
             case 'GEER':
-                self._workbook_map = _GEER_workbook_map.get(
-                    reporting_year, None)
-                if self._workbook_map:
-                    if not keys:
-                        # Special handling since GEER and ESF-Gov data are stored in the
-                        # same workbook. If a list of grantees is not explicitly passed,
-                        # limit the iteration to the ESF-Gov grantees.
-                        keys = _GEER_grantees
-                    match reporting_year:
-                        case '2020':
-                            self._subs = [
-                                {'name': 'subawards',
-                                 'ws': wb[self._workbook_map['subawards_worksheet_name']],
-                                 'map':self._workbook_map['subs'],
-                                 'key_column': self._workbook_map['subawards_worksheet_key_column']}
-                            ]
-                            self._filename_components = [8, 0]
-                        case '2021':
-                            self._subs = [
-                                {'name': 'geer1_lea',
-                                 'ws': wb[self._workbook_map['cares_lea_subaward_worksheet_name']],
-                                 'map':self._workbook_map['geer1_lea'],
-                                 'key_column': self._workbook_map['cares_lea_subaward_worksheet_key_column']},
-                                {'name': 'geer2_lea',
-                                 'ws': wb[self._workbook_map['crrsa_lea_subaward_worksheet_name']],
-                                 'map':self._workbook_map['geer2_lea'],
-                                 'key_column': self._workbook_map['crrsa_lea_subaward_worksheet_key_column']},
-                                {'name': 'geer1_ihe',
-                                 'ws': wb[self._workbook_map['cares_ihe_subaward_worksheet_name']],
-                                 'map':self._workbook_map['geer1_ihe'],
-                                 'key_column': self._workbook_map['cares_ihe_subaward_worksheet_key_column']},
-                                {'name': 'geer2_ihe',
-                                 'ws': wb[self._workbook_map['crrsa_ihe_subaward_worksheet_name']],
-                                 'map':self._workbook_map['geer2_ihe'],
-                                 'key_column': self._workbook_map['crrsa_ihe_subaward_worksheet_key_column']},
-                                {'name': 'geer1_other',
-                                 'ws': wb[self._workbook_map['cares_other_subaward_worksheet_name']],
-                                 'map':self._workbook_map['geer1_other'],
-                                 'key_column': self._workbook_map['cares_other_subaward_worksheet_key_column']},
-                                {'name': 'geer2_other',
-                                 'ws': wb[self._workbook_map['crrsa_other_subaward_worksheet_name']],
-                                 'map':self._workbook_map['geer2_other'],
-                                 'key_column': self._workbook_map['crrsa_other_subaward_worksheet_key_column']}]
-                            self._filename_components = [4, 3]
+                self._workbook_map = _GEER_workbook_map.get(reporting_year, None)
             case 'HEER':
-                self._workbook_map = _HEER_workbook_map.get(
-                    reporting_year, None)
-                if self._workbook_map:
-                    match reporting_year:
-                        case '2020' | '2021' | '2022':
-                            self._subs = []
-                            self._filename_components = [18, 16]
+                self._workbook_map = _HEER_workbook_map.get(reporting_year, None)
             case _:
                 logging.info(f'Ignoring unimplemented subfund {subfund}.')
                 self._workbook_map = None

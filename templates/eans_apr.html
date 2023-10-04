@@ -1,0 +1,1065 @@
+<!-- # templates/eans_apr.html # -->
+{% extends "common.html" %}
+{% block title %}{{apr.stateCode|e}} {{apr.reportingYear|e}} Emergency Assistance to Non-Public Schools Annual Report{% endblock title %}
+{% block apr_title %}
+<p style="text-align:center;">Education Stabiliztion Fund - Emergency Assistance to Non-Public Schools (EANS) Program
+    Recipient Annual Reporting Data Collection Form</p>
+{% endblock apr_title %}
+{% block apr_sections %}
+        <p><a href="#introduction">Introduction</a></p>
+        <p><a href="#section1">Section I: SEA Grant, Obligation, and Expenditure Amounts by Program</a></p>
+        <p><a href="#section2">Section II: CRRSA EANS Funds Returned to the Governor</a></p>
+        <p><a href="#section3">Section III: CRRSA EANS SEA Administrative Reserve and SEA determination for services or assistance provided to non-public schools</a></p>
+        <p><a href="#section4">Section IV: ARP EANS SEA Administrative Reserve and SEA determination for services or assistance provided to non-public schools</a></p>
+        <p><a href="#section5">Section V: SEA Obligations (including reimbursements) by allowable activity for CRRSA EANS</a></p>
+        <p><a href="#section6">Section VI: SEA Obligations by allowable activity for ARP EANS</a></p>
+        <p><a href="#section7">Section VII. Non-public schools receiving services or assistance under CRRSA EANS</a></p>
+{% endblock apr_sections %}
+{% block apr %}
+<main>
+    <form name="introduction" action="" aria-label="introduction">
+        <h1>Emergency Assistance to Non-Public Schools Annual Reporting Form</h1>
+        <p><label >State: <input type="text" disabled id="stateName" data-stateName="{{apr.stateName|e}}" value="{{apr.stateName|e}}"></label></p>
+        <p><label >CRRSAA EANS PR/Award number: <input type="text" disabled id="eans2AwardNumber" data-eans2AwardNumber="{{ apr.eans2AwardNumber|e }}" value="{{ apr.eans2AwardNumber|e }}"></label></p>
+        <p><label >ARP EANS PR/Award number: <input type="text" disabled  id="eans3AwardNumber" data-eans3AwardNumber="{{ apr.eans3AwardNumber|e }}" value="{{ apr.eans3AwardNumber|e }}"></label></p>
+        <p><label >Position: <input type="text" disabled size="72" id="stateDirectorPosition" data-stateDirectorPosition="{{apr.stateDirectorPosition|e}}" value="{{ apr.stateDirectorPosition|e }}"></label></p>
+        <p><label >Office: <input type="text" disabled size="72" id="stateDirectorOffice" data-stateDirectorOffice="{{apr.stateDirectorOffice|e}}" value="{{ apr.stateDirectorOffice|e }}"></label></p>
+        <p><label >Telephone: <input type="text" disabled id="stateDirectorTelephone" data-stateDirectorTelephone="{{apr.stateDirectorTelephone|e}}" value="{{ apr.stateDirectorTelephone|e }}"></label></p>
+        <p><label >E-mail Address: <input type="text" disabled size="72" id="stateDirectorEmailAddress" data-stateDirectorEmailAddress="{{apr.stateDirectorEmailAddress|e}}" value="{{ apr.stateDirectorEmailAddress|e }}"></label></p>
+
+        <p>Instructions: States that received Emergency Assistance to Non-Public Schools (EANS) program funds as authorized
+            by the Coronavirus Response and Relief Supplemental Appropriations Act, 2021 (CRRSA Act) and the American
+            Rescue Plan Act of 2021 (ARP Act) shall complete the annual EANS program reporting requirements. Please answer all
+            questions based on the reporting period shown in the Annual Reporting table below.</p>
+
+        <details>
+            <summary>Definitions</summary>
+            <dl>
+                <dt>ARP Act</dt>
+                <dd>American Rescue Plan Act of 2021</dd>
+                <dt>ARP EANS</dt>
+                <dd>American Rescue Plan Emergency Assistance to Non-Public Schools</dd>
+                <dt>CRRSAA or CRRSA Act</dt>
+                <dd>Coronavirus Response and Relief Supplemental Appropriations Act, 2021</dd>
+                <dt>EANS</dt>
+                <dd>Emergency Assistance to Non-Public Schools</dd>
+                <dt>EANS Administrative Reserve</dt>
+                <dd>funds to administer the services and assistance provided under the program to non-public schools
+                </dd>
+                <dt>ESSER I</dt>
+                <dd>Elementary and Secondary School Emergency Relief fund authorized under the Coronavirus Aid Relief,
+                    and
+                    Economic
+                    Security (CARES) Act</dd>
+                <dt>ESSER II</dt>
+                <dd>Elementary and Secondary School Emergency Relief fund authorized under the Coronavirus Response and
+                    Relief
+                    Supplemental Appropriations (CRRSA) Act</dd>
+                <dt>Elementary school</dt>
+                <dd>A school classified as elementary by state and local practice and composed of any span of grades not
+                    above
+                    grade
+                    8.</dd>
+                <dt>GEER I</dt>
+                <dd>Governor&apos;s Emergency Education Relief fund authorized under the Coronavirus Aid Relief, and Economic
+                    Security
+                    (CARES) Act</dd>
+                <dt>GEER II</dt>
+                <dd>Governor&apos;s Emergency Education Relief fund authorized under the Coronavirus Response and Relief
+                    Supplemental
+                    Appropriations Act, 2021 (CRRSA Act)</dd>
+                <dt>G5</dt>
+                <dd>U.S. Department of Education&apos;s grants management and payment system</dd>
+                <dt>SEA</dt>
+                <dd>State Educational Agency</dd>
+                <dt>Secondary School</dt>
+                <dd>A school that has any span of grades beginning with the next grade following an elementary or middle
+                    school
+                    (usually grade 7, 8, or 9) and ending with or below grade 12. Both junior high schools and senior
+                    high
+                    schools
+                    are included.</dd>
+                <dt>Subaward</dt>
+                <dd>award made by an SEA to a subrecipient for the subrecipient to carry out part of the EANS program. A
+                    subaward
+                    may be provided through any form of legal agreement, including an agreement that the SEA considers a
+                    contract
+                </dd>
+                <dt>Obligation</dt>
+                <dd>a binding written commitment to obtain the services, work, or products. For rental or lease of real
+                    or
+                    personal
+                    property, the obligation is made when the property is first used. The regulations at 34 C.F.R. &sect;
+                    76.707
+                    govern
+                    when an obligation of Federal funds by an SEA occurs.</dd>
+                <dt>Reimbursed</dt>
+                <dd>amounts provided as reimbursement to a non-public school for allowable costs incurred by the
+                    non-public
+                    school.
+                </dd>
+            </dl>
+        </details>
+
+        <details>
+            <summary>Annual Reporting Period:</summary>
+            <p>This report should be completed based on activities in each State&apos;s Fiscal Year. This report should be
+                completed based on activities in the applicable reporting periods for EANS.</p>
+            <table cellspacing="0" width="100%" id="reporting_schedule" summary="A schedule of reporting periods showing what time span is covered in each annual report." repeat="1">
+                <thead>
+                    <tr>
+                        <th style="width: 15em;" scope="col">Annual Report</th>
+                        <th scope="col">Applicable Reporting Period</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="first_reporting_period">
+                        <td>First Annual Report</td>
+                        <td>State Fiscal Year 2021</td>
+                    </tr>
+                    <tr id="second_reporting_period">
+                        <td>Second Annual Report</td>
+                        <td>State Fiscal Year 2022</td>
+                    </tr>
+                    <tr id="third_reporting_period">
+                        <td>Third Annual Report</td>
+                        <td>State Fiscal Year 2023</td>
+                    </tr>
+                    <tr id="fourth_reporting_period">
+                        <td>Fourth Annual Report</td>
+                        <td>State Fiscal Year 2024</td>
+                    </tr>
+                    <tr id="fifth_reporting_period">
+                        <td>Fifth Annual Report</td>
+                        <td>State Fiscal Year 2025</td>
+                    </tr>
+                </tbody>
+            </table>
+        </details>
+    </form>
+
+    <form name="reporting_period" action="" aria-label="Start date for this report period">
+        <p>
+            <label >1. Start date for this report: 
+                <input type="text" disabled id="reportPeriod" 
+                    data-eansFiscalStartMonth="{{apr.eansFiscalStartMonth}}" data-eansFiscalStartDay="{{apr.eansFiscalStartDay}}"
+                    data-reportingYear="{{apr.reportingYear}}" value="{{apr.eansFiscalStartMonth|e}}/{{apr.eansFiscalStartDay|e}}/{{apr.reportingYear|e}}">
+            </label>
+        </p>
+    </form>
+
+    <form name="sea_funds_by_program" action="" aria-labelledby="section1">
+        <h1 id="section1">Section I: SEA Grant, Obligation, and Expenditure Amounts by Program</h1>
+        <p class="question">2. Report the total amount of federal funds obligated within the applicable reporting period. This includes
+        obligations of funds for services or assistance provided through a contract.</p>
+
+        <table cellspacing="0" width="100%" id="grant_aoe_by_program"
+        summary="The dollar amount allocated to the state, obligated by the state, and expended by the state for the CRRSA and ARP EANS programs." repeat="1">
+        <thead>
+            <tr>
+                <th style="width: 20em;"></th>
+                <th scope="col">CRRSA EANS Program</th>
+                <th scope="col">ARP EANS Program</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">2a. The total grant amount allocated to the State educational agency (SEA)</th>
+                <td id="eans2GrantAmountAllocated" data-eans2GrantAmountAllocated="{{apr.eans2GrantAmountAllocated}}" style="text-align:right;">
+                    {{apr.eans2GrantAmountAllocated|dollars}}</td>
+                <td id="eans3GrantAmountAllocated" data-eans3GrantAmountAllocated="{{apr.eans3GrantAmountAllocated}}" style="text-align:right;">
+                    {{apr.eans3GrantAmountAllocated|dollars}}</td>
+            </tr>
+            <tr>
+                <th scope="row">2b. The total amount obligated by the State</th>
+                <td id="eans2GrantAmountExpended" data-eans2GrantAmountExpended="{{apr.eans2GrantAmountExpended}}" style="text-align:right;">
+                    {{apr.eans2GrantAmountExpended|dollars}}</td>
+                <td id="eans3GrantAmountObligated" data-eans3GrantAmountObligated="{{apr.eans3GrantAmountObligated}}" style="text-align:right;">
+                    {{apr.eans3GrantAmountObligated|dollars}}</td>
+            </tr>
+            <tr>
+                <th scope="row">2c. The total amount of the grant expended</th>
+                <td id="eans2GrantAmountExpended" data-eans2GrantAmountExpended="{{apr.eans2GrantAmountExpended}}" style="text-align:right;">
+                    {{apr.eans2GrantAmountExpended|dollars}}</td>
+                <td id="eans3GrantAmountExpended" data-eans3GrantAmountExpended="{{apr.eans3GrantAmountExpended}}" style="text-align:right;">
+                    {{apr.eans3GrantAmountExpended|dollars}}</td>
+            </tr>
+        </tbody>
+    </table>
+    </form>
+
+    <form name="crrsa_funds_returned" action="" aria-labelled-by="section2">
+        <h1 id="section2">Section II: CRRSA EANS Funds Returned to the Governor</h1>
+        <p>
+            <label >3a. Did the SEA return any unobligated CRRSA EANS funds to the Governor for authorized uses under the
+                Governor&apos;s Emergency Education Relief Fund II (GEER II)?
+                <input type="text" disabled id="anyEans2FundsReturnedToGovernor"
+                    data-apr.anyEans2FundsReturnedToGovernor="{{apr.anyEans2FundsReturnedToGovernor|yes_no}}" value="{{apr.anyEans2FundsReturnedToGovernor|yes_no}}">
+            </label>
+        </p>
+        {% if apr.anyEans2FundsReturnedToGovernor %}
+            <div id="crrsa_funds_returned">
+                <p><label >The total amount returned`: 
+                    <input type="text" disabled id="eans2FundsReturnedToGovernorAmount" data-eans2FundsReturnedToGovernorAmount="{{apr.eans2FundsReturnedToGovernorAmount}}" value="{{apr.eans2FundsReturnedToGovernorAmount|dollars}}">
+                </label></p>
+                <p class="question">3b. If yes, which types of entities within the State were awarded the returned CRRSA EANS funds?</p>
+                    <p><label ><input type="checkbox" disabled id="eans2FundsReturnedEntityLea"
+                        data-eans2FundsReturnedEntityLea="{{apr.eans2FundsReturnedEntityLea|yes_no}}" {{apr.eans2FundsReturnedEntityLea|check}}>Local Educational Agencies (LEAs)</label> 
+                    </p>
+                    <p> <label ><input type="checkbox" disabled id="eans2FundsReturnedEntityIhe"
+                        data-eans2FundsReturnedEntityIhe="{{apr.eans2FundsReturnedEntityIhe|yes_no}}" {{apr.eans2FundsReturnedEntityIhe|check}}>Institutions of Higher Education (IHEs)</label> 
+                    </p>
+                    <p><label ><input type="checkbox" disabled id="eans2FundsReturnedEntityEducationRelated"
+                        data-eans2FundsReturnedEntityEducationRelated="{{apr.eans2FundsReturnedEntityEducationRelated|yes_no}}" {{apr.eans2FundsReturnedEntityEducationRelated|check}}>Other Education-Related Entities</label> 
+                    </p>
+                {% if apr.eans2FundsReturnedEntityLea %}
+                    <p class="question">4a. What were the amounts of the State&apos;s returned CRRSA EANS funds awarded to LEAs and expended by LEAs?</p>
+                        <p><label >Total amount of returned CRRSA EANS funds awarded to LEAs: 
+                            <input type="text" disabled id="eans2ReturnedFundsAwardedLea"
+                            data-eans2ReturnedFundsAwardedLea="{{apr.eans2ReturnedFundsAwardedLea}}" value="{{apr.eans2ReturnedFundsAwardedLea|dollars}}"></label>
+                        </p>
+                        <p><label >Total amount of returned CRRSA EANS funds expended by LEAs: <input type="text" disabled
+                            id="eans2ReturnedFundsExpendedLea"
+                            data-eans2ReturnedFundsExpendedLea="{{apr.eans2ReturnedFundsExpendedLea}}" value="{{apr.eans2ReturnedFundsExpendedLea|dollars}}"></label>
+                        </p>
+                    <p class="question">4b. The purposes for which the LEAs used returned CRRSA EANS funds.</p>
+                        <p><label ><input type="checkbox" disabled id="eans2FundsLeaExpendedTech"
+                            data-eans2FundsLeaExpendedTech="{{apr.eans2FundsLeaExpendedTech|yes_no}}" {{apr.eans2FundsLeaExpendedTech|check}}>Purchasing educational technology (including hardware, software, and connectivity), which may
+                            include assistive technology or adaptive equipment</label>
+                            </p>
+                        <p><label ><input type="checkbox" disabled id="eans2FundsLeaExpendedUnique"
+                            data-eans2FundsLeaExpendedUnique="{{apr.eans2FundsLeaExpendedUnique|yes_no}}" {{apr.eans2FundsLeaExpendedUnique|check}}>Activities focused specifically on addressing the unique needs of low-income children or
+                            students, children with disabilities, English learners, racial and ethnic minorities, students
+                            experiencing homelessness, and foster care youth</label> 
+                            </p>
+                        <p><label ><input type="checkbox" disabled id="eans2FundsLeaExpendedHealth"
+                            data-eans2FundsLeaExpendedHealth="{{apr.eans2FundsLeaExpendedHealth|yes_no}}" {{apr.eans2FundsLeaExpendedHealth|check}}>Providing mental health services and supports</label> 
+                        </p>
+                        <p><label ><input type="checkbox" disabled id="eans2FundsLeaExpendedScience"
+                            data-eans2FundsLeaExpendedScience="{{apr.eans2FundsLeaExpendedScience|yes_no}}" {{apr.eans2FundsLeaExpendedScience|check}}>Implementing science-based strategies to prevent the spread of COVID-19 consistent with
+                            recommendations from the Centers for Disease Control and Prevention (CDC)</label> 
+                            </p>
+                        <p><label ><input type="checkbox" disabled id="eans2FundsLeaExpendedLearning"
+                            data-eans2FundsLeaExpendedLearning="{{apr.eans2FundsLeaExpendedLearning|yes_no}}" {{apr.eans2FundsLeaExpendedLearning|check}}>Extended learning time opportunities, including tutoring, summer learning, and supplemental
+                            afterschool programs</label> 
+                            </p>
+                        <p><label ><input type="checkbox" disabled id="eans2FundsLeaExpendedOther"
+                            data-eans2FundsLeaExpendedOther="{{apr.eans2FundsLeaExpendedOther|yes_no}}" {{apr.eans2FundsLeaExpendedOther|check}}>Other</label> 
+                            {% if apr.eans2FundsLeaExpendedOther %} 
+                                <label >Description: 
+                                <textarea disabled rows="4" cols="72" id="eans2FundsLeaExpendedOtherDescription"
+                                    data-eans2FundsLeaExpendedOtherDescription="{{apr.eans2FundsLeaExpendedOtherDescription|e}}">
+                                    {{apr.eans2FundsLeaExpendedOtherDescription|e}}</textarea></label>
+                            {% endif %}
+                        </p>
+                {% endif %}
+                {% if apr.eans2FundsReturnedEntityIhe %}
+                    <p class="question">5a. What were the amounts of the State&apos;s returned CRRSA EANS funds awarded to IHEs and expended by IHEs?</p>
+                        <p><label  for="eans2ReturnedFundsAwardedIhe">Total amount of returned CRRSA EANS funds awarded to IHEs: 
+                            <input type="text" disabled id="eans2ReturnedFundsAwardedIhe"
+                                data-eans2ReturnedFundsAwardedIhe="{{apr.eans2ReturnedFundsAwardedIhe}}" value="{{apr.eans2ReturnedFundsAwardedIhe|dollars}}"/></label>
+                        </p>
+                        <p><label  for="eans2ReturnedFundsExpendedIhe">Total amount of returned CRRSA EANS funds expended by IHEs: 
+                            <input type="text" disabled id="eans2ReturnedFundsExpendedIhe"
+                                data-eans2ReturnedFundsExpendedIhe="{{apr.eans2ReturnedFundsExpendedIhe}}" value="{{apr.eans2ReturnedFundsExpendedIhe|dollars}}"/></label>
+                        </p>
+                    <p class="question">5b. For what purposes did IHEs use returned CRRSA EANS funds?</label></p>
+                        <p><label ><input type="checkbox" disabled id="eans2FundsIheExpendedFinance"
+                            data-eans2FundsIheExpendedFinance="{{apr.eans2FundsIheExpendedFinance|yes_no}}" {{apr.eans2FundsIheExpendedFinance|check}}/>Provide direct financial support of students (e.g., scholarships)</label>
+                        </p>
+                        <p><label ><input type="checkbox" disabled id="eans2FundsIheExpendedEducation"
+                            data-eans2FundsIheExpendedEducation="{{apr.eans2FundsIheExpendedEducation|yes_no}}" {{apr.eans2FundsIheExpendedEducation|check}}/>Support distance learning and remote education</label> 
+                        </p>
+                        <p><label ><input type="checkbox" disabled id="eans2FundsIheExpendedScience"
+                            data-eans2FundsIheExpendedScience="{{apr.eans2FundsIheExpendedScience|yes_no}}" {{apr.eans2FundsIheExpendedScience|check}}/>Implementing science-based strategies to prevent the spread of COVID-19 consistent with
+                            recommendations from the Centers for Disease Control and Prevention (CDC)</label> 
+                            </p>   
+                        <p><label class="question"><input type="checkbox" disabled id="eans2FundsIheExpendedLostTime"
+                            data-eans2FundsIheExpendedLostTime="{{apr.eans2FundsIheExpendedLostTime|yes_no}}" {{apr.eans2FundsIheExpendedLostTime|check}}/>Address impact of lost instructional time</label> 
+                        </p>
+                        <p><label ><input type="checkbox" disabled id="eans2FundsIheExpendedOther"
+                            data-eans2FundsIheExpendedOther="{{apr.eans2FundsIheExpendedOther|yes_no}}" {{apr.eans2FundsIheExpendedOther|check}}/>Other</label>
+                            {% if apr.eans2FundsIheExpendedOther %} 
+                                <label  for="eans2FundsIheExpendedOtherDescription">Description:</label> 
+                                <textarea disabled id="eans2FundsIheExpendedOtherDescription"
+                                data-eans2FundsIheExpendedOtherDescription="eans2FundsIheExpendedOtherDescription|e">{{apr.eans2FundsIheExpendedOtherDescription|e}}</textarea></label>
+                            {% endif %}
+                        </p>
+                {% endif %}
+                {% if apr.eans2FundsReturnedEntityEducationRelated %}
+                    <p class="question">6a. What were the amounts of the State&apos;s returned CRRSA EANS funds awarded to other education-related
+                        entities and expended by the entities?</p>
+                        <p><label >Total amount of returned CRRSA EANS funds awarded to other education-related entities: <input type="text" disabled
+                            id="eans2ReturnedFundsAwardedOtherEntity"
+                                data-eans2ReturnedFundsAwardedOtherEntity="{{apr.eans2ReturnedFundsAwardedOtherEntity}}" value="{{apr.eans2ReturnedFundsAwardedOtherEntity|dollars}}"></label>
+                        </p>
+                        <p><label >Total amount of returned CRRSA EANS funds expended by other education-related entities: <input type="text" disabled
+                            id="eans2ReturnedFundsExpendedOtherEntity"
+                                data-eans2ReturnedFundsExpendedOtherEntity="{{apr.eans2ReturnedFundsExpendedOtherEntity}}" value="{{apr.eans2ReturnedFundsExpendedOtherEntity|dollars}}"></label>
+                        </p>
+                    <p class="question">6b. The purposes for which the funds were expended by the other education-related entities are checked below.</p>
+                        <p><label ><input type="checkbox" disabled id="eans2FundsEntityExpendedDistanceLearning"
+                            data-eans2FundsEntityExpendedDistanceLearning="{{apr.eans2FundsEntityExpendedDistanceLearning|yes_no}}" {{apr.eans2FundsEntityExpendedDistanceLearning|check}}>Support distance learning and remote education</label> 
+                        </p>
+                        <p><label ><input type="checkbox" disabled id="eans2FundsEntityExpendedScience"
+                            data-eans2FundsEntityExpendedScience="{{apr.eans2FundsEntityExpendedScience|yes_no}}" {{apr.eans2FundsEntityExpendedScience|check}}>Implementing science-based strategies to prevent the spread of COVID-19 consistent with
+                            recommendations from the Centers for Disease Control and Prevention (CDC)</label> 
+                            </p>
+                        <p><label ><input type="checkbox" disabled id="eans2FundsEntityExpendedLostTime"
+                            data-eans2FundsEntityExpendedLostTime="{{apr.eans2FundsEntityExpendedLostTime|yes_no}}" {{apr.eans2FundsEntityExpendedLostTime|check}}>Address impact of lost instructional time</label> 
+                        </p>
+                        <p><label ><input type="checkbox" disabled id="eans2FundsEntityExpendedEarlyChildhood"
+                            data-eans2FundsEntityExpendedEarlyChildhood="{{apr.eans2FundsEntityExpendedEarlyChildhood|yes_no}}" {{apr.eans2FundsEntityExpendedEarlyChildhood|check}}>Other services or assistance for early childhood programs</label> 
+                        </p>
+                        <p><label ><input type="checkbox" disabled id="eans2FundsEntityExpendedPublicSchools"
+                            data-eans2FundsEntityExpendedPublicSchools="{{apr.eans2FundsEntityExpendedPublicSchools|yes_no}}" {{apr.eans2FundsEntityExpendedPublicSchools|check}}>Other services or assistance for public elementary and secondary schools</label> 
+                        </p>
+                        <p><label ><input type="checkbox" disabled id="eans2FundsEntityExpendedNonPublicSchools"
+                            data-eans2FundsEntityExpendedNonPublicSchools="{{apr.eans2FundsEntityExpendedNonPublicSchools|yes_no}}" {{apr.eans2FundsEntityExpendedNonPublicSchools|check}}>Other services or assistance for non-public elementary and secondary schools</label> 
+                        </p>
+                        <p><label ><input type="checkbox" disabled id="eans2FundsEntityExpendedPostSecondary"
+                            data-eans2FundsEntityExpendedPostSecondary="{{apr.eans2FundsEntityExpendedPostSecondary|yes_no}}" {{apr.eans2FundsEntityExpendedPostSecondary|check}}/>Other services or assistance for postsecondary education</label> 
+                        </p>
+                        <p><label ><input type="checkbox" disabled id="eans2FundsEntityExpendedOther"
+                            data-eans2FundsEntityExpendedOther="{{apr.eans2FundsEntityExpendedOther|yes_no}}" {{apr.eans2FundsEntityExpendedOther|check}}/>Other</label> 
+                            {% if apr.eans2FundsEntityExpendedOther %} 
+                                <label  for="eans2FundsEntityExpendedOtherDescription">Description:</label> 
+                                <textarea disabled rows="4" cols="72" id="eans2FundsEntityExpendedOtherDescription"
+                                    data-eans2FundsEntityExpendedOtherDescription="{{apr.eans2FundsEntityExpendedOtherDescription|e}}">
+                                    {{apr.eans2FundsEntityExpendedOtherDescription|e}}</textarea>
+                            {% endif %}
+                        </p>
+                {% endif %}
+            </div>
+        {% else %} 
+            <p> Remaining questions in Section II are not applicable.</p>
+        {% endif %}
+    </form>
+
+    <form name="crrsa_admin_reserve" action="" aria-labelledby="section3">
+        <h1 id="section3"> Section III: CRRSA EANS SEA Administrative Reserve and SEA determination for services or
+            assistance provided to non-public schools</h1>
+        <p>7. EANS, ESSER I, and ESSER II, as well as GEER I and GEER II if administered by the SEA, are programs under
+            which administrative funds may be consolidated. 
+            <label >Did the SEA consolidate its administrative funds under the
+            CRRSA EANS program with other programs&apos; administrative funds?
+            <input type="text" disabled id="anyEans2ConsolidateAdminFunds"
+                data-anyEans2ConsolidateAdminFunds="{{apr.anyEans2ConsolidateAdminFunds|yes_no}}" value="{{apr.anyEans2ConsolidateAdminFunds|yes_no}}"/></label>
+        </p>
+
+        <p><label >8. What was the total amount of funds reserved by the SEA to administer the CRRSA EANS program? <input type="text" disabled
+            id="eans2AdminFundsAmount"
+                data-eans2AdminFundsAmount="{{apr.eans2AdminFundsAmount}}" value="{{apr.eans2AdminFundsAmount|dollars}}"/></label></p>
+        <p>(This amount may not exceed the greater of $200,000 or one-half of 1 percent of the total grant award to
+            administer the services and assistance provided to non-public schools.)</p>
+
+        <p class="question">9. What data did the SEA receive from non-public schools in their applications for services or assistance
+            under the CRRSA EANS program regarding the number and percentage of students from low-income families enrolled in the
+            non-public school in the 2019-2020 school year? Check each data element(s) requested by the SEA. </p>
+            <p><label ><input type="checkbox" disabled id="anyEans2RequestLunchData"
+                data-anyEans2RequestLunchData="{{apr.anyEans2RequestLunchData|yes_no}}" {{apr.anyEans2RequestLunchData|check}}/>free or reduced-priced lunch data</label>  </p>
+            <p><label ><input type="checkbox" disabled id="anyEans2RequestScholarshipData"
+                data-anyEans2RequestScholarshipData="{{apr.anyEans2RequestScholarshipData|yes_no}}" {{apr.anyEans2RequestScholarshipData|check}}/>scholarship or financial assistance data that identifies students whose family income does not exceed
+                185 percent of the 2020 Federal poverty guidelines</label>  </p>
+            <p><label ><input type="checkbox" disabled id="anyEans2RequestERateData"
+                data-anyEans2RequestERateData="{{apr.anyEans2RequestERateData|yes_no}}" {{apr.anyEans2RequestERateData|check}}/>E-Rate data</label>  </p>
+            <p><label ><input type="checkbox" disabled id="anyEans2RequestIncomeData"
+                data-anyEans2RequestIncomeData="{{apr.anyEans2RequestIncomeData|yes_no}}" {{apr.anyEans2RequestIncomeData|check}}/>data that the non-public school has provided to the State for purposes of State or local programs that
+                identifies students whose family income does not exceed 185 percent of the 2020 Federal poverty guidelines</label>
+                </p>
+            <p> <label class="question"><input type="checkbox" disabled id="anyEans2RequestOtherData"
+                data-anyEans2RequestOtherData="{{apr.anyEans2RequestOtherData|yes_no}}" {{apr.anyEans2RequestOtherData|check}}/>other data</label>
+                {% if apr.anyEans2RequestOtherData %} 
+                    <label >Description:
+                     <textarea disabled rows="4" cols="72" id="eans2OtherDataDescription"
+                        data-eans2OtherDataDescription="{{apr.eans2OtherDataDescription|e}}">{{apr.eans2OtherDataDescription|e}}</textarea></label>
+                {% endif %}
+                </p>
+
+        <p class="question" for="eans_factors">10. What factors regarding COVID-19 impact (in addition to significant number or percentage of students from
+            low-income families enrolled) did the SEA consider in prioritizing non-public schools to receive services or
+            assistance under the CRRSA EANS program?</p>
+            <p><label ><input type="checkbox" disabled id="anyEans2CommunityInfectionFactor"
+                data-anyEans2CommunityInfectionFactor="{{apr.anyEans2CommunityInfectionFactor|yes_no}}" {{apr.anyEans2CommunityInfectionFactor|check}}/>rate of community infection</label>  </p>
+            <p><label ><input type="checkbox" disabled id="anyEans2DeathsPerCapitaFactor"
+                data-anyEans2DeathsPerCapitaFactor="{{apr.anyEans2DeathsPerCapitaFactor|yes_no}}" {{apr.anyEans2DeathsPerCapitaFactor|check}}/>number of COVID-19-related deaths per capita</label>  </p>
+            <p><label ><input type="checkbox" disabled id="anyEans2TuitionLossFactor"
+                data-anyEans2TuitionLossFactor="{{apr.anyEans2TuitionLossFactor|yes_no}}" {{apr.anyEans2TuitionLossFactor|check}}/>loss of tuition revenue due to decrease in enrollment</label>  </p>
+            <p><label ><input type="checkbox" disabled
+                id="anyEans2InsufficientTechFactor"
+                data-anyEans2InsufficientTechFactor="{{apr.anyEans2InsufficientTechFactor|yes_no}}" {{apr.anyEans2InsufficientTechFactor|check}}/>lack of capacity to provide remote learning due to insufficient technological support</label>  </p>
+            <p><label ><input type="checkbox" disabled id="anyEans2LearningLossFactor"
+                data-anyEans2LearningLossFactor="{{apr.anyEans2LearningLossFactor|yes_no}}" {{apr.anyEans2LearningLossFactor|check}}/>data documenting the extent of learning loss or the social, emotional, or mental health impact
+                attributable to the disruption of instruction caused by COVID-19</label>  </p>
+            <p><label ><input type="checkbox" disabled id="anyEans2OtherFactor" data-anyEans2OtherFactor="{{apr.anyEans2OtherFactor|yes_no}}" {{apr.anyEans2OtherFactor|check}}/>other</label>  
+                {% if apr.anyEans2OtherFactor %} 
+                    <label  for="eans2OtherFactorDescription">Description:
+                    <textarea disabled id="eans2OtherFactorDescription"
+                        data-eans2OtherFactorDescription="{{apr.eans2OtherFactorDescription|e}}">{{apr.eans2OtherFactorDescription|e}}</textarea></label>
+                {% endif %}
+            </p>
+    </form>
+    <form name="arp_admin_reserve" action="" aria-labelledby="section4">
+        <h1 id="section4">Section IV: ARP EANS SEA Administrative Reserve and SEA determination for services or
+            assistance
+            provided to non-public schools</h1>
+        <p>If the SEA was awarded ARP EANS funding in State Fiscal Year 2022, then no responses will be required for ARP
+            EANS sections on this report during this reporting period (e.g., additional questions in Section IV, Section
+            VI,
+            Section VIII, and ARP fields in Section IX)</p>
+
+        <p><label >11. Did the SEA consolidate its administrative funds under the ARP EANS program with other programs&apos;
+            administrative funds?<input type="text" disabled id="anyEans3ConsolidateAdminFunds"
+                data-anyEans3ConsolidateAdminFunds="{{apr.anyEans3ConsolidateAdminFunds|yes_no}}" value="{{apr.anyEans3ConsolidateAdminFunds|yes_no}}"/></label></p>
+
+        <p><label >12. What was the total amount of funds reserved by the SEA to administer services and assistance under the
+            ARP EANS program?<input type="text" disabled id="eans3AdminFundsAmount"
+                data-eans3AdminFundsAmount="eans3AdminFundsAmount" value="{{apr.eans3AdminFundsAmount|dollars}}"/></label></p>
+                <p>(This amount may not exceed the greater of $200,000 or one-half of 1 percent of the total grant award to administer the
+                services and assistance provided to non-public schools.)</p>
+    </form>
+    <form name="crrsa_obligations_by_activity" action="" aria-labelledby="section5">
+        <h1 id="section5">Section V: SEA Obligations (including reimbursements) by allowable activity for CRRSA EANS
+        </h1>
+        <p class="question">13. Provide the total amounts of SEA obligated funds (including reimbursements) by allowable activity for
+            services or assistance to non-public schools under the CRRSA EANS program within the reporting period.</span> SEAs
+            that obligated CRRSA EANS funds to one or more entities are expected to report obligations amounts by
+            allowable activity.</p>
+
+        <table cellspacing="0" width="100%" id="crrsa_obligation_amounts_by_activity"
+            summary="The dollar amount obligated by the state within each activity allowed under CRRSA." repeat="1">
+            <thead>
+                <tr>
+                    <th style="width: 20em;" scope="col">EANS Allowable Activity (EANS)</th>
+                    <th scope="col">Total amount obligated for services or assistance to schools for allowable activity
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Supplies to sanitize, disinfect, and clean school facilities</td>
+                    <td id="eans2Supplies" data-eans2Supplies="{{apr.eans2Supplies}}" style="text-align:right;">{{apr.eans2Supplies|dollars}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>Personal protective equipment (PPE)</td>
+                    <td id="eans2PersonalProtectiveEquipment"
+                        data-eans2PersonalProtectiveEquipment="{{apr.eans2PersonalProtectiveEquipment}}" style="text-align:right;">
+                        {{apr.eans2PersonalProtectiveEquipment|dollars}}</td>
+                </tr>
+                <tr>
+                    <td>Improving ventilation systems, including windows or portable air purification systems (Note:
+                        reimbursements can only be made for portable air purification
+                        systems)</td>
+                    <td id="eans2ImprovingSystems" data-eans2ImprovingSystems="{{apr.eans2ImprovingSystems}}" style="text-align:right;">
+                        {{apr.eans2ImprovingSystems|dollars}}</td>
+                </tr>
+                <tr>
+                    <td>Training and professional development for staff on sanitization, the use of PPE, and minimizing
+                        the spread of infectious diseases</td>
+                    <td id="eans2ProfessionalDevelopment"
+                        data-eans2ProfessionalDevelopment="{{apr.eans2ProfessionalDevelopment}}" style="text-align:right;">
+                        {{apr.eans2ProfessionalDevelopment|dollars}}</td>
+                </tr>
+                <tr>
+                    <td>Physical barriers to facilitate social distancing</td>
+                    <td id="eans2PhysicalBarriers" data-eans2PhysicalBarriers="{{apr.eans2PhysicalBarriers}}" style="text-align:right;">
+                        {{apr.eans2PhysicalBarriers|dollars}}</td>
+                </tr>
+                <tr>
+                    <td>Other materials, supplies, or equipment recommended by the CDC for reopening and operation of
+                        school facilities to effectively maintain health and safety</td>
+                    <td id="eans2OtherMaterials" data-eans2OtherMaterials="{{apr.eans2OtherMaterials}}" style="text-align:right;">
+                        {{apr.eans2OtherMaterials|dollars}}</td>
+                </tr>
+                <tr>
+                    <td>Expanding capacity to administer coronavirus testing to effectively monitor and suppress the
+                        virus</td>
+                    <td id="eans2ExpandingCapacity" data-eans2ExpandingCapacity="{{apr.eans2ExpandingCapacity}}" style="text-align:right;">
+                        {{apr.eans2ExpandingCapacity|dollars}}</td>
+                </tr>
+                <tr>
+                    <td>Educational technology (including hardware, software, connectivity, assistive technology, and
+                        adaptive equipment) to assist students, educators, and other staff with remote or hybrid
+                        learning</td>
+                    <td id="eans2EducationalTechnology"
+                        data-eans2EducationalTechnology="{{apr.eans2EducationalTechnology}}" style="text-align:right;">
+                        {{apr.eans2EducationalTechnology|dollars}}</td>
+                </tr>
+                <tr>
+                    <td>Redeveloping instructional plans, including curriculum development, for remote or hybrid
+                        learning, or to address learning loss</td>
+                    <td id="eans2RedevelopingPlans" data-eans2RedevelopingPlans="{{apr.eans2RedevelopingPlans}}" style="text-align:right;">
+                        {{apr.eans2RedevelopingPlans|dollars}}</td>
+                </tr>
+                <tr>
+                    <td>Leasing sites or spaces to ensure safe social distancing</td>
+                    <td id="eans2LeasingSites" data-eans2LeasingSites="{{apr.eans2LeasingSites}}" style="text-align:right;">
+                        {{apr.eans2LeasingSites|dollars}}</td>
+                </tr>
+                <tr>
+                    <td>Reasonable transportation costs</td>
+                    <td id="eans2TransportationCosts" data-eans2TransportationCosts="{{apr.eans2TransportationCosts}}" style="text-align:right;">
+                        {{apr.eans2TransportationCosts|dollars}}</td>
+                </tr>
+                <tr>
+                    <td>Initiating and maintaining education and support services or assistance for remote or hybrid
+                        learning or to address learning loss</td>
+                    <td id="eans2SupportServices" data-eans2SupportServices="{{apr.eans2SupportServices}}" style="text-align:right;">
+                        {{apr.eans2SupportServices|dollars}}</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td>TOTAL</td>
+                    <td id="eans2ActivitiesObligatedTotal"
+                        data-eans2ActivitiesObligatedTotal="{{apr.eans2ActivitiesObligatedTotal}}" style="text-align:right;">
+                        {{apr.eans2ActivitiesObligatedTotal|dollars}}</td>
+                </tr>
+            </tfoot>
+        </table>
+
+
+    </form>
+
+    <form name="arp_obligations_by_activity" action="" aria-labelledby="section6">
+        <h1 id="section6">Section VI: SEA Obligations by allowable activity for ARP EANS</h1>
+
+        <p> SEAs that obligated ARP EANS funds to one or more entities are expected to report obligations amounts by allowable activity. Note: Under ARP EANS,
+            reimbursements are prohibited for any non-public school.</p>
+        <p class="question">14. Provide the total amounts of SEA obligated funds by allowable activity for services or assistance to
+            non-public schools under the ARP EANS program within the reporting period.</p>
+        <table cellspacing="0" width="100%" id="arp_obligation_amounts_by_activity"
+            summary="The dollar amount obligated by the state within each activity allowed under ARP." repeat="1">
+            <thead>
+                <tr>
+                    <th style="width: 20em;" scope="col">EANS Allowable Activity (ARP)</th>
+                    <th scope="col">Total amount obligated for services or assistance to schools for allowable activity
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Supplies to sanitize, disinfect, and clean school facilities</td>
+                    <td id="eans3Supplies" data-eans3Supplies="{{apr.eans3Supplies}}" style="text-align:right;">{{apr.eans3Supplies|dollars}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>Personal protective equipment (PPE)</td>
+                    <td id="eans3PersonalProtectiveEquipment"
+                        data-eans3PersonalProtectiveEquipment="{{apr.eans3PersonalProtectiveEquipment}}" style="text-align:right;">
+                        {{apr.eans3PersonalProtectiveEquipment|dollars}}</td>
+                </tr>
+                <tr>
+                    <td>Improving ventilation systems, including windows or portable air purification systems (Note:
+                        reimbursements can only be made for portable air purification
+                        systems)</td>
+                    <td id="eans3ImprovingSystems" data-eans3ImprovingSystems="{{apr.eans3ImprovingSystems}}" style="text-align:right;">
+                        {{apr.eans3ImprovingSystems|dollars}}</td>
+                </tr>
+                <tr>
+                    <td>Training and professional development for staff on sanitization, the use of PPE, and minimizing
+                        the
+                        spread of infectious diseases</td>
+                    <td id="eans3ProfessionalDevelopment"
+                        data-eans3ProfessionalDevelopment="{{apr.eans3ProfessionalDevelopment}}" style="text-align:right;">
+                        {{apr.eans3ProfessionalDevelopment|dollars}}</td>
+                </tr>
+                <tr>
+                    <td>Physical barriers to facilitate social distancing</td>
+                    <td id="eans3PhysicalBarriers" data-eans3PhysicalBarriers="{{apr.eans3PhysicalBarriers}}" style="text-align:right;">
+                        {{apr.eans3PhysicalBarriers|dollars}}</td>
+                </tr>
+                <tr>
+                    <td>Other materials, supplies, or equipment recommended by the CDC for reopening and operation of
+                        school
+                        facilities to effectively maintain health and safety</td>
+                    <td id="eans3OtherMaterials" data-eans3OtherMaterials="{{apr.eans3OtherMaterials}}" style="text-align:right;">
+                        {{apr.eans3OtherMaterials|dollars}}</td>
+                </tr>
+                <tr>
+                    <td>Expanding capacity to administer coronavirus testing to effectively monitor and suppress the
+                        virus
+                    </td>
+                    <td id="eans3ExpandingCapacity" data-eans3ExpandingCapacity="{{apr.eans3ExpandingCapacity}}" style="text-align:right;">
+                        {{apr.eans3ExpandingCapacity|dollars}}</td>
+                </tr>
+                <tr>
+                    <td>Educational technology (including hardware, software, connectivity, assistive technology, and
+                        adaptive equipment) to assist students, educators, and other staff with remote or hybrid
+                        learning
+                    </td>
+                    <td id="eans3EducationalTechnology"
+                        data-eans3EducationalTechnology="{{apr.eans3EducationalTechnology}}" style="text-align:right;">
+                        {{apr.eans3EducationalTechnology|dollars}}</td>
+                </tr>
+                <tr>
+                    <td>Redeveloping instructional plans, including curriculum development, for remote or hybrid
+                        learning,
+                        or to address learning loss</td>
+                    <td id="eans3RedevelopingPlans" data-eans3RedevelopingPlans="{{apr.eans3RedevelopingPlans}}" style="text-align:right;">
+                        {{apr.eans3RedevelopingPlans|dollars}}</td>
+                </tr>
+                <tr>
+                    <td>Leasing sites or spaces to ensure safe social distancing</td>
+                    <td id="eans3LeasingSites" data-eans3LeasingSites="{{apr.eans3LeasingSites}}" style="text-align:right;">
+                        {{apr.eans3LeasingSites|dollars}}</td>
+                </tr>
+                <tr>
+                    <td>Reasonable transportation costs</td>
+                    <td id="eans3TransportationCosts" data-eans3TransportationCosts="{{apr.eans3TransportationCosts}}" style="text-align:right;">
+                        {{apr.eans3TransportationCosts|dollars}}</td>
+                </tr>
+                <tr>
+                    <td>Initiating and maintaining education and support services or assistance for remote or hybrid
+                        learning or to address learning loss</td>
+                    <td id="eans3SupportServices" data-eans3SupportServices="{{apr.eans3SupportServices}}" style="text-align:right;">
+                        {{apr.eans3SupportServices|dollars}}</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td>TOTAL</td>
+                    <td id="eans3ActivitiesObligatedTotal"
+                        data-eans3ActivitiesObligatedTotal="{{apr.eans3ActivitiesObligatedTotal}}" style="text-align:right;">
+                        {{apr.eans3ActivitiesObligatedTotal|dollars}}</td>
+                </tr>
+            </tfoot>
+        </table>
+    </form>
+
+    <form name="crrsa_non_public_schools" action="" aria-labelledby="section7">
+        <h1 id="section7">Section VII. Non-public schools receiving services or assistance under CRRSA EANS</h1>
+        <p>Instructions: Provide the following information for the non-public schools in the State receiving services or
+            assistance under the CRRSA EANS program within the reporting period.</p>
+
+        <p class="question">15. List the non-public schools that received services or assistance under the CRRSA EANS program within the State.</p> 
+            <p>Note: If the non-public school serves elementary and secondary school students, select &apos;yes&apos; for both
+            b. and c.</p>
+        <table cellspacing="0" width="100%" id="crrsa_eans_schools"
+            summary="The non-public schools that received EANS assistance under CRRSA, and the population served by each." repeat="1">
+            <thead>
+                <tr>
+                    <th style="width: 25%;" scope="col">Name of the non-public school</th>
+                    <th scope="col">Does this non-public school serve elementary school students?</th>
+                    <th scope="col">Does this non-public school serve secondary school students?</th>
+                    <th scope="col">Is the total student enrollment count 19-20 school year available for this
+                        non-public school?</th>
+                    <th scope="col">Total student enrollment in the non-public school from the 19-20 school year</th>
+                    <th scope="col">Is the total low-income student enrollment count 19-20 school year available for
+                        this non-public school?</th>
+                    <th scope="col">Total low-income student enrollment in the non-public school from 19-20 school year
+                    </th>
+                    <th scope="col">Percentage of students from low-income families within a non-public school</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for school in apr.schools|selectattr("isEans2SchoolServed") %}
+                <tr>
+                    <td id="school.nonPublicSchoolName{{loop.index}}"
+                        data-nonPublicSchoolName{{loop.index}}="{{school.nonPublicSchoolName|e}}">
+                        {{school.nonPublicSchoolName|e}}</td>
+                    <td id="school.isEansAServeElementary{{loop.index}}"
+                        data-isEansAServeElementary{{loop.index}}="{{school.isEansAServeElementary}}">
+                        {{school.isEansAServeElementary|yes_no}}</td>
+                    <td id="school.isEansAServeSecondary{{loop.index}}"
+                        data-isEansAServeSecondary{{loop.index}}="{{school.isEansAServeSecondary}}">
+                        {{school.isEansAServeSecondary|yes_no}}</td>
+                    <td id="school.isEansASchoolEnrollmentTotalAvailable{{loop.index}}"
+                        data-isEansASchoolEnrollmentTotalAvailable{{loop.index}}="{{school.isEansASchoolEnrollmentTotalAvailable}}">
+                        {{school.isEansASchoolEnrollmentTotalAvailable|yes_no}}</td>
+                    <td id="school.eansASchoolEnrollmentTotal{{loop.index}}"
+                        data-eansASchoolEnrollmentTotal{{loop.index}}="{{school.eansASchoolEnrollmentTotal}}" style="text-align:right;">
+                        {{school.eansASchoolEnrollmentTotal}}</td>
+                    <td id="school.isEansASchoolEnrollmentLowIncomeAvailable{{loop.index}}"
+                        data-isEansASchoolEnrollmentLowIncomeAvailable{{loop.index}}="{{school.isEansASchoolEnrollmentLowIncomeAvailable}}">
+                        {{school.isEansASchoolEnrollmentLowIncomeAvailable|yes_no}}</td>
+                    <td id="school.eansASchoolEnrollmentLowIncome{{loop.index}}"
+                        data-eansASchoolEnrollmentLowIncome{{loop.index}}="{{school.eansASchoolEnrollmentLowIncome}}" style="text-align:right;">
+                        {{school.eansASchoolEnrollmentLowIncome}}</td>
+                    <td id="school.eansASchoolPercentLowIncome{{loop.index}}"
+                        data-eansASchoolPercentLowIncome{{loop.index}}="{{school.eansASchoolPercentLowIncome}}" style="text-align:right;">
+                        {{school.eansASchoolPercentLowIncome|percent}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <p><label >16. How many non-public schools received services or assistance under the CRRSA EANS program within the
+            State?<input type="text" disabled id="eans2NonPublicSchoolsTotal"
+                data-eans2NonPublicSchoolsTotal="{{apr.eans2NonPublicSchoolsTotal}}" value="{{apr.eans2NonPublicSchoolsTotal}}"/></label>
+        </p>
+        <p><label >17. What was the total number of non-public schools that served elementary school students and received
+            services or assistance under the CRRSA EANS program?<input type="text" disabled id="eans2NonPublicElementary"
+                data-eans2NonPublicElementary="{{apr.eans2NonPublicElementary}}" value="{{apr.eans2NonPublicElementary}}"/></label>
+        </p>
+
+        <p><label >18. What was the total number of non-public schools that served secondary school students and received
+            services or assistance under the CRRSA EANS program?<input type="text" disabled id="eans2NonPublicSecondary"
+                data-eans2NonPublicSecondary="{{apr.eans2NonPublicSecondary}}" value="{{apr.eans2NonPublicSecondary}}"/></label>
+        </p>
+
+        <p>Note: For questions 19-21, responses should be based on 2019-2020 school enrollment counts</p>
+
+        <p><label >19. What was the total student enrollment within all the non-public schools that received services or
+            assistance under the CRRSA EANS program?<input type="text" disabled id="eans2NonPublicEnrollmentTotal"
+                data-eans2NonPublicEnrollmentTotal="{{apr.eans2NonPublicEnrollmentTotal}}" value="{{apr.eans2NonPublicEnrollmentTotal}}"/></label>
+        </p>
+
+        <p><label >20. What was the total number of students from low-income families (total low-income student enrollment)
+            enrolled in all the non-public schools that received services or assistance under the CRRSA EANS
+            program?<input type="text" disabled id="eans2NonPublicEnrollmentLowIncome"
+                data-eans2NonPublicEnrollmentLowIncome="{{apr.eans2NonPublicEnrollmentLowIncome}}" value="{{apr.eans2NonPublicEnrollmentLowIncome}}"/></label>
+        </p>
+
+        <p class="question">21. Provide the following information regarding the population of students from low-income families
+            served within non-public schools that received services or assistance under the CRRSA EANS program:</p>
+        <table cellspacing="0" width="100%" id="crrsa_low_income_percentages" summary="The number of non-public schools freceiving CRRSA assistance categorized by percentage of
+        students in low-income families" repeat="1">
+            <thead>
+                <tr>
+                    <th style="width: 10em;" scope="col">Percentage of students from low-income families within a non-public school that
+                        received
+                        EANS services or assistance</th>
+                    <th scope="col">Number of non-public schools that received services or assistance under the
+                        CRRSA EANS
+                        program</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0%-10%</td>
+                    <td id="eans2NonPublic10PercentAssistedAmount"
+                        data-eans2NonPublic10PercentAssistedAmount="{{apr.eans2NonPublic10PercentAssistedAmount}}" style="text-align:right;">
+                        {{apr.eans2NonPublic10PercentAssistedAmount}}</td>
+                </tr>
+                <tr>
+                    <td>11%-20%</td>
+                    <td id="eans2NonPublic20PercentAssistedAmount"
+                        data-eans2NonPublic20PercentAssistedAmount="{{apr.eans2NonPublic20PercentAssistedAmount}}" style="text-align:right;">
+                        {{apr.eans2NonPublic20PercentAssistedAmount}}</td>
+                </tr>
+                <tr>
+                    <td>21%-30%</td>
+                    <td id="eans2NonPublic30PercentAssistedAmount"
+                        data-eans2NonPublic30PercentAssistedAmount="{{apr.eans2NonPublic30PercentAssistedAmount}}" style="text-align:right;">
+                        {{apr.eans2NonPublic30PercentAssistedAmount}}</td>
+                </tr>
+                <tr>
+                    <td>31%-40%</td>
+                    <td id="eans2NonPublic40PercentAssistedAmount"
+                        data-eans2NonPublic40PercentAssistedAmount="{{apr.eans2NonPublic40PercentAssistedAmount}}" style="text-align:right;">
+                        {{apr.eans2NonPublic40PercentAssistedAmount}}</td>
+                </tr>
+                <tr>
+                    <td>41%-50%</td>
+                    <td id="eans2NonPublic50PercentAssistedAmount"
+                        data-eans2NonPublic50PercentAssistedAmount="{{apr.eans2NonPublic50PercentAssistedAmount}}" style="text-align:right;">
+                        {{apr.eans2NonPublic50PercentAssistedAmount}}</td>
+                </tr>
+                <tr>
+                    <td>51%-60%</td>
+                    <td id="eans2NonPublic60PercentAssistedAmount"
+                        data-eans2NonPublic60PercentAssistedAmount="{{apr.eans2NonPublic60PercentAssistedAmount}}" style="text-align:right;">
+                        {{apr.eans2NonPublic60PercentAssistedAmount}}</td>
+                </tr>
+                <tr>
+                    <td>61%-70%</td>
+                    <td id="eans2NonPublic70PercentAssistedAmount"
+                        data-eans2NonPublic70PercentAssistedAmount="{{apr.eans2NonPublic70PercentAssistedAmount}}" style="text-align:right;">
+                        {{apr.eans2NonPublic70PercentAssistedAmount}}</td>
+                </tr>
+                <tr>
+                    <td>71%-80%</td>
+                    <td id="eans2NonPublic80PercentAssistedAmount"
+                        data-eans2NonPublic80PercentAssistedAmount="{{apr.eans2NonPublic80PercentAssistedAmount}}" style="text-align:right;">
+                        {{apr.eans2NonPublic80PercentAssistedAmount}}</td>
+                </tr>
+                <tr>
+                    <td>81%-90%</td>
+                    <td id="eans2NonPublic90PercentAssistedAmount"
+                        data-eans2NonPublic90PercentAssistedAmount="{{apr.eans2NonPublic90PercentAssistedAmount}}" style="text-align:right;">
+                        {{apr.eans2NonPublic90PercentAssistedAmount}}</td>
+                </tr>
+                <tr>
+                    <td>91%-100%</td>
+                    <td id="eans2NonPublic100PercentAssistedAmount"
+                        data-eans2NonPublic100PercentAssistedAmount="{{apr.eans2NonPublic100PercentAssistedAmount}}" style="text-align:right;">
+                        {{apr.eans2NonPublic100PercentAssistedAmount}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+
+    <form name="arp_nonpublic_schools" action="" aria-labelledby="section8">
+        <h1 id="section8">Section VIII. Non-public schools receiving services or assistance under ARP EANS</h1>
+        <p>Instructions: Provide the following information for the non-public schools in the State receiving services or
+            assistance under the ARP EANS program within the reporting period.</p>
+
+        <p class="question">22. List the non-public schools that received services or assistance under the ARP EANS program within the State.</p>
+        <p>Note: If the non-public school serves elementary and secondary school students, select &apos;yes&apos; for both b. and c.</p>
+
+        <table cellspacing="0" width="100%" id="arp_eans_schools"
+            summary="The non-public schools that received EANS assistance under ARP, and the population served by each." repeat="1">
+            <thead>
+                <tr>
+                    <th style="width: 25%;" scope="col">Name of the non-public school</th>
+                    <th scope="col">Does this non-public school serve elementary school students?</th>
+                    <th scope="col">Does this non-public school serve secondary school students?</th>
+                    <th scope="col">Is the total student enrollment count 19-20 school year available for this
+                        non-public school?</th>
+                    <th scope="col">Total student enrollment in the non-public school from the 19-20 school year</th>
+                    <th scope="col">Is the total low-income student enrollment count 19-20 school year available for
+                        this non-public school?</th>
+                    <th scope="col">Total low-income student enrollment in the non-public school from 19-20 school year
+                    </th>
+                    <th scope="col">Percentage of students from low-income families within a non-public school</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for school in apr.schools|selectattr("isEans3SchoolServed") %}
+                <tr>
+                    <td id="nonPublicSchoolName{{loop.index}}"
+                        data-nonPublicSchoolName{{loop.index}}="{{school.nonPublicSchoolName|e}}">
+                        {{school.nonPublicSchoolName}}</td>
+                    <td id="isEansAServeElementary{{loop.index}}"
+                        data-isEansAServeElementary{{loop.index}}="{{school.isEansAServeElementary}}">
+                        {{school.isEansAServeElementary|yes_no}}</td>
+                    <td id="isEansAServeSecondary{{loop.index}}"
+                        data-isEansAServeSecondary{{loop.index}}="{{school.isEansAServeSecondary}}">
+                        {{school.isEansAServeSecondary|yes_no}}</td>
+                    <td id="isEansASchoolEnrollmentTotalAvailable{{loop.index}}"
+                        data-isEansASchoolEnrollmentTotalAvailable{{loop.index}}="{school.isEansASchoolEnrollmentTotalAvailable}}">
+                        {{school.isEansASchoolEnrollmentTotalAvailable|yes_no}}</td>
+                    <td id="school.eansASchoolEnrollmentTotal{{loop.index}}"
+                        data-eansASchoolEnrollmentTotal{{loop.index}}="{{school.eansASchoolEnrollmentTotal}}" style="text-align:right;">
+                        {{school.eansASchoolEnrollmentTotal}}</td>
+                    <td id="school.isEansASchoolEnrollmentLowIncomeAvailable{{loop.index}}"
+                        data-isEansASchoolEnrollmentLowIncomeAvailable{{loop.index}}="{{school.isEansASchoolEnrollmentLowIncomeAvailable}}">
+                        {{school.isEansASchoolEnrollmentLowIncomeAvailable|yes_no}}</td>
+                    <td id="school.eansASchoolEnrollmentLowIncome{{loop.index}}"
+                        data-eansASchoolEnrollmentLowIncome{{loop.index}}="{{school.eansASchoolEnrollmentLowIncome}}" style="text-align:right;">
+                        {{school.eansASchoolEnrollmentLowIncome}}</td>
+                    <td id="school.eansASchoolPercentLowIncome{{loop.index}}"
+                        data-eansASchoolPercentLowIncome{{loop.index}}="{{school.eansASchoolPercentLowIncome}}" style="text-align:right;">
+                        {{school.eansASchoolPercentLowIncome|percent}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <p><label >23. How many non-public schools received services or assistance under the ARP EANS program within the
+            State?<input type="text" disabled id="eans3NonPublicSchoolsTotal"
+                data-eans3NonPublicSchoolsTotal="{{apr.eans3NonPublicSchoolsTotal}}" value="{{apr.eans3NonPublicSchoolsTotal}}"/></label>
+        </p>
+
+        <p><label >24. What was the total number of non-public schools that served elementary school students and received
+            services or assistance under the ARP EANS program?<input type="text" disabled id="eans3NonPublicElementary"
+                data-eans3NonPublicElementary="{{apr.eans3NonPublicElementary}}" value="{{apr.eans3NonPublicElementary}}"/></label>
+        </p>
+
+        <p><label  for="eans3NonPublicSecondary">25. What was the total number of non-public schools that served secondary school students and received
+            services or assistance under the ARP EANS program?<input type="text" disabled id="eans3NonPublicSecondary"
+                data-eans3NonPublicSecondary="{{apr.eans3NonPublicSecondary}}" value="{{apr.eans3NonPublicSecondary}}"/></label>
+        </p>
+
+        <p>Note: For questions 26-28, responses will be calculated based on the reported 2019-2020 school enrollment
+            counts</p>
+
+        <p><label >26. What was the total student enrollment within the non-public schools that received services or
+            assistance under the ARP EANS program?<input type="text" disabled id="eans3NonPublicEnrollmentTotal"
+                data-eans3NonPublicEnrollmentTotal="{{apr.eans3NonPublicEnrollmentTotal}}" value="{{apr.eans3NonPublicEnrollmentTotal}}"/></label>
+        </p>
+
+        <p><label  for="eans3NonPublicEnrollmentLowIncome">27. What was the total number of students from low-income families (total low-income student enrollment)
+            enrolled in the non-public schools that received services or assistance under the ARP EANS program?
+            <input type="text" disabled id="eans3NonPublicEnrollmentLowIncome"
+                data-eans3NonPublicEnrollmentLowIncome="{{apr.eans3NonPublicEnrollmentLowIncome}}" value="{{apr.eans3NonPublicEnrollmentLowIncome}}"/></label>
+        </p>
+
+        <p class="question">28. Provide the following information regarding the population of students from low-income families
+            served within non-public schools that received services or assistance under the ARP EANS program:</p>
+
+        <table cellspacing="0" width="100%" id="arp_low_income_percentages" summary="The number of non-public schools receiving ARP assistance categorized by percentage of
+    students in low-income families" repeat="1">
+            <thead>
+                <tr>
+                    <th style="width: 10em;" scope="col">Percentage of students from low-income families within a non-public school that
+                        received
+                        EANS services or assistance</th>
+                    <th scope="col">Number of non-public schools that received services or assistance under the
+                        CRRSA EANS
+                        program</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0%-10%</td>
+                    <td id="eans3NonPublic10PercentAssistedAmount"
+                        data-eans3NonPublic10PercentAssistedAmount="{{apr.eans3NonPublic10PercentAssistedAmount}}" style="text-align:right;">
+                        {{apr.eans3NonPublic10PercentAssistedAmount}}</td>
+                </tr>
+                <tr>
+                    <td>11%-20%</td>
+                    <td id="eans3NonPublic20PercentAssistedAmount"
+                        data-eans3NonPublic20PercentAssistedAmount="{{apr.eans3NonPublic20PercentAssistedAmount}}" style="text-align:right;">
+                        {{apr.eans3NonPublic20PercentAssistedAmount}}</td>
+                </tr>
+                <tr>
+                    <td>21%-30%</td>
+                    <td id="eans3NonPublic30PercentAssistedAmount"
+                        data-eans3NonPublic30PercentAssistedAmount="{{apr.eans3NonPublic30PercentAssistedAmount}}" style="text-align:right;">
+                        {{apr.eans3NonPublic30PercentAssistedAmount}}</td>
+                </tr>
+                <tr>
+                    <td>31%-40%</td>
+                    <td id="eans3NonPublic40PercentAssistedAmount"
+                        data-eans3NonPublic40PercentAssistedAmount="{{apr.eans3NonPublic40PercentAssistedAmount}}" style="text-align:right;">
+                        {{apr.eans3NonPublic40PercentAssistedAmount}}</td>
+                </tr>
+                <tr>
+                    <td>41%-50%</td>
+                    <td id="eans3NonPublic50PercentAssistedAmount"
+                        data-eans3NonPublic50PercentAssistedAmount="{{apr.eans3NonPublic50PercentAssistedAmount}}" style="text-align:right;">
+                        {{apr.eans3NonPublic50PercentAssistedAmount}}</td>
+                </tr>
+                <tr>
+                    <td>51%-60%</td>
+                    <td id="eans3NonPublic60PercentAssistedAmount"
+                        data-eans3NonPublic60PercentAssistedAmount="{{apr.eans3NonPublic60PercentAssistedAmount}}" style="text-align:right;">
+                        {{apr.eans3NonPublic60PercentAssistedAmount}}</td>
+                </tr>
+                <tr>
+                    <td>61%-70%</td>
+                    <td id="eans3NonPublic70PercentAssistedAmount"
+                        data-eans3NonPublic70PercentAssistedAmount="{{apr.eans3NonPublic70PercentAssistedAmount}}" style="text-align:right;">
+                        {{apr.eans3NonPublic70PercentAssistedAmount}}</td>
+                </tr>
+                <tr>
+                    <td>71%-80%</td>
+                    <td id="eans3NonPublic80PercentAssistedAmount"
+                        data-eans3NonPublic80PercentAssistedAmount="{{apr.eans3NonPublic80PercentAssistedAmount}}" style="text-align:right;">
+                        {{apr.eans3NonPublic80PercentAssistedAmount}}</td>
+                </tr>
+                <tr>
+                    <td>81%-90%</td>
+                    <td id="eans3NonPublic90PercentAssistedAmount"
+                        data-eans3NonPublic90PercentAssistedAmount="{{apr.eans3NonPublic90PercentAssistedAmount}}" style="text-align:right;">
+                        {{apr.eans3NonPublic90PercentAssistedAmount}}</td>
+                </tr>
+                <tr>
+                    <td>91%-100%</td>
+                    <td id="eans3NonPublic100PercentAssistedAmount"
+                        data-eans3NonPublic100PercentAssistedAmount="{{apr.eans3NonPublic100PercentAssistedAmount}}" style="text-align:right;">
+                        {{apr.eans3NonPublic100PercentAssistedAmount}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+    
+    <form name="eans_subawards" action="" aria-labelledby="section9">
+        <h1 id="section9">Section IX. Subawards/Subcontracts</h1>
+        <p class="question">29. Instructions: Provide the following information for each entity that received a subaward or subcontract
+            to provide services or assistance to participating non-public schools in the State under the CRRSA and ARP
+            EANS program provided by the SEA.</p>
+
+        <hr/>
+        {% for sub in apr.subawards %}
+        <details>
+            <summary>
+            <p data-ueiNumber{{loop.index}}="{{sub.ueiNumber|e}}" data-dunsNumber{{loop.index}}="{{sub.dunsNumber|e}}" data-entityName{{loop.index}}="{{sub.entityName|e}}">
+                UEI (SAM): {{sub.ueiNumber|e}} DUNS &#35;: {{sub.dunsNumber|e}} Sub-awardee/Subcontract Entity Name: {{sub.entityName|e}}
+            </p>
+        </summary>
+        <p><label >Total amount awarded/contracted from CRRSA EANS funding <input type="text" disabled id="eans2TotalAmountAwarded{{loop.index}}"
+                data-eans2TotalAmountAwarded{{loop.index}}="{{sub.eans2TotalAmountAwarded}}" value="{{sub.eans2TotalAmountAwarded|dollars}}"/></label>
+        </p>
+        <p><label >Total amount obligated from CRRSA EANS funding <input type="text" disabled id="eans2TotalAmountObligated{{loop.index}}"
+                data-eans2TotalAmountObligated{{loop.index}}="{{sub.eans2TotalAmountObligated}}" value="{{sub.eans2TotalAmountObligated|dollars}}"/></label>
+        </p>
+        <p><label >Number of non-public schools served with CRRSA EANS funding through subaward/subcontract <input type="text" disabled
+            id="eans2NumberofSchools{{loop.index}}"
+                data-eans2NumberofSchools{{loop.index}}="{{sub.eans2NumberofSchools}}" value="{{sub.eans2NumberofSchools}}"/></label>
+        </p>
+        <p><label >Total amount awarded/contracted from ARP EANS funding <input type="text" disabled id="eans3TotalAmountAwarded{{loop.index}}"
+                data-eans3TotalAmountAwarded{{loop.index}}="{{sub.eans3TotalAmountAwarded}}" value="{{sub.eans3TotalAmountAwarded|dollars}}"/></label>
+        </p>
+        <p><label >Total amount obligated from ARP EANS funding <input type="text" disabled id="eans3TotalAmountObligated{{loop.index}}"
+                data-eans3TotalAmountObligated{{loop.index}}="{{sub.eans3TotalAmountObligated}}" value="{{sub.eans3TotalAmountObligated|dollars}}"/></label>
+        </p>
+        <p><label >Number of non-public schools served with ARP EANS funding through subaward /subcontract <input type="text" disabled
+            id="eans3NumberofSchools{{loop.index}}"
+                data-eans3NumberofSchools{{loop.index}}="{{sub.eans3NumberofSchools}}" value="{{sub.eans3NumberofSchools}}"/></label>
+        </p>
+        <p class="question">What services or assistance were or will be provided by the entity to non-public schools?</p>
+        <p>Select from the categories below</p>
+            <p><label ><input type="checkbox" disabled id="eansASupplies{{loop.index}}" data-eansASupplies{{loop.index}}="{{sub.eansASupplies|yes_no}}" {{sub.eansASupplies|check}}/>
+                 Supplies to sanitize, disinfect, and clean school facilities</label> </p>
+            <p><label ><input type="checkbox" disabled id="eansAPersonalProtectiveEquipment{{loop.index}}"
+                data-eansAPersonalProtectiveEquipment{{loop.index}}="{{sub.eansAPersonalProtectiveEquipment|yes_no}}" {{sub.eansAPersonalProtectiveEquipment|check}}/>
+                 Supplying personal protective equipment (PPE)</label> </p>
+            <p><label ><input type="checkbox" disabled id="eansAImprovingSystems{{loop.index}}"
+                data-eansAImprovingSystems{{loop.index}}="{{sub.eansAImprovingSystems|yes_no}}" {{sub.eansAImprovingSystems|check}}/>
+                 Improving ventilation systems, including windows or portable air
+                purification systems</label> </p>
+            <p><label ><input type="checkbox" disabled id="eansAProfessionalDevelopment{{loop.index}}"
+                data-eansAProfessionalDevelopment{{loop.index}}="{{sub.eansAProfessionalDevelopment|yes_no}}" {{sub.eansAProfessionalDevelopment|check}}/>
+                 Training and professional development for staff on
+                sanitization, the use of PPE, and minimizing the spread of infectious diseases</label> </p>
+            <p><label ><input type="checkbox" disabled id="eansAPhysicalBarriers{{loop.index}}"
+                data-eansAPhysicalBarriers{{loop.index}}="{{sub.eansAPhysicalBarriers|yes_no}}" {{sub.eansAPhysicalBarriers|check}}/>
+                 Providing physical barriers to facilitate social distancing</label> </p>
+            <p><label ><input type="checkbox" disabled id="eansAOtherMaterials{{loop.index}}"
+                data-eansAOtherMaterials{{loop.index}}="{{sub.eansAOtherMaterials|yes_no}}" {{sub.eansAOtherMaterials|check}}/>
+                 Providing other materials, supplies, or equipment to implement public
+                health protocols, including guidelines and recommendations from the Centers for Disease Control and
+                Prevention for the reopening and operation of school facilities to effectively maintain the health and
+                safety of students, educators, and other staff during the qualifying emergency</label> </p>
+            <p><label ><input type="checkbox" disabled id="eansAExpandingCapacity{{loop.index}}"
+                data-eansAExpandingCapacity{{loop.index}}="{{sub.eansAExpandingCapacity|yes_no}}" {{sub.eansAExpandingCapacity|check}}/>
+                 Expanding capacity to administer coronavirus testing to effectively
+                monitor and suppress coronavirus, to conduct surveillance and contact tracing activities, and to support
+                other activities related to coronavirus testing for students, teachers, and staff at the non-public
+                school</label> </p>
+            <p><label ><input type="checkbox" disabled id="eansAEducationalTechnology{{loop.index}}"
+                data-eansAEducationalTechnology{{loop.index}}="{{sub.eansAEducationalTechnology|yes_no}}" {{sub.eansAEducationalTechnology|check}}/>
+                 Providing educational technology (including hardware, software,
+                connectivity, assistive technology, and adaptive equipment) to assist students, educators, and other
+                staff with remote or hybrid learning</label> </p>
+            <p><label ><input type="checkbox" disabled id="eansARedevelopingPlans{{loop.index}}"
+                data-eansARedevelopingPlans{{loop.index}}="{{sub.eansARedevelopingPlans|yes_no}}" {{sub.eansARedevelopingPlans|check}}/>
+                 Redeveloping instructional plans, including curriculum development,
+                for remote or hybrid learning, or to address learning loss</label> </p>
+            <p><label ><input type="checkbox" disabled id="eansALeasingSites{{loop.index}}"
+                data-eansALeasingSites{{loop.index}}="{{sub.eansALeasingSites|yes_no}}" {{sub.eansALeasingSites|check}}/>
+                Leasing of sites or spaces to ensure safe social distancing to implement public health protocols,
+                including guidelines and recommendations from the Centers for Disease Control and Prevention</label> </p>
+            <p><label ><input type="checkbox" disabled id="eansATransportationCosts{{loop.index}}"
+                data-eansATransportationCosts{{loop.index}}="{{sub.eansATransportationCosts|yes_no}}" {{sub.eansATransportationCosts|check}}/>
+                 Reasonable transportation costs</label></p>
+            <p><label ><input type="checkbox" disabled id="eansASupportServices{{loop.index}}"
+                data-eansASupportServices{{loop.index}}="{{sub.eansASupportServices|yes_no}}" {{sub.eansASupportServices|check}}/>
+                 Initiating and maintaining education and support services or
+                assistance for remote or hybrid learning or to address learning loss</label> </p>
+            <p><label ><input type="checkbox" disabled id="eansAAdmin{{loop.index}}" data-eansAAdmin{{loop.index}}="{{sub.eansAAdmin|yes_no}}" {{sub.eansAAdmin|check}}/>
+                 Administration of the EANS program (e.g., reviewing applications, processing
+                awards, etc.)</label> </p>
+        </details>
+        <hr/>
+        {% endfor %}
+    </form>
+    
+    <section id="burden_statement" role="region" aria-labelledby="burden">
+        <h1 id="burden">Burden Statement</h1>
+        <p>According to the Paperwork Reduction Act of 1995, no persons are required to respond to a collection of
+            information unless such collection displays a valid OMB control number. The valid OMB control number for
+            this information collection is 1810-0765. Public reporting burden for this collection of information is
+            estimated to average 4 hours per response, including time for reviewing instructions, searching existing
+            data sources, gathering and maintaining the data needed, and completing and reviewing the collection of
+            information. Under the PRA, participants are required to respond to this collection to obtain or retain a
+            benefit. If you have any comments concerning the accuracy of the time estimate, suggestions for improving
+            this individual collection, or if you have comments or concerns regarding the status of your individual
+            form, please contact Joanne Bogart, US. Department of Education, 400 Maryland Avenue, SW, Washington, DC</p>
+    </section>
+</main>
+{% endblock apr %}
