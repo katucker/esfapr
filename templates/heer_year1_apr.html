@@ -1,0 +1,577 @@
+<!-- # templates/geer_year1_apr.html # -->
+{% extends "common.html" %}
+{% block title %}{{apr.dunsNumber|e}} {{apr.reportingYear|e}} Higher Education Emergency Relief Annual Report{% endblock title %}
+{% block apr_title %}
+<p style="text-align:center;">Higher Education Emergency Relief Fund (HEERF) Data Collection Form</p>
+<p style="text-align:center;">(Both Student Aid and Institutional Portions under Section 18004 of the CARES Act)</p>
+{% endblock apr_title %}
+{% block apr_sections %}
+<p><a href="#introduction">Introduction</a></p>
+<p><a href="#students_aided">Emergency Financial Aid Grants Awarded to Students</a></p>
+<p><a href="#expenses_categorized">Expenditures by category</a></p>
+<p><a href="#enrollment_status">HEERF Grant Recipient Enrollment Status</a></p>
+<p><a href="#fte">Full-Time Equivalents</a></p>
+{% endblock apr_sections %}
+
+{% block apr %}
+<main>
+    <form name="intro" action="" aria-labeledby="introduction">
+        <p>VERSION 1</p>
+        <p><label for="cfdaList">This data collection form applies to the following HEERF funds:</label></p>
+        <ul id="cfdaList"> 
+            <li>Student Aid (CFDA 84.425E)</li>
+            <li>Institutional Portion (CFDA 84.425F)</li>
+            <li>Historically Black Colleges and Universities (CFDA 84.425J)</li>
+            <li>American Indian Tribally Controlled Colleges and Universities (CFDA 84.425K)</li>
+            <li>Minority Serving Institutions (CFDA 84.425L)</li>
+            <li>Strengthening Institutions Program (CFDA 84.425M)</li>
+            <li>Fund for the Improvement of Postsecondary Education (CFDA 84.425N)</li>
+        </ul>
+        <h1 id="introduction">HEERF Reporting Form</h1>
+        <details>
+            <summary>Annual Reporting</summary>
+            <p>This report should be completed based on activities in the applicable reporting periods. 
+                If an institution has expended all of their HEERF grant funds by the closing date of the reporting period, 
+                they do not have to complete subsequent annual reports. All institutions must submit the First Annual Report. 
+                Please indicate in Question 2 if this report is your final annual report.</p>
+            <table cellspacing="0" width="100%" id="reporting_schedule" summary="A schedule of reporting periods showing what time span is covered in each annual report." repeat="1">
+                <thead>
+                    <tr>
+                        <th style="width: 15em;" scope="col">Annual Report</th>
+                        <th scope="col">Due Date</th>
+                        <th scope="col">Applicable Reporting Period</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="first_reporting_period">
+                        <td>First Annual Report</td>
+                        <td>Feburary 1, 2021</td>
+                        <td>March 13, 2020 - December 31, 2020</td>
+                    </tr>
+                    <tr id="second_reporting_period">
+                        <td>Second Annual Report</td>
+                        <td>Feburary 1, 2022</td>
+                        <td>January 1, 2021 - December 31, 2021</td>
+                    </tr>
+                    <tr id="third_reporting_period">
+                        <td>Third Annual Report</td>
+                        <td>February 1, 2023</td>
+                        <td>January 1, 2022 - December 31, 2022</td>
+                    </tr>
+                </tbody>
+            </table>
+        </details>
+        
+        <p class="question">1. Institutional Identifiers and Contact Information</p>
+        <p><label>a) Institution Name: <input readonly type="text" size="72" id="ihename" data-iheName="{{apr.iheName|e}}" value="{{ apr.iheName|e }}"/></label></p>
+        <p><label>DUNS &#35;: <input readonly type="text" id="dunsNumber" data-dunsNumber="{{apr.dunsNumber|e}}" value="{{ apr.dunsNumber|e }}"/></label></p>
+        <p><label>b) Please identify the OPEID(s) for this institution: <input readonly type="text" size="72" id="opeIds" data-opeIds="{{apr.opeIds|e}}" value="{{apr.opeIds|e}}"/></label></p>
+        <p><label>c) Please report on these HEERF grant PR/Award Numbers:: <input readonly type="text" size="72" id="prNumbers" data-prNumbers="{{apr.prNumbers|e|replace('|',',')}}" value="{{apr.prNumbers|e|replace('|',',')}}"/></label></p>
+        <details><summary class="question">d) Who is the lead contact for this annual data collection?</summary>
+            <p><label>Name: <input readonly type="text" size="72" id="repName" data-repName="{{apr.repName|e}}" value="{{apr.repName|e}}"/></label></p>
+            <p><label>Title: <input readonly type="text" size="72" id="repTitle" data-repTitle="{{apr.repTitle|e}}" value="{{apr.repTitle|e}}"/></label></p>
+            <p><label>Phone: <input readonly type="text" id="repPhone" data-repPhone="{{apr.repPhone|e}}" value="{{apr.repPhone|e}}"/></label></p>
+            <p><label>Email: <input readonly type="text" size="72" id="repEmail" data-repEmail="{{apr.repEmail|e}}" value="{{apr.repEmail|e}}"/></label></p>
+        </details>
+        <p><label>2. Did you expend all of your HEERF funds prior to the end of the reporting period, making this your final annual report?: <input readonly type="text" id="wereAllFundsExpended" data-wereAllFundsExpended="{{apr.wereAllFundsExpended|yes_no}}" value="{{apr.wereAllFundsExpended|yes_no}}"/></label></p>
+        <p class="question">3. Reporting on institution websites</p>
+        <p><label>a) CARES HEERF quarterly reporting webpage URL: <input readonly type="text" size="72" id="quarterlyReportingWebPageUrl" data-quarterlyReportingWebPageUrl="{{apr.quarterlyReportingWebPageUrl|e}}" value="{{apr.quarterlyReportingWebPageUrl|e}}"/></label></p>
+        <p class="question">b) Student portion reporting: Provide all active website URLs posted by your campus, or by the institution on behalf of your campus(es), as required by the August 31 notice in the Federal Register<sup><a href="#endnote1">1</a></sup> (including any URLs that are still active that provide archived information).</p>
+        <ul data-studentReportingWebUrls="{{apr.studentReportingWebUrls|e}}"><li>{{apr.studentReportingWebUrls|e|replace('|','</li><li>)')}}</li></ul>
+        <p class="question">c) Institutional Portion, (a)(2), and (a)(3) Reporting: Provide all active website URLs posted by your campus, or by institutions on behalf of your campus(es) as required by the quarterly Higher Education Emergency Relief Fund (HEERF) Data Collection Form<sup><a href="#endnote2">2</a></sup> (include any URLs that are still active that provide archived information</p>
+        <ul data-institutionallyReportedWebUrls="{{apr.institutionallyReportedWebUrls|e}}"><li>{{apr.institutionallyReportedWebUrls|e|replace('|','</li><li>')}}</li></ul>
+        <p class="question">4) How did your institution determine which students were eligible<sup><a href="#endnote3">3</a></sup> to receive emergency financial aid grants under any of the CARES Act HEERF programs?</p>
+        <p><label><input readonly type="checkbox" id="isEligibleCaresActTitleIVAid" data-isEligibleCaresActTitleIVAid="{{apr.isEligibleCaresActTitleIVAid|yes_no}}" {{apr.isEligibleCaresActTitleIVAid|check}}/> a) My institution has received an Institutional Student Information Record (ISIR) or Student Aid Report (SAR) on file that verifies student eligibility for Title IV, federal student aid (Title IV aid).</label></p>
+        <p><label><input readonly type="checkbox" id="isEligibleCaresActAlternateApplication" data-isEligibleCaresActAlternateApplication="{{apr.isEligibleCaresActAlternateApplication|yes_no}}" {{apr.isEligibleCaresActAlternateApplication|check}}/> b) My institution allowed students to attest to their eligibility for Title IV aid by completing an alternative application form developed by the institution for this purpose.</label></p>
+        <p><label><input readonly type="checkbox" id="isEligibleCaresActAnotherMethod" data-isEligibleCaresActAnotherMethod="{{apr.isEligibleCaresActAnotherMethod|yes_no}}" {{apr.isEligibleCaresActAnotherMethod|check}}/> c) My institution used another method for determining which students were eligible to receive emergency financial aid grants under the CARES Act.</label></p>
+        {% if apr.isEligibleCaresActAnotherMethod %}
+        <p><label>Description:
+            <textarea readonly rows="4" cols="72"
+                id="eligibilityAdditionalInfo"
+                data-eligibilityAdditionalInfo="{{apr.eligibilityAdditionalInfo|e}}">{{apr.eligibilityAdditionalInfo|e}}</textarea>
+            </label>
+        </p>
+        {% endif %}
+        <p class="question">5) How did your institution determine which students received emergency financial aid grants to students and how much each student would receive?</p>
+        <p>Please indicate if any of the following strategies were used.</p>
+        <p><label>Did you distribute different amounts to eligible students<sup><a href="#endnote4">4</a></sup> based on circumstances? <input readonly type="text" id="areFundsDistributedBasedonCircumstances" data-areFundsDistributedBasedonCircumstances="{{apr.areFundsDistributedBasedonCircumstances|yes_no}}" value="{{ apr.areFundsDistributedBasedonCircumstances|yes_no}}"/></label></p>
+        {% if apr.areFundsDistributedBasedonCircumstances %}
+            <p><label>Did you ask students to apply for funds? <input readonly type="text" id="didStudentsApplyForFunds" data-didStudentsApplyForFunds="{{apr.didStudentsApplyForFunds|yes_no}}" value="{{apr.didStudentsApplyForFunds|yes_no}}"/></label></p>
+            {% if apr.didStudentsApplyForFunds %}
+                <p><label>Did you use that application to determine the amount of a student&apos;s emergency financial aid grant? <input readonly type="text" id="isApplicationUsedToDetermineGrantAmount" data-isApplicationUsedToDetermineGrantAmount="{{apr.isApplicationUsedToDetermineGrantAmount|yes_no}}" value="{{apr.isApplicationUsedToDetermineGrantAmount|yes_no}}"/></label></p>
+                {% if apr.isApplicationUsedToDetermineGrantAmount %}
+                    <p>What needs did you prioritize to determine the amount of the student&apos;s award?</p>
+                    <p><label><input readonly type="checkbox" id="isStudentAccessToFood" data-isStudentAccessToFood="{{apr.isStudentAccessToFood|yes_no}}" {{apr.isStudentAccessToFood|check}}/> Food</label></p>
+                    <p><label><input readonly type="checkbox" id="isStudentAccessToHousing" data-isStudentAccessToHousing="{{apr.isStudentAccessToHousing|yes_no}}" {{apr.isStudentAccessToHousing|check}}/> Housing</label></p>
+                    <p><label><input readonly type="checkbox" id="isStudentAccessToCourseMaterials" data-isStudentAccessToCourseMaterials="{{apr.isStudentAccessToCourseMaterials|yes_no}}" {{apr.isStudentAccessToCourseMaterials|check}}/> Course materials</label></p>
+                    <p><label><input readonly type="checkbox" id="isStudentAccessToTechnology" data-isStudentAccessToTechnology="{{apr.isStudentAccessToTechnology|yes_no}}" {{apr.isStudentAccessToTechnology|check}}/> Technology</label></p>
+                    <p><label><input readonly type="checkbox" id="isStudentAccessToHealthCare" data-isStudentAccessToHealthCare="{{apr.isStudentAccessToHealthCare|yes_no}}" {{apr.isStudentAccessToHealthCare|check}}/> Health care</label></p>
+                    <p><label><input readonly type="checkbox" id="isStudentAccessToChildCare" data-isStudentAccessToChildCare="{{apr.isStudentAccessToChildCare|yes_no}}" {{apr.isStudentAccessToChildCare|check}}/> Child care</label></p>
+                    <p><label><input readonly type="checkbox" id="otherAttendanceExpenses" data-otherAttendanceExpenses="{{apr.otherAttendanceExpenses|yes_no}}" {{apr.otherAttendanceExpenses|check}}/> Other</label></p>
+                    {% if apr.otherAttendanceExpenses %}
+                        <p><label>Description:
+                            <textarea readonly rows="4" cols="72"
+                            id="otherEligibilityReason"
+                            data-otherEligibilityReason="{{apr.otherEligibilityReason|e}}">{{apr.otherEligibilityReason|e}}</textarea>
+                        </label></p>
+                    {% endif %}
+                {% endif %}
+            {% endif %}
+            <p><label>Did you use any institutional administrative data (pre-existing data that did not come from a HEERF-specific application form) in determining the amount of funds awarded to students? <input readonly type="text" id="wasPreExistingDataUsed" data-wasPreExistingDataUsed="{{apr.wasPreExistingDataUsed|yes_no}}" value="{{apr.wasPreExistingDataUsed|yes_no}}"/></label></p>
+            {% if apr.wasPreExistingDataUsed %}
+                <p>Which of these student factors did you prioritize in the grant determination process?</p>
+                <p><label><input readonly type="checkbox" id="enrollmentIntensity" data-enrollmentIntensity="{{apr.enrollmentIntensity|yes_no}}" {{apr.enrollmentIntensity|check}}/> Enrollment intensity (i.e., full-time/part-time status, number of credits the student is taking, etc.)</label></p>
+                <p><label><input readonly type="checkbox" id="isLocationFactorGrantDetermination" data-isLocationFactorGrantDetermination="{{apr.isLocationFactorGrantDetermination|yes_no}}" {{apr.isLocationFactorGrantDetermination|check}}/> Location (i.e., branch campus)</label></p>
+                <p><label><input readonly type="checkbox" id="isPellGrantEligible" data-isPellGrantEligible="{{apr.isPellGrantEligible|yes_no}}" {{apr.isPellGrantEligible|check}}/> Pell Grant eligibility</label></p>
+                <p><label><input readonly type="checkbox" id="isFafsaFactorGrantDetermination" data-isFafsaFactorGrantDetermination="{{apr.isFafsaFactorGrantDetermination|yes_no}}" {{apr.isFafsaFactorGrantDetermination|check}}/> FAFSA data elements</label></p>
+                {% if apr.isFafsaFactorGrantDetermination %}
+                    <p>Which FAFSA data elements did you use</p>
+                    <p><label><input readonly type="checkbox" id="fafsaFamilyIncome" data-fafsaFamilyIncome="{{apr.fafsaFamilyIncome|yes_no}}" {{apr.fafsaFamilyIncome|check}}/> FAFSA Family Income</label></p>
+                    <p><label><input readonly type="checkbox" id="fafsaEstimatedFamilyContribution" data-fafsaEstimatedFamilyContribution="{{apr.fafsaEstimatedFamilyContribution|yes_no}}" {{apr.fafsaEstimatedFamilyContribution|check}}/> Estimated Family Contribution</label></p>
+                    <p><label><input readonly type="checkbox" id="fafsaIndependentOrDependentStatus" data-fafsaIndependentOrDependentStatus="{{apr.fafsaIndependentOrDependentStatus|yes_no}}" {{apr.fafsaIndependentOrDependentStatus|check}}/> independent/dependent status</label></p>
+                {% endif %}
+                <p><label><input readonly type="checkbox" id="isCampusOrDistanceEducationStatus" data-isCampusOrDistanceEducationStatus="{{apr.isCampusOrDistanceEducationStatus|yes_no}}" {{apr.isCampusOrDistanceEducationStatus|check}}/> On-campus/distance education status</label></p>
+                <p><label><input readonly type="checkbox" id="isOnOrOffCampusLivingArrangement" data-isOnOrOffCampusLivingArrangement="{{apr.isOnOrOffCampusLivingArrangement|yes_no}}" {{apr.isOnOrOffCampusLivingArrangement|check}}/> On-campus/off-campus living arrangements</label></p>
+                <p><label><input readonly type="checkbox" id="isAcademicLevelFactorGrantDetermination" data-isAcademicLevelFactorGrantDetermination="{{apr.isAcademicLevelFactorGrantDetermination|yes_no}}" {{apr.isAcademicLevelFactorGrantDetermination|check}}/> Academic level</label></p>
+                <p><label><input readonly type="checkbox" id="isOtherFactorGrantDetermination" data-isOtherFactorGrantDetermination="{{apr.isOtherFactorGrantDetermination|yes_no}}" {{apr.isOtherFactorGrantDetermination|check}}/> Other</label></p>
+                {% if apr.isOtherFactorGrantDetermination %}
+                    <p><label>Description:
+                    <textarea readonly rows="4" cols="72"
+                        id="otherFactorGrantDeterminationReason"
+                        data-otherFactorGrantDeterminationReason="{{apr.otherFactorGrantDeterminationReason|e}}">{{apr.otherFactorGrantDeterminationReason|e}}</textarea>
+                    </label></p>
+                {% endif %}
+            {% endif %}
+        {% endif %}
+        <p class="question">6) How did your institution distribute the emergency financial aid grants to students?</p>
+        <p><label><input readonly type="checkbox" id="isDistributionAidCheck" data-isDistributionAidCheck="{{apr.isDistributionAidCheck|yes_no}}" {{apr.isDistributionAidCheck|check}}/> Checks</label></p>
+        <p><label><input readonly type="checkbox" id="isDistributionAidElectronicFundTransfer" data-isDistributionAidElectronicFundTransfer="{{apr.isDistributionAidElectronicFundTransfer|yes_no}}" {{apr.isDistributionAidElectronicFundTransfer|check}}/> Electronic funds transfer/Direct deposit</label></p>
+        <p><label><input readonly type="checkbox" id="isDistributionAidDebitCards" data-isDistributionAidDebitCards="{{apr.isDistributionAidDebitCards|yes_no}}" {{apr.isDistributionAidDebitCards|check}}/> Debit cards</label></p>
+        <p><label><input readonly type="checkbox" id="isDistributionAidPaymentApp" data-isDistributionAidPaymentApp="{{apr.isDistributionAidPaymentApp|yes_no}}" {{apr.isDistributionAidPaymentApp|check}}/> Payment apps</label></p>
+        <p><label><input readonly type="checkbox" id="isOtherDistributionAidType" data-isOtherDistributionAidType="{{apr.isOtherDistributionAidType|yes_no}}" {{apr.isOtherDistributionAidType|check}}/> Other</label></p>
+        {% if apr.isOtherDistributionAidType %}
+            <p><label>Description:
+                <textarea readonly rows="4" cols="72"
+                    id="otherDistributionAidTypeReason"
+                    data-otherDistributionAidTypeReason="{{apr.otherDistributionAidTypeReason|e}}">{{apr.otherDistributionAidTypeReason|e}}</textarea>
+                </label></p>
+        {% endif %}
+        <p><label>7) Did your institution provide any instructions, directions, or guidance to students (e.g. FAQs) about the emergency financial aid grants upon disbursement? <input readonly type="text" id="didInstitutionProvideGrantInstructions" data-didInstitutionProvideGrantInstructions="{{apr.didInstitutionProvideGrantInstructions|yes_no}}" value="{{apr.didInstitutionProvideGrantInstructions|yes_no}}"/></label></p>
+        {% if apr.didInstitutionProvideGrantInstructions %}
+            <p><label>Instruction file name: <input readonly type="text" id="uploadedFileName" data-uploadedFileName="{{apr.uploadedFileName|e}}" value="{{apr.uploadedFileName|e}}"/></label></p>
+            <p><label>Instructions URL(s): <textarea readonly rows="4" cols="72" id="grantUrls" data-grantUrls="{{apr.grantUrls|e}}">{{apr.grantUrls|e}}</textarea></label></p>
+        {% endif %}
+    </form>
+    <form name="student_awards_categorized" action="" aria-labeled-by="students_aided">
+        <h1 id="students_aided">8) Emergency Financial Aid Grants Awarded to Students (direct grants and amounts reimbursed)</h1>
+        <table cellspacing="0" width="100%" id="students_aided_by_category"
+        summary="The number of students that received aid in distinct categories." repeat="1">
+            <thead>
+                <tr>
+                    <th style="width:30%;" scope="col"></th>
+                    <th scope="col">All HEERF Emergency Financial Aid Grant eligible students</th>
+                    <th scope="col">Undergraduate<sup><a href="#endnote5">5</a></sup>, Full-time <sup><a href="#endnote6">6</a></sup>, Pell grant recipients<sup><a href="#endnote7">7</a></sup></th>
+                    <th scope="col">Undergraduate, Full-time, Non-Pell grant recipients<sup><a href="#endnote8">8</a></sup></th>
+                    <th scope="col">Undergraduate, Part-time, Pell grant recipients</th>
+                    <th scope="col">Undergraduate, Part-time, Non-Pell grant recipients</th>
+                    <th scope="col">Graduate, Full-time</th>
+                    <th scope="col">Graduate, Part-time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">How many students were eligible to receive HEERF emergency grants made available under section 18004 of the CARES Act<sup><a href="#endnote9">9</a></sup>?</th>
+                    <td data-eligibleStudentsTotal="{{apr.eligibleStudentsTotal}}">{{apr.eligibleStudentsTotal}}</td>
+                    <td data-eligibleStudentsUGRDFTPellRecipient="{{apr.eligibleStudentsUGRDFTPellRecipient}}">{{apr.eligibleStudentsUGRDFTPellRecipient}}</td>
+                    <td data-eligibleStudentsUGRDFTNonPellRecipient="{{apr.eligibleStudentsUGRDFTNonPellRecipient}}">{{apr.eligibleStudentsUGRDFTNonPellRecipient}}</td>
+                    <td data-eligibleStudentsUGRDPTPellRecipient="{{apr.eligibleStudentsUGRDPTPellRecipient}}">{{apr.eligibleStudentsUGRDPTPellRecipient}}</td>
+                    <td data-eligibleStudentsUGRDPTNonPellRecipient="{{apr.eligibleStudentsUGRDPTNonPellRecipient}}">{{apr.eligibleStudentsUGRDPTNonPellRecipient}}</td>
+                    <td data-eligibleStudentsGRDFTStudents="{{apr.eligibleStudentsGRDFTStudents}}">{{apr.eligibleStudentsGRDFTStudents}}</td>
+                    <td data-eligibleStudentsGRDPTStudents="{{apr.eligibleStudentsGRDPTStudents}}">{{apr.eligibleStudentsGRDPTStudents}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">How many students received emergency financial aid grants provided under Section 18004 of the CARES Act? (unduplicated across all HEERF sections)</th>
+                    <td data-studentsRecipientsTotal="{{apr.studentsRecipientsTotal}}">{{apr.studentsRecipientsTotal}}</td>
+                    <td data-studentsRecipientsUGRDFTPellRecipient="{{apr.studentsRecipientsUGRDFTPellRecipient}}">{{apr.studentsRecipientsUGRDFTPellRecipient}}</td>
+                    <td data-studentsRecipientsUGRDFTNonPellRecipient="{{apr.studentsRecipientsUGRDFTNonPellRecipient}}">{{apr.studentsRecipientsUGRDFTNonPellRecipient}}</td>
+                    <td data-studentsRecipientsUGRDPTPellRecipient="{{apr.studentsRecipientsUGRDPTPellRecipient}}">{{apr.studentsRecipientsUGRDPTPellRecipient}}</td>
+                    <td data-studentsRecipientsUGRDPTNonPellRecipient="{{apr.studentsRecipientsUGRDPTNonPellRecipient}}">{{apr.studentsRecipientsUGRDPTNonPellRecipient}}</td>
+                    <td data-studentsRecipientsGRDFTStudents="{{apr.studentsRecipientsGRDFTStudents}}">{{apr.studentsRecipientsGRDFTStudents}}</td>
+                    <td data-studentsRecipientsGRDPTStudents="{{apr.studentsRecipientsGRDPTStudents}}">{{apr.studentsRecipientsGRDPTStudents}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">What was the amount disbursed directly to students as Emergency Financial Aid Grants under Section 18004(a)(1) of HEERF?</th>
+                    <td data-studentPortionDisbursedTotal="{{apr.studentPortionDisbursedTotal}}">{{apr.studentPortionDisbursedTotal|dollars}}</td>
+                    <td data-studentPortionDisbursedUGRDFTPellRecipient="{{apr.studentPortionDisbursedUGRDFTPellRecipient}}">{{apr.studentPortionDisbursedUGRDFTPellRecipient|dollars}}</td>
+                    <td data-studentPortionDisbursedUGRDFTNonPellRecipient="{{apr.studentPortionDisbursedUGRDFTNonPellRecipient}}">{{apr.studentPortionDisbursedUGRDFTNonPellRecipient|dollars}}</td>
+                    <td data-studentPortionDisbursedUGRDPTPellRecipient="{{apr.studentPortionDisbursedUGRDPTPellRecipient}}">{{apr.studentPortionDisbursedUGRDPTPellRecipient|dollars}}</td>
+                    <td data-studentPortionDisbursedUGRDPTNonPellRecipient="{{apr.studentPortionDisbursedUGRDPTNonPellRecipient}}">{{apr.studentPortionDisbursedUGRDPTNonPellRecipient|dollars}}</td>
+                    <td data-studentPortionDisbursedGRDFTStudents="{{apr.studentPortionDisbursedGRDFTStudents}}">{{apr.studentPortionDisbursedGRDFTStudents|dollars}}</td>
+                    <td data-studentPortionDisbursedGRDPTStudents="{{apr.studentPortionDisbursedGRDPTStudents}}">{{apr.studentPortionDisbursedGRDPTStudents|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">What is the amount reimbursed<sup><a href="#endnote10">10</a></sup> to your institution for Emergency Financial Aid Grants to students made prior to receiving your Section 18804(a)(1) HEERF grant but after March 27, 2020?</th>
+                    <td data-studentPortionReimbursedTotal="{{apr.studentPortionReimbursedTotal}}">{{apr.studentPortionReimbursedTotal|dollars}}</td>
+                    <td data-studentPortionReimbursedUGRDFTPellRecipient="{{apr.studentPortionReimbursedUGRDFTPellRecipient}}">{{apr.studentPortionReimbursedUGRDFTPellRecipient|dollars}}</td>
+                    <td data-studentPortionReimbursedUGRDFTNonPellRecipient="{{apr.studentPortionReimbursedUGRDFTNonPellRecipient}}">{{apr.studentPortionReimbursedUGRDFTNonPellRecipient|dollars}}</td>
+                    <td data-studentPortionReimbursedUGRDPTPellRecipient="{{apr.studentPortionReimbursedUGRDPTPellRecipient}}">{{apr.studentPortionReimbursedUGRDPTPellRecipient|dollars}}</td>
+                    <td data-studentPortionReimbursedUGRDPTNonPellRecipient="{{apr.studentPortionReimbursedUGRDPTNonPellRecipient}}">{{apr.studentPortionReimbursedUGRDPTNonPellRecipient|dollars}}</td>
+                    <td data-studentPortionReimbursedGRDFTStudents="{{apr.studentPortionReimbursedGRDFTStudents}}">{{apr.studentPortionReimbursedGRDFTStudents|dollars}}</td>
+                    <td data-studentPortionReimbursedGRDPTStudents="{{apr.studentPortionReimbursedGRDPTStudents}}">{{apr.studentPortionReimbursedGRDPTStudents|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">What was the amount disbursed directly to students as Emergency Financial Aid Grants through the Institutional Portion of Section 18004(a)(1) of HEERF?</th>
+                    <td data-institutionalPortionDisbursedTotal="{{apr.institutionalPortionDisbursedTotal}}">{{apr.institutionalPortionDisbursedTotal|dollars}}</td>
+                    <td data-institutionalPortionDisbursedUGRDFTPellRecipient="{{apr.institutionalPortionDisbursedUGRDFTPellRecipient}}">{{apr.institutionalPortionDisbursedUGRDFTPellRecipient|dollars}}</td>
+                    <td data-institutionalPortionDisbursedUGRDFTNonPellRecipient="{{apr.institutionalPortionDisbursedUGRDFTNonPellRecipient}}">{{apr.institutionalPortionDisbursedUGRDFTNonPellRecipient|dollars}}</td>
+                    <td data-institutionalPortionDisbursedUGRDPTPellRecipient="{{apr.institutionalPortionDisbursedUGRDPTPellRecipient}}">{{apr.institutionalPortionDisbursedUGRDPTPellRecipient|dollars}}</td>
+                    <td data-institutionalPortionDisbursedUGRDPTNonPellRecipient="{{apr.institutionalPortionDisbursedUGRDPTNonPellRecipient}}">{{apr.institutionalPortionDisbursedUGRDPTNonPellRecipient|dollars}}</td>
+                    <td data-institutionalPortionDisbursedGRDFTStudents="{{apr.institutionalPortionDisbursedGRDFTStudents}}">{{apr.institutionalPortionDisbursedGRDFTStudents|dollars}}</td>
+                    <td data-institutionalPortionDisbursedGRDPTStudents="{{apr.institutionalPortionDisbursedGRDPTStudents}}">{{apr.institutionalPortionDisbursedGRDPTStudents|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">What was the amount of the Institutional Portion of Section 18004(a)(1) of HEERF that was used to recover the cost of reimbursing students for room, board, tuition, or fees?</th>
+                    <td data-institutionalPortionRecoverTotal="{{apr.institutionalPortionRecoverTotal}}">{{apr.institutionalPortionRecoverTotal|dollars}}</td>
+                    <td data-institutionalPortionRecoverUGRDFTPellRecipient="{{apr.institutionalPortionRecoverUGRDFTPellRecipient}}">{{apr.institutionalPortionRecoverUGRDFTPellRecipient|dollars}}</td>
+                    <td data-institutionalPortionRecoverUGRDFTNonPellRecipient="{{apr.institutionalPortionRecoverUGRDFTNonPellRecipient}}">{{apr.institutionalPortionRecoverUGRDFTNonPellRecipient|dollars}}</td>
+                    <td data-institutionalPortionRecoverUGRDFTNonPellRecipient="{{apr.institutionalPortionRecoverUGRDFTNonPellRecipient}}">{{apr.institutionalPortionRecoverUGRDFTNonPellRecipient|dollars}}</td>
+                    <td data-institutionalPortionRecoverUGRDPTNonPellRecipient="{{apr.institutionalPortionRecoverUGRDPTNonPellRecipient}}">{{apr.institutionalPortionRecoverUGRDPTNonPellRecipient|dollars}}</td>
+                    <td data-institutionalPortionRecoverGRDFTStudents="{{apr.institutionalPortionRecoverGRDFTStudents}}">{{apr.institutionalPortionRecoverGRDFTStudents|dollars}}</td>
+                    <td data-institutionalPortionRecoverGRDPTStudents="{{apr.institutionalPortionRecoverGRDPTStudents}}">{{apr.institutionalPortionRecoverGRDPTStudents|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">What was the amount disbursed directly to students as Emergency Financial Aid Grants through the HBCUs,TCCUs, MSIs, or SIP portion of the fund?</th>
+                    <td data-amountDisbursedA2Total="{{apr.amountDisbursedA2Total}}">{{apr.amountDisbursedA2Total|dollars}}</td>
+                    <td data-amountDisbursedA2UGRDFTPellRecipient="{{apr.amountDisbursedA2UGRDFTPellRecipient}}">{{apr.amountDisbursedA2UGRDFTPellRecipient|dollars}}</td>
+                    <td data-amountDisbursedA2UGRDFTNonPellRecipient="{{apr.amountDisbursedA2UGRDFTNonPellRecipient}}">{{apr.amountDisbursedA2UGRDFTNonPellRecipient|dollars}}</td>
+                    <td data-amountDisbursedA2UGRDPTPellRecipient="{{apr.amountDisbursedA2UGRDPTPellRecipient}}">{{apr.amountDisbursedA2UGRDPTPellRecipient|dollars}}</td>
+                    <td data-amountDisbursedA2UGRDPTNonPellRecipient="{{apr.amountDisbursedA2UGRDPTNonPellRecipient}}">{{apr.amountDisbursedA2UGRDPTNonPellRecipient|dollars}}</td>
+                    <td data-amountDisbursedA2GRDFTStudents="{{apr.amountDisbursedA2GRDFTStudents}}">{{apr.amountDisbursedA2GRDFTStudents|dollars}}</td>
+                    <td data-amountDisbursedA2GRDPTStudents="{{apr.amountDisbursedA2GRDPTStudents}}">{{apr.amountDisbursedA2GRDPTStudents|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">What was the HBCUs, TCCUs, MSIs, or SIP portion amount used to recover the cost of reimbursing students for room, board, tuition, or fees?</th>
+                    <td data-amountRecoverA2Total="{{apr.amountRecoverA2Total}}">{{apr.amountRecoverA2Total|dollars}}</td>
+                    <td data-amountRecoverA2UGRDFTPellRecipient="{{apr.amountRecoverA2UGRDFTPellRecipient}}">{{apr.amountRecoverA2UGRDFTPellRecipient|dollars}}</td>
+                    <td data-amountRecoverA2UGRDFTNonPellRecipient="{{apr.amountRecoverA2UGRDFTNonPellRecipient}}">{{apr.amountRecoverA2UGRDFTNonPellRecipient|dollars}}</td>
+                    <td data-amountRecoverA2UGRDPTPellRecipient="{{apr.amountRecoverA2UGRDPTPellRecipient}}">{{apr.amountRecoverA2UGRDPTPellRecipient|dollars}}</td>
+                    <td data-amountRecoverA2UGRDPTNonPellRecipient="{{apr.amountRecoverA2UGRDPTNonPellRecipient}}">{{apr.amountRecoverA2UGRDPTNonPellRecipient|dollars}}</td>
+                    <td data-amountRecoverA2GRDFTStudents="{{apr.amountRecoverA2GRDFTStudents}}">{{apr.amountRecoverA2GRDFTStudents|dollars}}</td>
+                    <td data-amountRecoverA2GRDPTStudents="{{apr.amountRecoverA2GRDPTStudents}}">{{apr.amountRecoverA2GRDPTStudents|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">What was the amount disbursed directly to students as Emergency Financial Aid Grants through funds received through Section 18004(a)(3)?</th>
+                    <td data-amountDisbursedDirectA3Total="{{apr.amountDisbursedDirectA3Total}}">{{apr.amountDisbursedDirectA3Total|dollars}}</td>
+                    <td data-amountDisbursedDirectA3UGRDFTPellRecipient="{{apr.amountDisbursedDirectA3UGRDFTPellRecipient}}">{{apr.amountDisbursedDirectA3UGRDFTPellRecipient|dollars}}</td>
+                    <td data-amountDisbursedDirectA3UGRDFTNonPellRecipient="{{apr.amountDisbursedDirectA3UGRDFTNonPellRecipient}}">{{apr.amountDisbursedDirectA3UGRDFTNonPellRecipient|dollars}}</td>
+                    <td data-amountDisbursedDirectA3UGRDPTPellRecipient="{{apr.amountDisbursedDirectA3UGRDPTPellRecipient}}">{{apr.amountDisbursedDirectA3UGRDPTPellRecipient|dollars}}</td>
+                    <td data-amountDisbursedDirectA3UGRDPTNonPellRecipient="{{apr.amountDisbursedDirectA3UGRDPTNonPellRecipient}}">{{apr.amountDisbursedDirectA3UGRDPTNonPellRecipient|dollars}}</td>
+                    <td data-amountDisbursedDirectA3GRDFTStudents="{{apr.amountDisbursedDirectA3GRDFTStudents}}">{{apr.amountDisbursedDirectA3GRDFTStudents|dollars}}</td>
+                    <td data-amountDisbursedDirectA3GRDPTStudents="{{apr.amountDisbursedDirectA3GRDPTStudents}}">{{apr.amountDisbursedDirectA3GRDPTStudents|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">What was the amount received through Section 18004(a)(3) used to recover the cost of reimbursing students for room, board, tuition, or fees?</th>
+                    <td data-amountReceivedA3Total="{{apr.amountReceivedA3Total}}">{{apr.amountReceivedA3Total|dollars}}</td>
+                    <td data-amountReceivedA3UGRDFTPellRecipient="{{apr.amountReceivedA3UGRDFTPellRecipient}}">{{apr.amountReceivedA3UGRDFTPellRecipient|dollars}}</td>
+                    <td data-amountReceivedA3UGRDFTNonPellRecipient="{{apr.amountReceivedA3UGRDFTNonPellRecipient}}">{{apr.amountReceivedA3UGRDFTNonPellRecipient|dollars}}</td>
+                    <td data-amountReceivedA3UGRDPTPellRecipient="{{apr.amountReceivedA3UGRDPTPellRecipient}}">{{apr.amountReceivedA3UGRDPTPellRecipient|dollars}}</td>
+                    <td data-amountReceivedA3UGRDPTNonPellRecipient="{{apr.amountReceivedA3UGRDPTNonPellRecipient}}">{{apr.amountReceivedA3UGRDPTNonPellRecipient|dollars}}</td>
+                    <td data-amountReceivedA3GRDFTStudents="{{apr.amountReceivedA3GRDFTStudents}}">{{apr.amountReceivedA3GRDFTStudents|dollars}}</td>
+                    <td data-amountReceivedA3GRDPTStudents="{{apr.amountReceivedA3GRDPTStudents}}">{{apr.amountReceivedA3GRDPTStudents|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Minimum combined (combined across HEERF funds) amount awarded to any student who received any HEERF funds and by student recipients</th>
+                    <td data-minimumAwardTotal="{{apr.minimumAwardTotal}}">{{apr.minimumAwardTotal|dollars}}</td>
+                    <td data-minimumAwardUGRDFTPellRecipient="{{apr.minimumAwardUGRDFTPellRecipient}}">{{apr.minimumAwardUGRDFTPellRecipient|dollars}}</td>
+                    <td data-minimumAwardUGRDFTNonPellRecipient="{{apr.minimumAwardUGRDFTNonPellRecipient}}">{{apr.minimumAwardUGRDFTNonPellRecipient|dollars}}</td>
+                    <td data-minimumAwardUGRDPTPellRecipient="{{apr.minimumAwardUGRDPTPellRecipient}}">{{apr.minimumAwardUGRDPTPellRecipient|dollars}}</td>
+                    <td data-minimumAwardUGRDPTNonPellRecipient="{{apr.minimumAwardUGRDPTNonPellRecipient}}">{{apr.minimumAwardUGRDPTNonPellRecipient|dollars}}</td>
+                    <td data-minimumAwardGRDFTStudents="{{apr.minimumAwardGRDFTStudents}}">{{apr.minimumAwardGRDFTStudents|dollars}}</td>
+                    <td data-minimumAwardGRDPTStudents="{{apr.minimumAwardGRDPTStudents}}">{{apr.minimumAwardGRDPTStudents|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Maximum combined (combined across HEERF funds) amount awarded to any student who received any HEERF funds and by student recipients</th>
+                    <td data-maximumAwardTotal="{{apr.maximumAwardTotal}}">{{apr.maximumAwardTotal|dollars}}</td>
+                    <td data-maximumAwardUGRDFTPellRecipient="{{apr.maximumAwardUGRDFTPellRecipient}}">{{apr.maximumAwardUGRDFTPellRecipient|dollars}}</td>
+                    <td data-maximumAwardUGRDFTNonPellRecipient="{{apr.maximumAwardUGRDFTNonPellRecipient}}">{{apr.maximumAwardUGRDFTNonPellRecipient|dollars}}</td>
+                    <td data-maximumAwardUGRDPTPellRecipient="{{apr.maximumAwardUGRDPTPellRecipient}}">{{apr.maximumAwardUGRDPTPellRecipient|dollars}}</td>
+                    <td data-maximumAwardUGRDPTNonPellRecipient="{{apr.maximumAwardUGRDPTNonPellRecipient}}">{{apr.maximumAwardUGRDPTNonPellRecipient|dollars}}</td>
+                    <td data-maximumAwardGRDFTStudents="{{apr.maximumAwardGRDFTStudents}}">{{apr.maximumAwardGRDFTStudents|dollars}}</td>
+                    <td data-maximumAwardGRDPTStudents="{{apr.maximumAwardGRDPTStudents}}">{{apr.maximumAwardGRDPTStudents|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">What was the amount of grants disbursed to students through all HEERF funds?</th>
+                    <td data-grantAmountDisbursedTotal="{{apr.grantAmountDisbursedTotal}}">{{apr.grantAmountDisbursedTotal|dollars}}</td>
+                    <td data-grantAmountDisbursedUGRDFTPellRecipientTotal="{{apr.grantAmountDisbursedUGRDFTPellRecipientTotal}}">{{apr.grantAmountDisbursedUGRDFTPellRecipientTotal|dollars}}</td>
+                    <td data-grantAmountDisbursedUGRDFTNonPellRecipientTotal="{{apr.grantAmountDisbursedUGRDFTNonPellRecipientTotal}}">{{apr.grantAmountDisbursedUGRDFTNonPellRecipientTotal|dollars}}</td>
+                    <td data-grantAmountDisbursedUGRDPTPellRecipientTotal="{{apr.grantAmountDisbursedUGRDPTPellRecipientTotal}}">{{apr.grantAmountDisbursedUGRDPTPellRecipientTotal|dollars}}</td>
+                    <td data-grantAmountDisbursedUGRDPTNonPellRecipientTotal="{{apr.grantAmountDisbursedUGRDPTNonPellRecipientTotal}}">{{apr.grantAmountDisbursedUGRDPTNonPellRecipientTotal|dollars}}</td>
+                    <td data-grantAmountDisbursedGRDFTStudentsTotal="{{apr.grantAmountDisbursedGRDFTStudentsTotal}}">{{apr.grantAmountDisbursedGRDFTStudentsTotal|dollars}}</td>
+                    <td data-grantAmountDisbursedGRDPTStudentsTotal="{{apr.grantAmountDisbursedGRDPTStudentsTotal}}">{{apr.grantAmountDisbursedGRDPTStudentsTotal|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Among students who received HEERF emergency financial aid grants, what was the average award amount per student?</th>
+                    <td data-averageAmountAwarded="{{apr.averageAmountAwarded}}">{{apr.averageAmountAwarded|dollars}}</td>
+                    <td data-averageAmountAwardedUGRDFTPellRecipient="{{apr.averageAmountAwardedUGRDFTPellRecipient}}">{{apr.averageAmountAwardedUGRDFTPellRecipient|dollars}}</td>
+                    <td data-averageAmountAwardedUGRDFTNonPellRecipient="{{apr.averageAmountAwardedUGRDFTNonPellRecipient}}">{{apr.averageAmountAwardedUGRDFTNonPellRecipient|dollars}}</td>
+                    <td data-averageAmountAwardedUGRDPTPellRecipient="{{apr.averageAmountAwardedUGRDPTPellRecipient}}">{{apr.averageAmountAwardedUGRDPTPellRecipient|dollars}}</td>
+                    <td data-averageAmountAwardedUGRDPTNonPellRecipient="{{apr.averageAmountAwardedUGRDPTNonPellRecipient}}">{{apr.averageAmountAwardedUGRDPTNonPellRecipient|dollars}}</td>
+                    <td data-averageAmountAwardedGRDFTStudents="{{apr.averageAmountAwardedGRDFTStudents}}">{{apr.averageAmountAwardedGRDFTStudents|dollars}}</td>
+                    <td data-averageAmountAwardedGRDPTStudents="{{apr.averageAmountAwardedGRDPTStudents}}">{{apr.averageAmountAwardedGRDPTStudents|dollars}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+
+    <form name="expenses_by_category" action="" aria-labelledby="expenses_categorized">
+        <p id="expenses_categorized" class="question">9) Provide the total amount of HEERF funds expended on the categories provided.</p>
+        <table cellspacing="0" width="100%" id="students_aided_by_category"
+        summary="The expenditures in distinct categories." repeat="1">
+            <thead>
+                <tr>
+                    <th style="width:35%;" scope="col">Category</th>
+                    <th scope="col">Amount in (a)(1) institutional dollars</th>
+                    <th scope="col">Amount in (a)(2) dollars, if applicable</th>
+                    <th scope="col">Amount in (a)(3) dollars, if applicable</th>
+                    <th style="width:20%;" scope="col">Explanatory Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Providing additional emergency financial aid grants to students.<sup><a href="#endnote11">11</a></sup></th>
+                    <td data-additionalGrantsA1Funds="{{apr.additionalGrantsA1Funds}}">{{apr.additionalGrantsA1Funds|dollars}}</td>
+                    <td data-additionalGrantsA2Funds="{{apr.additionalGrantsA2Funds}}">{{apr.additionalGrantsA2Funds|dollars}}</td>
+                    <td data-additionalGrantsA3Funds="{{apr.additionalGrantsA3Funds}}">{{apr.additionalGrantsA3Funds|dollars}}</td>
+                    <td data-additionalGrantsNotes="{{apr.additionalGrantsNotes|e}}">{{apr.additionalGrantsNotes|e}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Providing reimbursements for tuition, housing, room and board, or other fee refunds.</th>
+                    <td data-reimbursementA1Funds="{{apr.reimbursementA1Funds}}">{{apr.reimbursementA1Funds|dollars}}</td>
+                    <td data-reimbursementA2Funds="{{apr.reimbursementA2Funds}}">{{apr.reimbursementA2Funds|dollars}}</td>
+                    <td data-reimbursementA3Funds="{{apr.reimbursementA3Funds}}">{{apr.reimbursementA3Funds|dollars}}</td>
+                    <td data-reimbursementNotes="{{apr.reimbursementNotes|e}}">{{apr.reimbursementNotes|e}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Providing tuition discounts.</th>
+                    <td class="unused"></td>
+                    <td data-tuitionA2Funds="{{apr.tuitionA2Funds}}">{{apr.tuitionA2Funds|dollars}}</td>
+                    <td data-tuitionA3Funds="{{apr.tuitionA3Funds}}">{{apr.tuitionA3Funds|dollars}}</td>
+                    <td data-tuitionNotes="{{apr.tuitionNotes|e}}">{{apr.tuitionNotes|e}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Covering the cost of providing additional technology hardware to students, such as laptops or tablets, or covering the added cost of technology fees.</th>
+                    <td data-addtlTechA1Funds="{{apr.addtlTechA1Funds}}">{{apr.addtlTechA1Funds|dollars}}</td>
+                    <td data-addtlTechA2Funds="{{apr.addtlTechA2Funds}}">{{apr.addtlTechA2Funds|dollars}}</td>
+                    <td data-addtlTechA3Funds="{{apr.addtlTechA3Funds}}">{{apr.addtlTechA3Funds|dollars}}</td>
+                    <td data-addtlTechNotes="{{apr.addtlTechNotes|e}}">{{apr.addtlTechNotes|e}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Providing or subsidizing the costs of high-speed internet to students or faculty to transition to an online environment.</th>
+                    <td data-subsidizeInternetA1Funds="{{apr.subsidizeInternetA1Funds}}">{{apr.subsidizeInternetA1Funds|dollars}}</td>
+                    <td data-subsidizeInternetA2Funds="{{apr.subsidizeInternetA2Funds}}">{{apr.subsidizeInternetA2Funds|dollars}}</td>
+                    <td data-subsidizeInternetA3Funds="{{apr.subsidizeInternetA3Funds}}">{{apr.subsidizeInternetA3Funds|dollars}}</td>
+                    <td data-subsidizeInternetNotes="{{apr.subsidizeInternetNotes|e}}">{{apr.subsidizeInternetNotes|e}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Subsidizing off-campus housing costs due to dormitory closures or decisions to limit housing to one student per room; subsidizing housing costs to reduce housing density; paying for hotels or other off-campus housing for students who need to be isolated; paying travel expenses for students who need to leave campus early due to coronavirus infections or campus interruptions.</th>
+                    <td data-subsidizeHousingA1Funds="{{apr.subsidizeHousingA1Funds}}">{{apr.subsidizeHousingA1Funds|dollars}}</td>
+                    <td data-subsidizeHousingA2Funds="{{apr.subsidizeHousingA2Funds}}">{{apr.subsidizeHousingA2Funds|dollars}}</td>
+                    <td data-subsidizeHousingA3Funds="{{apr.subsidizeHousingA3Funds}}">{{apr.subsidizeHousingA3Funds|dollars}}</td>
+                    <td data-subsidizeHousingNotes="{{apr.subsidizeHousingNotes|e}}">{{apr.subsidizeHousingNotes|e}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Subsidizing food service to reduce density in eating facilities, to provide pre-packaged meals, or to add hours to food service operations to accommodate social distancing.</th>
+                    <td data-subsidizeFoodA1Funds="{{apr.subsidizeFoodA1Funds}}">{{apr.subsidizeFoodA1Funds|dollars}}</td>
+                    <td data-subsidizeFoodA2Funds="{{apr.subsidizeFoodA2Funds}}">{{apr.subsidizeFoodA2Funds|dollars}}</td>
+                    <td data-subsidizeFoodA3Funds="{{apr.subsidizeFoodA3Funds}}">{{apr.subsidizeFoodA3Funds|dollars}}</td>
+                    <td data-subsidizeFoodNotes="{{apr.subsidizeFoodNotes|e}}">{{apr.subsidizeFoodNotes|e}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Costs related to operating additional class sections to enable social distancing, such as those for hiring more instructors and increasing campus hours of operations.</th>
+                    <td data-addtlClassCostsA1Funds="{{apr.addtlClassCostsA1Funds}}">{{apr.addtlClassCostsA1Funds|dollars}}</td>
+                    <td data-addtlClassCostsA2Funds="{{apr.addtlClassCostsA2Funds}}">{{apr.addtlClassCostsA2Funds|dollars}}</td>
+                    <td data-addtlClassCostsA3Funds="{{apr.addtlClassCostsA3Funds}}">{{apr.addtlClassCostsA3Funds|dollars}}</td>
+                    <td data-addtlClassCostsNotes="{{apr.addtlClassCostsNotes|e}}">{{apr.addtlClassCostsNotes|e}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Campus safety and operations.<sup><a href="#endnote12">12</a></sup></th>
+                    <td data-campusSafetyA1Funds="{{apr.campusSafetyA1Funds}}">{{apr.campusSafetyA1Funds|dollars}}</td>
+                    <td data-campusSafetyA2Funds="{{apr.campusSafetyA2Funds}}">{{apr.campusSafetyA2Funds|dollars}}</td>
+                    <td data-campusSafetyA3Funds="{{apr.campusSafetyA3Funds}}">{{apr.campusSafetyA3Funds|dollars}}</td>
+                    <td data-campusSafetyNotes="{{apr.campusSafetyNotes|e}}">{{apr.campusSafetyNotes|e}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Purchasing, leasing, or renting additional instructional equipment and supplies (such as laboratory equipment or computers) to reduce the number of students sharing equipment or supplies during a single class period and to provide time for disinfection between uses.</th>
+                    <td data-purchaseAddtlEquipmentA1Funds="{{apr.purchaseAddtlEquipmentA1Funds}}">{{apr.purchaseAddtlEquipmentA1Funds|dollars}}</td>
+                    <td data-purchaseAddtlEquipmentA2Funds="{{apr.purchaseAddtlEquipmentA2Funds}}">{{apr.purchaseAddtlEquipmentA2Funds|dollars}}</td>
+                    <td data-purchaseAddtlEquipmentA3Funds="{{apr.purchaseAddtlEquipmentA3Funds}}">{{apr.purchaseAddtlEquipmentA3Funds|dollars}}</td>
+                    <td data-purchaseAddtlEquipmentNotes="{{apr.purchaseAddtlEquipmentNotes|e}}">{{apr.purchaseAddtlEquipmentNotes|e}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Replacing lost revenue due to reduced enrollment.</th>
+                    <td class="unused"></td>
+                    <td data-lossDueToEnrollmentA2Funds="{{apr.lossDueToEnrollmentA2Funds}}">{{apr.lossDueToEnrollmentA2Funds|dollars}}</td>
+                    <td data-lossDueToEnrollmentA3Funds="{{apr.lossDueToEnrollmentA3Funds}}">{{apr.lossDueToEnrollmentA3Funds|dollars}}</td>
+                    <td data-lossDueToEnrollmentNotes="{{apr.lossDueToEnrollmentNotes|e}}">{{apr.lossDueToEnrollmentNotes|e}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Replacing lost revenue from non-tuition sources (i.e., cancelled ancillary events; disruption of food service, dorms, childcare or other facilities; cancellation of use of campus venues by other organizations, lost parking revenue, etc.).<sup><a href="#endnote13">13</sup></th>
+                    <td class="unused"></td>
+                    <td data-lossFromNonTuitionA2Funds="{{apr.lossFromNonTuitionA2Funds}}">{{apr.lossFromNonTuitionA2Funds|dollars}}</td>
+                    <td datalossFromNonTuitionA3Funds-="{{apr.lossFromNonTuitionA3Funds}}">{{apr.lossFromNonTuitionA3Funds|dollars}}</td>
+                    <td data-lossFromNonTuitionNotes="{{apr.lossFromNonTuitionNotes|e}}">{{apr.lossFromNonTuitionNotes|e}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Purchasing faculty and staff training in online instruction; or paying additional funds to staff who are providing training in addition to their regular job responsibilities.</th>
+                    <td data-purchaseTrainingA1Funds="{{apr.purchaseTrainingA1Funds}}">{{apr.purchaseTrainingA1Funds|dollars}}</td>
+                    <td data-purchaseTrainingA2Funds="{{apr.purchaseTrainingA2Funds}}">{{apr.purchaseTrainingA2Funds|dollars}}</td>
+                    <td data-purchaseTrainingA3Funds="{{apr.purchaseTrainingA3Funds}}">{{apr.purchaseTrainingA3Funds|dollars}}</td>
+                    <td data-purchaseTrainingNotes="{{apr.purchaseTrainingNotes|e}}">{{apr.purchaseTrainingNotes|e}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Purchasing, leasing, or renting additional equipment or software to enable distance learning, or upgrading campus wi-fi access or extending open networks to parking lots or public spaces, etc.</th>
+                    <td data-purchaseEquipmentA1Funds="{{apr.purchaseEquipmentA1Funds}}">{{apr.purchaseEquipmentA1Funds|dollars}}</td>
+                    <td data-purchaseEquipmentA2Funds="{{apr.purchaseEquipmentA2Funds}}">{{apr.purchaseEquipmentA2Funds|dollars}}</td>
+                    <td data-purchaseEquipmentA3Funds="{{apr.purchaseEquipmentA3Funds}}">{{apr.purchaseEquipmentA3Funds|dollars}}</td>
+                    <td data-purchaseEquipmentNotes="{{apr.purchaseEquipmentNotes|e}}">{{apr.purchaseEquipmentNotes|e}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Other Uses of (a)(1) Institutional Portion funds.<sup><a href="#endnote14">14</a></sup></th>
+                    <td data-otherUsesOfA1Funds="{{apr.otherUsesOfA1Funds}}">{{apr.otherUsesOfA1Funds|dollars}}</td>
+                    <td class="unused"></td>
+                    <td class="unused"></td>
+                    <td data-otherUsesOfA1Notes="{{apr.otherUsesOfA1Notes|e}}">{{apr.otherUsesOfA1Notes|e}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Other uses of (a)(2) or (a)(3) funds, if applicable.<sup><a href="#endnote15">15</a></sup></th>
+                    <td class="unused"></td>
+                    <td data-otherUsesOfA2Funds="{{apr.otherUsesOfA2Funds}}">{{apr.otherUsesOfA2Funds|dollars}}</td>
+                    <td data-otherUsesOfA3Funds="{{apr.otherUsesOfA3Funds}}">{{apr.otherUsesOfA3Funds|dollars}}</td>
+                    <td data-otherUsesOfA2A3Notes="{{apr.otherUsesOfA2A3Notes|e}}">{{apr.otherUsesOfA2A3Notes|e}}</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th scope="row">Anual Expenditures for each Program</th>
+                    <td data-annualExpendituresA1Funds="{{apr.annualExpendituresA1Funds}}">{{apr.annualExpendituresA1Funds|dollars}}</td>
+                    <td data-annualExpendituresA2Funds="{{apr.annualExpendituresA2Funds}}">{{apr.annualExpendituresA2Funds|dollars}}</td>
+                    <td data-annualExpendituresA3Funds="{{apr.annualExpendituresA3Funds}}">{{apr.annualExpendituresA3Funds|dollars}}</td>
+                    <td class="unused"></td>
+                </tr>
+            </tfoot>
+        </table>
+        <p><label>Total of Annual Expenditures: <input readonly type="text" data-totalExpenditures="{{apr.totalExpenditures}}" value="{{apr.totalExpenditures|dollars}}"/></label></p>
+
+    </form>
+
+    <form name="enrollment" action="" aria-labelledby="enrollment_status">
+        <p id="enrollment_status" class="question">10) Provide the number of students who ever received HEERF grant funds in the reporting period and their enrollment status at the end reporting period.</p>
+        <table cellspacing="0" width="100%" id="enrollment_status_table"
+        summary="The enrollment status for students that received assistance from HEERF grants." repeat="1">
+            <thead>
+                <tr>
+                    <th style="width:20%;" scope="col">How many students received emergency financial aid grants through any of the HEERF funds?</th>
+                    <th style="width:20%;" scope="col">How many of students who ever received HEERF Emergency Financial Aid Grants dropped out (withdrawal without a completion record or return to school since receiving funds)?</th>
+                    <th style="width:20%;" scope="col">How many of the students who ever received HEERF Emergency Financial Aid Grants are still enrolled at your institution?</th>
+                    <th style="width:20%;" scope="col">How many of the students who ever received HEERF Emergency Financial Aid Grants have completed their program of study at your institution?</th>
+                    <th style="width:20%;" scope="col">Withdrawal rate for students who received HEERF Emergency Financial Aid Grants</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-studentReceivedEmergencyFinancialAid="{{apr.studentReceivedEmergencyFinancialAid}}">{{apr.studentReceivedEmergencyFinancialAid}}</td>
+                    <td data-studentDroppedOut="{{apr.studentDroppedOut}}">{{apr.studentDroppedOut}}</td>
+                    <td data-studentStillEnrolled="{{apr.studentStillEnrolled}}">{{apr.studentStillEnrolled}}</td>
+                    <td data-studentCompletedProgramEnrolled="{{apr.studentCompletedProgramEnrolled}}">{{apr.studentCompletedProgramEnrolled}}</td>
+                    <td data-studentWithdrawalRate="{{apr.studentWithdrawalRate}}">{{apr.studentWithdrawalRate}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+    <form name="number_positions" action="" aria-labelledby="fte">
+        <p id="fte" class="question">11) Provide the number of full-time equivalent (FTE) positions as of the listed reporting dates. (The number of FTE positions includes all staff regardless of whether the position is funded by Federal, State, local, or other funds—including instructional and non-instructional staff and contractors—and equals the sum of the number of full-time positions plus the full-time equivalent of the number of part-time positions.)</p>
+        <table cellspacing="0" width="100%" id="fte_table"
+        summary="The number of full-time equivalent positions at the institution at various points in time." repeat="1">
+            <thead>
+                <tr>
+                    <th style="width:25%;" scope="col">Full-time equivalent (FTE) positions as of September 30, 2018</th>
+                    <th style="width:25%;" scope="col">Full-time equivalent (FTE) positions as of September 30, 2019</th>
+                    <th style="width:25%;" scope="col">Full-time equivalent (FTE) positions as of March 13, 2020</th>
+                    <th style="width:25%;" scope="col">Full-time equivalent (FTE) positions on the last day of the reporting period</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-ftePositionsAsOf09302018="{{apr.ftePositionsAsOf09302018}}">{{apr.ftePositionsAsOf09302018}}</td>
+                    <td data-ftePositionsAsOf09302019="{{apr.ftePositionsAsOf09302019}}">{{apr.ftePositionsAsOf09302019}}</td>
+                    <td data-ftePositionsAsOf03132020="{{apr.ftePositionsAsOf03132020}}">{{apr.ftePositionsAsOf03132020}}</td>
+                    <td data-ftePositionsLastDayReportingPeriod="{{apr.ftePositionsLastDayReportingPeriod}}">{{apr.ftePositionsLastDayReportingPeriod}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+    <section id="appendix" role="region" aria-labelledby="appendix1">
+        <h1 id="appendix1">Appendix I: Table instructions for question 8</h1>
+        <p>For your institution, provide the following:</p>
+        <p>a. Count of students that were eligible to receive emergency financial grants under the HEERF.</p>
+        <p>b. Unduplicated <sup><a href="#endnote16">16</a></sup> count of unique student recipients who received grants from any part of the HEERF.</p>
+        <p>c. The total amount disbursed from each of the following fund types for all students who received grants and grant recipient subgroups listed in the table below:</p>
+        <ul>
+            <li>18004(a)(1): HEERF-Emergency Financial Aid Grants to Students.</li>
+            <ul>
+                <li>Direct: amount directly disbursed to students as emergency financial aid grants. If funds were not used for this purpose, report $0.</li>
+                <li>Reimbursement: amount of reimbursements to your institution for costs related to refunds made to students for room, board, tuition, or fees. If funds were not used for this purpose, report $0.</li>
+            </ul>
+            <li>18004(a)(2): HEERF-Historically Black Colleges and Universities (HBCUs), Tribally Control Colleges and Universities (TCCUs), Minority Serving Institutions (MSIs), or Strengthening Institutions Programs (SIP).</li>
+            <ul>
+                <li>Direct: amount directly disbursed to students. If funds were not used for this purpose, report $0.</li>
+                <li>Reimbursement: amount of reimbursements to your institution for costs related to refunds made to students for housing, food, or other services your institution could no longer provide. If funds were not used for this purpose, report $0.</li>
+            </ul>
+            <li>18004(a)(3): Funds for institutions through Fund for the Improvement of Postsecondary Education (FIPSE).</li>
+            <ul>
+                <li>Direct: amount directly disbursed to students. If funds were not used for this purpose, report $0.</li>
+                <li>Reimbursement: amount of reimbursements to your institution for costs related to refunds made to students for room, board, tuition, or fees. If funds were not used for this purpose, report $0.</li>
+            </ul>
+        </ul>
+        <p>d. For designation of enrollment intensity (i.e. full-time and part-time) use IPEDS definitions:</p>
+        <ul>
+            <li>Full-time students: Undergraduate: A student enrolled for 12 or more semester credits, or 12 or more quarter credits, or 24 or more contact hours a week each term. Graduate: A student enrolled for 9 or more semester credits, or 9 or more quarter credits, or a student involved in thesis or dissertation preparation that is considered full time by the institution. Doctor's degree - Professional practice - as defined by the institution.</li>
+            <li>Part-time students: Undergraduate: A student enrolled for either less than 12 semester or quarter credits, or less than 24 contact hours a week each term. Graduate: A student enrolled for less than 9 semester or quarter credits</li>
+        </ul>
+        <p>e. Minimum combined (combined across HEERF funds) amount awarded to any student who received any HEERF funds and by student recipients in the subgroups listed in the table below.</p>
+        <p>f. Maximum combined (combined across HEERF funds) amount awarded to any student who received any HEERF funds and by student recipients in the subgroups listed in the table below.</p>
+    </section>
+    <section id="end_notes" role="contentinfo" aria-labelledby="endnotes">
+        <h1 id="endnotes">Notes</h1>
+        <p id="endnote1"><sup>1</sup> See <a href="https://www2.ed.gov/about/offices/list/ope/heerfreporting.html">https://www2.ed.gov/about/offices/list/ope/heerfreporting.html.</a></p>
+        <p id="endnote2"><sup>2</sup> See Notice published in the Federal Register on July 29, 2020 (85 FR 45629): <a href="https://www.federalregister.gov/d/2020-16429">https://www.federalregister.gov/d/2020-16429</a>.</p>
+        <p id="endnote3"><sup>3</sup> Eligible in this context refers to anyone who could have received grants regardless of how an institution prioritized funding to specific subsets of students</p>
+        <p id="endnote4"><sup>4</sup> Eligible students refer to students with a ISIR or SAR, alternative application form attesting to title IV aid eligibility. Please see also the <a href="https://www.federalregister.gov/documents/2020/06/17/2020-12965/eligibility-of-students-at-institutions-of-higher-education-for-funds-under-the-coronavirus-aid">Interim Final Rule</a> published in the Federal Register on June 17, 2020 (85 FR 36494). Community Colleges in California, all public institutions in Washington State, and all institutions in Massachusetts have different requirements due to recent U.S. District Court actions. Please discuss with legal counsel. <a href="https://www2.ed.gov/about/offices/list/ope/heerfupdates.html">HEERF litigation updates can be found here</a>.</p>
+        <p id="endnote5"><sup>5</sup> For students in both undergraduate and graduate categories, classify as a graduate student.</p>
+        <p id="endnote6"><sup>6</sup> For students who had multiple enrollment intensities use the enrollment status at the time of initial disbursement of the HEERF emergency grant (i.e. for students who received multiple disbursements, the status upon the first disbursement) to determine full-time status or part-time status.</p>
+        <p id="endnote7"><sup>7</sup> Designate the student as a Pell grant recipient if the student was a Pell grant recipient at the time of initial disbursement of the HEERF emergency grant within the applicable reporting period.</p>
+        <p id="endnote8"><sup>8</sup> Includes non-FAFSA filers.</p>
+        <p id="endnote9"><sup>9</sup> For the purposes of this report, institutions may determine the number of eligible students based on the number of students for whom the institution has received an Institutional Student Information Record (ISIR) plus the number of students who completed an alternative application form developed by the institution for this purpose. The institution may then apply this number to its own methodological framework for disbursal of funds to produce a final total of eligible students at the institution. The institution is not asked to make assumptions about the potential eligibility of students for whom the institution has not received an ISIR or an alternative application.</p>
+        <p id="endnote10"><sup>10</sup> See FAQ #3 <a href="https://www2.ed.gov/about/offices/list/ope/heerfstudentfaqs.pdf">here</a></p>
+        <p id="endnote11"><sup>11</sup> To support any element of the cost of attendance (as defined under Section 472 of the Higher Education Act of 1965, as amended (HEA)) per Section 18004(c) of the CARES Act and the <a href="https://www.federalregister.gov/documents/2020/06/17/2020-12965/eligibility-of-students-at-institutions-of-higher-education-for-funds-under-the-coronavirus-aid">Interim Final Rule</a> published in the Federal Register on June 17, 2020 (85 FR 36494). Community Colleges in California, all public institutions in Washington State, and all institutions in Massachusetts have different requirements due to recent U.S. District Court actions. Please discuss with legal counsel. <a href="https://www2.ed.gov/about/offices/list/ope/heerfupdates.html">HEERF litigation updates can be found here</a>.</p>
+        <p id="endnote12"><sup>12</sup> Including costs or expenses related to the disinfecting and cleaning of dorms and other campus facilities, purchases of personal protective equipment (PPE), purchases of cleaning supplies, adding personnel to increase the frequency of cleaning, the reconfiguration of facilities to promote social distancing, etc.</p>
+        <p id="endnote13"><sup>13</sup> Including continuance of pay (salary and benefits) to workers who would otherwise support the work or activities of ancillary enterprises (e.g., bookstore workers, foodservice workers, venue staff, etc.).</p>
+        <p id="endnote14"><sup>14</sup> Please post additional documentation as appropriate and briefly explain in the “Explanatory Notes” section. Please note that costs for Section 18004(a)(1) Institutional Portion funds may only be used “to cover any costs associated with significant changes to the delivery of instruction due to the coronavirus, so long as such costs do not include payment to contractors for the provision of pre-enrollment recruitment activities; endowments; or capital outlays associated with facilities related to athletics, sectarian instruction, or religious worship.”</p>
+        <p id="endnote15"><sup>15</sup> Please post additional documentation as appropriate and briefly explain in the “Explanatory Notes” section. Please note that costs for Sections 18004(a)(2) and (a)(3) funds may only be used “to defray expenses, including lost revenue, reimbursement for expenses already incurred, technology costs associated with a transition to distance education, faculty and staff trainings, payroll incurred by institutions of higher education and for grants to students for any component of the student’s cost of attendance (as defined under section 472 of the HEA), including food, housing, course materials, technology, health care, and child care.”</p>
+        <p id="endnote16"><sup>16</sup> For students who receive grants from different HEER funds, count them only once.</p>
+    </section>
+<section id="burden_statement" role="region" aria-labelledby="burden">
+        <h1 id="burden">Burden Statement</h1>
+        <p>According to the Paperwork Reduction Act of 1995, no persons are required to respond to a collection of
+            information unless such collection displays a valid OMB control number. The valid OMB control number for
+            this information collection is {{apr.omb_control_number}}. Public reporting burden for this collection of information is
+            estimated to average 6 hour per response, including time for reviewing instructions, searching existing
+            data sources, gathering and maintaining the data needed, and completing and reviewing the collection of
+            information. Under the PRA, participants are required to respond to this collection to obtain or retain a
+            benefit. If you have any comments concerning the accuracy of the time estimate, suggestions for
+            improving this individual collection, or if you have comments or concerns regarding the status of your individual
+            form, please contact Joanne Bogart, US. Department of Education, 400 Maryland Avenue, SW, Washington, DC
+            20202</p>
+    </section>
+</main>
+{% endblock apr %}

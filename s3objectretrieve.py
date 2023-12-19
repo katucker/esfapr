@@ -34,8 +34,8 @@ import sys
 
 import boto3
 
-defaultRegion = 'us-east-1'
-defaultProfile = 'esf_dmp_published'
+DEFAULT_REGION = 'us-east-1'
+DEFAULT_PROFILE = 'esf_dmp_published'
 
 def find_latest_apr_file(bucket, fileNamePattern):
     latest = None
@@ -54,32 +54,37 @@ if __name__ == '__main__':
 
     logging.basicConfig(level=os.environ.get("LOGLEVEL",logging.ERROR))
     
-    # Retrieve the parameters from environment variables, if set.
-    access_key_id = os.getenv('AWS_ACCESS_KEY_ID')
-    secret_access_key = os.getenv('AWS_SECRET_ACCESS_KEY')
-    profile = os.getenv('AWS_PROFILE', defaultProfile)
-    region = os.getenv('AWS_DEFAULT_REGION', defaultRegion)
-
-    try:
-        session = boto3.Session(aws_access_key_id=access_key_id,
-                                aws_secret_access_key=secret_access_key,
-                                profile_name=profile,
-                                region_name=region)
-        s3 = session.resource('s3')
-        bucket = s3.Bucket('prod-esf-dmp-published')
-
-        ap = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter,
-        description='''Retrieve the latest file from cloud storage matching a file naming pattern.
+    ap = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter,
+    description='''Retrieve the latest file from cloud storage matching a file naming pattern.
 ''',
-        epilog='''The program uses defaults for cloud storage access, which can be overridden with the following environment variables:
+    epilog='''The program uses defaults for cloud storage access, which can be overridden with the following environment variables:
   AWS_ACCESS_KEY_ID: The identifier for authenticating access to cloud storage
   AWS_SECRET_ACCESS_KEY: The associated access key for authenticating access to cloud storage
   AWS_PROFILE: The name of the cloud storage location
   AWS_DEFAULT_REGION: The name of the associated Cloud Service Provider region in which the cloud storage is located
 ''')
-        ap.add_argument('-o','--output',help='Generate in the specified directory.')
-        ap.add_argument('pattern', help='File naming pattern to use in searching cloud storage.') 
-        args = ap.parse_args()
+    ap.add_argument('pattern', help='File naming pattern to use in searching cloud storage.') 
+    ap.add_argument('-o','--output',help='Store files found in the specified directory.')
+    ap.add_argument('-b','--bucket',action='append',dest='bucket', required=True,
+        choices=['prod-esf-dmp-published', 'esftp-dmp-prod-curated','esftp-dmp-prod-analyzed'],
+        help=f'The names of the cloud storage locations to search.')
+    ap.add_argument('-p','--profile',dest='profile',default=os.getenv('AWS_PROFILE', DEFAULT_PROFILE),
+        help='Profile name to use for cloud storage access.')
+    ap.add_argument('-r','--region',dest='region',default=os.getenv('AWS_DEFAULT_REGION', DEFAULT_REGION),
+        help='Region name to use for cloud storage access.')
+    ap.add_argument('-k','--key',help='Access key for cloud storage access.',dest='key',
+        default=os.getenv('AWS_ACCESS_KEY_ID'))
+    ap.add_argument('-s','--secret',dest='secret',help='Secret access key for cloud storage access.',
+        default=os.getenv('AWS_SECRET_ACCESS_KEY'))
+    args = ap.parse_args()
+
+    try:
+        session = boto3.Session(aws_access_key_id=args.key,
+                                aws_secret_access_key=args.secret,
+                                profile_name=args.profile,
+                                region_name=args.region)
+        s3 = session.resource('s3')
+
         if args.output:
             outdir = pathlib.Path(args.output).resolve(strict=False)
             if outdir.exists():
@@ -91,28 +96,36 @@ if __name__ == '__main__':
             else:
                 outdir.mkdir(parents = True, exist_ok = True)
                 os.chdir(outdir)
-        fileName, mtime = find_latest_apr_file(bucket, args.pattern)
 
-        if fileName:
-            # If the file does not already exist or is older than the copy found in
-            # cloud storage, download it for local use.
-            download = False
-            try:
-                fstat = os.stat(fileName)
-                if datetime.datetime.fromtimestamp(fstat.st_mtime,
-                                                    tz=datetime.timezone.utc) < latest:
+        file_not_found = True
+        for bucket_name in args.bucket:
+            bucket = s3.Bucket(bucket_name)
+
+            file_name, mtime = find_latest_apr_file(bucket, args.pattern)
+
+            if file_name is not None:
+                file_not_found = False
+
+                # If the file does not already exist or is older than the copy found in
+                # cloud storage, download it for local use.
+                download = False
+                try:
+                    fstat = os.stat(file_name)
+                    if datetime.datetime.fromtimestamp(fstat.st_mtime,
+                                                        tz=datetime.timezone.utc) < latest:
+                        download = True
+                except os.error:
+                    # The file must not exist, so download it.
                     download = True
-            except os.error:
-                # The file must not exist, so download it.
-                download = True
-            if download:
-                # Download the object as a local file.
-                with open(fileName, 'wb') as f:
-                    bucket.download_fileobj(fileName, f)
-            print(f'Latest version file is {fileName}.')
-        else:
+                if download:
+                    # Download the object as a local file.
+                    with open(file_name, 'wb') as f:
+                        bucket.download_fileobj(file_name, f)
+                print(f'Latest version file is {file_name} from bucket {bucket_name}.')
+
+        if file_not_found:
             print(f'No file found in cloud storage matching naming pattern {args.pattern}')
 
 
     except Exception as e:
-        logging.error(e)
+        logging.error('Error accessing cloud storage.', exc_info=e)

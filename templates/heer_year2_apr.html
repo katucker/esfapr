@@ -1,0 +1,1501 @@
+<!-- # templates/heer_year2_apr.html # -->
+{% extends "common.html" %}
+{% block title %}{{apr.dunsNumber|e}} {{apr.reportingYear|e}} Higher Education Emergency Relief Fund Annual Performance Report{% endblock title %}
+{% block apr_title %}
+<p style="text-align:center;">Higher Education Emergency Relief Fund (HEERF) I, II & III Annual Performance Report</p>
+{% endblock apr_title %}
+{% block apr_sections %}
+<p><a href="#introduction">Introduction</a></p>
+<p><a href="#students_aided">Emergency Financial Aid grants awarded to students</a></p>
+<p><a href="#expenses_categorized">Expenditures by category</a></p>
+<p><a href="#enrollment_status">Institutional enrollment status</a></p>
+<p><a href="#fte">Full-Time Equivalents</a></p>
+<p><a href="#accreditor">Accreditor approval for distance learning</a></p>
+{% endblock apr_sections %}
+
+{% block apr %}
+<main>
+    <form name="intro" action="" aria-labeledby="introduction">
+        <p>Higher Education Emergency Relief Fund (HEERF) I, II & III Annual Performance Report</p>
+        <p><label for="alnList">This data collection form applies to the following HEERF categories authorized under the Coronavirus Aid, Relief, and Economic Security (CARES) Act (HEERF I), the Coronavirus Response and Relief Supplemental Appropriations Act, 2021 (CRRSAA) (HEERF II), and the American Rescue Plan Act of 2021 (ARP) (HEERF III):</label></p>
+        <ul id="alnList"> 
+            <li>Student Aid (ALN 84.425E)</li>
+            <li>Institutional Portion (ALN 84.425F)</li>
+            <li>Historically Black Colleges and Universities (ALN 84.425J)</li>
+            <li>American Indian Tribally Controlled Colleges and Universities (ALN 84.425K)</li>
+            <li>Minority Serving Institutions (ALN 84.425L)</li>
+            <li>Strengthening Institutions Program (CFDA 84.425M)</li>
+            <li>Fund for the Improvement of Postsecondary Education (ALN 84.425N)</li>
+            <li>Proprietary Institutions Grant Funds for Students (ALN 84.425Q)</li>
+            <li>Supplemental Assistance to Institutions of Higher Education (ALN 84.425S)</li>
+        </ul>
+        <p>The information collected on this form will be reviewed by the U.S. Department of Education to ensure that HEERF grant funds are used in accordance with applicable requirements under the HEERF grant program and will be shared with the public to promote transparency regarding the allocation and uses of funds. Furthermore, the information collected will be analyzed to provide aggregate statistics on institutional uses of HEERF grant funds to address the impacts of COVID-19 on students and institutions. This report should be completed based on all HEERF activities funded from the CARES Act, CRRSAA, and ARP (in the applicable reporting periods. Under 34 CFR 75.720(b), all HEERF grantees must submit a HEERF Annual Report. The failure to timely submit a HEERF Annual Report is a violation of the grantee’s Certification and Agreement or Supplemental Agreement and may lead to adverse action.</p>
+        <h1 id="introduction">HEERF Reporting Form</h1>
+        <details>
+            <summary>Annual Reporting</summary>
+            <p>This report should be completed based on activities in the applicable reporting periods. 
+                If an institution has expended all of their HEERF grant funds by the closing date of the reporting period, 
+                they do not have to complete subsequent annual reports. All institutions must submit the First Annual Report. 
+                Please indicate in Question 2 if this report is your final annual report.</p>
+            <table cellspacing="0" width="100%" id="reporting_schedule" summary="A schedule of reporting periods showing what time span is covered in each annual report." repeat="1">
+                <thead>
+                    <tr>
+                        <th style="width: 15em;" scope="col">Annual Report</th>
+                        <th scope="col">Due Date</th>
+                        <th scope="col">Applicable Reporting Period</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="first_reporting_period">
+                        <td>First Annual Report</td>
+                        <td>Early 2021</td>
+                        <td>March 13, 2020 - December 31, 2020</td>
+                    </tr>
+                    <tr id="second_reporting_period">
+                        <td>Second Annual Report</td>
+                        <td>Early 2022</td>
+                        <td>January 1, 2021 - December 31, 2021</td>
+                    </tr>
+                    <tr id="third_reporting_period">
+                        <td>Third Annual Report</td>
+                        <td>Early 2023</td>
+                        <td>January 1, 2022 - December 31, 2022</td>
+                    </tr>
+                    <tr id="third_reporting_period">
+                        <td>Third Annual Report</td>
+                        <td>Early 2024</td>
+                        <td>January 1, 2023 - December 31, 2023</td>
+                    </tr>
+                </tbody>
+            </table>
+        </details>
+        <p>Institutions must provide complete answers to each question. However, for the second annual report covering January 1, 2021-December 31, 2021, institutions have the option of taking more time to submit answers to questions marked with an asterisk(*). Institutions can submit answers to questions marked with an asterisk in early 2022 as part of the second annual report (in alignment with the table above) OR in early 2023 as part of the third annual reporting process. Starting with the third annual report, institutions must provide answers to all questions including those marked with an asterisk per the reporting schedule in the table above</p>
+        <p class="question">1. Institutional Identifiers and Contact Information</p>
+        <p><label>a) Institution Name: <input readonly type="text" size="{{apr.iheName|length}}" id="iheName" data-iheName="{{apr.iheName|e}}" value="{{ apr.iheName|e }}"/></label></p>
+        <p><label>DUNS &#35;: <input readonly type="text" id="dunsNumber" data-dunsNumber="{{apr.dunsNumber|e}}" value="{{ apr.dunsNumber|e }}"/></label></p>
+        <p><label>UEI (SAM): <input readonly type="text" id="uei" data-uei="{{apr.uei|e}}" value="{{ apr.uei|e }}"/></label></p>
+        <p><label>b) Identify the applicable OPEID(s) for this annual report: <input readonly type="text" size="{{apr.opeIDs|length}}" id="opeIds" data-opeIds="{{apr.opeIds|e}}" value="{{apr.opeIds|e|replace('|',',')}}"/></label></p>
+        <p><label>c) Identify the applicable IPEDS unitid(s) for this annual report: <input readonly type="text" size="{{apr.unitIDs|length}}" id="unitIds" data-unitIds="{{apr.unitIds|e}}" value="{{apr.unitIds|e|replace('|',',')}}"/></label></p>
+        <p><label>d) For this annual report, please report on these HEERF grant PR/Award Numbers:: <input readonly type="text" size="{{apr.awards|length}}" id="1d" data-awards="{{apr.awards|e}}" value="{{apr.awards|e|replace('|',',')}}"/></label></p>
+        <p><label>2. Did you expend all of your HEERF I, II, and III funds prior to the end of the reporting period, making this your final annual report?: <input readonly type="text" id="areHeerfAllFundsExpendedByEndReportingPeriod" data-areHeerfAllFundsExpendedByEndReportingPeriod="{{apr.areHeerfAllFundsExpendedByEndReportingPeriod|yes_no}}" value="{{apr.areHeerfAllFundsExpendedByEndReportingPeriod|yes_no}}"/></label></p>
+        <p class="question">3. Reporting on institution websites</p>
+        <p><label>a) HEERF quarterly reporting webpage URL: <input readonly type="text" size="{{apr.quarterlyReportingUrl|length}}" id="quarterlyReportingUrl" data-quarterlyReportingUrl="{{apr.quarterlyReportingUrl|e}}" value="{{apr.quarterlyReportingUrl|e}}"/></label></p>
+        <p class="question">b) Student portion reporting: Provide all active website URLs posted by your campus, or by the institution on behalf of your campus(es), as required by the August 31 notice in the Federal Register<sup><a href="#endnote2">2</a></sup> for the student portion including any active URLs that provide archived information.</p>
+        <ul data-studentPortionReportingUrls="{{apr.studentPortionReportingUrls|e}}"><li>{{apr.studentPortionReportingUrls|e|replace('|','</li><li>)')}}</li></ul>
+        <p class="question">c) Institutional Portion, (a)(1), (a)(2), and (a)(3) reporting: Provide all active website URLs posted by your campus, or by institution on behalf of your campus(es) as required by the Quarterly Public Reporting Form for (HEERF I, II, III) (a)(1), (a)(2), and (a)(3) Institutional Portion<sup><a href="#endnote3">3</a></sup> including any active URLs that provide archived information</p>
+        <ul data-institutionalPortionReportingUrls="{{apr.institutionalPortionReportingUrls|e}}"><li>{{apr.institutionalPortionReportingUrls|e|replace('|','</li><li>')}}</li></ul>
+        <table cellspacing="0" width="100%" id="funds_helped" repeat="1">
+        <caption>4) How has HEERF helped your institution and your students?</caption>
+            <thead>
+                <tr>
+                    <th style="width:75%;" scope="col">Statement</th>
+                    <th scope="col">Scale Response</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">a.) HEERF enabled my institution to continue offering planned programs (i.e., programs of study listed in our course catalog) that were at risk of discontinuation due to pandemic-related factors.</th>
+                    <td data-enabledContinuePlannedPrograms="{{apr.enabledContinuePlannedPrograms}}">
+                        {% if apr.enabledContinuePlannedPrograms is eq 0 %}
+                        Not applicable
+                        {% elif apr.enabledContinuePlannedPrograms is eq 1 %}
+                        Strongly agree
+                        {% elif apr.enabledContinuePlannedPrograms is eq 2 %}
+                        Agree
+                        {% elif apr.enabledContinuePlannedPrograms is eq 3 %}
+                        Neutral
+                        {% elif apr.enabledContinuePlannedPrograms is eq 4 %}
+                        Disagree
+                        {% elif apr.enabledContinuePlannedPrograms is eq 5 %}
+                        Strongly disagree
+                        {% else %}
+                        Unable to determine with available information
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">b.) HEERF enabled my institution to keep student net prices<sup><a href="#endnote4">4</a></sup> similar to pre-pandemic levels</th>
+                    <td data-enabledStudentsPricesToPrePandemic="{{apr.enabledStudentsPricesToPrePandemic}}">
+                        {% if apr.enabledStudentsPricesToPrePandemic is eq 0 %}
+                        Not applicable
+                        {% elif apr.enabledStudentsPricesToPrePandemic is eq 1 %}
+                        Strongly agree
+                        {% elif apr.enabledStudentsPricesToPrePandemic is eq 2 %}
+                        Agree
+                        {% elif apr.enabledStudentsPricesToPrePandemic is eq 3 %}
+                        Neutral
+                        {% elif apr.enabledStudentsPricesToPrePandemic is eq 4 %}
+                        Disagree
+                        {% elif apr.enabledStudentsPricesToPrePandemic is eq 5 %}
+                        Strongly disagree
+                        {% else %}
+                        Unable to determine with available information
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">c.) HEERF enabled my institution to keep students enrolled by providing them with electronic devices and Internet access.</th>
+                    <td data-enabledStudentsDevicesAndInternet="{{apr.enabledStudentsDevicesAndInternet}}">
+                        {% if apr.enabledStudentsPricesToPrePandemic is eq 0 %}
+                        Not applicable
+                        {% elif apr.enabledStudentsDevicesAndInternet is eq 1 %}
+                        Strongly agree
+                        {% elif apr.enabledStudentsDevicesAndInternet is eq 2 %}
+                        Agree
+                        {% elif apr.enabledStudentsDevicesAndInternet is eq 3 %}
+                        Neutral
+                        {% elif apr.enabledStudentsDevicesAndInternet is eq 4 %}
+                        Disagree
+                        {% elif apr.enabledStudentsDevicesAndInternet is eq 5 %}
+                        Strongly disagree
+                        {% else %}
+                        Unable to determine with available information
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">d.) HEERF enabled my institution to keep students enrolled who were at risk of dropping out due to pandemic-related factors by providing direct financial support to students.</th>
+                    <td data-enabledStudentsDirectFinancialSupport="{{apr.enabledStudentsDirectFinancialSupport}}">
+                        {% if apr.enabledStudentsDirectFinancialSupport is eq 0 %}
+                        Not applicable
+                        {% elif apr.enabledStudentsDirectFinancialSupport is eq 1 %}
+                        Strongly agree
+                        {% elif apr.enabledStudentsDirectFinancialSupport is eq 2 %}
+                        Agree
+                        {% elif apr.enabledStudentsDirectFinancialSupport is eq 3 %}
+                        Neutral
+                        {% elif apr.enabledStudentsDirectFinancialSupport is eq 4 %}
+                        Disagree
+                        {% elif apr.enabledStudentsDirectFinancialSupport is eq 5 %}
+                        Strongly disagree
+                        {% else %}
+                        Unable to determine with available information
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">e.) HEERF enabled my institution to keep faculty, staff, employees, and contractors at full salary levels who were at risk of unemployment due to pandemic-related factors.</th>
+                    <td data-enabledStaffKeepFullSalaryPandemic="{{apr.enabledStaffKeepFullSalaryPandemic}}">
+                        {% if apr.enabledStaffKeepFullSalaryPandemic is eq 0 %}
+                        Not applicable
+                        {% elif apr.enabledStaffKeepFullSalaryPandemic is eq 1 %}
+                        Strongly agree
+                        {% elif apr.enabledStaffKeepFullSalaryPandemic is eq 2 %}
+                        Agree
+                        {% elif apr.enabledStaffKeepFullSalaryPandemic is eq 3 %}
+                        Neutral
+                        {% elif apr.enabledStaffKeepFullSalaryPandemic is eq 4 %}
+                        Disagree
+                        {% elif apr.enabledStaffKeepFullSalaryPandemic is eq 5 %}
+                        Strongly disagree
+                        {% else %}
+                        Unable to determine with available information
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">f.) HEERF enabled my institution to purchase COVID tests, health screening, and the healthcare needed to help students and faculty.</th>
+                    <td data-enabledAllPurchaseCovidTests="{{apr.enabledAllPurchaseCovidTests}}">
+                        {% if apr.enabledAllPurchaseCovidTests is eq 0 %}
+                        Not applicable
+                        {% elif apr.enabledAllPurchaseCovidTests is eq 1 %}
+                        Strongly agree
+                        {% elif apr.enabledAllPurchaseCovidTests is eq 2 %}
+                        Agree
+                        {% elif apr.enabledAllPurchaseCovidTests is eq 3 %}
+                        Neutral
+                        {% elif apr.enabledAllPurchaseCovidTests is eq 4 %}
+                        Disagree
+                        {% elif apr.enabledAllPurchaseCovidTests is eq 5 %}
+                        Strongly disagree
+                        {% else %}
+                        Unable to determine with available information
+                        {% endif %}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="question">5) How did your institution determine which students received emergency financial aid grants to students and how much each student would receive?</p>
+        <p>Please indicate if any of the following strategies were used at least once during the reporting period.</p>
+        <p><label>a) Did you ask students to apply for funds? <input readonly type="text" id="anyAidDeterminationStudentsAskedToApply" data-anyAidDeterminationStudentsAskedToApply="{{apr.anyAidDeterminationStudentsAskedToApply|yes_no}}" value="{{apr.anyAidDeterminationStudentsAskedToApply|yes_no}}"/></label></p>
+        {% if apr.anyAidDeterminationStudentsAskedToApply %}
+            <p><label>i) Did you use that application to determine the amount of a student&apos;s emergency financial aid grant? <input readonly type="text" id="anyAidDeterminationEmergencyFinancialAid" data-anyAidDeterminationEmergencyFinancialAid="{{apr.anyAidDeterminationEmergencyFinancialAid|yes_no}}" value="{{apr.isApplicationUsedToDetermineGrantAmount|yes_no}}"/></label></p>
+            {% if apr.anyAidDeterminationEmergencyFinancialAid %}
+                <p class="question">(1) What needs did you prioritize to determine the amount of the student&apos;s award?</p>
+                <p><label><input readonly type="checkbox" id="anyAidDeterminationFoodPriority" data-anyAidDeterminationFoodPriority="{{apr.anyAidDeterminationFoodPriority|yes_no}}" {{apr.anyAidDeterminationFoodPriority|check}}/> Food</label></p>
+                <p><label><input readonly type="checkbox" id="anyAidDeterminationHousingPriority" data-anyAidDeterminationHousingPriority="{{apr.anyAidDeterminationHousingPriority|yes_no}}" {{apr.anyAidDeterminationHousingPriority|check}}/> Housing</label></p>
+                <p><label><input readonly type="checkbox" id="anyAidDeterminationCourseMaterialPriority" data-anyAidDeterminationCourseMaterialPriority="{{apr.anyAidDeterminationCourseMaterialPriority|yes_no}}" {{apr.anyAidDeterminationCourseMaterialPriority|check}}/> Course materials</label></p>
+                <p><label><input readonly type="checkbox" id="anyAidDeterminationTechnologyPriority" data-anyAidDeterminationTechnologyPriority="{{apr.anyAidDeterminationTechnologyPriority|yes_no}}" {{apr.anyAidDeterminationTechnologyPriority|check}}/> Technology</label></p>
+                <p><label><input readonly type="checkbox" id="anyAidDeterminationHealthCarePriority" data-anyAidDeterminationHealthCarePriority="{{apr.anyAidDeterminationHealthCarePriority|yes_no}}" {{apr.anyAidDeterminationHealthCarePriority|check}}/> Health care</label></p>
+                <p><label><input readonly type="checkbox" id="anyAidDeterminationChildCarePriority" data-anyAidDeterminationChildCarePriority="{{apr.anyAidDeterminationChildCarePriority|yes_no}}" {{apr.anyAidDeterminationChildCarePriority|check}}/> Child care</label></p>
+                <p><label><input readonly type="checkbox" id="anyAidDeterminationTransportationPriority" data-anyAidDeterminationTransportationPriority="{{apr.anyAidDeterminationTransportationPriority|yes_no}}" {{apr.anyAidDeterminationTransportationPriority|check}}/> Transportation</label></p>
+                <p><label><input readonly type="checkbox" id="anyAidDeterminationLostIncomePriority" data-anyAidDeterminationLostIncomePriority="{{apr.anyAidDeterminationLostIncomePriority|yes_no}}" {{apr.anyAidDeterminationLostIncomePriority|check}}/> Lost income (e.g., Loss of Employment/Reduced Income)</label></p>
+                <p><label><input readonly type="checkbox" id="anyAidDeterminationOtherPriority" data-anyAidDeterminationOtherPriority="{{apr.anyAidDeterminationOtherPriority|yes_no}}" {{apr.anyAidDeterminationOtherPriority|check}}/> Other</label></p>
+                {% if apr.anyAidDeterminationOtherPriority %}
+                    <p><label>Description:
+                        <textarea readonly rows="4" cols="72"
+                        id="anyAidDeterminationOtherPriorityDescription"
+                        data-anyAidDeterminationOtherPriorityDescription="{{apr.anyAidDeterminationOtherPriorityDescription|e}}">{{apr.anyAidDeterminationOtherPriorityDescription|e}}</textarea>
+                    </label></p>
+                {% endif %}
+                <p><label>(2) Did your application require students to submit supporting documentation of their needs or difficulty meeting expenses? <input readonly type="text" data-anyAidDeterminationSupportingDocumentation="{{apr.anyAidDeterminationSupportingDocumentation_yes_no}}" value="{{apr.anyAidDeterminationSupportingDocumentation|yes_no}}"/></label></p>
+            {% endif %}
+        {% endif %}
+        <p><label>b) Did you use any institutional administrative data (pre-existing data that did not come from a HEERF-specific application form) in determining the amount of funds awarded to students? <input readonly type="text" id="anyAidDeterminationAdministrativeData" data-anyAidDeterminationAdministrativeData="{{apr.anyAidDeterminationAdministrativeData|yes_no}}" value="{{apr.anyAidDeterminationAdministrativeData|yes_no}}"/></label></p>
+        {% if apr.anyAidDeterminationAdministrativeData %}
+            <p class="question">i) Which of these student factors did you prioritize in the grant determination process?</p>
+            <p><label><input readonly type="checkbox" id="anyAidDeterminationEnrollmentIntensityFactor" data-anyAidDeterminationEnrollmentIntensityFactor="{{apr.anyAidDeterminationEnrollmentIntensityFactor|yes_no}}" {{apr.anyAidDeterminationEnrollmentIntensityFactor|check}}/> Enrollment intensity (i.e., full-time/part-time status, number of credits the student is taking, etc.)</label></p>
+            <p><label><input readonly type="checkbox" id="anyAidDeterminationLocationFactor" data-anyAidDeterminationLocationFactor="{{apr.anyAidDeterminationLocationFactor|yes_no}}" {{apr.anyAidDeterminationLocationFactor|check}}/> Location (i.e., branch campus)</label></p>
+            <p><label><input readonly type="checkbox" id="anyAidDeterminationPellGrantFactor" data-anyAidDeterminationPellGrantFactor="{{apr.anyAidDeterminationPellGrantFactor|yes_no}}" {{apr.anyAidDeterminationPellGrantFactor|check}}/> Pell Grant eligibility</label></p>
+            <p><label><input readonly type="checkbox" id="anyAidDeterminationFafsaDataElementsFactor" data-anyAidDeterminationFafsaDataElementsFactor="{{apr.anyAidDeterminationFafsaDataElementsFactor|yes_no}}" {{apr.anyAidDeterminationFafsaDataElementsFactor|check}}/> FAFSA data elements</label></p>
+            {% if apr.anyAidDeterminationFafsaDataElementsFactor %}
+                <p>Which FAFSA data elements did you use</p>
+                <p><label><input readonly type="checkbox" id="anyAidDeterminationFafsaFamilyIncomeFactor" data-anyAidDeterminationFafsaFamilyIncomeFactor="{{apr.anyAidDeterminationFafsaFamilyIncomeFactor|yes_no}}" {{apr.anyAidDeterminationFafsaFamilyIncomeFactor|check}}/> FAFSA Family Income</label></p>
+                <p><label><input readonly type="checkbox" id="anyAidDeterminationEstimatedFamilyContributionFactor" data-anyAidDeterminationEstimatedFamilyContributionFactor="{{apr.anyAidDeterminationEstimatedFamilyContributionFactor|yes_no}}" {{apr.anyAidDeterminationEstimatedFamilyContributionFactor|check}}/> Estimated Family Contribution</label></p>
+                <p><label><input readonly type="checkbox" id="anyAidDeterminationIndependentDependentStatusFactor" data-anyAidDeterminationIndependentDependentStatusFactor="{{apr.anyAidDeterminationIndependentDependentStatusFactor|yes_no}}" {{apr.anyAidDeterminationIndependentDependentStatusFactor|check}}/> independent/dependent status</label></p>
+            {% endif %}
+            <p><label><input readonly type="checkbox" id="anyAidDeterminationOnOffCampusEducationStatusFactor" data-anyAidDeterminationOnOffCampusEducationStatusFactor="{{apr.anyAidDeterminationOnOffCampusEducationStatusFactor|yes_no}}" {{apr.anyAidDeterminationOnOffCampusEducationStatusFactor|check}}/> On-campus/distance education status</label></p>
+            <p><label><input readonly type="checkbox" id="anyAidDeterminationOnOffCampusLivingArrangementsFactor" data-anyAidDeterminationOnOffCampusLivingArrangementsFactor="{{apr.anyAidDeterminationOnOffCampusLivingArrangementsFactor|yes_no}}" {{apr.anyAidDeterminationOnOffCampusLivingArrangementsFactor|check}}/> On-campus/off-campus living arrangements</label></p>
+            <p><label><input readonly type="checkbox" id="anyAidDeterminationAcademicLevelFactor" data-anyAidDeterminationAcademicLevelFactor="{{apr.anyAidDeterminationAcademicLevelFactor|yes_no}}" {{apr.anyAidDeterminationAcademicLevelFactor|check}}/> Academic level</label></p>
+            <p><label><input readonly type="checkbox" id="anyAidDeterminationOtherFactor" data-anyAidDeterminationOtherFactor="{{apr.anyAidDeterminationOtherFactor|yes_no}}" {{apr.anyAidDeterminationOtherFactor|check}}/> Other</label></p>
+            {% if apr.anyAidDeterminationOtherFactor %}
+                <p><label>Description:
+                <textarea readonly rows="4" cols="72"
+                    id="anyAidDeterminationSpecificMethodology"
+                    data-anyAidDeterminationSpecificMethodology="{{apr.anyAidDeterminationSpecificMethodology|e}}">{{apr.anyAidDeterminationSpecificMethodology|e}}</textarea>
+                </label></p>
+            {% endif %}
+        {% endif %}
+        <p class="question">6) How did your institution distribute the emergency financial aid grants to students?</p>
+        <p><label><input readonly type="checkbox" id="anyDistributedByCheck" data-anyDistributedByCheck="{{apr.anyDistributedByCheck|yes_no}}" {{apr.anyDistributedByCheck|check}}/> Checks</label></p>
+        <p><label><input readonly type="checkbox" id="anyDistributedByEtfDirectDeposit" data-anyDistributedByEtfDirectDeposit="{{apr.anyDistributedByEtfDirectDeposit|yes_no}}" {{apr.anyDistributedByEtfDirectDeposit|check}}/> Electronic funds transfer/Direct deposit</label></p>
+        <p><label><input readonly type="checkbox" id="anyDistributedByDebitCard" data-anyDistributedByDebitCard="{{apr.anyDistributedByDebitCard|yes_no}}" {{apr.anyDistributedByDebitCard|check}}/> Debit cards</label></p>
+        <p><label><input readonly type="checkbox" id="anyDistributedByPaymentApp" data-anyDistributedByPaymentApp="{{apr.anyDistributedByPaymentApp|yes_no}}" {{apr.anyDistributedByPaymentApp|check}}/> Payment apps</label></p>
+        <p><label><input readonly type="checkbox" id="anyDistributedByOther" data-anyDistributedByOther="{{apr.anyDistributedByOther|yes_no}}" {{apr.anyDistributedByOther|check}}/> Other</label></p>
+        {% if apr.anyDistributedByOther %}
+            <p><label>Description:
+                <textarea readonly rows="4" cols="72"
+                    id="distributedByOtherDescription"
+                    data-distributedByOtherDescription="{{apr.distributedByOtherDescription|e}}">{{apr.distributedByOtherDescription|e}}</textarea>
+                </label></p>
+        {% endif %}
+        <p><label>7) Did your institution provide any instructions, directions, or guidance to students (e.g. FAQs) about the emergency financial aid grants upon disbursement? <input readonly type="text" id="anyEmergencyFinancialAidInstructions" data-anyEmergencyFinancialAidInstructions="{{apr.anyEmergencyFinancialAidInstructions|yes_no}}" value="{{apr.anyEmergencyFinancialAidInstructions|yes_no}}"/></label></p>
+        {% if apr.anyEmergencyFinancialAidInstructions %}
+            <p><label>Instruction file name: <input readonly type="text" size="{{apr.emergencyFinancialAidInstructionsFiles|length}}" id="emergencyFinancialAidInstructionsFiles" data-emergencyFinancialAidInstructionsFiles="{{apr.emergencyFinancialAidInstructionsFiles|e}}" value="{{apr.emergencyFinancialAidInstructionsFiles|e}}"/></label></p>
+        {% endif %}
+    </form>
+    <form name="student_awards_categorized" action="" aria-labeled-by="students_aided">
+        <h1 id="students_aided">Emergency Financial Aid Grants Awarded to Students</h1>
+        <p class="question">8) What percentage of students received emergency grants and how much did students receive in emergency grants by fund type and student type?</p>
+        <p><b>Note:</b> In early 2022, for the second annual report covering January 1, 2021-December 31, 2021, institutions have the option of taking more time to submit answers to questions marked with an asterisk(*). Institutions can submit answers to questions marked with an asterisk in early 2022 as part of the second annual report (in alignment with the reporting schedule at the beginning of this data collection form) OR in early 2023 along with reporting the third annual report.<sup><a href="#endnote5">5</a></sup></p>
+        <p class="question">a) Complete the following table.</p>
+        <table cellspacing="0" width="100%" id="students_aided_by_category" repeat="1">
+            <caption>Emergency Financial Aid Grants Awarded to Students: report only disbursements related to Emergency Financial Aid Grants including using those grants to satisfy outstanding accounts. Any disbursements unrelated to Emergency Financial Aid Grants should not be included in the reported expenditures</caption>
+            <thead>
+                <tr>
+                    <th style="width:30%;" scope="col"></th>
+                    <th scope="col">All students</th>
+                    <th scope="col">Undergraduate<sup><a href="#endnote6">6</a></sup>, Full-time <sup><a href="#endnote7">7</a></sup>, Pell grant recipients<sup><a href="#endnote8">8</a></sup></th>
+                    <th scope="col">Undergraduate, Full-time, Non-Pell grant recipients<sup><a href="#endnote9">9</a></sup></th>
+                    <th scope="col">Undergraduate, Part-time, Pell grant recipients</th>
+                    <th scope="col">Undergraduate, Part-time, Non-Pell grant recipients</th>
+                    <th scope="col">Graduate, Full-time</th>
+                    <th scope="col">Graduate, Part-time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">How many students were enrolled? (unduplicated count for the reporting period)</th>
+                    <td class="rightAlign" data-allEnrolledStudents="{{apr.allEnrolledStudents}}">{{apr.allEnrolledStudents}}</td>
+                    <td class="rightAlign" data-ugFtPellEnrolled="{{apr.ugFtPellEnrolled}}">{{apr.ugFtPellEnrolled}}</td>
+                    <td class="rightAlign" data-ugFtNonPellEnrolled="{{apr.ugFtNonPellEnrolled}}">{{apr.ugFtNonPellEnrolled}}</td>
+                    <td class="rightAlign" data-ugPtPellEnrolled="{{apr.ugPtPellEnrolled}}">{{apr.ugPtPellEnrolled}}</td>
+                    <td class="rightAlign" data-ugPtNonPellEnrolled="{{apr.ugPtNonPellEnrolled}}">{{apr.ugPtNonPellEnrolled}}</td>
+                    <td class="rightAlign" data-gFtEnrolled="{{apr.gFtEnrolled}}">{{apr.gFtEnrolled}}</td>
+                    <td class="rightAlign" data-gPtEnrolled="{{apr.gPtEnrolled}}">{{apr.gPtEnrolled}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">How many students received HEERF emergency financial aid grants? (unduplicated across all HEERF sections)</th>
+                    <td class="rightAlign" data-allStudentsHeerRecipients="{{apr.allStudentsHeerRecipients}}">{{apr.allStudentsHeerRecipients}}</td>
+                    <td class="rightAlign" data-ugFtPellHeerRecipients="{{apr.ugFtPellHeerRecipients}}">{{apr.ugFtPellHeerRecipients}}</td>
+                    <td class="rightAlign" data-ugFtNonPellHeerRecipients="{{apr.ugFtNonPellHeerRecipients}}">{{apr.ugFtNonPellHeerRecipients}}</td>
+                    <td class="rightAlign" data-ugPtPellHeerRecipients="{{apr.ugPtPellHeerRecipients}}">{{apr.ugPtPellHeerRecipients}}</td>
+                    <td class="rightAlign" data-ugPtNonPellHeerRecipients="{{apr.ugPtNonPellHeerRecipients}}">{{apr.ugPtNonPellHeerRecipients}}</td>
+                    <td class="rightAlign" data-gFtHeerRecipients="{{apr.gFtHeerRecipients}}">{{apr.gFtHeerRecipients}}</td>
+                    <td class="rightAlign" data-gPtHeerRecipients="{{apr.gPtHeerRecipients}}">{{apr.gPtHeerRecipients}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">HEERF (a)(1) Student Aid Portion - What was the amount disbursed directly to students as Emergency Financial Aid Grants?</th>
+                    <td class="rightAlign" data-a1StudentAidDirectTotal="{{apr.a1StudentAidDirectTotal}}">{{apr.a1StudentAidDirectTotal|dollars}}</td>
+                    <td class="rightAlign" data-a1StudentAidDirectUgFtPell="{{apr.a1StudentAidDirectUgFtPell}}">{{apr.a1StudentAidDirectUgFtPell|dollars}}</td>
+                    <td class="rightAlign" data-a1StudentAidDirectUgFtNonPell="{{apr.a1StudentAidDirectUgFtNonPell}}">{{apr.a1StudentAidDirectUgFtNonPell|dollars}}</td>
+                    <td class="rightAlign" data-a1StudentAidDirectUgPtPell="{{apr.a1StudentAidDirectUgPtPell}}">{{apr.a1StudentAidDirectUgPtPell|dollars}}</td>
+                    <td class="rightAlign" data-a1StudentAidDirectUgPtNonPell="{{apr.a1StudentAidDirectUgPtNonPell}}">{{apr.a1StudentAidDirectUgPtNonPell|dollars}}</td>
+                    <td class="rightAlign" data-a1StudentAidDirectGFt="{{apr.a1StudentAidDirectGFt}}">{{apr.a1StudentAidDirectGFt|dollars}}</td>
+                    <td class="rightAlign" data-a1StudentAidDirectGPt="{{apr.a1StudentAidDirectGPt}}">{{apr.a1StudentAidDirectGPt|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">HEERF (a)(1) Student Aid Portion - What was the amount of Emergency Financial Aid Grants applied to satisfy student&apos;s outstanding account balance upon receiving affirmative written consent from students to do so? If funds were not used for this purpose, report $0. Include only amounts that benefited students who directly received Emergency Financial Aid Grants.</th>
+                    <td class="rightAlign" data-a1StudentAidOutstandingTotal="{{apr.a1StudentAidOutstandingTotal}}">{{apr.a1StudentAidOutstandingTotal|dollars}}</td>
+                    <td class="rightAlign" data-a1StudentAidOutstandingUgFtPell="{{apr.a1StudentAidOutstandingUgFtPell}}">{{apr.a1StudentAidOutstandingUgFtPell|dollars}}</td>
+                    <td class="rightAlign" data-a1StudentAidOutstandingUgFtNonPell="{{apr.a1StudentAidOutstandingUgFtNonPell}}">{{apr.a1StudentAidOutstandingUgFtNonPell|dollars}}</td>
+                    <td class="rightAlign" data-a1StudentAidOutstandingUgPtPell="{{apr.a1StudentAidOutstandingUgPtPell}}">{{apr.a1StudentAidOutstandingUgPtPell|dollars}}</td>
+                    <td class="rightAlign" data-a1StudentAidOutstandingUgPtNonPell="{{apr.a1StudentAidOutstandingUgPtNonPell}}">{{apr.a1StudentAidOutstandingUgPtNonPell|dollars}}</td>
+                    <td class="rightAlign" data-a1StudentAidOutstandingGFt="{{apr.a1StudentAidOutstandingGFt}}">{{apr.a1StudentAidOutstandingGFt|dollars}}</td>
+                    <td class="rightAlign" data-a1StudentAidOutstandingGPt="{{apr.a1StudentAidOutstandingGPt}}">{{apr.a1StudentAidOutstandingGPt|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">HEERF (a)(1) Institutional Portion - What was the amount disbursed directly to students as Emergency Financial Aid Grants?</th>
+                    <td class="rightAlign" data-a1InstitutionalDirectTotal="{{apr.a1InstitutionalDirectTotal}}">{{apr.a1InstitutionalDirectTotal|dollars}}</td>
+                    <td class="rightAlign" data-a1InstitutionalDirectUgFtPell="{{apr.a1InstitutionalDirectUgFtPell}}">{{apr.a1InstitutionalDirectUgFtPell|dollars}}</td>
+                    <td class="rightAlign" data-a1InstitutionalDirectUgFtNonPell="{{apr.a1InstitutionalDirectUgFtNonPell}}">{{apr.a1InstitutionalDirectUgFtNonPell|dollars}}</td>
+                    <td class="rightAlign" data-a1InstitutionalDirectUgPtPell="{{apr.a1InstitutionalDirectUgPtPell}}">{{apr.a1InstitutionalDirectUgPtPell|dollars}}</td>
+                    <td class="rightAlign" data-a1InstitutionalDirectUgPtNonPell="{{apr.a1InstitutionalDirectUgPtNonPell}}">{{apr.a1InstitutionalDirectUgPtNonPell|dollars}}</td>
+                    <td class="rightAlign" data-a1InstitutionalDirectGFt="{{apr.a1InstitutionalDirectGFt}}">{{apr.a1InstitutionalDirectGFt|dollars}}</td>
+                    <td class="rightAlign" data-a1InstitutionalDirectGPt="{{apr.a1InstitutionalDirectGPt}}">{{apr.a1InstitutionalDirectGPt|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">HEERF (a)(1) Institutional Portion - What was the amount of Emergency Financial Aid Grants applied to satisfy student’s outstanding account balances? If funds were not used for this purpose, report $0. Include only amounts that benefited students who directly received Emergency Financial Aid Grants.</th>
+                    <td class="rightAlign" data-a1InstitutionalOutstandingTotal="{{apr.a1InstitutionalOutstandingTotal}}">{{apr.a1InstitutionalOutstandingTotal|dollars}}</td>
+                    <td class="rightAlign" data-a1InstitutionalOutstandingUgFtPell="{{apr.a1InstitutionalOutstandingUgFtPell}}">{{apr.a1InstitutionalOutstandingUgFtPell|dollars}}</td>
+                    <td class="rightAlign" data-a1InstitutionalOutstandingUgFtNonPell="{{apr.a1InstitutionalOutstandingUgFtNonPell}}">{{apr.a1InstitutionalOutstandingUgFtNonPell|dollars}}</td>
+                    <td class="rightAlign" data-a1InstitutionalOutstandingUgPtPell="{{apr.a1InstitutionalOutstandingUgPtPell}}">{{apr.a1InstitutionalOutstandingUgPtPell|dollars}}</td>
+                    <td class="rightAlign" data-a1InstitutionalOutstandingUgPtNonPell="{{apr.a1InstitutionalOutstandingUgPtNonPell}}">{{apr.a1InstitutionalOutstandingUgPtNonPell|dollars}}</td>
+                    <td class="rightAlign" data-a1InstitutionalOutstandingGFt="{{apr.a1InstitutionalOutstandingGFt}}">{{apr.a1InstitutionalOutstandingGFt|dollars}}</td>
+                    <td class="rightAlign" data-a1InstitutionalOutstandingGPt="{{apr.a1InstitutionalOutstandingGPt}}">{{apr.a1InstitutionalOutstandingGPt|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">HEERF (a)(2) Amount Disbursed (HBCUs, TCCUs, MSIs, and SIP) - What was the amount disbursed directly to students as Emergency Financial Aid Grants? If funds were not used for this purpose, report $0.</th>
+                    <td class="rightAlign" data-a2DirectTotal="{{apr.a2DirectTotal}}">{{apr.a2DirectTotal|dollars}}</td>
+                    <td class="rightAlign" data-a2DirectUgFtPell="{{apr.a2DirectUgFtPell}}">{{apr.a2DirectUgFtPell|dollars}}</td>
+                    <td class="rightAlign" data-a2DirectUgFtNonPell="{{apr.a2DirectUgFtNonPell}}">{{apr.a2DirectUgFtNonPell|dollars}}</td>
+                    <td class="rightAlign" data-a2DirectUgPtPell="{{apr.a2DirectUgPtPell}}">{{apr.a2DirectUgPtPell|dollars}}</td>
+                    <td class="rightAlign" data-a2DirectUgPtNonPell="{{apr.a2DirectUgPtNonPell}}">{{apr.a2DirectUgPtNonPell|dollars}}</td>
+                    <td class="rightAlign" data-a2DirectGFt="{{apr.a2DirectGFt}}">{{apr.a2DirectGFt|dollars}}</td>
+                    <td class="rightAlign" data-a2DirectGPt="{{apr.a2DirectGPt}}">{{apr.a2DirectGPt|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">HEERF (a)(2) Amount Disbursed (HBCUs, TCCUs, MSIs, and SIP) - What was the amount of Emergency Financial Aid Grants applied to satisfy student&apos;s outstanding account balances? If funds were not used for this purpose, report $0. Include only amounts that benefited students who directly received Emergency Financial Aid Grants</th>
+                    <td class="rightAlign" data-a2OutstandingTotal="{{apr.a2OutstandingTotal}}">{{apr.a2OutstandingTotal|dollars}}</td>
+                    <td class="rightAlign" data-a2OutstandingUgFtPell="{{apr.a2OutstandingUgFtPell}}">{{apr.a2OutstandingUgFtPell|dollars}}</td>
+                    <td class="rightAlign" data-a2OutstandingUgFtNonPell="{{apr.a2OutstandingUgFtNonPell}}">{{apr.a2OutstandingUgFtNonPell|dollars}}</td>
+                    <td class="rightAlign" data-a2OutstandingUgPtPell="{{apr.a2OutstandingUgPtPell}}">{{apr.a2OutstandingUgPtPell|dollars}}</td>
+                    <td class="rightAlign" data-a2OutstandingUgPtNonPell="{{apr.a2OutstandingUgPtNonPell}}">{{apr.a2OutstandingUgPtNonPell|dollars}}</td>
+                    <td class="rightAlign" data-a2OutstandingGFt="{{apr.a2OutstandingGFt}}">{{apr.a2OutstandingGFt|dollars}}</td>
+                    <td class="rightAlign" data-a2OutstandingGPt="{{apr.a2OutstandingGPt}}">{{apr.a2OutstandingGPt|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">HEERF (a)(3) Amount Disbursed (FIPSE & SAIHE)<sup><a href="#endnote10">10</a></sup> - What was the amount disbursed directly to students as Emergency Financial Aid Grants? If funds were not used for this purpose, report $0.</th>
+                    <td class="rightAlign" data-a3DirectTotal="{{apr.a3DirectTotal}}">{{apr.a3DirectTotal|dollars}}</td>
+                    <td class="rightAlign" data-a3DirectUgFtPell="{{apr.a3DirectUgFtPell}}">{{apr.a3DirectUgFtPell|dollars}}</td>
+                    <td class="rightAlign" data-a3DirectUgFtNonPell="{{apr.a3DirectUgFtNonPell}}">{{apr.a3DirectUgFtNonPell|dollars}}</td>
+                    <td class="rightAlign" data-a3DirectUgPtPell="{{apr.a3DirectUgPtPell}}">{{apr.a3DirectUgPtPell|dollars}}</td>
+                    <td class="rightAlign" data-a3DirectUgPtNonPell="{{apr.a3DirectUgPtNonPell}}">{{apr.a3DirectUgPtNonPell|dollars}}</td>
+                    <td class="rightAlign" data-a3DirectGFt="{{apr.a3DirectGFt}}">{{apr.a3DirectGFt|dollars}}</td>
+                    <td class="rightAlign" data-a3DirectGPt="{{apr.a3DirectGPt}}">{{apr.a3DirectGPt|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">HEERF (a)(3) Amount Disbursed (FIPSE & SAIHE) - What was the amount of Emergency Financial Aid Grants applied to satisfy student’s outstanding account balances? If funds were not used for this purpose, report $0. Include only amounts that benefited students who directly received Emergency Financial Aid Grants.</th>
+                    <td class="rightAlign" data-a3OutstandingTotal="{{apr.a3OutstandingTotal}}">{{apr.a3OutstandingTotal|dollars}}</td>
+                    <td class="rightAlign" data-a3OutstandingUgFtPell="{{apr.a3OutstandingUgFtPell}}">{{apr.a3OutstandingUgFtPell|dollars}}</td>
+                    <td class="rightAlign" data-a3OutstandingUgFtNonPell="{{apr.a3OutstandingUgFtNonPell}}">{{apr.a3OutstandingUgFtNonPell|dollars}}</td>
+                    <td class="rightAlign" data-a3OutstandingUgPtPell="{{apr.a3OutstandingUgPtPell}}">{{apr.a3OutstandingUgPtPell|dollars}}</td>
+                    <td class="rightAlign" data-a3OutstandingUgPtNonPell="{{apr.a3OutstandingUgPtNonPell}}">{{apr.a3OutstandingUgPtNonPell|dollars}}</td>
+                    <td class="rightAlign" data-a3OutstandingGFt="{{apr.a3OutstandingGFt}}">{{apr.a3OutstandingGFt|dollars}}</td>
+                    <td class="rightAlign" data-a3OutstandingGPt="{{apr.a3OutstandingGPt}}">{{apr.a3OutstandingGPt|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">HEERF (a)(4) Amount Disbursed (Proprietary Institution Grant Funds for Students) - What was the amount disbursed directly to students as Emergency Financial Aid Grants? If funds were not used for this purpose, report $0</th>
+                    <td class="rightAlign" data-a4DirectTotal="{{apr.a4DirectTotal}}">{{apr.a4DirectTotal|dollars}}</td>
+                    <td class="rightAlign" data-a4DirectUgFtPell="{{apr.a4DirectUgFtPell}}">{{apr.a4DirectUgFtPell|dollars}}</td>
+                    <td class="rightAlign" data-a4DirectUgFtNonPell="{{apr.a4DirectUgFtNonPell}}">{{apr.a4DirectUgFtNonPell|dollars}}</td>
+                    <td class="rightAlign" data-a4DirectUgPtPell="{{apr.a4DirectUgPtPell}}">{{apr.a4DirectUgPtPell|dollars}}</td>
+                    <td class="rightAlign" data-a4DirectUgPtNonPell="{{apr.a4DirectUgPtNonPell}}">{{apr.a4DirectUgPtNonPell|dollars}}</td>
+                    <td class="rightAlign" data-a4DirectGFt="{{apr.a4DirectGFt}}">{{apr.a4DirectGFt|dollars}}</td>
+                    <td class="rightAlign" data-a4DirectGPt="{{apr.a4DirectGPt}}">{{apr.a4DirectGPt|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">HEERF (a)(4) Amount Disbursed (Proprietary Institution Grant Funds for Students) - What was the amount of Emergency Financial Aid Grants applied to satisfy student&apos;s outstanding account balance upon receiving affirmative written consent from students to do so? If funds were not used for this purpose, report $0.</th>
+                    <td class="rightAlign" data-a4OutstandingTotal="{{apr.a4OutstandingTotal}}">{{apr.a4OutstandingTotal|dollars}}</td>
+                    <td class="rightAlign" data-a4OutstandingUgFtPell="{{apr.a4OutstandingUgFtPell}}">{{apr.a4OutstandingUgFtPell|dollars}}</td>
+                    <td class="rightAlign" data-a4OutstandingUgFtNonPell="{{apr.a4OutstandingUgFtNonPell}}">{{apr.a4OutstandingUgFtNonPell|dollars}}</td>
+                    <td class="rightAlign" data-a4OutstandingUgPtPell="{{apr.a4OutstandingUgPtPell}}">{{apr.a4OutstandingUgPtPell|dollars}}</td>
+                    <td class="rightAlign" data-a4OutstandingUgPtNonPell="{{apr.a4OutstandingUgPtNonPell}}">{{apr.a4OutstandingUgPtNonPell|dollars}}</td>
+                    <td class="rightAlign" data-a4OutstandingGFt="{{apr.a4OutstandingGFt}}">{{apr.a4OutstandingGFt|dollars}}</td>
+                    <td class="rightAlign" data-a4OutstandingGPt="{{apr.a4OutstandingGPt}}">{{apr.a4OutstandingGPt|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Minimum (non-zero amount) combined (combined across HEERF funds) amount awarded to any one student who received any HEERF funds</th>
+                    <td class="rightAlign" data-minimumAward="{{apr.minimumAward}}">{{apr.minimumAward|dollars}}</td>
+                    <td class="rightAlign" data-minimumAwardUgFtPell="{{apr.minimumAwardUgFtPell}}">{{apr.minimumAwardUgFtPell|dollars}}</td>
+                    <td class="rightAlign" data-minimumAwardUgFtNonPell="{{apr.minimumAwardUgFtNonPell}}">{{apr.minimumAwardUgFtNonPell|dollars}}</td>
+                    <td class="rightAlign" data-minimumAwardUgPtPell="{{apr.minimumAwardUgPtPell}}">{{apr.minimumAwardUgPtPell|dollars}}</td>
+                    <td class="rightAlign" data-minimumAwardUgPtNonPell="{{apr.minimumAwardUgPtNonPell}}">{{apr.minimumAwardUgPtNonPell|dollars}}</td>
+                    <td class="rightAlign" data-minimumAwardGFt="{{apr.minimumAwardGFt}}">{{apr.minimumAwardGFt|dollars}}</td>
+                    <td class="rightAlign" data-minimumAwardGPt="{{apr.minimumAwardGPt}}">{{apr.minimumAwardGPt|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Maximum combined (combined across HEERF funds) amount awarded to any one student who received any HEERF funds and by student recipients</th>
+                    <td class="rightAlign" data-maximumAward="{{apr.maximumAward}}">{{apr.maximumAward|dollars}}</td>
+                    <td class="rightAlign" data-maximumAwardUgFtPell="{{apr.maximumAwardUgFtPell}}">{{apr.maximumAwardUgFtPell|dollars}}</td>
+                    <td class="rightAlign" data-maximumAwardUgFtNonPell="{{apr.maximumAwardUgFtNonPell}}">{{apr.maximumAwardUgFtNonPell|dollars}}</td>
+                    <td class="rightAlign" data-maximumAwardUgPtPell="{{apr.maximumAwardUgPtPell}}">{{apr.maximumAwardUgPtPell|dollars}}</td>
+                    <td class="rightAlign" data-maximumAwardUgPtNonPell="{{apr.maximumAwardUgPtNonPell}}">{{apr.maximumAwardUgPtNonPell|dollars}}</td>
+                    <td class="rightAlign" data-maximumAwardGFt="{{apr.maximumAwardGFt}}">{{apr.maximumAwardGFt|dollars}}</td>
+                    <td class="rightAlign" data-maximumAwardGPt="{{apr.maximumAwardGPt}}">{{apr.maximumAwardGPt|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">What was the amount of grants disbursed to students through all HEERF funds?</th>
+                    <td class="rightAlign" data-allStudentsGrantAmountTotal="{{apr.allStudentsGrantAmountTotal}}">{{apr.allStudentsGrantAmountTotal|dollars}}</td>
+                    <td class="rightAlign" data-ugFtPellGrantAmountTotal="{{apr.ugFtPellGrantAmountTotal}}">{{apr.ugFtPellGrantAmountTotal|dollars}}</td>
+                    <td class="rightAlign" data-ugFtNonPellGrantAmountTotal="{{apr.ugFtNonPellGrantAmountTotal}}">{{apr.ugFtNonPellGrantAmountTotal|dollars}}</td>
+                    <td class="rightAlign" data-ugPtPellGrantAmountTotal="{{apr.ugPtPellGrantAmountTotal}}">{{apr.ugPtPellGrantAmountTotal|dollars}}</td>
+                    <td class="rightAlign" data-ugPtNonPellGrantAmountTotal="{{apr.ugPtNonPellGrantAmountTotal}}">{{apr.ugPtNonPellGrantAmountTotal|dollars}}</td>
+                    <td class="rightAlign" data-gFtGrantAmountTotal="{{apr.gFtGrantAmountTotal}}">{{apr.gFtGrantAmountTotal|dollars}}</td>
+                    <td class="rightAlign" data-gPtGrantAmountTotal="{{apr.gPtGrantAmountTotal}}">{{apr.gPtGrantAmountTotal|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Among students who received HEERF emergency financial aid grants, what was the average award amount per student?</th>
+                    <td class="rightAlign" data-allStudentsAverageHeerAmount="{{apr.allStudentsAverageHeerAmount}}">{{apr.allStudentsAverageHeerAmount|dollars}}</td>
+                    <td class="rightAlign" data-ugFtPellAverageHeerAmount="{{apr.ugFtPellAverageHeerAmount}}">{{apr.ugFtPellAverageHeerAmount|dollars}}</td>
+                    <td class="rightAlign" data-ugFtNonPellAverageHeerAmount="{{apr.ugFtNonPellAverageHeerAmount}}">{{apr.ugFtNonPellAverageHeerAmount|dollars}}</td>
+                    <td class="rightAlign" data-ugPtPellAverageHeerAmount="{{apr.ugPtPellAverageHeerAmount}}">{{apr.ugPtPellAverageHeerAmount|dollars}}</td>
+                    <td class="rightAlign" data-ugPtNonPellAverageHeerAmount="{{apr.ugPtNonPellAverageHeerAmount}}">{{apr.ugPtNonPellAverageHeerAmount|dollars}}</td>
+                    <td class="rightAlign" data-gFtAverageHeerAmount="{{apr.gFtAverageHeerAmount}}">{{apr.gFtAverageHeerAmount|dollars}}</td>
+                    <td class="rightAlign" data-gPtAverageHeerAmount="{{apr.gPtAverageHeerAmount}}">{{apr.gPtAverageHeerAmount|dollars}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <p><label>b) *Among the students enrolled in your institution, how many were NOT Title IV eligible<sup><a href="#endnote11">11</a></sup> throughout their enrollment during the reporting period? <input readonly type="text" id="nEnrolledStudentsNotEligibleTitleIV" data-nEnrolledStudentsNotEligibleTitleIV="{{apr.nEnrolledStudentsNotEligibleTitleIV}}" value="{{apr.nEnrolledStudentsNotEligibleTitleIV}}"/></label></p>
+        <p><label>i) *The percentage of students enrolled in your institution who were NOT Title IV eligible throughout their enrollment during the reporting period: <input readonly type="text" id="pEnrolledStudentsNotEligibleTitleIV" data-pEnrolledStudentsNotEligibleTitleIV="{{apr.pEnrolledStudentsNotEligibleTitleIV}}" value="{{apr.pEnrolledStudentsNotEligibleTitleIV|percent}}"/></label></p>
+        <p><label>c) *Among students who received emergency financial aid grants, how many were NOT Title IV eligible throughout their enrollment during the reporting period? <input readonly type="text" id="nStudentsReceivedGrantsNotEligibleTitleIV" data-nStudentsReceivedGrantsNotEligibleTitleIV="{{apr.nStudentsReceivedGrantsNotEligibleTitleIV}}" value="{{apr.nStudentsReceivedGrantsNotEligibleTitleIV}}"/></label></p>
+        <p><label>i) *The percentage of students who received emergency financial aid grants who were not Title IV eligible throughout their enrollment during the reporting period <input readonly type="text" id="pStudentsGrantedHeerNotEligibleTitleIV" data-pStudentsGrantedHeerNotEligibleTitleIV="{{apr.pStudentsGrantedHeerNotEligibleTitleIV}}" value="{{apr.pStudentsGrantedHeerNotEligibleTitleIV|percent}}"/></label></p>
+        <table cellspacing="0" width="100%" id="students_aided_by_race_ethnicity" repeat="1">
+            <caption>d) *What number of students were enrolled, what number received emergency grants, and how much grant aid did the students receive by IPEDS race/ethnicity categories?</caption>
+            <thead>
+                <tr>
+                    <th scope="col">Race/Ethnicity (IPEDS categories)</th>
+                    <th scope="col">Enrolled student count (unduplicated)</th>
+                    <th scope="col">Number of students who received at least one Emergency Financial Aid Grant (unduplicated)</th>
+                    <th scope="col">What was the total amount of Emergency Financial Aid Grants disbursed to students through all HEERF funds?</th>
+                    <th scope="col">Average HEERF Amount Awarded</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">American Indian or Alaska Native</th>
+                    <td class="rightAlign" data-aiEnrolledStudentCount="{{apr.aiEnrolledStudentCount}}">{{apr.aiEnrolledStudentCount}}</td>
+                    <td class="rightAlign" data-aiReceivedAidGrant="{{apr.aiReceivedAidGrant}}">{{apr.aiReceivedAidGrant}}</td>
+                    <td class="rightAlign" data-aiTotalAmountOfGrants="{{apr.aiTotalAmountOfGrants}}">{{apr.aiTotalAmountOfGrants|dollars}}</td>
+                    <td class="rightAlign" data-aiAverageHeerfAward="{{apr.aiAverageHeerfAward}}">{{apr.aiAverageHeerfAward|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Asian</th>
+                    <td class="rightAlign" data-aEnrolledStudentCount="{{apr.aEnrolledStudentCount}}">{{apr.aEnrolledStudentCount}}</td>
+                    <td class="rightAlign" data-aReceivedAidGrant="{{apr.aReceivedAidGrant}}">{{apr.aReceivedAidGrant}}</td>
+                    <td class="rightAlign" data-aTotalAmountOfGrants="{{apr.aTotalAmountOfGrants}}">{{apr.aTotalAmountOfGrants|dollars}}</td>
+                    <td class="rightAlign" data-aAverageHeerfAward="{{apr.aAverageHeerfAward}}">{{apr.aAverageHeerfAward|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Black or African American</th>
+                    <td class="rightAlign" data-bEnrolledStudentCount="{{apr.bEnrolledStudentCount}}">{{apr.bEnrolledStudentCount}}</td>
+                    <td class="rightAlign" data-bReceivedAidGrant="{{apr.bReceivedAidGrant}}">{{apr.bReceivedAidGrant}}</td>
+                    <td class="rightAlign" data-bTotalAmountOfGrants="{{apr.bTotalAmountOfGrants}}">{{apr.bTotalAmountOfGrants|dollars}}</td>
+                    <td class="rightAlign" data-bAverageHeerfAward="{{apr.bAverageHeerfAward}}">{{apr.bAverageHeerfAward|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Hispanic/Latino</th>
+                    <td class="rightAlign" data-hEnrolledStudentCount="{{apr.hEnrolledStudentCount}}">{{apr.hEnrolledStudentCount}}</td>
+                    <td class="rightAlign" data-hReceivedAidGrant="{{apr.hReceivedAidGrant}}">{{apr.hReceivedAidGrant}}</td>
+                    <td class="rightAlign" data-hTotalAmountOfGrants="{{apr.hTotalAmountOfGrants}}">{{apr.hTotalAmountOfGrants|dollars}}</td>
+                    <td class="rightAlign" data-hAverageHeerfAward="{{apr.hAverageHeerfAward}}">{{apr.hAverageHeerfAward|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Native Hawaiian or Other Pacific Islander</th>
+                    <td class="rightAlign" data-nhEnrolledStudentCount="{{apr.nhEnrolledStudentCount}}">{{apr.nhEnrolledStudentCount}}</td>
+                    <td class="rightAlign" data-nhReceivedAidGrant="{{apr.nhReceivedAidGrant}}">{{apr.nhReceivedAidGrant}}</td>
+                    <td class="rightAlign" data-nhTotalAmountOfGrants="{{apr.nhTotalAmountOfGrants}}">{{apr.nhTotalAmountOfGrants|dollars}}</td>
+                    <td class="rightAlign" data-nhAverageHeerfAward="{{apr.nhAverageHeerfAward}}">{{apr.nhAverageHeerfAward|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">White</th>
+                    <td class="rightAlign" data-wEnrolledStudentCount="{{apr.wEnrolledStudentCount}}">{{apr.wEnrolledStudentCount}}</td>
+                    <td class="rightAlign" data-wReceivedAidGrant="{{apr.wReceivedAidGrant}}">{{apr.wReceivedAidGrant}}</td>
+                    <td class="rightAlign" data-wTotalAmountOfGrants="{{apr.wTotalAmountOfGrants}}">{{apr.wTotalAmountOfGrants|dollars}}</td>
+                    <td class="rightAlign" data-wAverageHeerfAward="{{apr.wAverageHeerfAward}}">{{apr.wAverageHeerfAward|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Two or more races</th>
+                    <td class="rightAlign" data-tmrEnrolledStudentCount="{{apr.tmrEnrolledStudentCount}}">{{apr.tmrEnrolledStudentCount}}</td>
+                    <td class="rightAlign" data-tmrReceivedAidGrant="{{apr.tmrReceivedAidGrant}}">{{apr.tmrReceivedAidGrant}}</td>
+                    <td class="rightAlign" data-tmrTotalAmountOfGrants="{{apr.tmrTotalAmountOfGrants}}">{{apr.tmrTotalAmountOfGrants|dollars}}</td>
+                    <td class="rightAlign" data-tmrAverageHeerfAward="{{apr.tmrAverageHeerfAward}}">{{apr.tmrAverageHeerfAward|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Race/ethnicity unknown</th>
+                    <td class="rightAlign" data-urEnrolledStudentCount="{{apr.urEnrolledStudentCount}}">{{apr.urEnrolledStudentCount}}</td>
+                    <td class="rightAlign" data-urReceivedAidGrant="{{apr.urReceivedAidGrant}}">{{apr.urReceivedAidGrant}}</td>
+                    <td class="rightAlign" data-urTotalAmountOfGrants="{{apr.urTotalAmountOfGrants}}">{{apr.urTotalAmountOfGrants|dollars}}</td>
+                    <td class="rightAlign" data-urAverageHeerfAward="{{apr.urAverageHeerfAward}}">{{apr.urAverageHeerfAward|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Nonresident alien</th>
+                    <td class="rightAlign" data-nrEnrolledStudentCount="{{apr.nrEnrolledStudentCount}}">{{apr.nrEnrolledStudentCount}}</td>
+                    <td class="rightAlign" data-nrReceivedAidGrant="{{apr.nrReceivedAidGrant}}">{{apr.nrReceivedAidGrant}}</td>
+                    <td class="rightAlign" data-nrTotalAmountOfGrants="{{apr.nrTotalAmountOfGrants}}">{{apr.nrTotalAmountOfGrants|dollars}}</td>
+                    <td class="rightAlign" data-nrAverageHeerfAward="{{apr.nrAverageHeerfAward}}">{{apr.nrAverageHeerfAward|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Students not categorized in IPEDS</th>
+                    <td class="rightAlign" data-ncrEnrolledStudentCount="{{apr.ncrEnrolledStudentCount}}">{{apr.ncrEnrolledStudentCount}}</td>
+                    <td class="rightAlign" data-ncrReceivedAidGrant="{{apr.ncrReceivedAidGrant}}">{{apr.ncrReceivedAidGrant}}</td>
+                    <td class="rightAlign" data-ncrTotalAmountOfGrants="{{apr.ncrTotalAmountOfGrants}}">{{apr.ncrTotalAmountOfGrants|dollars}}</td>
+                    <td class="rightAlign" data-ncrAverageHeerfAward="{{apr.ncrAverageHeerfAward}}">{{apr.ncrAverageHeerfAward|dollars}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <table cellspacing="0" width="100%" id="students_aided_by_gender" repeat="1">
+            <caption>e) *What number of students were enrolled, what number received emergency grants, and how much grant aid did the students receive by IPEDS gender categories?</caption>
+            <thead>
+                <tr>
+                    <th scope="col">Gender (IPEDS categories)</th>
+                    <th scope="col">Enrolled student count (unduplicated)</th>
+                    <th scope="col">Number of students who received at least one Emergency Financial Aid Grant (unduplicated)</th>
+                    <th scope="col">What was the total amount of Emergency Financial Aid Grants disbursed to students through all HEERF funds?</th>
+                    <th scope="col">Average HEERF Amount Awarded</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Men</th>
+                    <td class="rightAlign" data-mEnrolledStudentCount="{{apr.mEnrolledStudentCount}}">{{apr.mEnrolledStudentCount}}</td>
+                    <td class="rightAlign" data-mReceivedAidGrant="{{apr.mReceivedAidGrant}}">{{apr.mReceivedAidGrant}}</td>
+                    <td class="rightAlign" data-mTotalAmountOfGrants="{{apr.mTotalAmountOfGrants}}">{{apr.mTotalAmountOfGrants|dollars}}</td>
+                    <td class="rightAlign" data-mAverageHeerfAward="{{apr.mAverageHeerfAward}}">{{apr.mAverageHeerfAward|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Women</th>
+                    <td class="rightAlign" data-woEnrolledStudentCount="{{apr.woEnrolledStudentCount}}">{{apr.woEnrolledStudentCount}}</td>
+                    <td class="rightAlign" data-woReceivedAidGrant="{{apr.woReceivedAidGrant}}">{{apr.woReceivedAidGrant}}</td>
+                    <td class="rightAlign" data-woTotalAmountOfGrants="{{apr.woTotalAmountOfGrants}}">{{apr.woTotalAmountOfGrants|dollars}}</td>
+                    <td class="rightAlign" data-woAverageHeerfAward="{{apr.woAverageHeerfAward}}">{{apr.woAverageHeerfAward|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Students not categorized in IPEDS</th>
+                    <td class="rightAlign" data-ncgEnrolledStudentCount="{{apr.ncgEnrolledStudentCount}}">{{apr.ncgEnrolledStudentCount}}</td>
+                    <td class="rightAlign" data-ncgReceivedAidGrant="{{apr.ncgReceivedAidGrant}}">{{apr.ncgReceivedAidGrant}}</td>
+                    <td class="rightAlign" data-ncgTotalAmountOfGrants="{{apr.ncgTotalAmountOfGrants}}">{{apr.ncgTotalAmountOfGrants|dollars}}</td>
+                    <td class="rightAlign" data-ncgAverageHeerfAward="{{apr.ncgAverageHeerfAward}}">{{apr.ncgAverageHeerfAward|dollars}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <table cellspacing="0" width="100%" id="students_aided_by_age" repeat="1">
+            <caption>f) *What number of students were enrolled, what number received emergency grants, and how much grant aid did the students receive by IPEDS age categories?</caption>
+            <thead>
+                <tr>
+                    <th scope="col">Age<sup><a href="#endnote12">12</a></sup> (IPEDS categories)</th>
+                    <th scope="col">Enrolled student count (unduplicated)</th>
+                    <th scope="col">Number of students who received at least one Emergency Financial Aid Grant (unduplicated)</th>
+                    <th scope="col">What was the total amount of Emergency Financial Aid Grants disbursed to students through all HEERF funds?</th>
+                    <th scope="col">Average HEERF Amount Awarded</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Ages 25 and older</th>
+                    <td class="rightAlign" data-tfoEnrolledStudentCount="{{apr.tfoEnrolledStudentCount}}">{{apr.tfoEnrolledStudentCount}}</td>
+                    <td class="rightAlign" data-tfoReceivedAidGrant="{{apr.tfoReceivedAidGrant}}">{{apr.tfoReceivedAidGrant}}</td>
+                    <td class="rightAlign" data-tfoTotalAmountOfGrants="{{apr.tfoTotalAmountOfGrants}}">{{apr.tfoTotalAmountOfGrants|dollars}}</td>
+                    <td class="rightAlign" data-tfoAverageHeerfAward="{{apr.tfoAverageHeerfAward}}">{{apr.tfoAverageHeerfAward|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Ages 24 and younger</th>
+                    <td class="rightAlign" data-tfyEnrolledStudentCount="{{apr.tfyEnrolledStudentCount}}">{{apr.tfyEnrolledStudentCount}}</td>
+                    <td class="rightAlign" data-tfyReceivedAidGrant="{{apr.tfyReceivedAidGrant}}">{{apr.tfyReceivedAidGrant}}</td>
+                    <td class="rightAlign" data-tfyTotalAmountOfGrants="{{apr.tfyTotalAmountOfGrants}}">{{apr.tfyTotalAmountOfGrants|dollars}}</td>
+                    <td class="rightAlign" data-tfyAverageHeerfAward="{{apr.tfyAverageHeerfAward}}">{{apr.tfyAverageHeerfAward|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Age not available in administrative records (e.g., IPEDS, FAFSA, etc.)</th>
+                    <td class="rightAlign" data-anaEnrolledStudentCount="{{apr.anaEnrolledStudentCount}}">{{apr.anaEnrolledStudentCount}}</td>
+                    <td class="rightAlign" data-anaReceivedAidGrant="{{apr.anaReceivedAidGrant}}">{{apr.anaReceivedAidGrant}}</td>
+                    <td class="rightAlign" data-anaTotalAmountOfGrants="{{apr.anaTotalAmountOfGrants}}">{{apr.anaTotalAmountOfGrants|dollars}}</td>
+                    <td class="rightAlign" data-anaAverageHeerfAward="{{apr.anaAverageHeerfAward}}">{{apr.anaAverageHeerfAward|dollars}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+
+    <form name="expenses_by_category" action="" aria-labelledby="expenses_categorized">
+        <h1 id="expenses_categorized">9) Institutional Expenditures</h1>
+        <p><label>a) Has your institution designated HEERF program funds for a specific purpose or budget objective in future calendar years (for example, operation and 
+            maintenance of plant, academic programs, residential programs, future institutional aid)? <input readonly type="text" id="areFundsForSpecificPurpose" data-areFundsForSpecificPurpose="{{apr.areFundsForSpecificPurpose|yes_no}}" value="{{apr.areFundsForSpecificPurpose|yes_no}}"/></label></p>
+        {% if apr.areFundsForSpecificPurpose %}
+            <table cellspacing="0" width="100%" id="planned_expenditures_by_category" repeat="1">
+                <caption>2. If yes, provide the amount designated for a specific purpose or budget objective by calendar year and HEERF program fund</caption>
+                <thead>
+                    <tr>
+                        <th style="width:40%;" scope="col">HEERF program fund</th>
+                        <th scope="col">Calendar year 2022</th>
+                        <th scope="col">Calendar year 2023</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">(a)(1) Institutional Portion</th>
+                        <td class="rightAlign" data-a1AmountFor2022="{{apr.a1AmountFor2022}}">{{apr.a1AmountFor2022|dollars}}</td>
+                        <td class="rightAlign" data-a1AmountFor2023="{{apr.a1AmountFor2023}}">{{apr.a1AmountFor2023|dollars}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">(a)(2)- HBCUs, TCCUs, MSIs, SIP</th>
+                        <td class="rightAlign" data-a2AmountFor2022="{{apr.a2AmountFor2022}}">{{apr.a2AmountFor2022|dollars}}</td>
+                        <td class="rightAlign" data-a2AmountFor2023="{{apr.a2AmountFor2023}}">{{apr.a2AmountFor2023|dollars}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">(a)(3)- FIPSE and SAIHE</th>
+                        <td class="rightAlign" data-a3AmountFor2022="{{apr.a3AmountFor2022}}">{{apr.a3AmountFor2022|dollars}}</td>
+                        <td class="rightAlign" data-a3AmountFor2023="{{apr.a3AmountFor2023}}">{{apr.a3AmountFor2023|dollars}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        {% else %}
+            <p><label>1. If no, are HEERF program funds being reserved for use as needed? <input readonly type="text" id="areFundsHeldForNeededUses" data-areFundsHeldForNeededUses="{{apr.areFundsHeldForNeededUses|yes_no}}" value="{{apr.areFundsHeldForNeededUses|yes_no}}"/></label></p>
+            {% if not apr.areFundsHeldForNeededUses %}
+            <p><label>i. If no HEERF program funds are being reserved, please explain your institution&apos;s approach:</label><textarea id="fundsApproach" row="4" cols="72" data-fundsApproach="{{apr.fundsApproach|e}}">{{apr.fundsApproach|e}}</textarea></p>
+            {% endif %}
+        {% endif %}
+        <table cellspacing="0" width="100%" id="students_aided_by_category" repeat="1">
+            <caption>b) Provide the total amount of HEERF funds expended during the reporting period on each of the following categories:</caption>
+            <thead>
+                <tr>
+                    <th style="width:35%;" scope="col">Category</th>
+                    <th scope="col">Amount in (a)(1) institutional dollars</th>
+                    <th scope="col">Amount in (a)(2) dollars, if applicable</th>
+                    <th scope="col">Amount in (a)(3) dollars, if applicable</th>
+                    <th style="width:20%;" scope="col">Explanatory Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Providing additional emergency financial aid grants to students.</th>
+                    <td class="rightAlign" data-a1StudentAidDirectTotal="{{apr.a1StudentAidDirectTotal}}">{{apr.a1StudentAidDirectTotal|dollars}}</td>
+                    <td class="rightAlign" data-a2DirectTotal="{{apr.a2DirectTotal}}">{{apr.a2DirectTotal|dollars}}</td>
+                    <td class="rightAlign" data-a3DirectTotal="{{apr.a3DirectTotal}}">{{apr.a3DirectTotal|dollars}}</td>
+                    <td data-emergencyAidNotes="{{apr.emergencyAidNotes|e}}">{{apr.emergencyAidNotes|e}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Using Emergency Financial Aid Grants to cover student outstanding account balances for costs such as debt forgiveness, room, board, tuition, or fees.</th>
+                    <td class="rightAlign" data-a1StudentAidOutstandingTotal="{{apr.a1StudentAidOutstandingTotal}}">{{apr.a1StudentAidOutstandingTotal|dollars}}</td>
+                    <td class="rightAlign" data-a2OutstandingTotal="{{apr.a2OutstandingTotal}}">{{apr.a2OutstandingTotal|dollars}}</td>
+                    <td class="rightAlign" data-a3OutstandingTotal="{{apr.a3OutstandingTotal}}">{{apr.a3OutstandingTotal|dollars}}</td>
+                    <td data-outstandingBalanceNotes="{{apr.outstandingBalanceNotes|e}}">{{apr.outstandingBalanceNotes|e}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Indirect cost recovery/facilities and administrative costs charged on the grants.</th>
+                    <td class="rightAlign" data-a1Indirect="{{apr.a1Indirect}}">{{apr.a1Indirect|dollars}}</td>
+                    <td class="rightAlign" data-a2Indirect="{{apr.a2Indirect}}">{{apr.a2Indirect|dollars}}</td>
+                    <td class="rightAlign" data-a3Indirect="{{apr.a3Indirect}}">{{apr.a3Indirect|dollars}}</td>
+                    <td data-indirectNotes="{{apr.indirectNotes|e}}">{{apr.indirectNotes|e}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Covering the cost of providing additional technology hardware to students, such as laptops or tablets, or covering the added cost of technology fees.</th>
+                    <td class="rightAlign" data-a1Technology="{{apr.a1Technology}}">{{apr.a1Technology|dollars}}</td>
+                    <td class="rightAlign" data-a2Technology="{{apr.a2Technology}}">{{apr.a2Technology|dollars}}</td>
+                    <td class="rightAlign" data-a3Technology="{{apr.a3Technology}}">{{apr.a3Technology|dollars}}</td>
+                    <td data-technologyNotes="{{apr.technologyNotes|e}}">{{apr.technologyNotes|e}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Providing or subsidizing the costs of high-speed internet to students or faculty to transition to an online environment.</th>
+                    <td class="rightAlign" data-a1Internet="{{apr.a1Internet}}">{{apr.a1Internet|dollars}}</td>
+                    <td class="rightAlign" data-a2Internet="{{apr.a2Internet}}">{{apr.a2Internet|dollars}}</td>
+                    <td class="rightAlign" data-a3Internet="{{apr.a3Internet}}">{{apr.a3Internet|dollars}}</td>
+                    <td data-internetNotes="{{apr.internetNotes|e}}">{{apr.internetNotes|e}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Subsidizing off-campus housing costs due to dormitory closures or decisions to limit housing to one student per room; subsidizing housing costs to reduce housing density; paying for hotels or other off-campus housing for students who need to be isolated; paying travel expenses for students who need to leave campus early due to coronavirus infections or campus interruptions.</th>
+                    <td class="rightAlign" data-a1Housing="{{apr.a1Housing}}">{{apr.a1Housing|dollars}}</td>
+                    <td class="rightAlign" data-a2Housing="{{apr.a2Housing}}">{{apr.a2Housing|dollars}}</td>
+                    <td class="rightAlign" data-a3Housing="{{apr.a3Housing}}">{{apr.a3Housing|dollars}}</td>
+                    <td data-housingNotes="{{apr.housingNotes|e}}">{{apr.housingNotes|e}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Subsidizing food service to reduce density in eating facilities, to provide pre-packaged meals, or to add hours to food service operations to accommodate social distancing.</th>
+                    <td class="rightAlign" data-a1FoodService="{{apr.a1FoodService}}">{{apr.a1FoodService|dollars}}</td>
+                    <td class="rightAlign" data-a2FoodService="{{apr.a2FoodService}}">{{apr.a2FoodService|dollars}}</td>
+                    <td class="rightAlign" data-a3FoodService="{{apr.a3FoodService}}">{{apr.a3FoodService|dollars}}</td>
+                    <td data-foodServiceNotes="{{apr.foodServiceNotes|e}}">{{apr.foodServiceNotes|e}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Costs related to operating additional class sections to enable social distancing, such as those for hiring more instructors and increasing campus hours of operations.</th>
+                    <td class="rightAlign" data-a1SocialDistancing="{{apr.a1SocialDistancing}}">{{apr.a1SocialDistancing|dollars}}</td>
+                    <td class="rightAlign" data-a2SocialDistancing="{{apr.a2SocialDistancing}}">{{apr.a2SocialDistancing|dollars}}</td>
+                    <td class="rightAlign" data-a3SocialDistancing="{{apr.a3SocialDistancing}}">{{apr.a3SocialDistancing|dollars}}</td>
+                    <td data-socialDistancingNotes="{{apr.socialDistancingNotes|e}}">{{apr.socialDistancingNotes|e}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Campus safety and operations.<sup><a href="#endnote13">13</a></sup></th>
+                    <td class="rightAlign" data-a1CampusSafety="{{apr.a1CampusSafety}}">{{apr.a1CampusSafety|dollars}}</td>
+                    <td class="rightAlign" data-a2CampusSafety="{{apr.a2CampusSafety}}">{{apr.a2CampusSafety|dollars}}</td>
+                    <td class="rightAlign" data-a3CampusSafety="{{apr.a3CampusSafety}}">{{apr.a3CampusSafety|dollars}}</td>
+                    <td data-campusSafetyNotes="{{apr.campusSafetyNotes|e}}">{{apr.campusSafetyNotes|e}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Purchasing, leasing, or renting additional instructional equipment and supplies (such as laboratory equipment or computers) to reduce the number of students sharing equipment or supplies during a single class period and to provide time for disinfection between uses.</th>
+                    <td class="rightAlign" data-a1Equipment="{{apr.a1Equipment}}">{{apr.a1Equipment|dollars}}</td>
+                    <td class="rightAlign" data-a2Equipment="{{apr.a2Equipment}}">{{apr.a2Equipment|dollars}}</td>
+                    <td class="rightAlign" data-a3Equipment="{{apr.a3Equipment}}">{{apr.a3Equipment|dollars}}</td>
+                    <td data-equipmentNotes="{{apr.equipmentNotes|e}}">{{apr.equipmentNotes|e}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Purchasing faculty and staff training in online instruction; or paying additional funds to staff who are providing training in addition to their regular job responsibilities.</th>
+                    <td class="rightAlign" data-a1OnlineInstruction="{{apr.a1OnlineInstruction}}">{{apr.a1OnlineInstruction|dollars}}</td>
+                    <td class="rightAlign" data-a2OnlineInstruction="{{apr.a2OnlineInstruction}}">{{apr.a2OnlineInstruction|dollars}}</td>
+                    <td class="rightAlign" data-a3OnlineInstruction="{{apr.a3OnlineInstruction}}">{{apr.a3OnlineInstruction|dollars}}</td>
+                    <td data-onlineInstructionNotes="{{apr.onlineInstructionNotes|e}}">{{apr.onlineInstructionNotes|e}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Purchasing, leasing, or renting additional equipment or software to enable distance learning, or upgrading campus wi-fi access or extending open networks to parking lots or public spaces, etc.</th>
+                    <td class="rightAlign" data-a1DistanceLearning="{{apr.a1DistanceLearning}}">{{apr.a1DistanceLearning|dollars}}</td>
+                    <td class="rightAlign" data-a2DistanceLearning="{{apr.a2DistanceLearning}}">{{apr.a2DistanceLearning|dollars}}</td>
+                    <td class="rightAlign" data-a3DistanceLearning="{{apr.a3DistanceLearning}}">{{apr.a3DistanceLearning|dollars}}</td>
+                    <td data-distanceLearningNotes="{{apr.distanceLearningNotes|e}}">{{apr.distanceLearningNotes|e}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Implementing evidence-based practices to monitor and suppress coronavirus in accordance with public health guidelines.<sup><a href="#endnote14">14</a></sup></th>
+                    <td class="rightAlign" data-a1CoronavirusPractices="{{apr.a1CoronavirusPractices}}">{{apr.a1CoronavirusPractices|dollars}}</td>
+                    <td class="rightAlign" data-a2CoronavirusPractices="{{apr.a2CoronavirusPractices}}">{{apr.a2CoronavirusPractices|dollars}}</td>
+                    <td class="rightAlign" data-a3CoronavirusPractices="{{apr.a3CoronavirusPractices}}">{{apr.a3CoronavirusPractices|dollars}}</td>
+                    <td data-coronavirusPracticesNotes="{{apr.coronavirusPracticesNotes|e}}">{{apr.coronavirusPracticesNotes|e}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Conducting direct outreach to financial aid applicants about the opportunity to receive a financial aid adjustment due to the recent unemployment of a family member or independent student, or other circumstances, described in section 479A of the Higher Education Act of 1965.</th>
+                    <td class="rightAlign" data-a1UnemploymentAid="{{apr.a1UnemploymentAid}}">{{apr.a1UnemploymentAid|dollars}}</td>
+                    <td class="rightAlign" data-a2UnemploymentAid="{{apr.a2UnemploymentAid}}">{{apr.a2UnemploymentAid|dollars}}</td>
+                    <td class="rightAlign" data-a3UnemploymentAid="{{apr.a3UnemploymentAid}}">{{apr.a3UnemploymentAid|dollars}}</td>
+                    <td data-unemploymentAidNotes="{{apr.unemploymentAidNotes|e}}">{{apr.unemploymentAidNotes|e}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Replacing lost revenue from all sources.<sup><a href="#endnote15">15</a></sup></th>
+                    <td class="rightAlign" data-a1LostRevenue="{{apr.a1LostRevenue}}">{{apr.a1LostRevenue|dollars}}</td>
+                    <td class="rightAlign" data-a2LostRevenue="{{apr.a2LostRevenue}}">{{apr.a2LostRevenue|dollars}}</td>
+                    <td class="rightAlign" data-a3LostRevenue="{{apr.a3LostRevenue}}">{{apr.a3LostRevenue|dollars}}</td>
+                    <td data-lostRevenueNotes="{{apr.lostRevenueNotes|e}}">{{apr.lostRevenueNotes|e}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Other uses of (a)(1) Institutional Portion funds</th>
+                    <td class="rightAlign" data-a1OtherUses="{{apr.a1OtherUses}}">{{apr.a1OtherUses|dollars}}</td>
+                    <td class="unused"></td>
+                    <td class="unused"></td>
+                    <td data-a1OtherUsesNotes="{{apr.a1OtherUsesNotes|e}}">{{apr.a1OtherUsesNotes|e}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Other uses of (a)(2) or (a)(3) funds, if applicable.</th>
+                    <td class="unused"></td>
+                    <td class="rightAlign" data-a2OtherUses="{{apr.a2OtherUses}}">{{apr.a2OtherUses|dollars}}</td>
+                    <td class="rightAlign" data-a3OtherUses="{{apr.a3OtherUses}}">{{apr.a3OtherUses|dollars}}</td>
+                    <td data-a2a3OtherUsesNotes="{{apr.a2a3OtherUsesNotes|e}}">{{apr.a2a3OtherUsesNotes|e}}</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th scope="row">Anual Institutional Expenditures for each Program</th>
+                    <td class="rightAlign" data-a1AnnualExpenditure="{{apr.a1AnnualExpenditure}}">{{apr.a1AnnualExpenditure|dollars}}</td>
+                    <td class="rightAlign" data-a2AnnualExpenditure="{{apr.a2AnnualExpenditure}}">{{apr.a2AnnualExpenditure|dollars}}</td>
+                    <td class="rightAlign" data-a3AnnualExpenditure="{{apr.a3AnnualExpenditure}}">{{apr.a3AnnualExpenditure|dollars}}</td>
+                    <td class="unused"></td>
+                </tr>
+            </tfoot>
+        </table>
+        <p><label>Total of Institutional Annual Expenditures: <input readonly type="text" id="totalAnnualExpenditure" data-totalAnnualExpenditure="{{apr.totatotalAnnualExpenditurelExpenditures}}" value="{{apr.totalAnnualExpenditure|dollars}}"/></label></p>
+        {% if (apr.a1LostRevenue is defined and apr.a1LostRevenue is gt 0) or
+            (apr.a2LostRevenue is defined and apr.a2LostRevenue is gt 0) or
+            (apr.a3LostRevenue is defined and apr.a3LostRevenue is gt 0)
+        %}
+        <table cellspacing="0" width="100%" id="lost_revenue_by_category" repeat="1">
+            <caption>c) Estimate how much of the lost revenue reported above came from revenue lost from each of the following sources<sup><a href="#endnote16">16</a></sup>:</caption>
+            <thead>
+                <tr>
+                    <th style="width:55%;" scope="col">Source of Lost Revenue</th>
+                    <th scope="col">Estimated Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Academic sources</th>
+                    <td class="rightAlign" data-lostRevenueAcademicSources="{{apr.lostRevenueAcademicSources}}">{{apr.lostRevenueAcademicSources|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Unpaid student accounts receivable or other student account debts (including tuition, 
+                        fees, and institutional charges)</th>
+                    <td class="rightAlign" data-lostRevenueUnpaidStudentAccounts="{{apr.lostRevenueUnpaidStudentAccounts}}">{{apr.lostRevenueUnpaidStudentAccounts|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Room and board</th>
+                    <td class="rightAlign" data-lostRevenueRoomAndBoard="{{apr.lostRevenueRoomAndBoard}}">{{apr.lostRevenueRoomAndBoard|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Enrollment declines, including reduced tuition, fees, and institutional charges</th>
+                    <td class="rightAlign" data-lostRevenueEnrollmentDeclines="{{apr.lostRevenueEnrollmentDeclines}}">{{apr.lostRevenueEnrollmentDeclines|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Supported research</th>
+                    <td class="rightAlign" data-lostRevenueSupportedResearch="{{apr.lostRevenueSupportedResearch}}">{{apr.lostRevenueSupportedResearch|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Summer terms and camps</th>
+                    <td class="rightAlign" data-lostRevenueSummerTerms="{{apr.lostRevenueSummerTerms}}">{{apr.lostRevenueSummerTerms|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Auxiliary services sources</th>
+                    <td class="rightAlign" data-lostRevenueAuxiliaryServices="{{apr.lostRevenueAuxiliaryServices}}">{{apr.lostRevenueAuxiliaryServices|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Cancelled ancillary events</th>
+                    <td class="rightAlign" data-lostRevenueCancelledEvents="{{apr.lostRevenueCancelledEvents}}">{{apr.lostRevenueCancelledEvents|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Disruption of food service</th>
+                    <td class="rightAlign" data-lostRevenueDisruptionFoodService="{{apr.lostRevenueDisruptionFoodService}}">{{apr.lostRevenueDisruptionFoodService|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Dormitory services</th>
+                    <td class="rightAlign" data-lostRevenueDormServices="{{apr.lostRevenueDormServices}}">{{apr.lostRevenueDormServices|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Childcare services</th>
+                    <td class="rightAlign" data-lostRevenueChildCareServices="{{apr.lostRevenueChildCareServices}}">{{apr.lostRevenueChildCareServices|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Use of facilities or venues, including external events such as weddings, receptions, or 
+                        conferences (other than facilities associated with sectarian instruction or religious 
+                        worship)</th>
+                    <td class="rightAlign" data-lostRevenueUseOfFacilities="{{apr.lostRevenueUseOfFacilities}}">{{apr.lostRevenueUseOfFacilities|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Bookstore revenue</th>
+                    <td class="rightAlign" data-lostRevenueBookstoreRevenue="{{apr.lostRevenueBookstoreRevenue}}">{{apr.lostRevenueBookstoreRevenue|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Parking revenue</th>
+                    <td class="rightAlign" data-lostRevenueParkingRevenue="{{apr.lostRevenueParkingRevenue}}">{{apr.lostRevenueParkingRevenue|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Lease revenue</th>
+                    <td class="rightAlign" data-lostRevenueLeaseRevenue="{{apr.lostRevenueLeaseRevenue}}">{{apr.lostRevenueLeaseRevenue|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Royalties</th>
+                    <td class="rightAlign" data-lostRevenueRoyalties="{{apr.lostRevenueRoyalties}}">{{apr.lostRevenueRoyalties|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Other operating revenue</th>
+                    <td class="rightAlign" data-lostRevenueOtherOperatingRevenue="{{apr.lostRevenueOtherOperatingRevenue}}">{{apr.lostRevenueOtherOperatingRevenue|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Total (a)(1) lost revenue funds</th>
+                    <td class="rightAlign">{{apr.a1LostRevenue|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Total (a)(2) lost revenue funds</th>
+                    <td class="rightAlign">{{apr.a2LostRevenue|dollars}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Total (a)(3) lost revenue funds</th>
+                    <td class="rightAlign">{{apr.a3LostRevenue|dollars}}</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th scope="row">TOTAL LOST REVENUE HEERF<sup><a href="#endnote17">17</a></sup></th>
+                    <td class="rightAlign" data-lostRevenueTotal="{{apr.lostRevenueTotal}}">{{apr.lostRevenueTotal|dollars}}</td>
+                </tr>
+            </tfoot>
+        </table>
+            {% if apr.lostRevenueOtherOperatingRevenue is defined and apr.lostRevenueOtherOperatingRevenue is gt 0 %}
+                <p><label>d) Briefly describe the “other operating revenue” reported above:</label>
+                    <textarea readonly id="lostRevenueOtherOperatingRevenueDescription" rows="4" cols="72"
+                        data-lostRevenueOtherOperatingRevenueDescription="{{apr.lostRevenueOtherOperatingRevenueDescription|e}}">
+                        {{apr.lostRevenueOtherOperatingRevenueDescription|e}}
+                    </textarea>
+                </p>
+            {% endif %}
+        {% endif %}
+    </form>
+
+    <form name="enrollment" action="" aria-labelledby="enrollment_status">
+        <h1 id="enrollment_status">Enrollment Status</h1>
+        <p class="question">10) Provide the unduplicated count of students who were enrolled at least once as a degree/certificate seeking student within the reporting period and their 
+            enrollment status at the end reporting period. The three statuses (completed, withdrawn, and still enrolled) need to add up to the total number of 
+            students enrolled.</p>
+        <p class="question">a) Complete the following table for the applicable reporting period.</p>
+        <table cellspacing="0" width="100%" id="enrollment_status_reporting_period" repeat="1">
+            <caption>Enrollment status for all degree/certificate seeking students for the reporting period</caption>
+            <thead>
+                <tr>
+                    <th style="width:15%;" scope="col"></th>
+                    <th style="width:25%;" scope="col"></th>
+                    <th style="width:15%;" scope="col">Number of degree/certificate seeking students</th>
+                    <th style="width:15%;" scope="col">Number of degree/certificate seeking students who <u>completed</u> a program at your institution during the reporting period</th>
+                    <th style="width:15%;" scope="col">Number of degree/certificate seeking students who did not complete during the reporting period but were <u>still enrolled</u> at your institution (i.e., last enrollment record at the end of the reporting period is not a withdraw record)</th>
+                    <th style="width:15%;" scope="col">Number of degree/certificate seeking students who did not complete and <u>withdrew</u> from your institution (i.e., no completion record during the reporting period and the last enrollment record at the end of the reporting period is a withdraw record)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="rowgroup" rowspan="2">Academic level<sup><a href="#endnote18">18</a></sup></th>
+                    <th scope="row">Undergraduate students</th>
+                    <td class="rightAlign" data-enroll2021Ug="{{apr.enroll2021Ug}}">{{apr.enroll2021Ug}}</td>
+                    <td class="rightAlign" data-enroll2021GC="{{apr.enroll2021GC}}">{{apr.enroll2021GC}}</td>
+                    <td class="rightAlign" data-enroll2021GSe="{{apr.enroll2021GSe}}">{{apr.enroll2021GSe}}</td>
+                    <td class="rightAlign" data-enroll2021GW="{{apr.enroll2021GW}}">{{apr.enroll2021GW}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Graduate students</th>
+                    <td class="rightAlign" data-enroll2021G="{{apr.enroll2021G}}">{{apr.enroll2021G}}</td>
+                    <td class="rightAlign" data-enroll2021GC="{{apr.enroll2021GC}}">{{apr.enroll2021GC}}</td>
+                    <td class="rightAlign" data-enroll2021GSe="{{apr.enroll2021GSe}}">{{apr.enroll2021GSe}}</td>
+                    <td class="rightAlign" data-enroll2021GW="{{apr.enroll2021GW}}">{{apr.enroll2021GW}}</td>
+                </tr>
+                <tr>
+                    <th scope="rowgroup" rowspan="2">*Pell grant status<sup><a href="#endnote19">19</a></sup> (undergraduates only)</th>
+                    <th scope="row">Pell grant recipients</th>
+                    <td class="rightAlign" data-enroll2021Pell="{{apr.enroll2021Pell}}">{{apr.enroll2021Pell}}</td>
+                    <td class="rightAlign" data-enroll2021PellC="{{apr.enroll2021PellC}}">{{apr.enroll2021PellC}}</td>
+                    <td class="rightAlign" data-enroll2021PellSe="{{apr.enroll2021PellSe}}">{{apr.enroll2021PellSe}}</td>
+                    <td class="rightAlign" data-enroll2021PellW="{{apr.enroll2021PellW}}">{{apr.enroll2021PellW}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Non-Pell grant recipients</th>
+                    <td class="rightAlign" data-enroll2021NonPell="{{apr.enroll2021NonPell}}">{{apr.enroll2021NonPell}}</td>
+                    <td class="rightAlign" data-enroll2021NonPellC="{{apr.enroll2021NonPellC}}">{{apr.enroll2021NonPellC}}</td>
+                    <td class="rightAlign" data-enroll2021NonPellSe="{{apr.enroll2021NonPellSe}}">{{apr.enroll2021NonPellSe}}</td>
+                    <td class="rightAlign" data-enroll2021NonPellW="{{apr.enroll2021NonPellW}}">{{apr.enroll2021NonPellW}}</td>
+                </tr>
+                <tr>
+                    <th scope="rowgroup" rowspan="2">*Enrollment intensity<sup><a href="#endnote20">20</a></sup></th>
+                    <th scope="row">Part-time</th>
+                    <td class="rightAlign" data-enroll2021Pt="{{apr.enroll2021Pt}}">{{apr.enroll2021Pt}}</td>
+                    <td class="rightAlign" data-enroll2021PtC="{{apr.enroll2021PtC}}">{{apr.enroll2021PtC}}</td>
+                    <td class="rightAlign" data-enroll2021PtSe="{{apr.enroll2021PtSe}}">{{apr.enroll2021PtSe}}</td>
+                    <td class="rightAlign" data-enroll2021PtW="{{apr.enroll2021PtW}}">{{apr.enroll2021PtW}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Full-time</th>
+                    <td class="rightAlign" data-enroll2021Ft="{{apr.enroll2021Ft}}">{{apr.enroll2021Ft}}</td>
+                    <td class="rightAlign" data-enroll2021FtC="{{apr.enroll2021FtC}}">{{apr.enroll2021FtC}}</td>
+                    <td class="rightAlign" data-enroll2021FtSe="{{apr.enroll2021FtSe}}">{{apr.enroll2021FtSe}}</td>
+                    <td class="rightAlign" data-enroll2021FtW="{{apr.enroll2021FtW}}">{{apr.enroll2021FtW}}</td>
+                </tr>
+                <tr>
+                    <th scope="rowgroup" rowspan="9">*Race/ethnicity (IPEDS categories)</th>
+                    <th scope="row">American Indian or Alaska Native</th>
+                    <td class="rightAlign" data-enr21AiAn="{{apr.enr21AiAn}}">{{apr.enr21AiAn}}</td>
+                    <td class="rightAlign" data-enr21AiAnC="{{apr.enr21AiAnC}}">{{apr.enr21AiAnC}}</td>
+                    <td class="rightAlign" data-enr21AiAnSe="{{apr.enr21AiAnSe}}">{{apr.enr21AiAnSe}}</td>
+                    <td class="rightAlign" data-enr21AiAnW="{{apr.enr21AiAnW}}">{{apr.enr21AiAnW}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Asian</th>
+                    <td class="rightAlign" data-enr21Asian="{{apr.enr21Asian}}">{{apr.enr21Asian}}</td>
+                    <td class="rightAlign" data-enr21AsianC="{{apr.enr21AsianC}}">{{apr.enr21AsianC}}</td>
+                    <td class="rightAlign" data-enr21AsianSe="{{apr.enr21AsianSe}}">{{apr.enr21AsianSe}}</td>
+                    <td class="rightAlign" data-enr21AsianW="{{apr.enr21AsianW}}">{{apr.enr21AsianW}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Black or African American</th>
+                    <td class="rightAlign" data-enr21Baa="{{apr.enr21Baa}}">{{apr.enr21Baa}}</td>
+                    <td class="rightAlign" data-enr21BaaC="{{apr.enr21BaaC}}">{{apr.enr21BaaC}}</td>
+                    <td class="rightAlign" data-enr21BaaSe="{{apr.enr21BaaSe}}">{{apr.enr21BaaSe}}</td>
+                    <td class="rightAlign" data-enr21BaaW="{{apr.enr21BaaW}}">{{apr.enr21BaaW}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Hispanic/Latino</th>
+                    <td class="rightAlign" data-enr21H="{{apr.enr21H}}">{{apr.enr21H}}</td>
+                    <td class="rightAlign" data-enr21HC="{{apr.enr21HC}}">{{apr.enr21HC}}</td>
+                    <td class="rightAlign" data-enr21HSe="{{apr.enr21HSe}}">{{apr.enr21HSe}}</td>
+                    <td class="rightAlign" data-enr21HW="{{apr.enr21HW}}">{{apr.enr21HW}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Native Hawaiian or Other Pacific Islande</th>
+                    <td class="rightAlign" data-enr21NhPi="{{apr.enr21NhPi}}">{{apr.enr21NhPi}}</td>
+                    <td class="rightAlign" data-enr21NhPiC="{{apr.enr21NhPiC}}">{{apr.enr21NhPiC}}</td>
+                    <td class="rightAlign" data-enr21NhPiSe="{{apr.enr21NhPiSe}}">{{apr.enr21NhPiSe}}</td>
+                    <td class="rightAlign" data-enr21NhPiW="{{apr.enr21NhPiW}}">{{apr.enr21NhPiW}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">White</th>
+                    <td class="rightAlign" data-enr21White="{{apr.enr21White}}">{{apr.enr21White}}</td>
+                    <td class="rightAlign" data-enr21WhiteC="{{apr.enr21WhiteC}}">{{apr.enr21WhiteC}}</td>
+                    <td class="rightAlign" data-enr21WhiteSe="{{apr.enr21WhiteSe}}">{{apr.enr21WhiteSe}}</td>
+                    <td class="rightAlign" data-enr21WhiteW="{{apr.enr21WhiteW}}">{{apr.enr21WhiteW}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Two or more races</th>
+                    <td class="rightAlign" data-enr21Tmr="{{apr.enr21Tmr}}">{{apr.enr21Tmr}}</td>
+                    <td class="rightAlign" data-enr21TmrC="{{apr.enr21TmrC}}">{{apr.enr21TmrC}}</td>
+                    <td class="rightAlign" data-enr21TmrSe="{{apr.enr21TmrSe}}">{{apr.enr21TmrSe}}</td>
+                    <td class="rightAlign" data-enr21TmrW="{{apr.enr21TmrW}}">{{apr.enr21TmrW}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Race/ethnicity unknown</th>
+                    <td class="rightAlign" data-enr21Unknown="{{apr.enr21Unknown}}">{{apr.enr21Unknown}}</td>
+                    <td class="rightAlign" data-enr21UnknownC="{{apr.enr21UnknownC}}">{{apr.enr21UnknownC}}</td>
+                    <td class="rightAlign" data-enr21UnknownSe="{{apr.enr21UnknownSe}}">{{apr.enr21UnknownSe}}</td>
+                    <td class="rightAlign" data-enr21UnknownW="{{apr.enr21UnknownW}}">{{apr.enr21UnknownW}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Nonresident alien</th>
+                    <td class="rightAlign" data-enr21Na="{{apr.enr21Na}}">{{apr.enr21Na}}</td>
+                    <td class="rightAlign" data-enr21NaC="{{apr.enr21NaC}}">{{apr.enr21NaC}}</td>
+                    <td class="rightAlign" data-enr21NaSe="{{apr.enr21NaSe}}">{{apr.enr21NaSe}}</td>
+                    <td class="rightAlign" data-enr21NaW="{{apr.enr21NaW}}">{{apr.enr21NaW}}</td>
+                </tr>
+                <tr>
+                    <th scope="rowgroup" rowspan="2">*Gender (IPEDS categories)</th>
+                    <th scope="row">Women</th>
+                    <td class="rightAlign" data-enr21Women="{{apr.enr21Women}}">{{apr.enr21Women}}</td>
+                    <td class="rightAlign" data-enr21WomenC="{{apr.enr21WomenC}}">{{apr.enr21WomenC}}</td>
+                    <td class="rightAlign" data-enr21WomenSe="{{apr.enr21WomenSe}}">{{apr.enr21WomenSe}}</td>
+                    <td class="rightAlign" data-enr21WomenW="{{apr.enr21WomenW}}">{{apr.enr21WomenW}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Men</th>
+                    <td class="rightAlign" data-enr21Men="{{apr.enr21Men}}">{{apr.enr21Men}}</td>
+                    <td class="rightAlign" data-enr21MenC="{{apr.enr21MenC}}">{{apr.enr21MenC}}</td>
+                    <td class="rightAlign" data-enr21MenSe="{{apr.enr21MenSe}}">{{apr.enr21MenSe}}</td>
+                    <td class="rightAlign" data-enr21MenW="{{apr.enr21MenW}}">{{apr.enr21MenW}}</td>
+                </tr>
+                <tr>
+                    <th scope="rowgroup" rowspan="3">*Age (IPEDS categories)</th>
+                    <th scope="row">Age 25 and older</th>
+                    <td class="rightAlign" data-enr2125O="{{apr.enr2125O}}">{{apr.enr2125O}}</td>
+                    <td class="rightAlign" data-enr2125OC="{{apr.enr2125OC}}">{{apr.enr2125OC}}</td>
+                    <td class="rightAlign" data-enr2125OSe="{{apr.enr2125OSe}}">{{apr.enr2125OSe}}</td>
+                    <td class="rightAlign" data-enr2125OW="{{apr.enr2125OW}}">{{apr.enr2125OW}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Age 24 and younger</th>
+                    <td class="rightAlign" data-enr2124Y="{{apr.enr2124Y}}">{{apr.enr2124Y}}</td>
+                    <td class="rightAlign" data-enr2124YC="{{apr.enr2124YC}}">{{apr.enr2124YC}}</td>
+                    <td class="rightAlign" data-enr2124YSe="{{apr.enr2124YSe}}">{{apr.enr2124YSe}}</td>
+                    <td class="rightAlign" data-enr2124YW="{{apr.enr2124YW}}">{{apr.enr2124YW}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Age not available in administrative records (e.g., IPEDS, FAFSA, etc.)</th>
+                    <td class="rightAlign" data-enr21AgeNoCat="{{apr.enr21AgeNoCat}}">{{apr.enr21AgeNoCat}}</td>
+                    <td class="rightAlign" data-enr21AgeNoCatC="{{apr.enr21AgeNoCatC}}">{{apr.enr21AgeNoCatC}}</td>
+                    <td class="rightAlign" data-enr21AgeNoCatSe="{{apr.enr21AgeNoCatSe}}">{{apr.enr21AgeNoCatSe}}</td>
+                    <td class="rightAlign" data-enr21AgeNoCatW="{{apr.enr21AgeNoCatW}}">{{apr.enr21AgeNoCatW}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="question">b) Complete the following table. This table provides a historical comparison point for the current reporting period and since it is historical information it does not have to be updated on an annual basis. Institutions should submit responses in the early 2022 data collection process. However, if institutions need more time, they can submit responses in the early 2023 data collection process.</p>
+        <table cellspacing="0" width="100%" id="enrollment_status_2020" repeat="1">
+            <caption>*Calendar year 2020: Enrollment status for all degree/certificate seeking students</caption>
+            <thead>
+                <tr>
+                    <th style="width:15%;" scope="col"></th>
+                    <th style="width:25%;" scope="col"></th>
+                    <th style="width:15%;" scope="col">Number of degree/certificate seeking students</th>
+                    <th style="width:15%;" scope="col">Number of degree/certificate seeking students who <u>completed</u> a program at your institution during the reporting period</th>
+                    <th style="width:15%;" scope="col">Number of degree/certificate seeking students who did not complete during the reporting period but were <u>still enrolled</u> at your institution (i.e., last enrollment record at the end of the reporting period is not a withdraw record)</th>
+                    <th style="width:15%;" scope="col">Number of degree/certificate seeking students who did not complete and <u>withdrew</u> from your institution (i.e., no completion record during the reporting period and the last enrollment record at the end of the reporting period is a withdraw record)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="rowgroup" rowspan="2">Academic level<sup><a href="#endnote21">21</a></sup></th>
+                    <th scope="row">Undergraduate students</th>
+                    <td class="rightAlign" data-enroll2020Ug="{{apr.enroll2020Ug}}">{{apr.enroll2020Ug}}</td>
+                    <td class="rightAlign" data-enroll2020GC="{{apr.enroll2020GC}}">{{apr.enroll2020GC}}</td>
+                    <td class="rightAlign" data-enroll2020GSe="{{apr.enroll2020GSe}}">{{apr.enroll2020GSe}}</td>
+                    <td class="rightAlign" data-enroll2020GW="{{apr.enroll2020GW}}">{{apr.enroll2020GW}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Graduate students</th>
+                    <td class="rightAlign" data-enroll2020G="{{apr.enroll2020G}}">{{apr.enroll2020G}}</td>
+                    <td class="rightAlign" data-enroll2020GC="{{apr.enroll2020GC}}">{{apr.enroll2020GC}}</td>
+                    <td class="rightAlign" data-enroll2020GSe="{{apr.enroll2020GSe}}">{{apr.enroll2020GSe}}</td>
+                    <td class="rightAlign" data-enroll2020GW="{{apr.enroll2020GW}}">{{apr.enroll2020GW}}</td>
+                </tr>
+                <tr>
+                    <th scope="rowgroup" rowspan="2">*Pell grant status<sup><a href="#endnote22">22</a></sup> (undergraduates only)</th>
+                    <th scope="row">Pell grant recipients</th>
+                    <td class="rightAlign" data-enroll2020Pell="{{apr.enroll2020Pell}}">{{apr.enroll2020Pell}}</td>
+                    <td class="rightAlign" data-enroll2020PellC="{{apr.enroll2020PellC}}">{{apr.enroll2020PellC}}</td>
+                    <td class="rightAlign" data-enroll2020PellSe="{{apr.enroll2020PellSe}}">{{apr.enroll2020PellSe}}</td>
+                    <td class="rightAlign" data-enroll2020PellW="{{apr.enroll2020PellW}}">{{apr.enroll2020PellW}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Non-Pell grant recipients</th>
+                    <td class="rightAlign" data-enroll2020NonPell="{{apr.enroll2020NonPell}}">{{apr.enroll2020NonPell}}</td>
+                    <td class="rightAlign" data-enroll2020NonPellC="{{apr.enroll2020NonPellC}}">{{apr.enroll2020NonPellC}}</td>
+                    <td class="rightAlign" data-enroll2020NonPellSe="{{apr.enroll2020NonPellSe}}">{{apr.enroll2020NonPellSe}}</td>
+                    <td class="rightAlign" data-enroll2020NonPellW="{{apr.enroll2020NonPellW}}">{{apr.enroll2020NonPellW}}</td>
+                </tr>
+                <tr>
+                    <th scope="rowgroup" rowspan="2">*Enrollment intensity<sup><a href="#endnote23">23</a></sup></th>
+                    <th scope="row">Part-time</th>
+                    <td class="rightAlign" data-enroll2020Pt="{{apr.enroll2020Pt}}">{{apr.enroll2020Pt}}</td>
+                    <td class="rightAlign" data-enroll2020PtC="{{apr.enroll2020PtC}}">{{apr.enroll2020PtC}}</td>
+                    <td class="rightAlign" data-enroll2020PtSe="{{apr.enroll2020PtSe}}">{{apr.enroll2020PtSe}}</td>
+                    <td class="rightAlign" data-enroll2020PtW="{{apr.enroll2020PtW}}">{{apr.enroll2020PtW}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Full-time</th>
+                    <td class="rightAlign" data-enroll2020Ft="{{apr.enroll2020Ft}}">{{apr.enroll2020Ft}}</td>
+                    <td class="rightAlign" data-enroll2020FtC="{{apr.enroll2020FtC}}">{{apr.enroll2020FtC}}</td>
+                    <td class="rightAlign" data-enroll2020FtSe="{{apr.enroll2020FtSe}}">{{apr.enroll2020FtSe}}</td>
+                    <td class="rightAlign" data-enroll2020FtW="{{apr.enroll2020FtW}}">{{apr.enroll2020FtW}}</td>
+                </tr>
+                <tr>
+                    <th scope="rowgroup" rowspan="9">*Race/ethnicity (IPEDS categories)</th>
+                    <th scope="row">American Indian or Alaska Native</th>
+                    <td class="rightAlign" data-enr20AiAn="{{apr.enr20AiAn}}">{{apr.enr20AiAn}}</td>
+                    <td class="rightAlign" data-enr20AiAnC="{{apr.enr20AiAnC}}">{{apr.enr20AiAnC}}</td>
+                    <td class="rightAlign" data-enr20AiAnSe="{{apr.enr20AiAnSe}}">{{apr.enr20AiAnSe}}</td>
+                    <td class="rightAlign" data-enr20AiAnW="{{apr.enr20AiAnW}}">{{apr.enr20AiAnW}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Asian</th>
+                    <td class="rightAlign" data-enr20Asian="{{apr.enr20Asian}}">{{apr.enr20Asian}}</td>
+                    <td class="rightAlign" data-enr20AsianC="{{apr.enr20AsianC}}">{{apr.enr20AsianC}}</td>
+                    <td class="rightAlign" data-enr20AsianSe="{{apr.enr20AsianSe}}">{{apr.enr20AsianSe}}</td>
+                    <td class="rightAlign" data-enr20AsianW="{{apr.enr20AsianW}}">{{apr.enr20AsianW}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Black or African American</th>
+                    <td class="rightAlign" data-enr20Baa="{{apr.enr20Baa}}">{{apr.enr20Baa}}</td>
+                    <td class="rightAlign" data-enr20BaaC="{{apr.enr20BaaC}}">{{apr.enr20BaaC}}</td>
+                    <td class="rightAlign" data-enr20BaaSe="{{apr.enr20BaaSe}}">{{apr.enr20BaaSe}}</td>
+                    <td class="rightAlign" data-enr20BaaW="{{apr.enr20BaaW}}">{{apr.enr20BaaW}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Hispanic/Latino</th>
+                    <td class="rightAlign" data-enr20H="{{apr.enr20H}}">{{apr.enr20H}}</td>
+                    <td class="rightAlign" data-enr20HC="{{apr.enr20HC}}">{{apr.enr20HC}}</td>
+                    <td class="rightAlign" data-enr20HSe="{{apr.enr20HSe}}">{{apr.enr20HSe}}</td>
+                    <td class="rightAlign" data-enr20HW="{{apr.enr20HW}}">{{apr.enr20HW}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Native Hawaiian or Other Pacific Islande</th>
+                    <td class="rightAlign" data-enr20NhPi="{{apr.enr20NhPi}}">{{apr.enr20NhPi}}</td>
+                    <td class="rightAlign" data-enr20NhPiC="{{apr.enr20NhPiC}}">{{apr.enr20NhPiC}}</td>
+                    <td class="rightAlign" data-enr20NhPiSe="{{apr.enr20NhPiSe}}">{{apr.enr20NhPiSe}}</td>
+                    <td class="rightAlign" data-enr20NhPiW="{{apr.enr20NhPiW}}">{{apr.enr20NhPiW}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">White</th>
+                    <td class="rightAlign" data-enr20White="{{apr.enr20White}}">{{apr.enr20White}}</td>
+                    <td class="rightAlign" data-enr20WhiteC="{{apr.enr20WhiteC}}">{{apr.enr20WhiteC}}</td>
+                    <td class="rightAlign" data-enr20WhiteSe="{{apr.enr20WhiteSe}}">{{apr.enr20WhiteSe}}</td>
+                    <td class="rightAlign" data-enr20WhiteW="{{apr.enr20WhiteW}}">{{apr.enr20WhiteW}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Two or more races</th>
+                    <td class="rightAlign" data-enr20Tmr="{{apr.enr20Tmr}}">{{apr.enr20Tmr}}</td>
+                    <td class="rightAlign" data-enr20TmrC="{{apr.enr20TmrC}}">{{apr.enr20TmrC}}</td>
+                    <td class="rightAlign" data-enr20TmrSe="{{apr.enr20TmrSe}}">{{apr.enr20TmrSe}}</td>
+                    <td class="rightAlign" data-enr20TmrW="{{apr.enr20TmrW}}">{{apr.enr20TmrW}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Race/ethnicity unknown</th>
+                    <td class="rightAlign" data-enr20Unknown="{{apr.enr20Unknown}}">{{apr.enr20Unknown}}</td>
+                    <td class="rightAlign" data-enr20UnknownC="{{apr.enr20UnknownC}}">{{apr.enr20UnknownC}}</td>
+                    <td class="rightAlign" data-enr20UnknownSe="{{apr.enr20UnknownSe}}">{{apr.enr20UnknownSe}}</td>
+                    <td class="rightAlign" data-enr20UnknownW="{{apr.enr20UnknownW}}">{{apr.enr20UnknownW}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Nonresident alien</th>
+                    <td class="rightAlign" data-enr20Na="{{apr.enr20Na}}">{{apr.enr20Na}}</td>
+                    <td class="rightAlign" data-enr20NaC="{{apr.enr20NaC}}">{{apr.enr20NaC}}</td>
+                    <td class="rightAlign" data-enr20NaSe="{{apr.enr20NaSe}}">{{apr.enr20NaSe}}</td>
+                    <td class="rightAlign" data-enr20NaW="{{apr.enr20NaW}}">{{apr.enr20NaW}}</td>
+                </tr>
+                <tr>
+                    <th scope="rowgroup" rowspan="2">*Gender (IPEDS categories)</th>
+                    <th scope="row">Women</th>
+                    <td class="rightAlign" data-enr20Women="{{apr.enr20Women}}">{{apr.enr20Women}}</td>
+                    <td class="rightAlign" data-enr20WomenC="{{apr.enr20WomenC}}">{{apr.enr20WomenC}}</td>
+                    <td class="rightAlign" data-enr20WomenSe="{{apr.enr20WomenSe}}">{{apr.enr20WomenSe}}</td>
+                    <td class="rightAlign" data-enr20WomenW="{{apr.enr20WomenW}}">{{apr.enr20WomenW}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Men</th>
+                    <td class="rightAlign" data-enr20Men="{{apr.enr20Men}}">{{apr.enr20Men}}</td>
+                    <td class="rightAlign" data-enr20MenC="{{apr.enr20MenC}}">{{apr.enr20MenC}}</td>
+                    <td class="rightAlign" data-enr20MenSe="{{apr.enr20MenSe}}">{{apr.enr20MenSe}}</td>
+                    <td class="rightAlign" data-enr20MenW="{{apr.enr20MenW}}">{{apr.enr20MenW}}</td>
+                </tr>
+                <tr>
+                    <th scope="rowgroup" rowspan="3">*Age (IPEDS categories)</th>
+                    <th scope="row">Age 25 and older</th>
+                    <td class="rightAlign" data-enr2025O="{{apr.enr2025O}}">{{apr.enr2025O}}</td>
+                    <td class="rightAlign" data-enr2025OC="{{apr.enr2025OC}}">{{apr.enr2025OC}}</td>
+                    <td class="rightAlign" data-enr2025OSe="{{apr.enr2025OSe}}">{{apr.enr2025OSe}}</td>
+                    <td class="rightAlign" data-enr2025OW="{{apr.enr2025OW}}">{{apr.enr2025OW}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Age 24 and younger</th>
+                    <td class="rightAlign" data-enr2024Y="{{apr.enr2024Y}}">{{apr.enr2024Y}}</td>
+                    <td class="rightAlign" data-enr2024YC="{{apr.enr2024YC}}">{{apr.enr2024YC}}</td>
+                    <td class="rightAlign" data-enr2024YSe="{{apr.enr2024YSe}}">{{apr.enr2024YSe}}</td>
+                    <td class="rightAlign" data-enr2024YW="{{apr.enr2024YW}}">{{apr.enr2024YW}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Age not available in administrative records (e.g., IPEDS, FAFSA, etc.)</th>
+                    <td class="rightAlign" data-enr20AgeNoCat="{{apr.enr20AgeNoCat}}">{{apr.enr20AgeNoCat}}</td>
+                    <td class="rightAlign" data-enr20AgeNoCatC="{{apr.enr20AgeNoCatC}}">{{apr.enr20AgeNoCatC}}</td>
+                    <td class="rightAlign" data-enr20AgeNoCatSe="{{apr.enr20AgeNoCatSe}}">{{apr.enr20AgeNoCatSe}}</td>
+                    <td class="rightAlign" data-enr20AgeNoCatW="{{apr.enr20AgeNoCatW}}">{{apr.enr20AgeNoCatW}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="question">c) Complete the following table. This table provides a historical comparison point for the current reporting period and since it is historical information does not have to be updated on an annual basis. Institutions should submit responses in the early 2022 data collection process. However, if institutions need more time, they can submit responses in the early 2023 data collection process.</p>
+        <table cellspacing="0" width="100%" id="enrollment_status_2019" repeat="1">
+            <caption>*Calendar year 2019: Enrollment status for degree/certificate seeking students</caption>
+            <thead>
+                <tr>
+                    <th style="width:15%;" scope="col"></th>
+                    <th style="width:25%;" scope="col"></th>
+                    <th style="width:15%;" scope="col">Number of degree/certificate seeking students</th>
+                    <th style="width:15%;" scope="col">Number of degree/certificate seeking students who <u>completed</u> a program at your institution during the reporting period</th>
+                    <th style="width:15%;" scope="col">Number of degree/certificate seeking students who did not complete during the reporting period but were <u>still enrolled</u> at your institution (i.e., last enrollment record at the end of the reporting period is not a withdraw record)</th>
+                    <th style="width:15%;" scope="col">Number of degree/certificate seeking students who did not complete and <u>withdrew</u> from your institution (i.e., no completion record during the reporting period and the last enrollment record at the end of the reporting period is a withdraw record)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="rowgroup" rowspan="2">Academic level<sup><a href="#endnote24">24</a></sup></th>
+                    <th scope="row">Undergraduate students</th>
+                    <td class="rightAlign" data-enroll2019Ug="{{apr.enroll2019Ug}}">{{apr.enroll2019Ug}}</td>
+                    <td class="rightAlign" data-enroll2019GC="{{apr.enroll2019GC}}">{{apr.enroll2019GC}}</td>
+                    <td class="rightAlign" data-enroll2019GSe="{{apr.enroll2019GSe}}">{{apr.enroll2019GSe}}</td>
+                    <td class="rightAlign" data-enroll2019GW="{{apr.enroll2019GW}}">{{apr.enroll2019GW}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Graduate students</th>
+                    <td class="rightAlign" data-enroll2019G="{{apr.enroll2019G}}">{{apr.enroll2019G}}</td>
+                    <td class="rightAlign" data-enroll2019GC="{{apr.enroll2019GC}}">{{apr.enroll2019GC}}</td>
+                    <td class="rightAlign" data-enroll2019GSe="{{apr.enroll2019GSe}}">{{apr.enroll2019GSe}}</td>
+                    <td class="rightAlign" data-enroll2019GW="{{apr.enroll2019GW}}">{{apr.enroll2019GW}}</td>
+                </tr>
+                <tr>
+                    <th scope="rowgroup" rowspan="2">*Pell grant status<sup><a href="#endnote25">25</a></sup> (undergraduates only)</th>
+                    <th scope="row">Pell grant recipients</th>
+                    <td class="rightAlign" data-enroll2019Pell="{{apr.enroll2019Pell}}">{{apr.enroll2019Pell}}</td>
+                    <td class="rightAlign" data-enroll2019PellC="{{apr.enroll2019PellC}}">{{apr.enroll2019PellC}}</td>
+                    <td class="rightAlign" data-enroll2019PellSe="{{apr.enroll2019PellSe}}">{{apr.enroll2019PellSe}}</td>
+                    <td class="rightAlign" data-enroll2019PellW="{{apr.enroll2019PellW}}">{{apr.enroll2019PellW}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Non-Pell grant recipients</th>
+                    <td class="rightAlign" data-enroll2019NonPell="{{apr.enroll2019NonPell}}">{{apr.enroll2019NonPell}}</td>
+                    <td class="rightAlign" data-enroll2019NonPellC="{{apr.enroll2019NonPellC}}">{{apr.enroll2019NonPellC}}</td>
+                    <td class="rightAlign" data-enroll2019NonPellSe="{{apr.enroll2019NonPellSe}}">{{apr.enroll2019NonPellSe}}</td>
+                    <td class="rightAlign" data-enroll2019NonPellW="{{apr.enroll2019NonPellW}}">{{apr.enroll2019NonPellW}}</td>
+                </tr>
+                <tr>
+                    <th scope="rowgroup" rowspan="2">*Enrollment intensity<sup><a href="#endnote26">26</a></sup></th>
+                    <th scope="row">Part-time</th>
+                    <td class="rightAlign" data-enroll2019Pt="{{apr.enroll2019Pt}}">{{apr.enroll2019Pt}}</td>
+                    <td class="rightAlign" data-enroll2019PtC="{{apr.enroll2019PtC}}">{{apr.enroll2019PtC}}</td>
+                    <td class="rightAlign" data-enroll2019PtSe="{{apr.enroll2019PtSe}}">{{apr.enroll2019PtSe}}</td>
+                    <td class="rightAlign" data-enroll2019PtW="{{apr.enroll2019PtW}}">{{apr.enroll2019PtW}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Full-time</th>
+                    <td class="rightAlign" data-enroll2019Ft="{{apr.enroll2019Ft}}">{{apr.enroll2019Ft}}</td>
+                    <td class="rightAlign" data-enroll2019FtC="{{apr.enroll2019FtC}}">{{apr.enroll2019FtC}}</td>
+                    <td class="rightAlign" data-enroll2019FtSe="{{apr.enroll2019FtSe}}">{{apr.enroll2019FtSe}}</td>
+                    <td class="rightAlign" data-enroll2019FtW="{{apr.enroll2019FtW}}">{{apr.enroll2019FtW}}</td>
+                </tr>
+                <tr>
+                    <th scope="rowgroup" rowspan="9">*Race/ethnicity (IPEDS categories)</th>
+                    <th scope="row">American Indian or Alaska Native</th>
+                    <td class="rightAlign" data-enr19AiAn="{{apr.enr19AiAn}}">{{apr.enr19AiAn}}</td>
+                    <td class="rightAlign" data-enr19AiAnC="{{apr.enr19AiAnC}}">{{apr.enr19AiAnC}}</td>
+                    <td class="rightAlign" data-enr19AiAnSe="{{apr.enr19AiAnSe}}">{{apr.enr19AiAnSe}}</td>
+                    <td class="rightAlign" data-enr19AiAnW="{{apr.enr19AiAnW}}">{{apr.enr19AiAnW}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Asian</th>
+                    <td class="rightAlign" data-enr19Asian="{{apr.enr19Asian}}">{{apr.enr19Asian}}</td>
+                    <td class="rightAlign" data-enr19AsianC="{{apr.enr19AsianC}}">{{apr.enr19AsianC}}</td>
+                    <td class="rightAlign" data-enr19AsianSe="{{apr.enr19AsianSe}}">{{apr.enr19AsianSe}}</td>
+                    <td class="rightAlign" data-enr19AsianW="{{apr.enr19AsianW}}">{{apr.enr19AsianW}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Black or African American</th>
+                    <td class="rightAlign" data-enr19Baa="{{apr.enr19Baa}}">{{apr.enr19Baa}}</td>
+                    <td class="rightAlign" data-enr19BaaC="{{apr.enr19BaaC}}">{{apr.enr19BaaC}}</td>
+                    <td class="rightAlign" data-enr19BaaSe="{{apr.enr19BaaSe}}">{{apr.enr19BaaSe}}</td>
+                    <td class="rightAlign" data-enr19BaaW="{{apr.enr19BaaW}}">{{apr.enr19BaaW}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Hispanic/Latino</th>
+                    <td class="rightAlign" data-enr19H="{{apr.enr19H}}">{{apr.enr19H}}</td>
+                    <td class="rightAlign" data-enr19HC="{{apr.enr19HC}}">{{apr.enr19HC}}</td>
+                    <td class="rightAlign" data-enr19HSe="{{apr.enr19HSe}}">{{apr.enr19HSe}}</td>
+                    <td class="rightAlign" data-enr19HW="{{apr.enr19HW}}">{{apr.enr19HW}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Native Hawaiian or Other Pacific Islande</th>
+                    <td class="rightAlign" data-enr19NhPi="{{apr.enr19NhPi}}">{{apr.enr19NhPi}}</td>
+                    <td class="rightAlign" data-enr19NhPiC="{{apr.enr19NhPiC}}">{{apr.enr19NhPiC}}</td>
+                    <td class="rightAlign" data-enr19NhPiSe="{{apr.enr19NhPiSe}}">{{apr.enr19NhPiSe}}</td>
+                    <td class="rightAlign" data-enr19NhPiW="{{apr.enr19NhPiW}}">{{apr.enr19NhPiW}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">White</th>
+                    <td class="rightAlign" data-enr19White="{{apr.enr19White}}">{{apr.enr19White}}</td>
+                    <td class="rightAlign" data-enr19WhiteC="{{apr.enr19WhiteC}}">{{apr.enr19WhiteC}}</td>
+                    <td class="rightAlign" data-enr19WhiteSe="{{apr.enr19WhiteSe}}">{{apr.enr19WhiteSe}}</td>
+                    <td class="rightAlign" data-enr19WhiteW="{{apr.enr19WhiteW}}">{{apr.enr19WhiteW}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Two or more races</th>
+                    <td class="rightAlign" data-enr19Tmr="{{apr.enr19Tmr}}">{{apr.enr19Tmr}}</td>
+                    <td class="rightAlign" data-enr19TmrC="{{apr.enr19TmrC}}">{{apr.enr19TmrC}}</td>
+                    <td class="rightAlign" data-enr19TmrSe="{{apr.enr19TmrSe}}">{{apr.enr19TmrSe}}</td>
+                    <td class="rightAlign" data-enr19TmrW="{{apr.enr19TmrW}}">{{apr.enr19TmrW}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Race/ethnicity unknown</th>
+                    <td class="rightAlign" data-enr19Unknown="{{apr.enr19Unknown}}">{{apr.enr19Unknown}}</td>
+                    <td class="rightAlign" data-enr19UnknownC="{{apr.enr19UnknownC}}">{{apr.enr19UnknownC}}</td>
+                    <td class="rightAlign" data-enr19UnknownSe="{{apr.enr19UnknownSe}}">{{apr.enr19UnknownSe}}</td>
+                    <td class="rightAlign" data-enr19UnknownW="{{apr.enr19UnknownW}}">{{apr.enr19UnknownW}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Nonresident alien</th>
+                    <td class="rightAlign" data-enr19Na="{{apr.enr19Na}}">{{apr.enr19Na}}</td>
+                    <td class="rightAlign" data-enr19NaC="{{apr.enr19NaC}}">{{apr.enr19NaC}}</td>
+                    <td class="rightAlign" data-enr19NaSe="{{apr.enr19NaSe}}">{{apr.enr19NaSe}}</td>
+                    <td class="rightAlign" data-enr19NaW="{{apr.enr19NaW}}">{{apr.enr19NaW}}</td>
+                </tr>
+                <tr>
+                    <th scope="rowgroup" rowspan="2">*Gender (IPEDS categories)</th>
+                    <th scope="row">Women</th>
+                    <td class="rightAlign" data-enr19Women="{{apr.enr19Women}}">{{apr.enr19Women}}</td>
+                    <td class="rightAlign" data-enr19WomenC="{{apr.enr19WomenC}}">{{apr.enr19WomenC}}</td>
+                    <td class="rightAlign" data-enr19WomenSe="{{apr.enr19WomenSe}}">{{apr.enr19WomenSe}}</td>
+                    <td class="rightAlign" data-enr19WomenW="{{apr.enr19WomenW}}">{{apr.enr19WomenW}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Men</th>
+                    <td class="rightAlign" data-enr19Men="{{apr.enr19Men}}">{{apr.enr19Men}}</td>
+                    <td class="rightAlign" data-enr19MenC="{{apr.enr19MenC}}">{{apr.enr19MenC}}</td>
+                    <td class="rightAlign" data-enr19MenSe="{{apr.enr19MenSe}}">{{apr.enr19MenSe}}</td>
+                    <td class="rightAlign" data-enr19MenW="{{apr.enr19MenW}}">{{apr.enr19MenW}}</td>
+                </tr>
+                <tr>
+                    <th scope="rowgroup" rowspan="3">*Age (IPEDS categories)</th>
+                    <th scope="row">Age 25 and older</th>
+                    <td class="rightAlign" data-enr1925O="{{apr.enr1925O}}">{{apr.enr1925O}}</td>
+                    <td class="rightAlign" data-enr1925OC="{{apr.enr1925OC}}">{{apr.enr1925OC}}</td>
+                    <td class="rightAlign" data-enr1925OSe="{{apr.enr1925OSe}}">{{apr.enr1925OSe}}</td>
+                    <td class="rightAlign" data-enr1925OW="{{apr.enr1925OW}}">{{apr.enr1925OW}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Age 24 and younger</th>
+                    <td class="rightAlign" data-enr1924Y="{{apr.enr1924Y}}">{{apr.enr1924Y}}</td>
+                    <td class="rightAlign" data-enr1924YC="{{apr.enr1924YC}}">{{apr.enr1924YC}}</td>
+                    <td class="rightAlign" data-enr1924YSe="{{apr.enr1924YSe}}">{{apr.enr1924YSe}}</td>
+                    <td class="rightAlign" data-enr1924YW="{{apr.enr1924YW}}">{{apr.enr1924YW}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Age not available in administrative records (e.g., IPEDS, FAFSA, etc.)</th>
+                    <td class="rightAlign" data-enr19AgeNoCat="{{apr.enr19AgeNoCat}}">{{apr.enr19AgeNoCat}}</td>
+                    <td class="rightAlign" data-enr19AgeNoCatC="{{apr.enr19AgeNoCatC}}">{{apr.enr19AgeNoCatC}}</td>
+                    <td class="rightAlign" data-enr19AgeNoCatSe="{{apr.enr19AgeNoCatSe}}">{{apr.enr19AgeNoCatSe}}</td>
+                    <td class="rightAlign" data-enr19AgeNoCatW="{{apr.enr19AgeNoCatW}}">{{apr.enr19AgeNoCatW}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+
+    <form name="number_positions" action="" aria-labelledby="fte">
+        <p id="fte" class="question">11) Provide the number of full-time equivalent (FTE) positions as of the listed reporting dates by IPEDS categories. (The number of FTE positions includes all staff regardless of whether the position is funded by Federal, State, local, or other funds—including instructional and non-instructional staff and contractors—and equals the sum of the number of full-time positions plus the full-time equivalent of the number of part-time positions).</p>
+        <table cellspacing="0" width="100%" id="fte_table" repeat="1">
+            <caption>The number of full-time equivalent positions at the institution at various points in time.<sup><a href="#endnote27">27</a></sup></caption>
+            <thead>
+                <tr>
+                    <th style="width:20%" scope="col"></th>
+                    <th style="width:20%;" scope="col">Full-time equivalent (FTE) positions as of November 1, 2018</th>
+                    <th style="width:20%;" scope="col">Full-time equivalent (FTE) positions as of November 1, 2019</th>
+                    <th style="width:20%;" scope="col">Full-time equivalent (FTE) positions as of November 1, 2020</th>
+                    <th style="width:20%;" scope="col">Full-time equivalent (FTE) positions as of November 1, 2021</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Instructional Staff<sup><a href="#endnote28">28</a></sup></th>
+                    <td class="rightAlign" data-instructionalStaffFte2018="{{apr.instructionalStaffFte2018}}">{{apr.instructionalStaffFte2018}}</td>
+                    <td class="rightAlign" data-instructionalStaffFte2019="{{apr.instructionalStaffFte2019}}">{{apr.instructionalStaffFte2019}}</td>
+                    <td class="rightAlign" data-instructionalStaffFte2020="{{apr.instructionalStaffFte2020}}">{{apr.instructionalStaffFte2020}}</td>
+                    <td class="rightAlign" data-instructionalStaffFte2021="{{apr.instructionalStaffFte2021}}">{{apr.instructionalStaffFte2021}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Non-Instructional Staff</th>
+                    <td class="rightAlign" data-nonInstructionalStaffFte2018="{{apr.nonInstructionalStaffFte2018}}">{{apr.nonInstructionalStaffFte2018}}</td>
+                    <td class="rightAlign" data-nonInstructionalStaffFte2019="{{apr.nonInstructionalStaffFte2019}}">{{apr.nonInstructionalStaffFte2019}}</td>
+                    <td class="rightAlign" data-nonInstructionalStaffFte2020="{{apr.nonInstructionalStaffFte2020}}">{{apr.nonInstructionalStaffFte2020}}</td>
+                    <td class="rightAlign" data-nonInstructionalStaffFte2021="{{apr.nonInstructionalStaffFte2021}}">{{apr.nonInstructionalStaffFte2021}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+    <form name="accreditor_approval" action="" aria-labelledby="accreditor">
+        <p id="accreditor" class="question">12) Did your institution receive approval from your primary accreditor to offer distance education after the start of the national emergency?</p>
+        <p><label>a. Did your institution receive temporary approval from your primary accreditor to offer distance education? <input readonly type="text" data-receivedTemporaryApproval="{{apr.receivedTemporaryApproval|yes_no}}" value="{{apr.receivedTemporaryApproval|yes_no}}"/></label></p>
+        <p><label>b. Did your institution receive permanent approval from your primary accreditor to offer distance education? <input readonly type="text" data-receivedPermanentApproval="{{apr.receivedPermanentApproval|yes_no}}" value="{{apr.receivedPermanentApproval|yes_no}}"/></label></p>
+        <p><label>c. Provide the name of your institution’s primary accreditor that provided temporary and/or permanent approval: <input readonly type="text" size="{{apr.primaryAccreditor|length}}" data-primaryAccreditor="{{apr.primaryAccreditor|e}}" value="{{apr.primaryAccreditor|e}}"/></label></p>
+        <p><label>d. Are you accredited by an agency that does not have distance education within its scope of recognition and therefore relied on COVID-19 flexibilities to offer distance education? <input readonly type="text" data-isAccreditedByAgency="{{apr.isAccreditedByAgency|yes_no}}" value="{{apr.isAccreditedByAgency|yes_no}}"/></label></p>
+    </form>
+    <section id="end_notes" role="contentinfo" aria-labelledby="endnotes">
+        <h1 id="endnotes">Notes</h1>
+        <p id="endnote1"><sup>1</sup> Institutions that expended all of their HEERF funds in calendar year 2021 may need to finalize their calendar year 2021 reporting in early 2023 if they choose to delay reporting on the questions labeled with an asterisk until the early 2023 reporting timeframe.</a></p>
+        <p id="endnote2"><sup>2</sup> See <a href="https://www.federalregister.gov/d/2021-10196">https://www.federalregister.gov/d/2021-10196</a>.</p>
+        <p id="endnote3"><sup>3</sup> See <a href="https://www2.ed.gov/about/offices/list/ope/heerfreporting.html">https://www2.ed.gov/about/offices/list/ope/heerfreporting.html</a>.</p>
+        <p id="endnote4"><sup>4</sup> Net price refers to costs covered by students and their families and is calculated by adding tuition, fees, books, supplies, and living costs and subtracting grant and/or scholarship aid (e.g., Pell grants, school-based grants, merit scholarships</p>
+        <p id="endnote5"><sup>5</sup> When IPEDS definitions apply (categories labeled with “(IPEDS categories)” in the form), use the same category for each student that is used to report to IPEDS. For the second and third annual HEERF reports (reporting on calendar years 2021 and 2022 in early 2022 and early 2023 respectively), if a student is not reported to IPEDS, for example because they are not enrolled for credit in courses that could lead to an award, then report that student under “Students not categorized in IPEDS.” In the fourth, and fifth annual HEERF reports “Students not categorized in IPEDS” will no longer be an option in the form and institutions will need to track all of their students (regardless of if they would be included in IPEDS enrollment counts) and categorize them using the IPEDS classification methodology.</p>
+        <p id="endnote6"><sup>6</sup> For students in both undergraduate and graduate categories, classify as a graduate student.</p>
+        <p id="endnote7"><sup>7</sup> For students who had multiple enrollment intensities, classify as full-time.</p>
+        <p id="endnote8"><sup>8</sup> Designate the student as a Pell grant recipient if the student was a Pell grant recipient at any time within the applicable reporting period.</p>
+        <p id="endnote9"><sup>9</sup> Includes non-FAFSA filers.</p>
+        <p id="endnote10"><sup>10</sup> Do NOT include funds from the Institutional Resilience and Expanded Postsecondary Opportunity (IREPO) funds as part of this annual performance report.</p>
+        <p id="endnote11"><sup>11</sup> Based on the Department&apos;s Final Regulations issued on May 14, 2021 (86 FR 26608, available at https://www.federalregister.gov/d/2021-10190), students are not required to be eligible for Title IV student financial aid in order to receive HEERF emergency financial aid grants. Title IV eligibility for this question is based on the number of students for whom the institution has received an Institutional Student Information Record (ISIR) plus the number of students who completed any alternative form developed by the institution. In reporting these data, students should be classified as Title IV eligible if they were determined to be Title IV eligible at any point during the reporting period.</p>
+        <p id="endnote12"><sup>12</sup> Institutions should follow IPEDS Fall enrollment guidelines (<a href="https://nces.ed.gov/ipeds/use-the-data/survey-components/8/fall-enrollment">https://nces.ed.gov/ipeds/use-the-data/survey-components/8/fall-enrollment</a>) for when to capture a student’s age. For example, institutions operating on a traditional academic year calendar (semester, trimester, quarter, or 4-1-4) report Fall enrollment as of the institution's official fall reporting date or October 15. Institutions operating on a calendar that differs by program or that enrolls students on a continuous basis (referred to as program reporters) report Fall enrollment as students enrolled any time during the period August 1 and October 31.</p>
+        <p id="endnote13"><sup>13</sup> Including costs or expenses related to the disinfecting and cleaning of dorms and other campus facilities, purchases of personal protective equipment (PPE), purchases of cleaning supplies, adding personnel to increase the frequency of cleaning, the reconfiguration of facilities to promote social distancing, etc.</p>
+        <p id="endnote14"><sup>14</sup> Including funding to cover the cost of vaccine distribution.</p>
+        <p id="endnote15"><sup>15</sup> Please see the Department’s HEERF Lost Revenue FAQs (March 19, 2021) for more information regarding what may be appropriately included in an estimate of lost revenue.</p>
+        <p id="endnote16"><sup>16</sup> These categories are the categories described in Question 3 of the HEERF Lost Revenue FAQs (March 19, 2021, available at <a href="https://www2.ed.gov/about/offices/list/ope/heerflostrevenuefaqs.pdf">https://www2.ed.gov/about/offices/list/ope/heerflostrevenuefaqs.pdf</a>).</p>
+        <p id="endnote17"><sup>17</sup> Estimated amounts need to sum to amounts reported in 9b</p>
+        <p id="endnote18"><sup>18</sup> For students in both undergraduate and graduate categories, classify as a graduate student.</p>
+        <p id="endnote19"><sup>19</sup> Designate the student as a Pell grant recipient if the student was a Pell grant recipient at any time within the applicable reporting period.</p>
+        <p id="endnote20"><sup>20</sup> For students who had multiple enrollment intensities, classify as full-time.</p>
+        <p id="endnote21"><sup>21</sup> For students in both undergraduate and graduate categories, classify as a graduate student.</p>
+        <p id="endnote22"><sup>22</sup> Designate the student as a Pell grant recipient if the student was a Pell grant recipient at any time within the applicable reporting period.</p>
+        <p id="endnote23"><sup>23</sup> For students who had multiple enrollment intensities, classify as full-time.</p>
+        <p id="endnote24"><sup>24</sup> For students in both undergraduate and graduate categories, classify as a graduate student.</p>
+        <p id="endnote25"><sup>25</sup> Designate the student as a Pell grant recipient if the student was a Pell grant recipient at any time within the applicable reporting period.</p>
+        <p id="endnote26"><sup>26</sup> For students who had multiple enrollment intensities, classify as full-time.</p>
+        <p id="endnote27"><sup>27</sup> Report FTE positions as of November 1 in each subsequent reporting period. For example, for the third annual report, report FTE positions as of November 1, 2022.</p>
+        <p id="endnote28"><sup>28</sup> An occupational category that is comprised of staff who are either: 1) Primarily Instruction or 2) Instruction combined with research and/or public service. The intent of the Instructional Staff category is to include all individuals whose primary occupation includes instruction at the institution.</p>
+    </section>
+    <section id="burden_statement" role="region" aria-labelledby="burden">
+        <h1 id="burden">Burden Statement</h1>
+        <p>According to the Paperwork Reduction Act of 1995, no persons are required to respond to a collection of
+            information unless such collection displays a valid OMB control number. The valid OMB control number for
+            this information collection is {{apr.omb_control_number}}. Public reporting burden for this collection of information is
+            estimated to average 40 hours per response, including time for reviewing instructions, searching existing
+            data sources, gathering and maintaining the data needed, and completing and reviewing the collection of
+            information. Under the PRA, participants are required to respond to this collection to obtain or retain a
+            benefit. If you have any comments concerning the accuracy of the time estimate, suggestions for
+            improving this individual collection, or if you have comments or concerns regarding the status of your individual
+            form, please contact Brian Fu, US. Department of Education, 400 Maryland Avenue, SW, Washington, DC
+            20202</p>
+    </section>
+</main>
+{% endblock apr %}

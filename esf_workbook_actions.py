@@ -7156,7 +7156,7 @@ _HEER_workbook_map = {
             {'name': 'isStudentAccessToTechnology', 'index': 48, 'type': 'bool'},
             {'name': 'isStudentAccessToHealthCare', 'index': 49, 'type': 'bool'},
             {'name': 'isStudentAccessToChildCare', 'index': 50, 'type': 'bool'},
-            {'name': 'otherAttendanceExpenses', 'index': 51, 'type': 'str'},
+            {'name': 'otherAttendanceExpenses', 'index': 51, 'type': 'bool'},
             {'name': 'otherEligibilityReason', 'index': 52, 'type': 'str'},
             {'name': 'wasPreExistingDataUsed', 'index': 53, 'type': 'bool'},
             {'name': 'enrollmentIntensity', 'index': 54, 'type': 'bool'},
@@ -7439,8 +7439,7 @@ _HEER_workbook_map = {
             {'name': 'ftePositionsAsOf03132020', 'index': 242, 'type': 'float'},
             {'name': 'ftePositionsLastDayReportingPeriod', 'index': 243, 'type': 'float'}
         ],
-        'subs': [],
-        'filename_components': ['reportingYear', 'ueiNumber']
+        'filename_components': ['reportingYear', 'dunsNumber']
     },
     '2021': {
         'primary_grantee_worksheet_name': 'Submitted Data',
@@ -8104,14 +8103,13 @@ _HEER_workbook_map = {
             {'name': 'operationalStatus', 'index': 592, 'type': 'str'},
             {'name': 'collectionStatus', 'index': 593, 'type': 'str'}
         ],
-        'subs': [],
-        'filename_components': ['reportingYear', 'ueiNumber']
+        'filename_components': ['reportingYear', 'dunsNumber']
     },
     '2022': {
 
         'primary_grantee_worksheet_name': 'Submitted Data',
         'primary_grantee_key_worksheet_column': 4,
-        'primary_grantee_key_name': 'ueiNumber',
+        'primary_grantee_key_name': 'uei',
         'omb_control_number': '1840-0850',
         'expiration_date': '1/31/2025',
         'cui_official': 'Office of Postsecondary Education',
@@ -8770,8 +8768,7 @@ _HEER_workbook_map = {
             {'name': 'operationalStatus', 'index': 592, 'type': 'str'},
             {'name': 'collectionStatus', 'index': 593, 'type': 'str'}
         ],
-        'subs': [],
-        'filename_components': ['reportingYear', 'ueiNumber']
+        'filename_components': ['reportingYear', 'uei']
     }
 }
 
@@ -8954,61 +8951,63 @@ def _build_apr(wb: Workbook, row: tuple, wb_map: dict, reporting_year: str) -> E
             logging.error(attr)
             logging.error(f'Index {index}')
 
-    apr_key = None
-    apr_key_name = wb_map.get('primary_grantee_key_name',None)
-    if apr_key_name is None:
-        logging.error('Missing primary grantee key name in workbook map')
-    apr_key = getattr(apr,apr_key_name,None)
-    if apr_key is None:
-        logging.error(f'APR object missing key field name {apr_key_name} for extracting subaward records.')
-        logging.error(f'{apr}')
-    else:
-        # Loop over all the subordinate pieces in the 'subs' list,
-        # merging the contents of worksheets where needed and
-        # creating a list of ESF_Sub instances for each.
-        for sub in wb_map.get('subs',_empty_gen()):
-            sub_name = sub.get('name',None)
-            if sub_name is None:
-                logging.info('No name for subordinate list.')
-                continue
-            merge_field = sub.get('merge_field',None)
-            subvals = []
-            sub_pieces = sub.get('children',_empty_gen())
-            if len(sub_pieces) == 1:
-                ws = wb[sub_pieces[0].get('worksheet_name')]
-                field_map = sub_pieces[0].get('field_map')
-                key_offset = sub_pieces[0].get('key_offset')
-                subvals = _extract_sub_worksheet(ws=ws,
-                    map=field_map, key=apr_key,
-                    key_offset=key_offset)
-            else:
-                for sub_piece in sub_pieces:
-                    ws = wb[sub_piece.get('worksheet_name')]
-                    field_map = sub_piece.get('field_map')
-                    key_offset = sub_piece.get('key_offset')
-                    partial_subvals = _extract_sub_worksheet(ws=ws,
+    sublist = wb_map.get('subs',None)
+    if sublist is not None:
+        apr_key = None
+        apr_key_name = wb_map.get('primary_grantee_key_name',None)
+        if apr_key_name is None:
+            logging.error('Missing primary grantee key name in workbook map')
+        apr_key = getattr(apr,apr_key_name,None)
+        if apr_key is None:
+            logging.error(f'APR object missing key field name {apr_key_name} for extracting subaward records.')
+            logging.error(f'{apr}')
+        else:
+            # Loop over all the subordinate pieces in the 'subs' list,
+            # merging the contents of worksheets where needed and
+            # creating a list of ESF_Sub instances for each.
+            for sub in sublist:
+                sub_name = sub.get('name',None)
+                if sub_name is None:
+                    logging.info('No name for subordinate list.')
+                    continue
+                merge_field = sub.get('merge_field',None)
+                subvals = []
+                sub_pieces = sub.get('children',_empty_gen())
+                if len(sub_pieces) == 1:
+                    ws = wb[sub_pieces[0].get('worksheet_name')]
+                    field_map = sub_pieces[0].get('field_map')
+                    key_offset = sub_pieces[0].get('key_offset')
+                    subvals = _extract_sub_worksheet(ws=ws,
                         map=field_map, key=apr_key,
                         key_offset=key_offset)
-                    # Merge all the objects extracted from the child worksheet
-                    # into the subvals list of dictionaries, using the key_field to
-                    # determine whether there's an existing entry in the main list
-                    # to update, or a new entry is needed.
-                    for subval in partial_subvals:
-                        merge_key = getattr(subval,merge_field, None)
-                        if merge_key is None:
-                            logging.error(f'Merge field {merge_field} missing in {subval}')
-                            continue
-                        else:
-                            should_append = True
-                            for val in subvals:
-                                merge_val = getattr(val,merge_field, None)
-                                if merge_key is not None and merge_key == merge_val:
-                                    val.merge(subval)
-                                    should_append = False
-                                    break
-                            if should_append:
-                                subvals.append(subval)
-            setattr(apr, sub_name, subvals)
+                else:
+                    for sub_piece in sub_pieces:
+                        ws = wb[sub_piece.get('worksheet_name')]
+                        field_map = sub_piece.get('field_map')
+                        key_offset = sub_piece.get('key_offset')
+                        partial_subvals = _extract_sub_worksheet(ws=ws,
+                            map=field_map, key=apr_key,
+                            key_offset=key_offset)
+                        # Merge all the objects extracted from the child worksheet
+                        # into the subvals list of dictionaries, using the key_field to
+                        # determine whether there's an existing entry in the main list
+                        # to update, or a new entry is needed.
+                        for subval in partial_subvals:
+                            merge_key = getattr(subval,merge_field, None)
+                            if merge_key is None:
+                                logging.error(f'Merge field {merge_field} missing in {subval}')
+                                continue
+                            else:
+                                should_append = True
+                                for val in subvals:
+                                    merge_val = getattr(val,merge_field, None)
+                                    if merge_key is not None and merge_key == merge_val:
+                                        val.merge(subval)
+                                        should_append = False
+                                        break
+                                if should_append:
+                                    subvals.append(subval)
+                setattr(apr, sub_name, subvals)
 
     return apr
 
@@ -9077,7 +9076,7 @@ class APRWorkbookList(Iterable):
         output_file_base_name = self._subfund
         for fnc in self._workbook_map['filename_components']:
             component = getattr(apri,fnc,None)
-            if component:
-                output_file_base_name += '-' + component
+            if component is not None:
+                output_file_base_name = f'{output_file_base_name}-{component}'
         setattr(apri,'output_file_base_name',output_file_base_name)
         return apri

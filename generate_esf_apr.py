@@ -171,24 +171,26 @@ def store_html(apr_html: Iterator[str], filename: pathlib.Path) -> None:
         return
 
 def yes_no(value):
-    if value:
-        return 'Yes'
+    if value is not None:
+        if value:
+            return 'Yes'
     return 'No'
 
 def check(value):
-    if value:
-        return 'checked'
+    if value is not None:
+        if value:
+            return 'checked'
     return ''
 
 def dollars(value):
-    if value:
+    if value is not None:
         if type(value) != float:
             value = float(value)
         return f'${value:,.2f}'
     return ''
 
 def percent(value):
-    if value:
+    if value is not None:
         if type(value) != float:
             value = float(value)
         return f'{value:.4f}'
@@ -327,7 +329,6 @@ if __name__ == '__main__':
                         print(f'Generating HTML APR {apr.output_file_base_name}')
                         apr_html = generate_apr(temp=temp, apr=apr)
                         if apr_html is None:
-                            taprs.set_description(f"No HTML output generated.")
                             continue
                         html_path = pathlib.Path(apr.output_file_base_name).with_suffix('.html')
                         if outdir:

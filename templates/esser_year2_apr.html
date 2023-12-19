@@ -7,7 +7,7 @@ Annual Report{% endblock title %}
     (ESSER I/ESSER II/ARP ESSER) Recipient Data Collection Form</p>
 {% endblock apr_title %}
 {% block apr_sections %}
-<p><a href="#intro">Introduction</a></p>
+<p><a href="#introduction">Introduction</a></p>
 <p><a href="#section1">Section 1 - State Fiscal Year</a></p>
 <p><a href="#section2">Section 2 - Overall ESSER Fund Grants for SEA</a></p>
 <p><a href="#section3">Section 3- Mandatory Subgrants to LEAs</a></p>
@@ -17,27 +17,27 @@ Annual Report{% endblock title %}
 {% endblock apr_sections %}
 {% block apr %}
 <main>
-    <form action="" name="intro" aria-label="introduction">
-        <h1>ESSER Reporting Form</h1>
-        <p><label for="stateCode">State ID:</label> <input disabled type="text" id="stateCode"
+    <form action="" name="intro" aria-labelledby="introduction">
+        <h1 id="introduction">ESSER Reporting Form</h1>
+        <p><label for="stateCode">State ID:</label> <input readonly type="text" id="stateCode"
                 data-stateCode="{{apr.stateCode|e}}" value="{{ apr.stateCode|e }}"/></p>
-        <p><label for="esser1AwardNumber">ESSER I PR/Award number:</label> <input disabled type="text" id="esser1AwardNumber"
+        <p><label for="esser1AwardNumber">ESSER I PR/Award number:</label> <input readonly type="text" id="esser1AwardNumber"
                 data-esser1AwardNumber="{{ apr.esser1AwardNumber|e }}" value="{{ apr.esser1AwardNumber|e }}"/></p>
-        <p><label for="esser2AwardNumber">ESSER II PR/Award number:</label> <input disabled type="text"
+        <p><label for="esser2AwardNumber">ESSER II PR/Award number:</label> <input readonly type="text"
                 id="esser2AwardNumber" data-esser2AwardNumber="{{ apr.esser2AwardNumber|e }}" value="{{apr.esser2AwardNumber|e}}"/></p>
-        <p><label for="esser3AwardNumber">ARP ESSER PR/Award number:</label> <input disabled type="text"
+        <p><label for="esser3AwardNumber">ARP ESSER PR/Award number:</label> <input readonly type="text"
                 id="esser3AwardNumber" data-esser3AwardNumber="{{ apr.esser3AwardNumber|e }}" value="{{apr.esser3AwardNumber|e}}"/></p>
-        <p><label for="stateDirectorName">State Director:</label> <input disabled type="text" size="72" id="stateDirectorName"
+        <p><label for="stateDirectorName">State Director:</label> <input readonly type="text" size="72" id="stateDirectorName"
                 data-stateDirectorName="{{ apr.stateDirectorName|e }}" value="{{ apr.stateDirectorName|e }}"/></p>
-        <p><label for="stateDirectorPosition">Position:</label> <input disabled type="text" size="72" id="stateDirectorPosition"
+        <p><label for="stateDirectorPosition">Position:</label> <input readonly type="text" size="72" id="stateDirectorPosition"
                 data-stateDirectorPosition="{{apr.stateDirectorPosition|e}}" value="{{ apr.stateDirectorPosition|e }}"/>
         </p>
-        <p><label for="stateDirectorOffice">Office:</label> <input disabled type="text" size="72" id="stateDirectorOffice"
+        <p><label for="stateDirectorOffice">Office:</label> <input readonly type="text" size="72" id="stateDirectorOffice"
                 data-stateDirectorOffice="{{apr.stateDirectorOffice|e}}" value="{{ apr.stateDirectorOffice|e }}"/></p>
-        <p><label for="stateDirectorTelephone">Telephone:</label> <input disabled type="text" id="stateDirectorTelephone"
+        <p><label for="stateDirectorTelephone">Telephone:</label> <input readonly type="text" id="stateDirectorTelephone"
                 data-stateDirectorTelephone="{{apr.stateDirectorTelephone|e}}" value="{{ apr.stateDirectorTelephone|e }}"/>
         </p>
-        <p><label for="stateDirectorEmailAddress">E-mail Address:</label> <input disabled size="72" type="text"
+        <p><label for="stateDirectorEmailAddress">E-mail Address:</label> <input readonly size="72" type="text"
                 id="stateDirectorEmailAddress" data-stateDirectorEmailAddress="{{apr.stateDirectorEmailAddress|e}}"
                 value="{{ apr.stateDirectorEmailAddress|e }}"/></p>
 
@@ -231,7 +231,7 @@ Annual Report{% endblock title %}
     <form action="" name="state_fiscal_year" aria-labelledby="section1">
         <h1 id="section1">Section 1 - State Fiscal Year</h1>
         <p><label for="esserFiscalEnd">1.1 Enter the close of the SEA's state fiscal year in MM/DD
-                format</label>: <input disabled type="text" id="esserFiscalEnd" data-esserFiscalEndMonth="{{apr.esserFiscalEndMonth}}"
+                format</label>: <input readonly type="text" id="esserFiscalEnd" data-esserFiscalEndMonth="{{apr.esserFiscalEndMonth}}"
                 data-esserFiscalEndDay="{{apr.esserFiscalEndDay}}" value="{{apr.esserFiscalEndMonth}}/{{apr.esserFiscalEndDay}}"/>
         </p>
     </form>
@@ -265,8 +265,8 @@ Annual Report{% endblock title %}
                         the prior reporting period.</th>
                     <td data-esser1GrantAmountExpendedPrior="{{apr.esser1GrantAmountExpendedPrior}}">
                         {{apr.esser1GrantAmountExpendedPrior|dollars}}</td>
-                    <td></td>
-                    <td></td>
+                    <td style="background:darkgrey;"></td>
+                    <td style="background:darkgrey;"></td>
                 </tr>
                 <tr>
                     <th scope="row">c. The total amount of the grant expended by the SEA and all State subrecipients in
@@ -302,8 +302,8 @@ Annual Report{% endblock title %}
         </table>
 
         <section id="sea_reserve" role="region" aria-labelledby="subsection2-2">
-            <details>
-            <summary><h2 id="subsection2-2">Sub-Section 2.2 - ESSER SEA Reserve</h2></summary>
+            <details id="subsection2-2">
+                <summary><b>Sub-Section 2.2 - ESSER SEA Reserve</b></summary>
             <h3>2.2a SEA Reserve</h3>
             <table cellspacing="0" width="100%" id="sea_reserve"
                 summary="The dollar amounts allocated, expended, and remaining in each ESSER category." repeat="1">
@@ -331,8 +331,8 @@ Annual Report{% endblock title %}
                         <th scope="row">b. The total amount the SEA reserved for implementation of evidence-based
                             interventions aimed specifically at addressing learning loss, such as summer learning,
                             extended day, comprehensive afterschool programs, or extended year programs</th>
-                        <td></td>
-                        <td></td>
+                        <td style="background:darkgrey;"></td>
+                        <td style="background:darkgrey;"></td>
                         <td
                             data-apr.esser3SeaReserveLostInstructionalTimeTotal="{{apr.esser3SeaReserveLostInstructionalTimeTotal}}">
                             {{apr.esser3SeaReserveLostInstructionalTimeTotal|dollars}}</td>
@@ -340,16 +340,16 @@ Annual Report{% endblock title %}
                     <tr>
                         <th scope="row">c. The total amount reserved for the allocation of evidence-based summer
                             enrichment programs</th>
-                        <td></td>
-                        <td></td>
+                        <td style="background:darkgrey;"></td>
+                        <td style="background:darkgrey;"></td>
                         <td data-esser3SeaReserveSummerEnrichmentTotal="{{apr.esser3SeaReserveSummerEnrichmentTotal}}">
                             {{apr.esser3SeaReserveSummerEnrichmentTotal|dollars}}</td>
                     </tr>
                     <tr>
                         <th scope="row">d. The total amount reserved for the allocation of evidence-based comprehensive
                             afterschool programs</th>
-                        <td></td>
-                        <td></td>
+                        <td style="background:darkgrey;"></td>
+                        <td style="background:darkgrey;"></td>
                         <td data-esser3SeaReserveAfterschoolTotal="{{apr.esser3SeaReserveAfterschoolTotal}}">
                             {{apr.esser3SeaReserveAfterschoolTotal|dollars}}</td>
                     </tr>
@@ -375,7 +375,7 @@ Annual Report{% endblock title %}
             </table>
             <h3>2.2b SEA Expenditures of SEA Reserve</h3>
             <p><label for="anyEsserASeaReserveDirectExpenditures">Excluding SEA Reserve Awards made to
-                    subgrantees, did the SEA expend any ESSER funds directly from its SEA Reserve?</label> <input disabled type="text"
+                    subgrantees, did the SEA expend any ESSER funds directly from its SEA Reserve?</label> <input readonly type="text"
                     id="anyEsserASeaReserveDirectExpenditures"
                     data-anyEsserASeaReserveDirectExpenditures="{{apr.anyEsserASeaReserveDirectExpenditures|yes_no}}" value="{{apr.anyEsserASeaReserveDirectExpenditures|yes_no}}"/>
             </p>
@@ -429,14 +429,14 @@ Annual Report{% endblock title %}
             <p><label for="esser3AllocationDescription">2.2c. Please describe the specific initiatives
                     and services provided by the SEA using the ARP ESSER SEA Reserve funds during the applicable
                     reporting period.</label></p>
-            <p><textarea disabled rows="4" cols="72" id="esser3AllocationDescription"
+            <p><textarea readonly rows="4" cols="72" id="esser3AllocationDescription"
                     data-esser3AllocationDescription="{{apr.esser3AllocationDescription|e}}">{{apr.esser3AllocationDescription|e}}</textarea>
             </p>
             {% endif %}
             <h3>2.2d SEA Interventions to Address Learning Loss</h3>
             <p><label for="anyEsserASeaDirectActivitiesLearningLoss">Did the SEA directly administer
                     any activities or interventions to address learning loss and/or meet the needs of students
-                    disproportionately impacted by the COVID-19 pandemic?</label> <input disabled type="text"
+                    disproportionately impacted by the COVID-19 pandemic?</label> <input readonly type="text"
                     id="anyEsserASeaDirectActivitiesLearningLoss"
                     data-anyEsserASeaDirectActivitiesLearningLoss="{{apr.anyEsserASeaDirectActivitiesLearningLoss|yes_no}}" value="{{apr.anyEsserASeaDirectActivitiesLearningLoss|yes_no}}"/>
             </p>
@@ -444,7 +444,7 @@ Annual Report{% endblock title %}
         </section>
         <section id="sea_awards_direct" role="region" aria-labelledby="subsection2-3">
             <details>
-                <summary><h2 id="subsection2-3">Sub-Section 2.3 - ESSER I, ESSER II & ARP ESSER SEA Reserve (Up to 10% of total allocation, respectively)</h2></summary>
+                <summary id="subsection2-3"><b>Sub-Section 2.3 - ESSER I, ESSER II & ARP ESSER SEA Reserve (Up to 10% of total allocation, respectively)</b></summary>
             <h3>2.3a SEA Reserve Awards & Direct Expenditures</h3>
             <table cellspacing="0" width="100%" id="sea_expenditures"
                 summary="The dollar amounts expended directly by the SEA, in specific categories." repeat="1">
@@ -501,44 +501,44 @@ Annual Report{% endblock title %}
             <h3>2.3b SEA: Identifying Students for Support</h3>
             <p>Which strategies were used to identify students disproportionately impacted by the COVID-19
                 pandemic are checked below.</p>
-            <p><input disabled type="checkbox" id="isEsserAIdentifiedByStudentDemographic"
+            <p><input readonly type="checkbox" id="isEsserAIdentifiedByStudentDemographic"
                     data-isEsserAIdentifiedByStudentDemographic="{{apr.isEsserAIdentifiedByStudentDemographic|yes_no}}" {{apr.isEsserAIdentifiedByStudentDemographic|check}}/>
                 <label for="isEsserAIdentifiedByStudentDemographic">Student demographic data, such as
                     FRPL eligibility or English learner status</label></p>
-            <p><input disabled type="checkbox" id="isEsserAIdentifiedByStudentOutcome"
+            <p><input readonly type="checkbox" id="isEsserAIdentifiedByStudentOutcome"
                     data-isEsserAIdentifiedByStudentOutcome="{{apr.isEsserAIdentifiedByStudentOutcome|yes_no}}" {{apr.isEsserAIdentifiedByStudentOutcome|check}}/>
                 <label for="isEsserAIdentifiedByStudentOutcome">Student academic outcome data, such as
                     academic data from state or local assessments</label> </p>
-            <p><input disabled type="checkbox" id="isEsserAIdentifiedByOtherStudentOutcome"
+            <p><input readonly type="checkbox" id="isEsserAIdentifiedByOtherStudentOutcome"
                     data-isEsserAIdentifiedByOtherStudentOutcome="{{apr.isEsserAIdentifiedByOtherStudentOutcome|yes_no}}" {{apr.isEsserAIdentifiedByOtherStudentOutcome|check}}/>
                 <label for="isEsserAIdentifiedByOtherStudentOutcome">Other student outcome data, such
                     as data on students’ school experiences and social and emotional wellbeing</label> </p>
-            <p><input disabled type="checkbox" id="isEsserAIdentifiedByMissedDays"
+            <p><input readonly type="checkbox" id="isEsserAIdentifiedByMissedDays"
                     data-isEsserAIdentifiedByMissedDays="{{apr.isEsserAIdentifiedByMissedDays|yes_no}}" {{apr.isEsserAIdentifiedByMissedDays|check}}/>
                 <label for="isEsserAIdentifiedByMissedDays">Data on the number of days of in-person
                     instruction missed during the 2019-2020 and 2020-2021 school years and/or participation rates in
                     remote instruction when offered during school building closures</label> </p>
-            <p><input disabled type="checkbox" id="isEsserAIdentifiedByOpportunityToLearn"
+            <p><input readonly type="checkbox" id="isEsserAIdentifiedByOpportunityToLearn"
                     data-isEsserAIdentifiedByOpportunityToLearn="{{apr.isEsserAIdentifiedByOpportunityToLearn|yes_no}}" {{apr.isEsserAIdentifiedByOpportunityToLearn|check}}/>
                 <label for="isEsserAIdentifiedByOpportunityToLearn">Opportunity to learn data, such as
                     access to technology and access to educators, school counselors, and other support staff</label>
             </p>
-            <p><input disabled type="checkbox" id="isEsserAIdentifiedByStateAdministrativeData"
+            <p><input readonly type="checkbox" id="isEsserAIdentifiedByStateAdministrativeData"
                     data-isEsserAIdentifiedByStateAdministrativeData="{{apr.isEsserAIdentifiedByStateAdministrativeData|yes_no}}" {{apr.isEsserAIdentifiedByStateAdministrativeData|check}}/>
                 <label for="isEsserAIdentifiedByStateAdministrativeData">State administrative data,
                     such as unemployment claims</label> </p>
-            <p><input disabled type="checkbox" id="isEsserAIdentifiedByHealthData"
+            <p><input readonly type="checkbox" id="isEsserAIdentifiedByHealthData"
                     data-isEsserAIdentifiedByHealthData="{{apr.isEsserAIdentifiedByHealthData|yes_no}}" {{apr.isEsserAIdentifiedByHealthData|check}}/>
                 <label for="isEsserAIdentifiedByHealthData">Health data, such as local COVID-19
                     infection rates or hospitalizations due to COVID-19</label> </p>
-            <p><input disabled type="checkbox" id="isEsserAIdentifiedByStakeholderInput"
+            <p><input readonly type="checkbox" id="isEsserAIdentifiedByStakeholderInput"
                     data-isEsserAIdentifiedByStakeholderInput="{{apr.isEsserAIdentifiedByStakeholderInput|yes_no}}" {{apr.isEsserAIdentifiedByStakeholderInput|check}}/>
                 <label for="isEsserAIdentifiedByStakeholderInput">Stakeholder input</label> </p>
-            <p><input disabled type="checkbox" id="isEsserAIdentifiedByOtherData"
+            <p><input readonly type="checkbox" id="isEsserAIdentifiedByOtherData"
                     data-isEsserAIdentifiedByOtherData="{{apr.isEsserAIdentifiedByOtherData|yes_no}}" {{apr.isEsserAIdentifiedByOtherData|check}}/>
                 <label for="isEsserAIdentifiedByOtherData">Other</label>
                 {% if apr.isEsserAIdentifiedByOtherData %} 
-                <label for="esserAIdentifiedByOtherDataDescription">Description</label>: <textarea disabled rows="4" cols="72"
+                <label for="esserAIdentifiedByOtherDataDescription">Description</label>: <textarea readonly rows="4" cols="72"
                     id="esserAIdentifiedByOtherDataDescription"
                     data-esserAIdentifiedByOtherDataDescription="{{apr.esserAIdentifiedByOtherDataDescription|e}}">{{apr.esserAIdentifiedByOtherDataDescription|e}}</textarea>
                 {% endif %}
@@ -546,59 +546,57 @@ Annual Report{% endblock title %}
             <p><label for="esser3AllocationDescription">2.3c How did the SEA allocate ARP ESSER SEA
                     Reserve funds to ensure support for students disproportionately impacted by the COVID-19 pandemic?
                     (Please describe the formula or decision-making rubric to allocate funds)</label></p>
-            <p><textarea disabled rows="4" cols="72" id="esser3AllocationDescription"
+            <p><textarea readonly rows="4" cols="72" id="esser3AllocationDescription"
                     data-esser3AllocationDescription="{{apr.esser3AllocationDescription|e}}">{{apr.esser3AllocationDescription|e}}</textarea>
             </p>
         </details>
         </section>
         <section id="cares_reserve" role="region" aria-labelledby="subsection2-4">
             <details>
-            <summary><h2 id="subsection2-4">Sub-Section 2.4 - ESSER I SEA Reserve Funds</h2></summary>
+                <summary id="subsection2-4"><b>Sub-Section 2.4 - ESSER I SEA Reserve Funds</b></summary>
             <hr>
             {% for sub in apr.subawards if sub.isLea and sub.esser1SeaReserveAwarded is defined and
             sub.esser1SeaReserveAwarded is gt 0.0 %}
             <details>
-            <summary>
-                <p data-cares_ueiNumber{{loop.index}}="{{sub.ueiNumber|e}}" data-cares_dunsNumber{{loop.index}}="{{sub.dunsNumber|e}}" data-cares_ncesNumber{{loop.index}}="{{sub.ncesNumber|e}}" data-cares_entityName{{loop.index}}="{{sub.entityName|e}}">
+            <summary data-cares_ueiNumber{{loop.index}}="{{sub.ueiNumber|e}}" data-cares_dunsNumber{{loop.index}}="{{sub.dunsNumber|e}}" data-cares_ncesNumber{{loop.index}}="{{sub.ncesNumber|e}}" data-cares_entityName{{loop.index}}="{{sub.entityName|e}}">
                     Unique Entity ID (SAM): {{sub.ncesNumber|e}} DUNS&#35;: {{sub.dunsNumber|e}} NCES LEA ID: {{sub.ncesNumber|e}} LEA name: {{sub.entityName|e}}
-                <p>
             </summary>
             <p><label for="esser1SeaReserveAwarded{{loop.index}}">Total amount awarded to the LEA from
-                    the ESSER I SEA Reserve</label>:<a href="#endnote3"><sup>3</sup></a> <input disabled type="text"
+                    the ESSER I SEA Reserve</label>:<a href="#endnote3"><sup>3</sup></a> <input readonly type="text"
                     id="esser1SeaReserveAwarded{{loop.index}}"
                     data-esser1SeaReserveAwarded{{loop.index}}="sub.esser1SeaReserveAwarded" value="{{sub.esser1SeaReserveAwarded|dollars}}"/>
             </p>
             <h3>2.4a ESSER I SEA Reserve Awards to LEAs</h3>
             <p><label for="esser1SeaReserveExpendedCurrent{{loop.index}}">Total amount expended by the
-                    LEA from the ESSER I SEA Reserve in this reporting period</label>: <input disabled type="text"
+                    LEA from the ESSER I SEA Reserve in this reporting period</label>: <input readonly type="text"
                     id="esser1SeaReserveExpendedCurrent{{loop.index}}"
                     data-esser1SeaReserveExpendedCurrent{{loop.index}}="{{sub.esser1SeaReserveExpendedCurrent}}" value="{{sub.esser1SeaReserveExpendedCurrent|dollars}}"/>
             </p>
             <p>Uses of ESSER I SEA Reserve funds are checked below.</p>
-            <p><input disabled type="checkbox" id="esser1SeaReserveUsedPhysical{{loop.index}}"
+            <p><input readonly type="checkbox" id="esser1SeaReserveUsedPhysical{{loop.index}}"
                     data-esser1SeaReserveUsedPhysical{{loop.index}}="{{sub.esser1SeaReserveUsedPhysical|yes_no}}" {{sub.esser1SeaReserveUsedPhysical|check}}/>
                 <label for="esser1SeaReserveUsedPhysical{{loop.index}}">Addressing Physical Health and
                     Safety</label></p>
-            <p><input disabled type="checkbox" id="esser1SeaReserveUsedAcademic{{loop.index}}"
+            <p><input readonly type="checkbox" id="esser1SeaReserveUsedAcademic{{loop.index}}"
                     data-esser1SeaReserveUsedAcademic{{loop.index}}="{{sub.esser1SeaReserveUsedAcademic|yes_no}}" {{sub.esser1SeaReserveUsedAcademic|check}}/>
                 <label for="esser1SeaReserveUsedAcademic{{loop.index}}">Meeting Students&apos; Academic,
                     Social, Emotional, and Other Needs (Excluding Mental Health Supports)</label></p>
-            <p><input disabled type="checkbox" id="esser1SeaReserveUsedMental{{loop.index}}"
+            <p><input readonly type="checkbox" id="esser1SeaReserveUsedMental{{loop.index}}"
                     data-esser1SeaReserveUsedMental{{loop.index}}="{{sub.esser1SeaReserveUsedMental|yes_no}}" {{sub.esser1SeaReserveUsedMental|check}}/>
                 <label for="esser1SeaReserveUsedMental{{loop.index}}">Mental Health Supports for
                     Students and Staff</label></p>
-            <p><input disabled type="checkbox" id="esser1SeaReserveUsedOperational{{loop.index}}"
+            <p><input readonly type="checkbox" id="esser1SeaReserveUsedOperational{{loop.index}}"
                     data-esser1SeaReserveUsedOperational{{loop.index}}="{{sub.esser1SeaReserveUsedOperational|yes_no}}" {{sub.esser1SeaReserveUsedOperational|check}}/>
                 <label for="esser1SeaReserveUsedOperational{{loop.index}}">Operational Continuity and
                     Other Uses</label></p>
             <h3>2.4b Planned Uses of Remaining ESSER I SEA Reserve Awards to LEAs</h3>
             <p><label for="esser1SeaReserveExpendedPrior{{loop.index}}">Total ESSER I SEA Reserve
-                    expenditures in prior reporting period</label>: <input disabled type="text"
+                    expenditures in prior reporting period</label>: <input readonly type="text"
                     id="esser1SeaReserveExpendedPrior{{loop.index}}"
                     data-esser1SeaReserveExpendedPrior{{loop.index}}="{{sub.esser1SeaReserveExpendedPrior}}" value="{{sub.esser1SeaReserveExpendedPrior|dollars}}"/>
             </p>
             <p><label for="esser1SeaReserveRemaining{{loop.index}}">Remaining SEA Reserve
-                    Funds</label>: <input disabled type="text" id="esser1SeaReserveRemaining{{loop.index}}"
+                    Funds</label>: <input readonly type="text" id="esser1SeaReserveRemaining{{loop.index}}"
                     data-esser1SeaReserveRemaining{{loop.index}}="{{sub.esser1SeaReserveRemaining}}" value="{{sub.esser1SeaReserveRemaining|dollars}}"/>
             </p>
             <p>Planned Uses of Remaining ESSER I SEA Reserve funds (% of Remaining Funds) Note: Categories must sum to
@@ -655,47 +653,45 @@ Annual Report{% endblock title %}
             {% for sub in apr.subawards if not sub.isLea and sub.esser1SeaReserveAwarded is defined and
             sub.esser1SeaReserveAwarded is gt 0.0 %}
             <details>
-            <summary>
-                <p data-cares_nonlea_entityName{{loop.index}}="{{sub.entityName|e}}" data-cares_nonlea_dunsNumber{{loop.index}}="{{sub.dunsNumber|e}}" data-cares_nonlea_ueiNumber{{loop.index}}="{{sub.ueiNumber|e}}">
+            <summary data-cares_nonlea_entityName{{loop.index}}="{{sub.entityName|e}}" data-cares_nonlea_dunsNumber{{loop.index}}="{{sub.dunsNumber|e}}" data-cares_nonlea_ueiNumber{{loop.index}}="{{sub.ueiNumber|e}}">
                     Unique Entity ID (SAM): {{sub.ueiNumber|e}} DUNS&#35;: {{sub.dunsNumber|e}} Non-LEA entity name: {{sub.entityName|e}}
-                </p>
             </summary>
             <p><label for="nonlea_esser1SeaReserveAwarded{{loop.index}}">Total amount awarded to the
-                    non-LEA from the ESSER I SEA Reserve</label>:<a href="#endnote4"><sup>4</sup></a> <input disabled type="text"
+                    non-LEA from the ESSER I SEA Reserve</label>:<a href="#endnote4"><sup>4</sup></a> <input readonly type="text"
                     id="nonlea_esser1SeaReserveAwarded{{loop.index}}"
                     data-nonlea_esser1SeaReserveAwarded{{loop.index}}="sub.esser1SeaReserveAwarded" value="{{sub.esser1SeaReserveAwarded|dollars}}"/>
             </p>
             <h3>2.4c ESSER I SEA Reserve Awards to non-LEAs</h3>
             <p><label for="nonlea_esser1SeaReserveExpendedCurrent{{loop.index}}">Total amount expended
-                    by the non-LEA from the ESSER I SEA Reserve in this reporting period</label>: <input disabled type="text"
+                    by the non-LEA from the ESSER I SEA Reserve in this reporting period</label>: <input readonly type="text"
                     id="nonlea_esser1SeaReserveExpendedCurrent{{loop.index}}"
                     data-nonlea_esser1SeaReserveExpendedCurrent{{loop.index}}="{{sub.esser1SeaReserveExpendedCurrent}}" value="{{sub.esser1SeaReserveExpendedCurrent|dollars}}"/>
             </p>
             <p>Uses of ESSER I SEA Reserve funds are checked below.</p>
-            <p><input disabled type="checkbox" id="nonlea_esser1SeaReserveUsedPhysical{{loop.index}}"
+            <p><input readonly type="checkbox" id="nonlea_esser1SeaReserveUsedPhysical{{loop.index}}"
                     data-nonlea_esser1SeaReserveUsedPhysical{{loop.index}}="{{sub.esser1SeaReserveUsedPhysical|yes_no}}" {{sub.esser1SeaReserveUsedPhysical|check}}/>
                 <label for="nonlea_esser1SeaReserveUsedPhysical{{loop.index}}">Addressing Physical
                     Health and Safety</label></p>
-            <p><input disabled type="checkbox" id="nonlea_esser1SeaReserveUsedAcademic{{loop.index}}"
+            <p><input readonly type="checkbox" id="nonlea_esser1SeaReserveUsedAcademic{{loop.index}}"
                     data-nonlea_esser1SeaReserveUsedAcademic{{loop.index}}="{{sub.esser1SeaReserveUsedAcademic|yes_no}}" {{sub.esser1SeaReserveUsedAcademic|check}}/>
                 <label for="nonlea_esser1SeaReserveUsedAcademic{{loop.index}}">Meeting Students&apos;
                     Academic, Social, Emotional, and Other Needs (Excluding Mental Health Supports)</label></p>
-            <p><input disabled type="checkbox" id="nonlea_esser1SeaReserveUsedMental{{loop.index}}"
+            <p><input readonly type="checkbox" id="nonlea_esser1SeaReserveUsedMental{{loop.index}}"
                     data-nonlea_esser1SeaReserveUsedMental{{loop.index}}="{{sub.esser1SeaReserveUsedMental|yes_no}}" {{sub.esser1SeaReserveUsedMental|check}}/>
                 <label for="nonlea_esser1SeaReserveUsedMental{{loop.index}}">Mental Health Supports for
                     Students and Staff</label></p>
-            <p><input disabled type="checkbox" id="nonlea_esser1SeaReserveUsedOperational{{loop.index}}"
+            <p><input readonly type="checkbox" id="nonlea_esser1SeaReserveUsedOperational{{loop.index}}"
                     data-nonlea_esser1SeaReserveUsedOperational{{loop.index}}="{{sub.esser1SeaReserveUsedOperational|yes_no}}" {{sub.esser1SeaReserveUsedOperational|check}}/>
                 <label for="nonlea_esser1SeaReserveUsedOperational{{loop.index}}">Operational
                     Continuity and Other Uses</label></p>
             <h3>2.4d Planned Uses of Remaining ESSER I SEA Reserve Awards to non-LEAs</h3>
             <p><label for="nonlea_esser1SeaReserveExpendedPrior{{loop.index}}">Total ESSER I SEA
-                    Reserve expenditures in prior reporting period</label>: <input disabled type="text"
+                    Reserve expenditures in prior reporting period</label>: <input readonly type="text"
                     id="nonlea_esser1SeaReserveExpendedPrior{{loop.index}}"
                     data-nonlea_esser1SeaReserveExpendedPrior{{loop.index}}="{{sub.esser1SeaReserveExpendedPrior}}" value="{{sub.esser1SeaReserveExpendedPrior|dollars}}"/>
             </p>
             <p><label for="nonlea_esser1SeaReserveRemaining{{loop.index}}">Remaining SEA Reserve
-                    Funds</label>: <input disabled type="text" id="nonlea_esser1SeaReserveRemaining{{loop.index}}"
+                    Funds</label>: <input readonly type="text" id="nonlea_esser1SeaReserveRemaining{{loop.index}}"
                     data-nonlea_esser1SeaReserveRemaining{{loop.index}}="{{sub.esser1SeaReserveRemaining}}" value="{{sub.esser1SeaReserveRemaining|dollars}}"/>
             </p>
             <p>Planned Uses of Remaining ESSER I SEA Reserve funds (% of Remaining Funds) Note: Categories must sum to
@@ -751,52 +747,50 @@ Annual Report{% endblock title %}
         </section>
         <section id="crrsa_reserve" role="region" aria-labelledby="subsection2-5">
             <details>
-            <summary><h2 id="subsection2-5">Sub-Section 2.5 - ESSER II SEA Reserve Funds</h2></summary>
+                <summary id="subsection2-5"><b>Sub-Section 2.5 - ESSER II SEA Reserve Funds</b></summary>
             <hr>
             {% for sub in apr.subawards if sub.isLea and sub.esser2SeaReserveAwarded is defined and
             sub.esser2SeaReserveAwarded is gt 0.0 %}
             <details>
-            <summary>
-                <p data-crrsa_ueiNumber{{loop.index}}="{{sub.ueiNumber|e}}" data-crrsa_dunsNumber{{loop.index}}="{{sub.dunsNumber|e}}" data-crrsa_ncesNumber{{loop.index}}="{{sub.ncesNumber|e}}" data-crrsa_entityName{{loop.index}}="{{sub.entityName|e}}" >
+            <summary data-crrsa_ueiNumber{{loop.index}}="{{sub.ueiNumber|e}}" data-crrsa_dunsNumber{{loop.index}}="{{sub.dunsNumber|e}}" data-crrsa_ncesNumber{{loop.index}}="{{sub.ncesNumber|e}}" data-crrsa_entityName{{loop.index}}="{{sub.entityName|e}}" >
                     Unique Entity ID (SAM): {{sub.ueiNumber|e}} DUNS&#35;: {{sub.dunsNumber|e}} NCES LEA ID: {{sub.ncesNumber|e}} LEA name: {{sub.entityName|e}}
-                </p>
             </summary>
             <p><label for="esser2SeaReserveAwarded{{loop.index}}">Total amount awarded to the LEA from
-                    the ESSER II SEA Reserve</label>:<a href="#endnote3"><sup>3</sup></a> <input disabled type="text"
+                    the ESSER II SEA Reserve</label>:<a href="#endnote3"><sup>3</sup></a> <input readonly type="text"
                     id="esser2SeaReserveAwarded{{loop.index}}"
                     data-esser2SeaReserveAwarded{{loop.index}}="sub.esser2SeaReserveAwarded" value="{{sub.esser2SeaReserveAwarded|dollars}}"/>
             </p>
             <h3>2.5a ESSER II SEA Reserve Awards to LEAs</h3>
             <p><label for="esser2SeaReserveExpendedCurrent{{loop.index}}">Total amount expended by the
-                    LEA from the ESSER II SEA Reserve in this reporting period</label>: <input disabled type="text"
+                    LEA from the ESSER II SEA Reserve in this reporting period</label>: <input readonly type="text"
                     id="esser2SeaReserveExpendedCurrent{{loop.index}}"
                     data-esser2SeaReserveExpendedCurrent{{loop.index}}="{{sub.esser2SeaReserveExpendedCurrent}}" value="{{sub.esser2SeaReserveExpendedCurrent|dollars}}"/>
             </p>
             <p>Uses of ESSER II SEA Reserve funds are checked below.</p>
-            <p><input disabled type="checkbox" id="esser2SeaReserveUsedPhysical{{loop.index}}"
+            <p><input readonly type="checkbox" id="esser2SeaReserveUsedPhysical{{loop.index}}"
                     data-esser2SeaReserveUsedPhysical{{loop.index}}="{{sub.esser2SeaReserveUsedPhysical|yes_no}}" {{sub.esser2SeaReserveUsedPhysical|check}}/>
                 <label for="esser2SeaReserveUsedPhysical{{loop.index}}">Addressing Physical Health and
                     Safety</label></p>
-            <p><input disabled type="checkbox" id="esser2SeaReserveUsedAcademic{{loop.index}}"
+            <p><input readonly type="checkbox" id="esser2SeaReserveUsedAcademic{{loop.index}}"
                     data-esser2SeaReserveUsedAcademic{{loop.index}}="{{sub.esser2SeaReserveUsedAcademic|yes_no}}" {{sub.esser2SeaReserveUsedAcademic|check}}/>
                 <label for="esser2SeaReserveUsedAcademic{{loop.index}}">Meeting Students&apos; Academic,
                     Social, Emotional, and Other Needs (Excluding Mental Health Supports)</label></p>
-            <p><input disabled type="checkbox" id="esser2SeaReserveUsedMental{{loop.index}}"
+            <p><input readonly type="checkbox" id="esser2SeaReserveUsedMental{{loop.index}}"
                     data-esser2SeaReserveUsedMental{{loop.index}}="{{sub.esser2SeaReserveUsedMental|yes_no}}" {{sub.esser2SeaReserveUsedMental|check}}/>
                 <label for="esser2SeaReserveUsedMental{{loop.index}}">Mental Health Supports for
                     Students and Staff</label></p>
-            <p><input disabled type="checkbox" id="esser2SeaReserveUsedOperational{{loop.index}}"
+            <p><input readonly type="checkbox" id="esser2SeaReserveUsedOperational{{loop.index}}"
                     data-esser2SeaReserveUsedOperational{{loop.index}}="{{sub.esser2SeaReserveUsedOperational|yes_no}}" {{sub.esser2SeaReserveUsedOperational|check}}/>
                 <label for="esser2SeaReserveUsedOperational{{loop.index}}">Operational Continuity and
                     Other Uses</label></p>
             <h3>2.5b Planned Uses of Remaining ESSER II SEA Reserve Awards to LEAs</h3>
             <p><label for="esser2SeaReserveExpendedPrior{{loop.index}}">Total ESSER II SEA Reserve
-                    expenditures in prior reporting period</label>: <input disabled type="text"
+                    expenditures in prior reporting period</label>: <input readonly type="text"
                     id="esser2SeaReserveExpendedPrior{{loop.index}}"
                     data-esser2SeaReserveExpendedPrior{{loop.index}}="{{sub.esser2SeaReserveExpendedPrior}}" value="{{sub.esser2SeaReserveExpendedPrior|dollars}}"/>
             </p>
             <p><label for="esser2SeaReserveRemaining{{loop.index}}">Remaining SEA Reserve
-                    Funds</label>: <input disabled type="text" id="esser2SeaReserveRemaining{{loop.index}}"
+                    Funds</label>: <input readonly type="text" id="esser2SeaReserveRemaining{{loop.index}}"
                     data-esser2SeaReserveRemaining{{loop.index}}="{{sub.esser2SeaReserveRemaining}}" value="{{sub.esser2SeaReserveRemaining|dollars}}"/>
             </p>
             <p>Planned Uses of Remaining ESSER II SEA Reserve funds (% of Remaining Funds) Note: Categories must sum to
@@ -853,47 +847,45 @@ Annual Report{% endblock title %}
             {% for sub in apr.subawards if not sub.isLea and sub.esser2SeaReserveAwarded is defined and
             sub.esser2SeaReserveAwarded is gt 0.0 %}
             <details>
-            <summary>
-                <p data-crrsa_nonlea_entityName{{loop.index}}="{{sub.entityName|e}}" data-crrsa_nonlea_dunsNumber{{loop.index}}="{{sub.dunsNumber|e}}" data-crrsa_nonlea_ueiNumber{{loop.index}}="{{sub.ueiNumber|e}}">
+            <summary data-crrsa_nonlea_entityName{{loop.index}}="{{sub.entityName|e}}" data-crrsa_nonlea_dunsNumber{{loop.index}}="{{sub.dunsNumber|e}}" data-crrsa_nonlea_ueiNumber{{loop.index}}="{{sub.ueiNumber|e}}">
                     Unique Entity ID (SAM): value="{{sub.ueiNumber|e}} DUNS&#35;: {{sub.dunsNumber|e}} Non-LEA entity name: {{sub.entityName|e}}
-                </p>
             </summary>
             <p><label for="nonlea_esser2SeaReserveAwarded{{loop.index}}">Total amount awarded to the
-                    non-LEA from the ESSER II SEA Reserve</label>:<a href="#endnote4"><sup>4</sup></a> <input disabled type="text"
+                    non-LEA from the ESSER II SEA Reserve</label>:<a href="#endnote4"><sup>4</sup></a> <input readonly type="text"
                     id="nonlea_esser2SeaReserveAwarded{{loop.index}}"
                     data-nonlea_esser2SeaReserveAwarded{{loop.index}}="sub.esser2SeaReserveAwarded" value="{{sub.esser2SeaReserveAwarded|dollars}}"/>
             </p>
             <h3>2.5c ESSER II SEA Reserve Awards to non-LEAs</h3>
             <p><label for="nonlea_esser2SeaReserveExpendedCurrent{{loop.index}}">Total amount expended
-                    by the non-LEA from the ESSER II SEA Reserve in this reporting period</label>: <input disabled type="text"
+                    by the non-LEA from the ESSER II SEA Reserve in this reporting period</label>: <input readonly type="text"
                     id="nonlea_esser2SeaReserveExpendedCurrent{{loop.index}}"
                     data-nonlea_esser2SeaReserveExpendedCurrent{{loop.index}}="{{sub.esser2SeaReserveExpendedCurrent}}" value="{{sub.esser2SeaReserveExpendedCurrent|dollars}}"/>
             </p>
             <p>Uses of ESSER II SEA Reserve funds are checked below.</p>
-            <p><input disabled type="checkbox" id="nonlea_esser2SeaReserveUsedPhysical{{loop.index}}"
+            <p><input readonly type="checkbox" id="nonlea_esser2SeaReserveUsedPhysical{{loop.index}}"
                     data-nonlea_esser2SeaReserveUsedPhysical{{loop.index}}="{{sub.esser2SeaReserveUsedPhysical|yes_no}}" {{sub.esser2SeaReserveUsedPhysical|check}}/>
                 <label for="nonlea_esser2SeaReserveUsedPhysical{{loop.index}}">Addressing Physical
                     Health and Safety</label></p>
-            <p><input disabled type="checkbox" id="nonlea_esser2SeaReserveUsedAcademic{{loop.index}}"
+            <p><input readonly type="checkbox" id="nonlea_esser2SeaReserveUsedAcademic{{loop.index}}"
                     data-nonlea_esser2SeaReserveUsedAcademic{{loop.index}}="{{sub.esser2SeaReserveUsedAcademic|yes_no}}" {{sub.esser2SeaReserveUsedAcademic|check}}/>
                 <label for="nonlea_esser2SeaReserveUsedAcademic{{loop.index}}">Meeting Students&apos;
                     Academic, Social, Emotional, and Other Needs (Excluding Mental Health Supports)</label></p>
-            <p><input disabled type="checkbox" id="nonlea_esser2SeaReserveUsedMental{{loop.index}}"
+            <p><input readonly type="checkbox" id="nonlea_esser2SeaReserveUsedMental{{loop.index}}"
                     data-nonlea_esser2SeaReserveUsedMental{{loop.index}}="{{sub.esser2SeaReserveUsedMental|yes_no}}" {{sub.esser2SeaReserveUsedMental|check}}/>
                 <label for="nonlea_esser2SeaReserveUsedMental{{loop.index}}">Mental Health Supports for
                     Students and Staff</label></p>
-            <p><input disabled type="checkbox" id="nonlea_esser2SeaReserveUsedOperational{{loop.index}}"
+            <p><input readonly type="checkbox" id="nonlea_esser2SeaReserveUsedOperational{{loop.index}}"
                     data-nonlea_esser2SeaReserveUsedOperational{{loop.index}}="{{sub.esser2SeaReserveUsedOperational|yes_no}}" {{sub.esser2SeaReserveUsedOperational|check}}/>
                 <label for="nonlea_esser2SeaReserveUsedOperational{{loop.index}}">Operational
                     Continuity and Other Uses</label></p>
             <h3>2.5d Planned Uses of Remaining ESSER II SEA Reserve Awards to non-LEAs</h3>
             <p><label for="nonlea_esser2SeaReserveExpendedPrior{{loop.index}}">Total ESSER II SEA
-                    Reserve expenditures in prior reporting period</label>: <input disabled type="text"
+                    Reserve expenditures in prior reporting period</label>: <input readonly type="text"
                     id="nonlea_esser2SeaReserveExpendedPrior{{loop.index}}"
                     data-nonlea_esser2SeaReserveExpendedPrior{{loop.index}}="{{sub.esser2SeaReserveExpendedPrior}}" value="{{sub.esser2SeaReserveExpendedPrior|dollars}}"/>
             </p>
             <p><label for="nonlea_esser2SeaReserveRemaining{{loop.index}}">Remaining SEA Reserve
-                    Funds</label>: <input disabled type="text" id="nonlea_esser2SeaReserveRemaining{{loop.index}}"
+                    Funds</label>: <input readonly type="text" id="nonlea_esser2SeaReserveRemaining{{loop.index}}"
                     data-nonlea_esser2SeaReserveRemaining{{loop.index}}="{{sub.esser2SeaReserveRemaining}}" value="{{sub.esser2SeaReserveRemaining|dollars}}"/>
             </p>
             <p>Planned Uses of Remaining ESSER II SEA Reserve funds (% of Remaining Funds) Note: Categories must sum to
@@ -949,18 +941,16 @@ Annual Report{% endblock title %}
         </section>
         <section id="arp_reserve" role="region" aria-labelledby="subsection2-6">
             <details>
-            <summary><h2 id="subsection2-6">Sub-Section 2.6 - ARP ESSER SEA Reserve Funds</h2></summary>
+            <summary id="subsection2-6"><b>Sub-Section 2.6 - ARP ESSER SEA Reserve Funds</b></summary>
             <hr>
             {% for sub in apr.subawards if sub.isLea and sub.esser3SeaReserveTotalAwarded is defined and
             sub.esser3SeaReserveTotalAwarded is gt 0.0 %}
             <details>
-            <summary>
-                <p data-arp_ueiNumber{{loop.index}}="{{sub.ueiNumber|e}}" data-arp_dunsNumber{{loop.index}}="{{sub.dunsNumber|e}}" data-arp_ncesNumber{{loop.index}}="{{sub.ncesNumber|e}}" data-arp_entityName{{loop.index}}="{{sub.entityName|e}}" >
+            <summary data-arp_ueiNumber{{loop.index}}="{{sub.ueiNumber|e}}" data-arp_dunsNumber{{loop.index}}="{{sub.dunsNumber|e}}" data-arp_ncesNumber{{loop.index}}="{{sub.ncesNumber|e}}" data-arp_entityName{{loop.index}}="{{sub.entityName|e}}" >
                     Unique Entity ID (SAM): {{sub.ueiNumber|e}} DUNS&#35;: {{sub.dunsNumber|e}} NCES LEA ID: {{sub.ncesNumber|e}}" LEA name: {{sub.entityName|e}}
-                </p>
             </summary>
             <p><label for="esser3SeaReserveAwarded{{loop.index}}">Total amount awarded to the LEA from
-                    the ARP ESSER SEA Reserve</label>: <input disabled type="text" id="esser3SeaReserveTotalAwarded{{loop.index}}"
+                    the ARP ESSER SEA Reserve</label>: <input readonly type="text" id="esser3SeaReserveTotalAwarded{{loop.index}}"
                     data-esser3SeaReserveTotalAwarded{{loop.index}}="sub.esser3SeaReserveTotalAwarded" value="{{sub.esser3SeaReserveTotalAwarded|dollars}}"/>
             </p>
             <h3>2.6a ARP ESSER SEA Reserve Awards to LEAs</h3>
@@ -1013,25 +1003,25 @@ Annual Report{% endblock title %}
             {% if sub.esser3SeaReserveOtherAwarded is gt 0.0 %}
             <h3>2.6b ARP ESSER SEA Reserve Awards - Other Use</h3>
             <p>Uses of ARP ESSER SEA Reserve funds are checked below.</p>
-            <p><input disabled type="checkbox" id="esser3SeaReserveUsedPhysical{{loop.index}}"
+            <p><input readonly type="checkbox" id="esser3SeaReserveUsedPhysical{{loop.index}}"
                     data-esser3SeaReserveUsedPhysical{{loop.index}}="{{sub.esser3SeaReserveUsedPhysical|yes_no}}" {{sub.esser3SeaReserveUsedPhysical|check}}/>
                 <label for="esser3SeaReserveUsedPhysical{{loop.index}}">Addressing Physical Health and
                     Safety</label></p>
-            <p><input disabled type="checkbox" id="esser3SeaReserveUsedAcademic{{loop.index}}"
+            <p><input readonly type="checkbox" id="esser3SeaReserveUsedAcademic{{loop.index}}"
                     data-esser3SeaReserveUsedAcademic{{loop.index}}="{{sub.esser3SeaReserveUsedAcademic|yes_no}}" {{sub.esser3SeaReserveUsedAcademic|check}}/>
                 <label for="esser3SeaReserveUsedAcademic{{loop.index}}">Meeting Students&apos; Academic,
                     Social, Emotional, and Other Needs (Excluding Mental Health Supports)</label></p>
-            <p><input disabled type="checkbox" id="esser3SeaReserveUsedMental{{loop.index}}"
+            <p><input readonly type="checkbox" id="esser3SeaReserveUsedMental{{loop.index}}"
                     data-esser3SeaReserveUsedMental{{loop.index}}="{{sub.esser3SeaReserveUsedMental|yes_no}}" {{sub.esser3SeaReserveUsedMental|check}}/>
                 <label for="esser3SeaReserveUsedMental{{loop.index}}">Mental Health Supports for
                     Students and Staff</label></p>
-            <p><input disabled type="checkbox" id="esser3SeaReserveUsedOperational{{loop.index}}"
+            <p><input readonly type="checkbox" id="esser3SeaReserveUsedOperational{{loop.index}}"
                     data-esser3SeaReserveUsedOperational{{loop.index}}="{{sub.esser3SeaReserveUsedOperational|yes_no}}" {{sub.esser3SeaReserveUsedOperational|check}}/>
                 <label for="esser3SeaReserveUsedOperational{{loop.index}}">Operational Continuity and
                     Other Uses</label></p>
             <h3>2.6c Planned Uses of Remaining ARP ESSER SEA Reserve Awards - Other Use</h3>
             <p><label for="esser3SeaReserveRemaining{{loop.index}}">Remaining ARP ESSER SEA Reserve
-                    Funds - Other</label>: <input disabled type="text" id="esser3SeaReserveRemaining{{loop.index}}"
+                    Funds - Other</label>: <input readonly type="text" id="esser3SeaReserveRemaining{{loop.index}}"
                     data-esser3SeaReserveRemaining{{loop.index}}="{{sub.esser3SeaReserveRemaining}}" value="{{sub.esser3SeaReserveRemaining|dollars}}"/>
             </p>
             <p>Planned Uses of Remaining ARP ESSER SEA Reserve funds (% of Remaining Funds) Note: Categories must sum to
@@ -1090,13 +1080,11 @@ Annual Report{% endblock title %}
             {% for sub in apr.subawards if not sub.isLea and sub.esser3SeaReserveTotalAwarded is defined and
             sub.esser3SeaReserveTotalAwarded is gt 0.0 %}
             <details>
-            <summary>
-                <p  data-arp_nonlea_ueiNumber{{loop.index}}="{{sub.ueiNumber|e}}" data-arp_nonlea_dunsNumber{{loop.index}}="{{sub.dunsNumber|e}}" data-arp_nonlea_entityName{{loop.index}}="{{sub.entityName|e}}" >
+            <summary data-arp_nonlea_ueiNumber{{loop.index}}="{{sub.ueiNumber|e}}" data-arp_nonlea_dunsNumber{{loop.index}}="{{sub.dunsNumber|e}}" data-arp_nonlea_entityName{{loop.index}}="{{sub.entityName|e}}" >
                     Unique Entity ID (SAM): {{sub.ueiNumber|e}} DUNS&#35;: {{sub.dunsNumber|e}} Non-LEA entity name: {{sub.entityName|e}}
-                <p>
             </summary>
             <p><label for="nonlea_esser3SeaReserveAwarded{{loop.index}}">Total amount awarded to the
-                    non-LEA from the ARP ESSER SEA Reserve</label>: <input disabled type="text"
+                    non-LEA from the ARP ESSER SEA Reserve</label>: <input readonly type="text"
                     id="nonlea_esser3SeaReserveAwarded{{loop.index}}"
                     data-nonlea_esser3SeaReserveAwarded{{loop.index}}="sub.esser3SeaReserveAwarded" value="{{sub.esser3SeaReserveAwarded|dollars}}"/>
             </p>
@@ -1153,25 +1141,25 @@ Annual Report{% endblock title %}
             {% if sub.esser3SeaReserveOtherAwarded is gt 0.0 %}
             <h3>2.6e ARP ESSER SEA Reserve Awards - Other Use</h3>
             <p>Uses of ARP ESSER SEA Reserve funds are checked below.</p>
-            <p><input disabled type="checkbox" id="nonlea_esser3SeaReserveUsedPhysical{{loop.index}}"
+            <p><input readonly type="checkbox" id="nonlea_esser3SeaReserveUsedPhysical{{loop.index}}"
                     data-nonlea_esser3SeaReserveUsedPhysical{{loop.index}}="{{sub.esser3SeaReserveUsedPhysical|yes_no}}" {{sub.esser3SeaReserveUsedPhysical|check}}/>
                 <label for="nonlea_esser3SeaReserveUsedPhysical{{loop.index}}">Addressing Physical
                     Health and Safety</label></p>
-            <p><input disabled type="checkbox" id="nonlea_esser3SeaReserveUsedAcademic{{loop.index}}"
+            <p><input readonly type="checkbox" id="nonlea_esser3SeaReserveUsedAcademic{{loop.index}}"
                     data-nonlea_esser3SeaReserveUsedAcademic{{loop.index}}="{{sub.esser3SeaReserveUsedAcademic|yes_no}}" {{sub.esser3SeaReserveUsedAcademic|check}}/>
                 <label for="nonlea_esser3SeaReserveUsedAcademic{{loop.index}}">Meeting Students&apos;
                     Academic, Social, Emotional, and Other Needs (Excluding Mental Health Supports)</label></p>
-            <p><input disabled type="checkbox" id="nonlea_esser3SeaReserveUsedMental{{loop.index}}"
+            <p><input readonly type="checkbox" id="nonlea_esser3SeaReserveUsedMental{{loop.index}}"
                     data-nonlea_esser3SeaReserveUsedMental{{loop.index}}="{{sub.esser3SeaReserveUsedMental|yes_no}}" {{sub.esser3SeaReserveUsedMental|check}}/>
                 <label for="nonlea_esser3SeaReserveUsedMental{{loop.index}}">Mental Health Supports for
                     Students and Staff</label></p>
-            <p><input disabled type="checkbox" id="nonlea_esser3SeaReserveUsedOperational{{loop.index}}"
+            <p><input readonly type="checkbox" id="nonlea_esser3SeaReserveUsedOperational{{loop.index}}"
                     data-nonlea_esser3SeaReserveUsedOperational{{loop.index}}="{{sub.esser3SeaReserveUsedOperational|yes_no}}" {{sub.esser3SeaReserveUsedOperational|check}}/>
                 <label for="nonlea_esser3SeaReserveUsedOperational{{loop.index}}">Operational
                     Continuity and Other Uses</label></p>
             <h3>2.6f Planned Uses of Remaining ARP ESSER SEA Reserve Awards - Other Use</h3>
             <p><label for="nonlea_esser3SeaReserveRemaining{{loop.index}}">Remaining ARP ESSER SEA
-                    Reserve Funds - Other</label>: <input disabled type="text" id="nonlea_esser3SeaReserveRemaining{{loop.index}}"
+                    Reserve Funds - Other</label>: <input readonly type="text" id="nonlea_esser3SeaReserveRemaining{{loop.index}}"
                     data-nonlea_esser3SeaReserveRemaining{{loop.index}}="{{sub.esser3SeaReserveRemaining}}" value="{{sub.esser3SeaReserveRemaining|dollars}}"/>
             </p>
             <p>Planned Uses of Remaining ARP ESSER SEA Reserve funds (% of Remaining Funds) Note: Categories must sum to
@@ -1230,24 +1218,17 @@ Annual Report{% endblock title %}
         <h1 id="section3">Section 3- Mandatory Subgrants to LEAs</h1>
         {% for sub in apr.subawards if sub.isLea %}
             <details>
-                <summary>
-                    <p data-lea_uei{{loop.index}}="{{sub.ueiNumber|e}}" data-lea_duns{{loop.index}}="{{sub.dunsNumber|e}}" data-lea_nces{{loop.index}}="{{sub.ncesNumber|e}}" data-lea_name{{loop.index}}="{{sub.entityName|e}}">
+                <summary data-lea_uei{{loop.index}}="{{sub.ueiNumber|e}}" data-lea_duns{{loop.index}}="{{sub.dunsNumber|e}}" data-lea_nces{{loop.index}}="{{sub.ncesNumber|e}}" data-lea_name{{loop.index}}="{{sub.entityName|e}}">
                         Unique Entity ID: {{sub.ueiNumber|e}} DUNS&#35;: {{sub.dunsNumber|e}} NCES ID&#35;: {{sub.ncesNumber|e}} LEA Name: {{sub.entityName|e}}
-                    </p>
                 </summary>
-                <nav>
-                    <p><a href="#subsection3a{{loop.index}}">Subsection 3A - amount awarded</a></p>
-                    <p><a href="#subsection3b{{loop.index}}">Subsection 3B - use of funds details</a></p>
-                    <p><a href="#subsection3c{{loop.index}}">Subsection 3C - allocation of resources</a></p>
-                    <p><a href="#subsection3d{{loop.index}}">Subsection 3D - reserve to address impact of learning loss</a></p>
-                </nav>
-                <h2 id="subsection3a{{loop.index}}">Subsection 3A - ESSER Mandatory Subgrants to LEAs</h2>
+                <details><summary id="subsection3a{{loop.index}}"><b>Subsection 3A - ESSER Mandatory Subgrants to LEAs</b></summary>
                 <p>(Required to be at least 90% of the ESSER I, ESSER II, and ARP ESSER awards, respectively)</p>
                     <p><label>ESSER I (CARES) Total mandatory subgrant amount awarded to LEA<a
-                    href="#endnote5"><sup>5</sup></a>: <input disabled type="text" id="esser1MandatorySubgrantAwarded{{loop.index}}" data-esser1MandatorySubgrantAwarded{{loop.index}}="{{sub.esser1MandatorySubgrantAwarded}}" value="{{sub.esser1MandatorySubgrantAwarded|dollars}}"/></label></p>
-                    <p><label>ESSER II (CRRSA) Total mandatory subgrant amount awarded to LEA: <input disabled type="text" id="esser2MandatorySubgrantAwarded{{loop.index}}" data-esser2MandatorySubgrantAwarded{{loop.index}}="{{sub.esser2MandatorySubgrantAwarded}}" value="{{sub.esser1MandatorySubgrantAwarded|dollars}}"/></label></p>
-                    <p><label>ARP ESSER Total mandatory subgrant amount awarded to LEA: <input disabled type="text" id="esser3MandatorySubgrantAwarded{{loop.index}}" data-esser3MandatorySubgrantAwarded{{loop.index}}="{{sub.esser3MandatorySubgrantAwarded}}" value="{{sub.esser3MandatorySubgrantAwarded|dollars}}"/></label></p>
-                <h2 id="subsection3b{{loop.index}}">Subsection 3B - ESSER Mandatory Subgrants to LEAs - Use of Funds Detail<a href="#endnote6"><sup>6</sup></a></h2></summary>
+                    href="#endnote5"><sup>5</sup></a>: <input readonly type="text" id="esser1MandatorySubgrantAwarded{{loop.index}}" data-esser1MandatorySubgrantAwarded{{loop.index}}="{{sub.esser1MandatorySubgrantAwarded}}" value="{{sub.esser1MandatorySubgrantAwarded|dollars}}"/></label></p>
+                    <p><label>ESSER II (CRRSA) Total mandatory subgrant amount awarded to LEA: <input readonly type="text" id="esser2MandatorySubgrantAwarded{{loop.index}}" data-esser2MandatorySubgrantAwarded{{loop.index}}="{{sub.esser2MandatorySubgrantAwarded}}" value="{{sub.esser2MandatorySubgrantAwarded|dollars}}"/></label></p>
+                    <p><label>ARP ESSER Total mandatory subgrant amount awarded to LEA: <input readonly type="text" id="esser3MandatorySubgrantAwarded{{loop.index}}" data-esser3MandatorySubgrantAwarded{{loop.index}}="{{sub.esser3MandatorySubgrantAwarded}}" value="{{sub.esser3MandatorySubgrantAwarded|dollars}}"/></label></p>
+                </details>
+                <details><summary id="subsection3b{{loop.index}}"><b>Subsection 3B - ESSER Mandatory Subgrants to LEAs - Use of Funds Detail</b><a href="#endnote6"><sup>6</sup></a></summary>
                 <p>3.b1 Provide the amount of the LEA expenditures by ESSER Subgrant fund and expenditure category for the
                 current reporting period. (If the SEA operates as a unitary system then report for the entire SEA. The
                 total amount reported for subgrant amounts to LEAs may not exceed the total grant amount (Section 1,
@@ -1387,7 +1368,7 @@ Annual Report{% endblock title %}
                         <td data-esser3Mand20PhysicalOtherItems{{loop.index}}="{{sub.esser3Mand20PhysicalOtherItems}}">
                             {{sub.esser3Mand20PhysicalOtherItems|dollars}}</td>
                     </tr>
-                    <tr>
+                    <tfoot>
                         <th scope="row">Total</th>
                         <td
                             data-esser1MandPhysicalExpendedTotal{{loop.index}}="{{sub.esser1MandPhysicalExpendedTotal}}">
@@ -1401,7 +1382,7 @@ Annual Report{% endblock title %}
                         <td
                             data-esser3Mand20PhysicalExpendedTotal{{loop.index}}="{{sub.esser3Mand20PhysicalExpendedTotal}}">
                             {{sub.esser3Mand20PhysicalExpendedTotal|dollars}}</td>
-                    </tr>
+                    </tfoot>
                 </tbody>
             </table>
             <h3>Meeting Students&apos; Academic, Social, Emotional, and Other Needs (Excluding Mental Health Supports)
@@ -1537,7 +1518,7 @@ Annual Report{% endblock title %}
                         <td data-esser3Mand20AcademicOtherItems{{loop.index}}="{{sub.esser3Mand20AcademicOtherItems}}">
                             {{sub.esser3Mand20AcademicOtherItems|dollars}}</td>
                     </tr>
-                    <tr>
+                    <tfoot>
                         <th scope="row">Total</th>
                         <td
                             data-esser1MandAcademicExpendedTotal{{loop.index}}="{{sub.esser1MandAcademicExpendedTotal}}">
@@ -1551,7 +1532,7 @@ Annual Report{% endblock title %}
                         <td
                             data-esser3Mand20AcademicExpendedTotal{{loop.index}}="{{sub.esser3Mand20AcademicExpendedTotal}}">
                             {{sub.esser3Mand20AcademicExpendedTotal|dollars}}</td>
-                    </tr>
+                    </tfoot>
                 </tbody>
             </table>
             <h3>Mental Health Supports for Students and Staff</h3>
@@ -1682,7 +1663,7 @@ Annual Report{% endblock title %}
                         <td data-esser3Mand20MentalOtherItems{{loop.index}}="{{sub.esser3Mand20MentalOtherItems}}">
                             {{sub.esser3Mand20MentalOtherItems|dollars}}</td>
                     </tr>
-                    <tr>
+                    <tfoot>
                         <th scope="row">Total</th>
                         <td data-esser1MandMentalExpendedTotal{{loop.index}}="{{sub.esser1MandMentalExpendedTotal}}">
                             {{sub.esser1MandMentalExpendedTotal|dollars}}</td>
@@ -1693,7 +1674,7 @@ Annual Report{% endblock title %}
                         <td
                             data-esser3Mand20MentalExpendedTotal{{loop.index}}="{{sub.esser3Mand20MentalExpendedTotal}}">
                             {{sub.esser3Mand20MentalExpendedTotal|dollars}}</td>
-                    </tr>
+                    </tfoot>
                 </tbody>
             </table>
             <h3>Operational Continuity and Other Allowed Uses</h3>
@@ -1838,7 +1819,7 @@ Annual Report{% endblock title %}
                             data-esser3Mand20OperationalOtherItems{{loop.index}}="{{sub.esser3Mand20OperationalOtherItems}}">
                             {{sub.esser3Mand20OperationalOtherItems|dollars}}</td>
                     </tr>
-                    <tr>
+                    <tfoot>
                         <th scope="row">Total</th>
                         <td
                             data-esser1MandOperationalExpendedTotal{{loop.index}}="{{sub.esser1MandOperationalExpendedTotal}}">
@@ -1852,7 +1833,7 @@ Annual Report{% endblock title %}
                         <td
                             data-esser3Mand20OperationalExpendedTotal{{loop.index}}="{{sub.esser3Mand20OperationalExpendedTotal}}">
                             {{sub.esser3Mand20OperationalExpendedTotal|dollars}}</td>
-                    </tr>
+                    </tfoot>
                 </tbody>
             </table>
             <p>3.b3 Planned Uses of Remaining ESSER I Funds</p>
@@ -1976,65 +1957,65 @@ Annual Report{% endblock title %}
             <p>The LEA expended ESSER funds on the checked items below in the current reporting period (note, ESSER
                 refers to ESSER I, ESSER II, and ARP ESSER funds and includes both mandatory subgrants and SEA Reserve
                 subgrants):</p>
-                <p><input disabled type="checkbox" id="isEsserAUsedFundsVaccination{{loop.index}}"
-                        data-isEsserAUsedFundsVaccination{{loop.index}}="{{sub.isEsserAUsedFundsVaccination|yes_no}}" {{isEsserAUsedFundsVaccination|check}}/>
+                <p><input readonly type="checkbox" id="isEsserAUsedFundsVaccination{{loop.index}}"
+                        data-isEsserAUsedFundsVaccination{{loop.index}}="{{sub.isEsserAUsedFundsVaccination|yes_no}}" {{sub.isEsserAUsedFundsVaccination|check}}/>
                     <label for="isEsserAUsedFundsVaccination{{loop.index}}">Promoting vaccination</label></p>
-                <p><input disabled type="checkbox" id="isEsserAUsedFundsMasks{{loop.index}}"
-                        data-isEsserAUsedFundsMasks{{loop.index}}="{{sub.isEsserAUsedFundsMasks|yes_no}}" {{isEsserAUsedFundsMasks|check}}/>
+                <p><input readonly type="checkbox" id="isEsserAUsedFundsMasks{{loop.index}}"
+                        data-isEsserAUsedFundsMasks{{loop.index}}="{{sub.isEsserAUsedFundsMasks|yes_no}}" {{sub.isEsserAUsedFundsMasks|check}}/>
                     <label for="isEsserAUsedFundsMasks{{loop.index}}">Consistent and correct mask use</label></p>
-                <p><input disabled type="checkbox" id="isEsserAUsedFundsPhysicalDistancing{{loop.index}}"
-                        data-isEsserAUsedFundsPhysicalDistancing{{loop.index}}="{{sub.isEsserAUsedFundsPhysicalDistancing|yes_no}}" {{isEsserAUsedFundsPhysicalDistancing|check}}/>
+                <p><input readonly type="checkbox" id="isEsserAUsedFundsPhysicalDistancing{{loop.index}}"
+                        data-isEsserAUsedFundsPhysicalDistancing{{loop.index}}="{{sub.isEsserAUsedFundsPhysicalDistancing|yes_no}}" {{sub.isEsserAUsedFundsPhysicalDistancing|check}}/>
                     <label for="isEsserAUsedFundsPhysicalDistancing{{loop.index}}">Physical distancing</label></p>
-                <p><input disabled type="checkbox" id="isEsserAUsedFundsScreeningTests{{loop.index}}"
-                        data-isEsserAUsedFundsScreeningTests{{loop.index}}="{{sub.isEsserAUsedFundsScreeningTests|yes_no}}" {{isEsserAUsedFundsScreeningTests|check}}/>
+                <p><input readonly type="checkbox" id="isEsserAUsedFundsScreeningTests{{loop.index}}"
+                        data-isEsserAUsedFundsScreeningTests{{loop.index}}="{{sub.isEsserAUsedFundsScreeningTests|yes_no}}" {{sub.isEsserAUsedFundsScreeningTests|check}}/>
                     <label for="isEsserAUsedFundsScreeningTests{{loop.index}}">Screening testing to promptly identify
                         cases, clusters, and outbreaks</label></p>
-                <p><input disabled type="checkbox" id="isEsserAUsedFundsVentilation{{loop.index}}"
-                        data-isEsserAUsedFundsVentilation{{loop.index}}="{{sub.isEsserAUsedFundsVentilation|yes_no}}" {{isEsserAUsedFundsVentilation|check}}/>
+                <p><input readonly type="checkbox" id="isEsserAUsedFundsVentilation{{loop.index}}"
+                        data-isEsserAUsedFundsVentilation{{loop.index}}="{{sub.isEsserAUsedFundsVentilation|yes_no}}" {{sub.isEsserAUsedFundsVentilation|check}}/>
                     <label for="isEsserAUsedFundsVentilation{{loop.index}}">Ventilation</label></p>
-                <p><input disabled type="checkbox" id="isEsserAUsedFundsHealthPractices{{loop.index}}"
-                        data-isEsserAUsedFundsHealthPractices{{loop.index}}="{{sub.isEsserAUsedFundsHealthPractices|yes_no}}" {{isEsserAUsedFundsHealthPractices|check}}/>
+                <p><input readonly type="checkbox" id="isEsserAUsedFundsHealthPractices{{loop.index}}"
+                        data-isEsserAUsedFundsHealthPractices{{loop.index}}="{{sub.isEsserAUsedFundsHealthPractices|yes_no}}" {{sub.isEsserAUsedFundsHealthPractices|check}}/>
                     <label for="isEsserAUsedFundsHealthPractices{{loop.index}}">Handwashing and respiratory
                         etiquette</label></p>
-                <p><input disabled type="checkbox" id="isEsserAUsedFundsStayHome{{loop.index}}"
-                        data-isEsserAUsedFundsStayHome{{loop.index}}="{{sub.isEsserAUsedFundsStayHome|yes_no}}" {{isEsserAUsedFundsStayHome|check}}/>
+                <p><input readonly type="checkbox" id="isEsserAUsedFundsStayHome{{loop.index}}"
+                        data-isEsserAUsedFundsStayHome{{loop.index}}="{{sub.isEsserAUsedFundsStayHome|yes_no}}" {{sub.isEsserAUsedFundsStayHome|check}}/>
                     <label for="isEsserAUsedFundsStayHome{{loop.index}}">Staying home when sick and getting
                         tested</label></p>
-                <p><input disabled type="checkbox" id="isEsserAUsedFundsContactTracing{{loop.index}}"
-                        data-isEsserAUsedFundsContactTracing{{loop.index}}="{{sub.isEsserAUsedFundsContactTracing|yes_no}}" {{isEsserAUsedFundsContactTracing|check}}/>
+                <p><input readonly type="checkbox" id="isEsserAUsedFundsContactTracing{{loop.index}}"
+                        data-isEsserAUsedFundsContactTracing{{loop.index}}="{{sub.isEsserAUsedFundsContactTracing|yes_no}}" {{sub.isEsserAUsedFundsContactTracing|check}}/>
                     <label for="isEsserAUsedFundsContactTracing{{loop.index}}">Contact tracing</label></p>
-                <p><input disabled type="checkbox" id="isEsserAUsedFundsCleaning{{loop.index}}"
-                        data-isEsserAUsedFundsCleaning{{loop.index}}="{{sub.isEsserAUsedFundsCleaning|yes_no}}" {{isEsserAUsedFundsCleaning|check}}/>
+                <p><input readonly type="checkbox" id="isEsserAUsedFundsCleaning{{loop.index}}"
+                        data-isEsserAUsedFundsCleaning{{loop.index}}="{{sub.isEsserAUsedFundsCleaning|yes_no}}" {{sub.isEsserAUsedFundsCleaning|check}}/>
                     <label for="isEsserAUsedFundsCleaning{{loop.index}}">Cleaning and disinfection</label></p>
             <p>3.b7 ESSER Funds to Provide Internet Access</p>
             <p><label for="isEsserAUsedFundsInternet{{loop.index}}">Did this LEA use ESSER to provide home Internet
                     access for any students in the current reporting period? (ESSER refers to ESSER I, ESSER II and ARP
-                    ESSER awards and includes both mandatory subgrants and SEA Reserve subgrants)</label> <input disabled type="text"
+                    ESSER awards and includes both mandatory subgrants and SEA Reserve subgrants)</label> <input readonly type="text"
                     id="isEsserAUsedFundsInternet{{loop.index}}"
                     data-isEsserAUsedFundsInternet{{loop.index}}="{{sub.isEsserAUsedFundsInternet|yes_no}}" value="{{sub.isEsserAUsedFundsInternet|yes_no}}"/>
                 {% if sub.isEsserAUsedFundsInternet %}
             <p>Types of home Internet services provided by the district using ESSER Funds are checked below:</p>
-                <p><input disabled type="checkbox" id="isEsserAUsedFundsMobileHotspots{{loop.index}}"
+                <p><input readonly type="checkbox" id="isEsserAUsedFundsMobileHotspots{{loop.index}}"
                         data-isEsserAUsedFundsMobileHotspots{{loop.index}}="{{sub.isEsserAUsedFundsMobileHotspots|yes_no}}" {{sub.isEsserAUsedFundsMobileHotspots|check}}/>
                     <label for="isEsserAUsedFundsMobileHotspots{{loop.index}}">Mobile hotspots with paid data
                         plans</label></p>
-                <p><input disabled type="checkbox" id="isEsserAUsedFundsDataPlans{{loop.index}}"
+                <p><input readonly type="checkbox" id="isEsserAUsedFundsDataPlans{{loop.index}}"
                         data-isEsserAUsedFundsDataPlans{{loop.index}}="{{sub.isEsserAUsedFundsDataPlans|yes_no}}" {{sub.isEsserAUsedFundsDataPlans|check}}/>
                     <label for="isEsserAUsedFundsDataPlans{{loop.index}}">Internet connected devices with paid data
                         plans</label></p>
-                <p><input disabled type="checkbox" id="isEsserAUsedFundsHomeInternet{{loop.index}}"
+                <p><input readonly type="checkbox" id="isEsserAUsedFundsHomeInternet{{loop.index}}"
                         data-isEsserAUsedFundsHomeInternet{{loop.index}}="{{sub.isEsserAUsedFundsHomeInternet|yes_no}}" {{sub.isEsserAUsedFundsHomeInternet|check}}/>
                     <label for="isEsserAUsedFundsHomeInternet{{loop.index}}">isEsserAUsedFundsHomeInternet</label></p>
-                <p><input disabled type="checkbox" id="isEsserAUsedFundsDistrictInternet{{loop.index}}"
+                <p><input readonly type="checkbox" id="isEsserAUsedFundsDistrictInternet{{loop.index}}"
                         data-isEsserAUsedFundsDistrictInternet{{loop.index}}="{{sub.isEsserAUsedFundsDistrictInternet|yes_no}}" {{sub.isEsserAUsedFundsDistrictInternet|check}}/>
                     <label for="isEsserAUsedFundsDistrictInternet{{loop.index}}">District provides home Internet access
                         through a district-managed wireless network</label></p>
-                <p><input disabled type="checkbox" id="isEsserAUsedFundsInternetOther{{loop.index}}"1
+                <p><input readonly type="checkbox" id="isEsserAUsedFundsInternetOther{{loop.index}}"1
                         data-isEsserAUsedFundsInternetOther{{loop.index}}="{{sub.isEsserAUsedFundsInternetOther|yes_no}}" {{sub.isEsserAUsedFundsInternetOther|check}}/>
                     <label for="isEsserAUsedFundsInternetOther{{loop.index}}">Other</label></p>
             {% if sub.isEsserAUsedFundsInternetOther %}
             <p><label for="esserAUsedFundsInternetOtherDescription{{loop.index}}">Description:</label> 
-                <textarea disabled rows="4" cols="72"
+                <textarea readonly rows="4" cols="72"
                     id="esserAUsedFundsInternetOtherDescription{{loop.index}}"
                     data-esserAUsedFundsInternetOtherDescription{{loop.index}}="{{sub.esserAUsedFundsInternetOtherDescription|e}}">{{sub.esserAUsedFundsInternetOtherDescription|e}}</textarea>
             </p>
@@ -2043,7 +2024,7 @@ Annual Report{% endblock title %}
             <p>3.b8 Reengaging Students</p>
             <p>Provide a response for all LEAs that received ESSER I, ESSER II or ARP ESSER funds.</p>
             <p><label for="isEsserAEngageStudentsPoorAttendance{{loop.index}}">Did the LEA seek to
-                    reengage students with poor attendance or participation?</label> <input disabled type="text"
+                    reengage students with poor attendance or participation?</label> <input readonly type="text"
                     id="isEsserAEngageStudentsPoorAttendance{{loop.index}}"
                     data-isEsserAEngageStudentsPoorAttendance{{loop.index}}="{{sub.isEsserAEngageStudentsPoorAttendance|yes_no}}" value="{{sub.isEsserAEngageStudentsPoorAttendance|yes_no}}"/>
             </p>
@@ -2051,36 +2032,36 @@ Annual Report{% endblock title %}
             <p>3.b9 Reengaging Students Activities</p>
             <p>How the LEA sought to reengage students with poor attendance or participation (regardless of whether
                 ESSER funds were used for this purpose) are checked below:</p>
-                <p><input disabled type="checkbox" id="isEsserAEngageStudentsDirectOutreach{{loop.index}}"
+                <p><input readonly type="checkbox" id="isEsserAEngageStudentsDirectOutreach{{loop.index}}"
                         data-isEsserAEngageStudentsDirectOutreach{{loop.index}}="{{sub.isEsserAEngageStudentsDirectOutreach|yes_no}}" {{sub.isEsserAEngageStudentsDirectOutreach|check}}/>
                     <label for="isEsserAEngageStudentsDirectOutreach{{loop.index}}">Direct outreach to families</label>
                 </p>
-                <p><input disabled type="checkbox" id="isEsserAEngageStudentsHomelessLiaison{{loop.index}}"
+                <p><input readonly type="checkbox" id="isEsserAEngageStudentsHomelessLiaison{{loop.index}}"
                         data-isEsserAEngageStudentsHomelessLiaison{{loop.index}}="{{sub.isEsserAEngageStudentsHomelessLiaison|yes_no}}" {{sub.isEsserAEngageStudentsHomelessLiaison|check}}/>
                     <label for="isEsserAEngageStudentsHomelessLiaison{{loop.index}}">Engaging the school district
                         homeless liaison</label></p>
-                <p><input disabled type="checkbox" id="isEsserAEngageStudentsCommunityOrgs{{loop.index}}"
+                <p><input readonly type="checkbox" id="isEsserAEngageStudentsCommunityOrgs{{loop.index}}"
                         data-isEsserAEngageStudentsCommunityOrgs{{loop.index}}="{{sub.isEsserAEngageStudentsCommunityOrgs|yes_no}}" {{sub.isEsserAEngageStudentsCommunityOrgs|check}}/>
                     <label for="isEsserAEngageStudentsCommunityOrgs{{loop.index}}">Partnering with community-based
                         organizations</label></p>
-                <p><input disabled type="checkbox" id="isEsserAEngageStudentsHomeInternet{{loop.index}}"
+                <p><input readonly type="checkbox" id="isEsserAEngageStudentsHomeInternet{{loop.index}}"
                         data-isEsserAEngageStudentsHomeInternet{{loop.index}}="{{sub.isEsserAEngageStudentsHomeInternet|yes_no}}" {{sub.isEsserAEngageStudentsHomeInternet|check}}/>
                     <label for="isEsserAEngageStudentsHomeInternet{{loop.index}}">Offering home internet service and/or
                         devices</label></p>
-                <p><input disabled type="checkbox" id="isEsserAEngageStudentsNewCurriculum{{loop.index}}"
+                <p><input readonly type="checkbox" id="isEsserAEngageStudentsNewCurriculum{{loop.index}}"
                         data-isEsserAEngageStudentsNewCurriculum{{loop.index}}="{{sub.isEsserAEngageStudentsNewCurriculum|yes_no}}" {{sub.isEsserAEngageStudentsNewCurriculum|check}}/>
                     <label for="isEsserAEngageStudentsNewCurriculum{{loop.index}}">Implementing new curricular
                         strategies to improve student engagement</label></p>
-                <p><input disabled type="checkbox" id="isEsserAEngageStudentsCreditRecovery{{loop.index}}"
+                <p><input readonly type="checkbox" id="isEsserAEngageStudentsCreditRecovery{{loop.index}}"
                         data-isEsserAEngageStudentsCreditRecovery{{loop.index}}="{{sub.isEsserAEngageStudentsCreditRecovery|yes_no}}" {{sub.isEsserAEngageStudentsCreditRecovery|check}}/>
                     <label for="isEsserAEngageStudentsCreditRecovery{{loop.index}}">Offering credit recovery and/or
                         acceleration strategies</label></p>
-                <p><input disabled type="checkbox" id="isEsserAEngageStudentsOther{{loop.index}}"
+                <p><input readonly type="checkbox" id="isEsserAEngageStudentsOther{{loop.index}}"
                         data-isEsserAEngageStudentsOther{{loop.index}}="{{sub.isEsserAEngageStudentsOther|yes_no}}" {{sub.isEsserAEngageStudentsOther|check}}/>
                     <label for="isEsserAEngageStudentsOther{{loop.index}}">Other</label></p>
             {% if sub.isEsserAEngageStudentsOther %}
             <p><label for="esserAEngageStudentsOtherDescription{{loop.index}}">Description</label>: 
-                <textarea disabled rows="4" cols="72"
+                <textarea readonly rows="4" cols="72"
                     id="esserAEngageStudentsOtherDescription{{loop.index}}"
                     data-esserAEngageStudentsOtherDescription{{loop.index}}="{{sub.esserAEngageStudentsOtherDescription|e}}">{{sub.esserAEngageStudentsOtherDescription|e}}</textarea>
             </p>
@@ -2091,7 +2072,7 @@ Annual Report{% endblock title %}
             <p>(Note: this question is optional for the ARP ESSER Years 1 and 2 annual performance report; this question
                 will be required beginning in Year 3 of annual performance reporting for ARP ESSER.)</p>
             <p><label for="esserAAmountExpendedStaff{{loop.index}}">Total Amount Expended for These Staff (cumulative
-                    across all ESSER funds)</label> <input disabled type="text" id="esserAAmountExpendedStaff{{loop.index}}"
+                    across all ESSER funds)</label> <input readonly type="text" id="esserAAmountExpendedStaff{{loop.index}}"
                     data-esserAAmountExpendedStaff{{loop.index}}="{{sub.esserAAmountExpendedStaff}}" value="{{sub.esserAAmountExpendedStaff|dollars}}"/>
             </p>
             <table cellspacing="0" width="100%" id="mand_lea_hiring{{loop.index}}"
@@ -2158,9 +2139,10 @@ Annual Report{% endblock title %}
                     </tr>
                 </tbody>
             </table>
-            <h2 id="subsection3c{{loop.index}}">Subsection 3C - Allocation of ESSER Resources within LEA</h2>
+        </details>
+            <details><summary id="subsection3c{{loop.index}}"><b>Subsection 3C - Allocation of ESSER Resources within LEA</b></summary>
             <p><label for="isEsserAAllocatedToSchools{{loop.index}}">3.c Did this LEA allocate some portion of ESSER
-                    funds to schools in this reporting period?</label> <input disabled type="text"
+                    funds to schools in this reporting period?</label> <input readonly type="text"
                     id="isEsserAAllocatedToSchools{{loop.index}}"
                     data-isEsserAAllocatedToSchools{{loop.index}}="{{sub.isEsserAAllocatedToSchools|yes_no}}" value="{{sub.isEsserAAllocatedToSchools|yes_no}}"/>
             </p>
@@ -2168,51 +2150,52 @@ Annual Report{% endblock title %}
                 SEA Reserve awards</p>
             {% if sub.isEsserAAllocatedToSchools %}
             <p>Criteria used to allocate funds to schools within the LEA are checked below:</p>
-                <p><input disabled type="checkbox" id="isEsserALeaAllocatedFlatAmount{{loop.index}}"
+                <p><input readonly type="checkbox" id="isEsserALeaAllocatedFlatAmount{{loop.index}}"
                         data-isEsserALeaAllocatedFlatAmount{{loop.index}}="{{sub.isEsserALeaAllocatedFlatAmount|yes_no}}" {{sub.isEsserALeaAllocatedFlatAmount|check}}/>
                     <label for="isEsserALeaAllocatedFlatAmount{{loop.index}}">Flat amount per school or
                         per pupil</label></p>
-                <p><input disabled type="checkbox" id="isEsserALeaAllocatedSpecificNeeds{{loop.index}}"
+                <p><input readonly type="checkbox" id="isEsserALeaAllocatedSpecificNeeds{{loop.index}}"
                         data-isEsserALeaAllocatedSpecificNeeds{{loop.index}}="{{sub.isEsserALeaAllocatedSpecificNeeds|yes_no}}" {{sub.isEsserALeaAllocatedSpecificNeeds|check}}/>
                     <label for="isEsserALeaAllocatedSpecificNeeds{{loop.index}}">Number or proportion
                         of students at the school with specific curricular needs, such as students with disabilities or
                         English language learners</label></p>
-                <p><input disabled type="checkbox" id="isEsserALeaAllocatedFrpl{{loop.index}}"
+                <p><input readonly type="checkbox" id="isEsserALeaAllocatedFrpl{{loop.index}}"
                         data-isEsserALeaAllocatedFrpl{{loop.index}}="{{sub.isEsserALeaAllocatedFrpl|yes_no}}" {{sub.isEsserALeaAllocatedFrpl|check}}/>
                     <label for="isEsserALeaAllocatedFrpl{{loop.index}}">Number or proportion of
                         students at the school who are eligible for Free or Reduced-Price Lunch and/or other indicators
                         of low-income background</label></p>
-                <p><input disabled type="checkbox" id="isEsserALeaAllocatedLostTime{{loop.index}}"
+                <p><input readonly type="checkbox" id="isEsserALeaAllocatedLostTime{{loop.index}}"
                         data-isEsserALeaAllocatedLostTime{{loop.index}}="{{sub.isEsserALeaAllocatedLostTime|yes_no}}" {{sub.isEsserALeaAllocatedLostTime|check}}/>
                     <label for="isEsserALeaAllocatedLostTime{{loop.index}}">Measure(s) of lost
                         instructional time (&quot;learning loss&quot;)</label></p>
-                <p><input disabled type="checkbox" id="isEsserALeaAllocatedStakeholderInput{{loop.index}}"
+                <p><input readonly type="checkbox" id="isEsserALeaAllocatedStakeholderInput{{loop.index}}"
                         data-isEsserALeaAllocatedStakeholderInput{{loop.index}}="{{sub.isEsserALeaAllocatedStakeholderInput|yes_no}}" {{sub.isEsserALeaAllocatedStakeholderInput|check}}/>
                     <label for="isEsserALeaAllocatedStakeholderInput{{loop.index}}">Stakeholder or
                         community input</label></p>
-                <p><input disabled type="checkbox" id="isEsserALeaAllocatedTitleI{{loop.index}}"
+                <p><input readonly type="checkbox" id="isEsserALeaAllocatedTitleI{{loop.index}}"
                         data-isEsserALeaAllocatedTitleI{{loop.index}}="{{sub.isEsserALeaAllocatedTitleI|yes_no}}" {{sub.isEsserALeaAllocatedTitleI|check}}/>
                     <label for="isEsserALeaAllocatedTitleI{{loop.index}}">Title I status</label></p>
-                <p><input disabled type="checkbox" id="isEsserALeaAllocatedOther{{loop.index}}"
+                <p><input readonly type="checkbox" id="isEsserALeaAllocatedOther{{loop.index}}"
                         data-isEsserALeaAllocatedOther{{loop.index}}="{{sub.isEsserALeaAllocatedOther|yes_no}}" {{sub.isEsserALeaAllocatedOther|check}}/>
                     <label for="isEsserALeaAllocatedOther{{loop.index}}">Other data</label></p>
             {% if sub.isEsserALeaAllocatedOther %}
             <p><label for="esserALeaAllocatedOtherDescription{{loop.index}}">Description</label>: 
-                <textarea disabled rows="4" cols="72"
+                <textarea readonly rows="4" cols="72"
                     id="esserALeaAllocatedOtherDescription{{loop.index}}"
                     data-esserALeaAllocatedOtherDescription{{loop.index}}="{{sub.esserALeaAllocatedOtherDescription|e}}">{{sub.esserALeaAllocatedOtherDescription|e}}</textarea>
             </p>
             {% endif %}
             {% endif %}
-            <h2 id="subsection3d{{loop.index}}">Subsection 3D - ARP ESSER Mandatory Subgrants to LEAs, Reserve to Address
-                Impact of Learning Loss</h2>
+            </details>
+            <details><summary id="subsection3d{{loop.index}}"><b>Subsection 3D - ARP ESSER Mandatory Subgrants to LEAs, Reserve to Address
+                Impact of Learning Loss</b></summary>
             <p>3.d1 <label for="esser3Mand20Reserve{{loop.index}}">The total amount reserved by the LEA
-                    to address the impact of learning loss:</label> <input disabled type="text" id="esser3Mand20Reserve{{loop.index}}"
+                    to address the impact of learning loss:</label> <input readonly type="text" id="esser3Mand20Reserve{{loop.index}}"
                     data-esser3Mand20Reserve{{loop.index}}="{{sub.esser3Mand20Reserve}}" value="{{sub.esser3Mand20Reserve|dollars}}"/>
             </p>
             <p>(Note: this value must be at least 20% of the value reported in 3a for ARP ESSER)</p>
             <p>3.d2: <label for="esser3Mand20ReserveExpendedCurrent{{loop.index}}">Total expenditures
-                    of ARP ESSER LEA Reserve in this reporting period</label>: <input disabled type="text"
+                    of ARP ESSER LEA Reserve in this reporting period</label>: <input readonly type="text"
                     id="esser3Mand20ReserveExpendedCurrent{{loop.index}}"
                     data-esser3Mand20ReserveExpendedCurrent{{loop.index}}="{{sub.esser3Mand20ReserveExpendedCurrent}}" value="{{sub.esser3Mand20ReserveExpendedCurrent|dollars}}"/>
             </p>
@@ -2225,66 +2208,66 @@ Annual Report{% endblock title %}
                 in the criminal justice system, students who have missed the most in-person instruction during the
                 2019-2020 and 2020-2021 school years, students who did not consistently participate in remote
                 instruction when offered during school building closures, and LGBTQ+ students) are checked below:</p>
-                <p><input disabled type="checkbox" id="isEsser3Mand20Summer{{loop.index}}"
+                <p><input readonly type="checkbox" id="isEsser3Mand20Summer{{loop.index}}"
                         data-isEsser3Mand20Summer{{loop.index}}="{{sub.isEsser3Mand20Summer|yes_no}}" {{sub.isEsser3Mand20Summer|check}}/>
                     <label for="isEsser3Mand20Summer{{loop.index}}">Summer learning or summer enrichment</label></p>
-                <p><input disabled type="checkbox" id="isEsser3Mand20AftSch{{loop.index}}"
+                <p><input readonly type="checkbox" id="isEsser3Mand20AftSch{{loop.index}}"
                         data-isEsser3Mand20AftSch{{loop.index}}="{{sub.isEsser3Mand20AftSch|yes_no}}" {{sub.isEsser3Mand20AftSch|check}}/>
                     <label for="isEsser3Mand20AftSch{{loop.index}}">Afterschool programs</label></p>
-                <p><input disabled type="checkbox" id="isEsser3Mand20ExtendedTime{{loop.index}}"
+                <p><input readonly type="checkbox" id="isEsser3Mand20ExtendedTime{{loop.index}}"
                         data-isEsser3Mand20ExtendedTime{{loop.index}}="{{sub.isEsser3Mand20ExtendedTime|yes_no}}" {{sub.isEsser3Mand20ExtendedTime|check}}/>
                     <label for="isEsser3Mand20ExtendedTime{{loop.index}}">Extended instructional time (school day,
                         school week, or school year)</label></p>
-                <p><input disabled type="checkbox" id="isEsser3Mand20Tutoring{{loop.index}}"
+                <p><input readonly type="checkbox" id="isEsser3Mand20Tutoring{{loop.index}}"
                         data-isEsser3Mand20Tutoring{{loop.index}}="{{sub.isEsser3Mand20Tutoring|yes_no}}" {{sub.isEsser3Mand20Tutoring|check}}/>
                     <label for="isEsser3Mand20Tutoring{{loop.index}}">Tutoring</label></p>
-                <p><input disabled type="checkbox" id="isEsser3Mand20AddlTeachers{{loop.index}}"
+                <p><input readonly type="checkbox" id="isEsser3Mand20AddlTeachers{{loop.index}}"
                         data-isEsser3Mand20AddlTeachers{{loop.index}}="{{sub.isEsser3Mand20AddlTeachers|yes_no}}" {{sub.isEsser3Mand20AddlTeachers|check}}/>
                     <label for="isEsser3Mand20AddlTeachers{{loop.index}}">Additional classroom teachers</label></p>
-                <p><input disabled type="checkbox" id="isEsser3Mand20StaffSocial{{loop.index}}"
+                <p><input readonly type="checkbox" id="isEsser3Mand20StaffSocial{{loop.index}}"
                         data-isEsser3Mand20StaffSocial{{loop.index}}="{{sub.isEsser3Mand20StaffSocial|yes_no}}" {{sub.isEsser3Mand20StaffSocial|check}}/>
                     <label for="isEsser3Mand20StaffSocial{{loop.index}}">Other additional staffing and/or activities to
                         assess and support social-emotional well-being (excluding mental health supports), for students,
                         educators and/or families</label></p>
-                <p><input disabled type="checkbox" id="isEsser3Mand20StaffMental{{loop.index}}"
+                <p><input readonly type="checkbox" id="isEsser3Mand20StaffMental{{loop.index}}"
                         data-isEsser3Mand20StaffMental{{loop.index}}="{{sub.isEsser3Mand20StaffMental|yes_no}}" {{sub.isEsser3Mand20StaffMental|check}}/>
                     <label for="isEsser3Mand20StaffMental{{loop.index}}">Other additional staffing and/or activities to
                         assess and support mental health needs, for students, educators and/or families</label></p>
-                <p><input disabled type="checkbox" id="isEsser3Mand20StaffStudentNeeds{{loop.index}}"
+                <p><input readonly type="checkbox" id="isEsser3Mand20StaffStudentNeeds{{loop.index}}"
                         data-isEsser3Mand20StaffStudentNeeds{{loop.index}}="{{sub.isEsser3Mand20StaffStudentNeeds|yes_no}}" {{sub.isEsser3Mand20StaffStudentNeeds|check}}/>
                     <label for="isEsser3Mand20StaffStudentNeeds{{loop.index}}">Other additional staffing and/or
                         activities to identify and/or respond to unique student needs and/or provide targeted support
                         for vulnerable students (including low-income children or students, students with disabilities,
                         English learners, racial and ethnic minorities, students experiencing homelessness, and children
                         and youth in foster care)</label></p>
-                <p><input disabled type="checkbox" id="isEsser3Mand20Screening{{loop.index}}"
+                <p><input readonly type="checkbox" id="isEsser3Mand20Screening{{loop.index}}"
                         data-isEsser3Mand20Screening{{loop.index}}="{{sub.isEsser3Mand20Screening|yes_no}}" {{sub.isEsser3Mand20Screening|check}}/>
                     <label for="isEsser3Mand20Screening{{loop.index}}">Universal screening, academic assessments, and
                         intervention data systems, such as early warning systems and/or opportunity to learn data
                         systems.</label></p>
-                <p><input disabled type="checkbox" id="isEsser3Mand20Coordination{{loop.index}}"
+                <p><input readonly type="checkbox" id="isEsser3Mand20Coordination{{loop.index}}"
                         data-isEsser3Mand20Coordination{{loop.index}}="{{sub.isEsser3Mand20Coordination|yes_no}}" {{sub.isEsser3Mand20Coordination|check}}/>
                     <label for="isEsser3Mand20Coordination{{loop.index}}">Improved coordination of services for students
                         with multiple types of needs, such as full-service community schools or improved coordination
                         with partner agencies, such as foster care services</label></p>
-                <p><input disabled type="checkbox" id="isEsser3Mand20EarlyChildhood{{loop.index}}"
+                <p><input readonly type="checkbox" id="isEsser3Mand20EarlyChildhood{{loop.index}}"
                         data-isEsser3Mand20EarlyChildhood{{loop.index}}="{{sub.isEsser3Mand20EarlyChildhood|yes_no}}" {{sub.isEsser3Mand20EarlyChildhood|check}}/>
                     <label for="isEsser3Mand20EarlyChildhood{{loop.index}}">Early childhood programs</label></p>
-                <p><input disabled type="checkbox" id="isEsser3Mand20Curriculum{{loop.index}}"
+                <p><input readonly type="checkbox" id="isEsser3Mand20Curriculum{{loop.index}}"
                         data-isEsser3Mand20Curriculum{{loop.index}}="{{sub.isEsser3Mand20Curriculum|yes_no}}" {{sub.isEsser3Mand20Curriculum|check}}/>
                     <label for="isEsser3Mand20Curriculum{{loop.index}}">Curriculum adoption and learning
                         materials</label></p>
-                <p><input disabled type="checkbox" id="isEsser3Mand20Capacity{{loop.index}}"
+                <p><input readonly type="checkbox" id="isEsser3Mand20Capacity{{loop.index}}"
                         data-isEsser3Mand20Capacity{{loop.index}}="{{sub.isEsser3Mand20Capacity|yes_no}}" {{sub.isEsser3Mand20Capacity|check}}/>
                     <label for="isEsser3Mand20Capacity{{loop.index}}">Core staff capacity building / training to
                         increase instructional quality and advance investments in talent pipelines for teachers and/or
                         classified staff</label></p>
-                <p><input disabled type="checkbox" id="isEsser3Mand20Other{{loop.index}}"
+                <p><input readonly type="checkbox" id="isEsser3Mand20Other{{loop.index}}"
                         data-isEsser3Mand20Other{{loop.index}}="{{sub.isEsser3Mand20Other|yes_no}}" {{sub.isEsser3Mand20Other|check}}/>
                     <label for="isEsser3Mand20Other{{loop.index}}">Other</label></p>
             {% if sub.isEsser3Mand20Other %}
             <p><label for="esser3Mand20OtherDescription{{loop.index}}">Description</label>: 
-                <textarea disabled rows="4" cols="72"
+                <textarea readonly rows="4" cols="72"
                     id="esser3Mand20OtherDescription{{loop.index}}"
                     data-esser3Mand20OtherDescription{{loop.index}}="{{sub.esser3Mand20OtherDescription|e}}">{{sub.esser3Mand20OtherDescription|e}}</textarea>
             </p>
@@ -2297,25 +2280,23 @@ Annual Report{% endblock title %}
                     low-income families, children with disabilities, English learners, migratory students, students
                     experiencing homelessness, youth in foster care, and other groups disproportionately impacted by the
                     pandemic that have been identified by the SEA.</label></p>
-            <p><textarea disabled rows="4" cols="72" id="esser3UnderservedGroupsDescription{{loop.index}}"
+            <p><textarea readonly rows="4" cols="72" id="esser3UnderservedGroupsDescription{{loop.index}}"
                     data-esser3UnderservedGroupsDescription{{loop.index}}="{{sub.esser3UnderservedGroupsDescription|e}}">{{sub.esser3UnderservedGroupsDescription|e}}</textarea>
             </p>
+            </details>
             </details>
             <hr>
             {% endfor %}
         </section>
         <form action="" name="school-fte" aria-labelledby="section4">
-            <h1 id="section4">Section 4 - Access to select staff, SY 2020-21</h1>
+            <details><summary id="section4"><b>Section 4 - Access to select staff, SY 2020-21</b></summary>
             <hr>
             {% for sub in apr.schools %}
             <details>
-            <summary>
-                <p data-school_name{{loop.index}}="{{sub.schoolName|e}}">School name: {{sub.schoolName|e}}</p>
-                <p data-school_lea_ueiNumber{{loop.index}}="{{sub.ueiNumber|e}}" 
-                    data-school_lea_ueiNumber{{loop.index}}="{{sub.ueiNumber|e}}"
-                    data-school_lea_ncesNumber{{loop.index}}="{{sub.ncesNumber|e}}"
-                    data-school_lea_name{{loop.index}}="{{sub.entityName|e}}">Unique Entity ID (SAM){{sub.ueiNumber|e}} DUNS&#35;: {{sub.dunsNumber|e}} NCES ID&#35;: {{sub.ncesNumber|e}} LEA name: {{sub.entityName|e}}
-                </p>
+            <summary data-school_name{{loop.index}}="{{sub.schoolName|e}}" data-school_lea_ueiNumber{{loop.index}}="{{sub.ueiNumber|e}}" 
+            data-school_lea_ueiNumber{{loop.index}}="{{sub.ueiNumber|e}}"
+            data-school_lea_ncesNumber{{loop.index}}="{{sub.ncesNumber|e}}"
+            data-school_lea_name{{loop.index}}="{{sub.entityName|e}}">School name: {{sub.schoolName|e}} Unique Entity ID (SAM): {{sub.ueiNumber|e}} DUNS&#35;: {{sub.dunsNumber|e}} NCES ID&#35;: {{sub.ncesNumber|e}} LEA name: {{sub.entityName|e}}
             </summary>
             <p>4.c1 Please provide the count of FTE staff assigned to serve this school, regardless of funding source,
                 as of September 30, 2020. For example, if one full-time nurse is shared equally by five schools within
@@ -2356,9 +2337,10 @@ Annual Report{% endblock title %}
             </details>
             <hr>
             {% endfor %}
+            </details>
         </form>
         <form action="" name="entity_fte" aria-labelledby="section5">
-            <h1 id="section5">Section 5 - Full-Time Equivalent (FTE) Positions</h1>
+            <details><summary id="section5"><b>Section 5 - Full-Time Equivalent (FTE) Positions</b></summary>
             <p>5.a Provide the number of full-time equivalent (FTE) positions for the LEA or non-LEA Entity, as of the
                 listed reporting dates. (The number of FTE positions includes all staff regardless of whether the
                 position is funded by Federal, State, local, or other funds—and equals the sum of the number of
@@ -2399,14 +2381,15 @@ Annual Report{% endblock title %}
                     {% endfor %}
                 </tbody>
             </table>
+            </details>
         </form>
         <form action="" name="maint_equity" aria-labelledby="section6">
-            <h1 id="section6">Section 6- Maintenance of Equity</h1>
+            <details><summary id="section6"><b>Section 6- Maintenance of Equity</b></summary>
             <p>As a condition of receiving funds under ARP ESSER, each SEA and LEA that receives ARP ESSER funds must comply with the applicable maintenance of equity requirements. For more information on these requirements, please refer to ED guidance (link to Maintenance of Equity FAQ). Please provide the following information to meet the current FY 2022 annual reporting requirement. SEAs will be required to provide additional information in subsequent reporting years on how the State maintained equity. Data reported in this section will be used to assess the extent to which each State has maintained equity.</p>
             <h2>SEA Maintenance of Equity</h2>
-            <p>a. <label for="esser3MoeStatePupilAmountAllocated2021">The statewide per-pupil amount of State funds allocated or appropriated to all LEAs in the State in FY 2021</label>: <input disabled type="text" id="esser3MoeStatePupilAmountAllocated2021" data-esser3MoeStatePupilAmountAllocated2021="{{apr.esser3MoeStatePupilAmountAllocated2021}}" value="{{apr.esser3MoeStatePupilAmountAllocated2021|dollars}}"/></p>
-            <p>b. <label for="esser3MoeStatePupilAmountAllocated2022">The statewide per-pupil amount of State funds allocated or appropriated to all LEAs in the State in FY 2022</label>: <input disabled type="text" id="esser3MoeStatePupilAmountAllocated2022" data-esser3MoeStatePupilAmountAllocated2022="{{apr.esser3MoeStatePupilAmountAllocated2022}}" value="{{apr.esser3MoeStatePupilAmountAllocated2022|dollars}}"/></p>
-            <p>c. <label for="esser3MoeStatePupilAmountReduced2022">Per-pupil reduction of overall State funds for FY 2022</label>: <input disabled type="text" id="esser3MoeStatePupilAmountReduced2022" data-esser3MoeStatePupilAmountReduced2022="{{apr.esser3MoeStatePupilAmountReduced2022}}" value="{{apr.esser3MoeStatePupilAmountReduced2022|dollars}}"/></p>
+            <p>a. <label for="esser3MoeStatePupilAmountAllocated2021">The statewide per-pupil amount of State funds allocated or appropriated to all LEAs in the State in FY 2021</label>: <input readonly type="text" id="esser3MoeStatePupilAmountAllocated2021" data-esser3MoeStatePupilAmountAllocated2021="{{apr.esser3MoeStatePupilAmountAllocated2021}}" value="{{apr.esser3MoeStatePupilAmountAllocated2021|dollars}}"/></p>
+            <p>b. <label for="esser3MoeStatePupilAmountAllocated2022">The statewide per-pupil amount of State funds allocated or appropriated to all LEAs in the State in FY 2022</label>: <input readonly type="text" id="esser3MoeStatePupilAmountAllocated2022" data-esser3MoeStatePupilAmountAllocated2022="{{apr.esser3MoeStatePupilAmountAllocated2022}}" value="{{apr.esser3MoeStatePupilAmountAllocated2022|dollars}}"/></p>
+            <p>c. <label for="esser3MoeStatePupilAmountReduced2022">Per-pupil reduction of overall State funds for FY 2022</label>: <input readonly type="text" id="esser3MoeStatePupilAmountReduced2022" data-esser3MoeStatePupilAmountReduced2022="{{apr.esser3MoeStatePupilAmountReduced2022}}" value="{{apr.esser3MoeStatePupilAmountReduced2022|dollars}}"/></p>
             <p> (Note: If the per-pupil amount for FY 2022 is less than FY 2021, the difference is the amount by which the SEA has reduced its per-pupil amount of State funds to LEAs in FY 2022. If an SEA increases or maintains per-pupil funding to all LEAs in FY 2022, then for the purposes of determining whether the SEA has maintained fiscal equity for its high-need LEAs, the reduction is zero.)</p>
             <p>Provide the per-pupil amount of State funding appropriated or allocated by state fiscal year for each high-need LEA as identified by the SEA. SEAs are expected to provide the following data for the same high-need LEAs that it reported baseline and initial Maintenance of Equity data to Department in 2021. To the extent that the State has updated data or information, a State may update that information below.</p>
             <table cellspacing="0" width="100%" id="high_need_lea_maint_equity"
@@ -2468,6 +2451,7 @@ Annual Report{% endblock title %}
                     {% endfor %}
                 </tbody>
             </table>
+            </details>
         </form>
         <section id="end_notes" role="contentinfo" aria-labelledby="endnotes">
             <h1 id="endnotes">Notes</h1>
