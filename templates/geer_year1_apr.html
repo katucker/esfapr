@@ -7,14 +7,16 @@
 {% endblock apr_title %}
 {% block apr_sections %}
 <p><a href="#introduction">Introduction</a></p>
-<p><a href="#item1">1. Entity Types awarded GEER funds</a></p>
-<p><a href="#item2">2. LEA funding conditions</a></p>
-<p><a href="#item3">3. IHE funding conditions</a></p>
-<p><a href="#item4">4. LEA expenditures</a></p>
-<p><a href="#item5">5. IHE expenditures</a></p>
-<p><a href="#item6">6. Education-related entity expenditures</a></p>
-<p><a href="#item7">7. Full-time Equivalents</a></p>
-<p><a href="#item8">8. K-12 schools</a></p>
+<ol>
+    <li><a href="#item1">Entity Types awarded GEER funds</a></li>
+    <li><a href="#item2">LEA funding conditions</a></li>
+    <li><a href="#item3">IHE funding conditions</a></li>
+    <li><a href="#item4">LEA expenditures</a></li>
+    <li><a href="#item5">IHE expenditures</a></li>
+    <li><a href="#item6">Education-related entity expenditures</a></li>
+    <li><a href="#item7">Full-time Equivalents</a></li>
+    <li><a href="#item8">K-12 schools</a></li>
+    </ol>
 {% endblock apr_sections %}
 {% block apr %}
 <main>
@@ -22,11 +24,11 @@
         <h1 id="introduction">Governor's Emergency Education Assistance Annual Reporting Form</h1>
         <p><label class="question" for="stateCode">State:</label> <input readonly type="text" id="stateCode" data-stateCode="{{apr.stateCode|e}}" value="{{apr.stateCode|e }}"/></p>
         <p><label class="question" for="prNumber">PR/Award number:</label> <input readonly type="text" id="prNumber" data-prNumber="{{ apr.prNumber|e }}" value="{{apr.prNumber|e }}"/></p>
-        <p><label class="question" for="repName">State Director:</label> <input readonly type="text" id="repName" data-repName="{{ apr.repName|e }}" value="{{apr.repName|e }}"/></p>
-        <p><label class="question" for="repPosition">Position:</label> <input readonly type="text" size="72" id="repPosition" data-repPosition="{{apr.repPosition|e}}" value="{{apr.repPosition|e }}"/></p>
-        <p><label class="question" for="repOffice">Office:</label> <input readonly type="text" size="72" id="repOffice" data-repOffice="{{apr.repOffice|e}}" value="{{apr.repOffice|e }}"/></p>
+        <p><label class="question" for="repName">State Director:</label> <input readonly type="text" id="repName" {% if apr.repName is defined and apr.repName is not none %} size="{{apr.repName|length}}" {% endif %} data-repName="{{ apr.repName|e }}" value="{{apr.repName|e }}"/></p>
+        <p><label class="question" for="repPosition">Position:</label> <input readonly type="text" {% if apr.repPosition is defined and apr.repPosition is not none %} size="{{apr.repPosition|length}}" {% endif %} id="repPosition" data-repPosition="{{apr.repPosition|e}}" value="{{apr.repPosition|e }}"/></p>
+        <p><label class="question" for="repOffice">Office:</label> <input readonly type="text" {% if apr.repOffice is defined and apr.repOffice is not none %} size="{{apr.repOffice|length}}" {% endif %} id="repOffice" data-repOffice="{{apr.repOffice|e}}" value="{{apr.repOffice|e }}"/></p>
         <p><label class="question" for="repPhone">Telephone:</label> <input readonly type="text" id="repPhone" data-repPhone="{{apr.repPhone|e}}" value="{{apr.repPhone|e }}"/></p>
-        <p><label class="question" for="repEmail">E-mail Address:</label> <input readonly type="text" size="72" id="repEmail" data-repEmail="{{apr.repEmail|e}}" value="{{apr.repEmail|e }}"/></p>
+        <p><label class="question" for="repEmail">E-mail Address:</label> <input readonly type="text" {% if apr.repEmail is defined and apr.repEmail is not none %} size="{{apr.repEmail|length}}" {% endif %} id="repEmail" data-repEmail="{{apr.repEmail|e}}" value="{{apr.repEmail|e }}"/></p>
         <p><b>Instructions:</b> States and outlying areas that received Governors Emergency Education Relief (GEER) or Education Stabilization Fund (ESF)-Governors funds should fill out this form. References to GEER include ESF-Governors. To fulfill the annual GEER fund reporting requirements, answer all questions based on the reporting period shown in the Annual Reporting table below.</p>
         <details>
             <summary>Annual Reporting Periods</summary>
@@ -119,7 +121,7 @@
             </summary>
             <p class="question">4.a. Provide the amounts expended and select the purposes for which the funds were expended by the LEA.</p>
             <p><label>Total amount awarded to the LEA: <input readonly type="text" id="leaawardedAmount{{loop.index}}" data-leaawardedAmount{{loop.index}}="{{sub.awardedAmount}}" value="{{sub.awardedAmount|dollars}}"/></label></p>
-            <p><label>Who the LEA is serving with the funds: <input readonly type="text" size="72" id="servedPopulation{{loop.index}}" data-servedPopulation{{loop.index}}="{{sub.servedPopulation|e}}" value="{{sub.servedPopulation|e}}"/></label></p>
+            <p><label>Who the LEA is serving with the funds: <input readonly type="text" {% if sub.servedPopulation is defined and sub.servedPopulation is not none %} size="{{sub.servedPopulation|length}}" {% endif %} id="servedPopulation{{loop.index}}" data-servedPopulation{{loop.index}}="{{sub.servedPopulation|e}}" value="{{sub.servedPopulation|e}}"/></label></p>
             <p><label>Amount expended by the LEA for Public Schools: <input readonly type="text" id="fundsExpendedOnPublicSchools{{loop.index}}" data-fundsExpendedOnPublicSchools{{loop.index}}="{{sub.fundsExpendedOnPublicSchools}}" value="{{sub.fundsExpendedOnPublicSchools|dollars}}"/></label></p>
             <p><label>Amount expended by the LEA for equitable service for Non-public School students and teachers: <input readonly type="text" id="fundsExpendedOnNonPublicSchools{{loop.index}}" data-fundsExpendedOnNonPublicSchools{{loop.index}}="{{sub.fundsExpendedOnNonPublicSchools}}" value="{{sub.fundsExpendedOnNonPublicSchools|dollars}}"/></label></p>
             <p><label>Total amount expended by the LEA: <input readonly type="text" id="fundsExpendedTotal{{loop.index}}" data-fundsExpendedTotal{{loop.index}}="{{sub.fundsExpendedTotal}}" value="{{sub.fundsExpendedTotal|dollars}}"/></label></p>

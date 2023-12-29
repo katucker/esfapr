@@ -37,18 +37,27 @@ import boto3
 DEFAULT_REGION = 'us-east-1'
 DEFAULT_PROFILE = 'esf_dmp_published'
 
-def find_latest_apr_file(bucket, fileNamePattern):
-    latest = None
-    fileName = None
+def find_latest_apr_files(bucket, file_name_patterns):
+    file_list = []
     try:
-        for bucketObj in bucket.objects.all():
-            if latest is None or bucketObj.last_modified > latest:
-                if re.match(fileNamePattern,bucketObj.key):
-                    fileName = bucketObj.key
-                    latest = bucketObj.last_modified
+        # Gather all the object names and last modified dates from the bucket,
+        # for faster repeated iterations,
+        cloud_file_list = []
+        for bucket_obj in bucket.objects.all():
+            cloud_file_list.append((bucket_obj.key,bucket_obj.last_modified))
+        for pattern in file_name_patterns:
+            latest = None
+            file_name = None
+            for bucket_file, bucket_latest in cloud_file_list:
+                if latest is None or bucket_latest > latest:
+                    if re.match(pattern,bucket_file):
+                        file_name = bucket_file
+                        latest = bucket_latest
+            if file_name is not None:
+                file_list.append((file_name,latest))
     except Exception as e:
-        logging.error(e)
-    return fileName, latest
+        logging.error('Error searching for latest files in cloud storage.', exc_info=e)
+    return file_list
 
 if __name__ == '__main__':
 
@@ -63,19 +72,20 @@ if __name__ == '__main__':
   AWS_PROFILE: The name of the cloud storage location
   AWS_DEFAULT_REGION: The name of the associated Cloud Service Provider region in which the cloud storage is located
 ''')
-    ap.add_argument('pattern', help='File naming pattern to use in searching cloud storage.') 
-    ap.add_argument('-o','--output',help='Store files found in the specified directory.')
-    ap.add_argument('-b','--bucket',action='append',dest='bucket', required=True,
+    ap.add_argument('pattern', nargs='+', help='File naming pattern to use in searching cloud storage.') 
+    ap.add_argument('-o', '--output', help='Store files found in the specified directory.')
+    ap.add_argument('-b', '--bucket', action='append', dest='bucket', default=['prod-esf-dmp-published'],
         choices=['prod-esf-dmp-published', 'esftp-dmp-prod-curated','esftp-dmp-prod-analyzed'],
-        help=f'The names of the cloud storage locations to search.')
-    ap.add_argument('-p','--profile',dest='profile',default=os.getenv('AWS_PROFILE', DEFAULT_PROFILE),
+        help='The names of the cloud storage locations to search.')
+    ap.add_argument('-p', '--profile', dest='profile', default=os.getenv('AWS_PROFILE', DEFAULT_PROFILE),
         help='Profile name to use for cloud storage access.')
-    ap.add_argument('-r','--region',dest='region',default=os.getenv('AWS_DEFAULT_REGION', DEFAULT_REGION),
+    ap.add_argument('-r', '--region', dest='region', default=os.getenv('AWS_DEFAULT_REGION', DEFAULT_REGION),
         help='Region name to use for cloud storage access.')
-    ap.add_argument('-k','--key',help='Access key for cloud storage access.',dest='key',
+    ap.add_argument('-k', '--key', help='Access key for cloud storage access.', dest='key',
         default=os.getenv('AWS_ACCESS_KEY_ID'))
-    ap.add_argument('-s','--secret',dest='secret',help='Secret access key for cloud storage access.',
+    ap.add_argument('-s', '--secret', dest='secret', help='Secret access key for cloud storage access.',
         default=os.getenv('AWS_SECRET_ACCESS_KEY'))
+    ap.add_argument('-n', '--noverify', action='store_false', help='Turn off SSL certificate validation.')
     args = ap.parse_args()
 
     try:
@@ -83,7 +93,7 @@ if __name__ == '__main__':
                                 aws_secret_access_key=args.secret,
                                 profile_name=args.profile,
                                 region_name=args.region)
-        s3 = session.resource('s3')
+        s3 = session.resource('s3', verify=args.noverify)
 
         if args.output:
             outdir = pathlib.Path(args.output).resolve(strict=False)
@@ -101,9 +111,9 @@ if __name__ == '__main__':
         for bucket_name in args.bucket:
             bucket = s3.Bucket(bucket_name)
 
-            file_name, mtime = find_latest_apr_file(bucket, args.pattern)
+            file_name_list = find_latest_apr_files(bucket, args.pattern)
 
-            if file_name is not None:
+            for file_name, latest in file_name_list:
                 file_not_found = False
 
                 # If the file does not already exist or is older than the copy found in
@@ -121,10 +131,12 @@ if __name__ == '__main__':
                     # Download the object as a local file.
                     with open(file_name, 'wb') as f:
                         bucket.download_fileobj(file_name, f)
-                print(f'Latest version file is {file_name} from bucket {bucket_name}.')
+                    print(f'File named {file_name} downloaded from bucket {bucket_name}.')
+                else:
+                    print(f'File named {file_name} was already the latest.')
 
         if file_not_found:
-            print(f'No file found in cloud storage matching naming pattern {args.pattern}')
+            print('No files found in cloud storage matching provided naming patterns.')
 
 
     except Exception as e:

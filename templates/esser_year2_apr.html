@@ -8,12 +8,14 @@ Annual Report{% endblock title %}
 {% endblock apr_title %}
 {% block apr_sections %}
 <p><a href="#introduction">Introduction</a></p>
-<p><a href="#section1">Section 1 - State Fiscal Year</a></p>
-<p><a href="#section2">Section 2 - Overall ESSER Fund Grants for SEA</a></p>
-<p><a href="#section3">Section 3- Mandatory Subgrants to LEAs</a></p>
-<p><a href="#section4">Section 4 - Access to select staff, SY 2020-21</a></p>
-<p><a href="#section5">Section 5 - Full-Time Equivalent (FTE) Positions</a></p>
-<p><a href="#section6">Section 6- Maintenance of Equity</a></p>
+<ol>
+    <li><a href="#section1">State Fiscal Year</a></li>
+    <li><a href="#section2">Overall ESSER Fund Grants for SEA</a></li>
+    <li><a href="#section3">Mandatory Subgrants to LEAs</a></li>
+    <li><a href="#section4">Access to select staff, SY 2020-21</a></li>
+    <li><a href="#section5">Full-Time Equivalent (FTE) Positions</a></li>
+    <li><a href="#section6">Maintenance of Equity</a></li>
+</ol>
 {% endblock apr_sections %}
 {% block apr %}
 <main>
@@ -27,17 +29,17 @@ Annual Report{% endblock title %}
                 id="esser2AwardNumber" data-esser2AwardNumber="{{ apr.esser2AwardNumber|e }}" value="{{apr.esser2AwardNumber|e}}"/></p>
         <p><label for="esser3AwardNumber">ARP ESSER PR/Award number:</label> <input readonly type="text"
                 id="esser3AwardNumber" data-esser3AwardNumber="{{ apr.esser3AwardNumber|e }}" value="{{apr.esser3AwardNumber|e}}"/></p>
-        <p><label for="stateDirectorName">State Director:</label> <input readonly type="text" size="72" id="stateDirectorName"
+        <p><label for="stateDirectorName">State Director:</label> <input readonly type="text" {% if apr.stateDirectorName is defined and apr.stateDirectorName is not none %} size="{{apr.stateDirectorName|length}}" {% endif %} id="stateDirectorName"
                 data-stateDirectorName="{{ apr.stateDirectorName|e }}" value="{{ apr.stateDirectorName|e }}"/></p>
-        <p><label for="stateDirectorPosition">Position:</label> <input readonly type="text" size="72" id="stateDirectorPosition"
+        <p><label for="stateDirectorPosition">Position:</label> <input readonly type="text" {% if apr.stateDirectorPosition is defined and apr.stateDirectorPosition is not none %} size="{{apr.stateDirectorPosition|length}}" {% endif %} id="stateDirectorPosition"
                 data-stateDirectorPosition="{{apr.stateDirectorPosition|e}}" value="{{ apr.stateDirectorPosition|e }}"/>
         </p>
-        <p><label for="stateDirectorOffice">Office:</label> <input readonly type="text" size="72" id="stateDirectorOffice"
+        <p><label for="stateDirectorOffice">Office:</label> <input readonly type="text" {% if apr.stateDirectorOffice is defined and apr.stateDirectorOffice is not none %} size="{{apr.stateDirectorOffice|length}}" {% endif %} id="stateDirectorOffice"
                 data-stateDirectorOffice="{{apr.stateDirectorOffice|e}}" value="{{ apr.stateDirectorOffice|e }}"/></p>
         <p><label for="stateDirectorTelephone">Telephone:</label> <input readonly type="text" id="stateDirectorTelephone"
                 data-stateDirectorTelephone="{{apr.stateDirectorTelephone|e}}" value="{{ apr.stateDirectorTelephone|e }}"/>
         </p>
-        <p><label for="stateDirectorEmailAddress">E-mail Address:</label> <input readonly size="72" type="text"
+        <p><label for="stateDirectorEmailAddress">E-mail Address:</label> <input readonly {% if apr.stateDirectorEmailAddress is defined and apr.stateDirectorEmailAddress is not none %} size="{{apr.stateDirectorEmailAddress|length}}" {% endif %} type="text"
                 id="stateDirectorEmailAddress" data-stateDirectorEmailAddress="{{apr.stateDirectorEmailAddress|e}}"
                 value="{{ apr.stateDirectorEmailAddress|e }}"/></p>
 
@@ -253,17 +255,17 @@ Annual Report{% endblock title %}
                 <tr>
                     <th scope="row">a. The total grant amount allocated to the State Educational Agency (SEA)<a
                             href="#endnote1"><sup>1</sup></a></th>
-                    <td data-esser1GrantAmountAllocated="{{apr.esser1GrantAmountAllocated}}">
+                    <td class="rightAlign" data-esser1GrantAmountAllocated="{{apr.esser1GrantAmountAllocated}}">
                         {{apr.esser1GrantAmountAllocated|dollars}}</td>
-                    <td data-esser2GrantAmountAllocated="{{apr.esser2GrantAmountAllocated}}">
+                    <td class="rightAlign" data-esser2GrantAmountAllocated="{{apr.esser2GrantAmountAllocated}}">
                         {{apr.esser2GrantAmountAllocated|dollars}}</td>
-                    <td data-esser3GrantAmountAllocated="{{apr.esser3GrantAmountAllocated}}">
+                    <td class="rightAlign" data-esser3GrantAmountAllocated="{{apr.esser3GrantAmountAllocated}}">
                         {{apr.esser3GrantAmountAllocated|dollars}}</td>
                 </tr>
                 <tr>
                     <th scope="row">b. The total amount of the grant expended by the SEA and all State subrecipients in
                         the prior reporting period.</th>
-                    <td data-esser1GrantAmountExpendedPrior="{{apr.esser1GrantAmountExpendedPrior}}">
+                    <td class="rightAlign" data-esser1GrantAmountExpendedPrior="{{apr.esser1GrantAmountExpendedPrior}}">
                         {{apr.esser1GrantAmountExpendedPrior|dollars}}</td>
                     <td style="background:darkgrey;"></td>
                     <td style="background:darkgrey;"></td>
@@ -271,31 +273,31 @@ Annual Report{% endblock title %}
                 <tr>
                     <th scope="row">c. The total amount of the grant expended by the SEA and all State subrecipients in
                         this reporting period.</th>
-                    <td data-esser1GrantAmountExpendedCurrent="{{apr.esser1GrantAmountExpendedCurrent}}">
+                    <td class="rightAlign" data-esser1GrantAmountExpendedCurrent="{{apr.esser1GrantAmountExpendedCurrent}}">
                         {{apr.esser1GrantAmountExpendedCurrent|dollars}}</td>
-                    <td data-esser2GrantAmountExpendedCurrent="{{apr.esser2GrantAmountExpendedCurrent}}">
+                    <td class="rightAlign" data-esser2GrantAmountExpendedCurrent="{{apr.esser2GrantAmountExpendedCurrent}}">
                         {{apr.esser2GrantAmountExpendedCurrent|dollars}}</td>
-                    <td data-esser3GrantAmountExpendedCurrent="{{apr.esser3GrantAmountExpendedCurrent}}">
+                    <td class="rightAlign" data-esser3GrantAmountExpendedCurrent="{{apr.esser3GrantAmountExpendedCurrent}}">
                         {{apr.esser3GrantAmountExpendedCurrent|dollars}}</td>
                 </tr>
                 <tr>
                     <th scope="row">d. The total amount of remaining grant funds
                         Subtract all expenditures (rows b and c) from the total grant amount (row a).</th>
-                    <td data-esser1GrantAmountRemaining="{{apr.esser1GrantAmountRemaining}}">
+                    <td class="rightAlign" data-esser1GrantAmountRemaining="{{apr.esser1GrantAmountRemaining}}">
                         {{apr.esser1GrantAmountRemaining|dollars}}</td>
-                    <td data-esser2GrantAmountRemaining="{{apr.esser2GrantAmountRemaining}}">
+                    <td class="rightAlign" data-esser2GrantAmountRemaining="{{apr.esser2GrantAmountRemaining}}">
                         {{apr.esser2GrantAmountRemaining|dollars}}</td>
-                    <td data-esser3GrantAmountRemaining="{{apr.esser3GrantAmountRemaining}}">
+                    <td class="rightAlign" data-esser3GrantAmountRemaining="{{apr.esser3GrantAmountRemaining}}">
                         {{apr.esser3GrantAmountRemaining|dollars}}</td>
                 </tr>
                 <tr>
                     <th scope="row">e. Amount of remaining funds planned for specific purpose (see definition of planned
                         uses of remaining funds)</th>
-                    <td data-esser1GrantAmountRemainingPlanned="{{apr.esser1GrantAmountRemainingPlanned}}">
+                    <td class="rightAlign" data-esser1GrantAmountRemainingPlanned="{{apr.esser1GrantAmountRemainingPlanned}}">
                         {{apr.esser1GrantAmountRemainingPlanned|dollars}}</td>
-                    <td data-esser2GrantAmountRemainingPlanned="{{apr.esser2GrantAmountRemainingPlanned}}">
+                    <td class="rightAlign" data-esser2GrantAmountRemainingPlanned="{{apr.esser2GrantAmountRemainingPlanned}}">
                         {{apr.esser2GrantAmountRemainingPlanned|dollars}}</td>
-                    <td data-esser3GrantAmountRemainingPlanned="{{apr.esser3GrantAmountRemainingPlanned}}">
+                    <td class="rightAlign" data-esser3GrantAmountRemainingPlanned="{{apr.esser3GrantAmountRemainingPlanned}}">
                         {{apr.esser3GrantAmountRemainingPlanned|dollars}}</td>
                 </tr>
             </tbody>
@@ -320,11 +322,11 @@ Annual Report{% endblock title %}
                         <th scope="row">a. The total amount reserved by the SEA
                             (This value may not exceed 10% of the value reported in Section 2.1a for the associated
                             fund)</th>
-                        <td data-esser1SeaReserveTotal="{{apr.esser1SeaReserveTotal}}">
+                        <td class="rightAlign" data-esser1SeaReserveTotal="{{apr.esser1SeaReserveTotal}}">
                             {{apr.esser1SeaReserveTotal|dollars}}</td>
-                        <td data-esser2SeaReserveTotal="{{apr.esser2SeaReserveTotal}}">
+                        <td class="rightAlign" data-esser2SeaReserveTotal="{{apr.esser2SeaReserveTotal}}">
                             {{apr.esser2SeaReserveTotal|dollars}}</td>
-                        <td data-esser3SeaReserveTotal="{{apr.esser3SeaReserveTotal}}">
+                        <td class="rightAlign" data-esser3SeaReserveTotal="{{apr.esser3SeaReserveTotal}}">
                             {{apr.esser3SeaReserveTotal|dollars}}</td>
                     </tr>
                     <tr>
@@ -333,7 +335,7 @@ Annual Report{% endblock title %}
                             extended day, comprehensive afterschool programs, or extended year programs</th>
                         <td style="background:darkgrey;"></td>
                         <td style="background:darkgrey;"></td>
-                        <td
+                        <td class="rightAlign"
                             data-apr.esser3SeaReserveLostInstructionalTimeTotal="{{apr.esser3SeaReserveLostInstructionalTimeTotal}}">
                             {{apr.esser3SeaReserveLostInstructionalTimeTotal|dollars}}</td>
                     </tr>
@@ -342,7 +344,7 @@ Annual Report{% endblock title %}
                             enrichment programs</th>
                         <td style="background:darkgrey;"></td>
                         <td style="background:darkgrey;"></td>
-                        <td data-esser3SeaReserveSummerEnrichmentTotal="{{apr.esser3SeaReserveSummerEnrichmentTotal}}">
+                        <td class="rightAlign" data-esser3SeaReserveSummerEnrichmentTotal="{{apr.esser3SeaReserveSummerEnrichmentTotal}}">
                             {{apr.esser3SeaReserveSummerEnrichmentTotal|dollars}}</td>
                     </tr>
                     <tr>
@@ -350,25 +352,25 @@ Annual Report{% endblock title %}
                             afterschool programs</th>
                         <td style="background:darkgrey;"></td>
                         <td style="background:darkgrey;"></td>
-                        <td data-esser3SeaReserveAfterschoolTotal="{{apr.esser3SeaReserveAfterschoolTotal}}">
+                        <td class="rightAlign" data-esser3SeaReserveAfterschoolTotal="{{apr.esser3SeaReserveAfterschoolTotal}}">
                             {{apr.esser3SeaReserveAfterschoolTotal|dollars}}</td>
                     </tr>
                     <tr>
                         <th scope="row">e. The total amount the SEA reserved for administrative costs</th>
-                        <td data-esser1SeaReserveAdminTotal="{{apr.esser1SeaReserveAdminTotal}}">
+                        <td class="rightAlign" data-esser1SeaReserveAdminTotal="{{apr.esser1SeaReserveAdminTotal}}">
                             {{apr.esser1SeaReserveAdminTotal|dollars}}</td>
-                        <td data-esser2SeaReserveAdminTotal="{{apr.esser2SeaReserveAdminTotal}}">
+                        <td class="rightAlign" data-esser2SeaReserveAdminTotal="{{apr.esser2SeaReserveAdminTotal}}">
                             {{apr.esser2SeaReserveAdminTotal|dollars}}</td>
-                        <td data-esser3SeaReserveAdminTotal="{{apr.esser3SeaReserveAdminTotal}}">
+                        <td class="rightAlign" data-esser3SeaReserveAdminTotal="{{apr.esser3SeaReserveAdminTotal}}">
                             {{apr.esser3SeaReserveAdminTotal|dollars}}</td>
                     </tr>
                     <tr>
                         <th scope="row">f. The total amount the SEA reserved for emergency needs</th>
-                        <td data-esser1SeaReserveEmergencyTotal="{{apr.esser1SeaReserveEmergencyTotal}}">
+                        <td class="rightAlign" data-esser1SeaReserveEmergencyTotal="{{apr.esser1SeaReserveEmergencyTotal}}">
                             {{apr.esser1SeaReserveEmergencyTotal|dollars}}</td>
-                        <td data-esser2SeaReserveEmergencyTotal="{{apr.esser2SeaReserveEmergencyTotal}}">
+                        <td class="rightAlign" data-esser2SeaReserveEmergencyTotal="{{apr.esser2SeaReserveEmergencyTotal}}">
                             {{apr.esser2SeaReserveEmergencyTotal|dollars}}</td>
-                        <td data-esser3SeaReserveEmergencyTotal="{{apr.esser3SeaReserveEmergencyTotal}}">
+                        <td class="rightAlign" data-esser3SeaReserveEmergencyTotal="{{apr.esser3SeaReserveEmergencyTotal}}">
                             {{apr.esser3SeaReserveEmergencyTotal|dollars}}</td>
                     </tr>
                 </tbody>
@@ -399,7 +401,7 @@ Annual Report{% endblock title %}
                     <tr>
                         <th scope="row">a. The total amount of SEA Reserve the SEA expended directly in the prior
                             reporting period<a href="#endnote2"><sup>2</sup></a></th>
-                        <td data-esser1SeaDirectExpendPrior="{{apr.esser1SeaDirectExpendPrior}}">
+                        <td class="rightAlign" data-esser1SeaDirectExpendPrior="{{apr.esser1SeaDirectExpendPrior}}">
                             {{apr.esser1SeaDirectExpendPrior|dollars}}</td>
                         <td></td>
                         <td></td>
@@ -410,18 +412,18 @@ Annual Report{% endblock title %}
                     <tr>
                         <th scope="row">b. The total amount of SEA Reserve the SEA expended directly in the current
                             reporting period</th>
-                        <td data-esser1SeaDirectExpendCurrent="{{apr.esser1SeaDirectExpendCurrent}}">
+                        <td class="rightAlign" data-esser1SeaDirectExpendCurrent="{{apr.esser1SeaDirectExpendCurrent}}">
                             {{apr.esser1SeaDirectExpendCurrent|dollars}}</td>
-                        <td data-esser2SeaDirectExpendCurrent="{{apr.esser2SeaDirectExpendCurrent}}">
+                        <td class="rightAlign" data-esser2SeaDirectExpendCurrent="{{apr.esser2SeaDirectExpendCurrent}}">
                             {{apr.esser2SeaDirectExpendCurrent|dollars}}</td>
-                        <td data-esser3SeaDirectExpendLostTimeCurrent="{{apr.esser3SeaDirectExpendLostTimeCurrent}}">
+                        <td class="rightAlign" data-esser3SeaDirectExpendLostTimeCurrent="{{apr.esser3SeaDirectExpendLostTimeCurrent}}">
                             {{apr.esser3SeaDirectExpendLostTimeCurrent|dollars}}</td>
-                        <td data-esser3SeaDirectExpendSummerCurrent="{{apr.esser3SeaDirectExpendSummerCurrent}}">
+                        <td class="rightAlign" data-esser3SeaDirectExpendSummerCurrent="{{apr.esser3SeaDirectExpendSummerCurrent}}">
                             {{apr.esser3SeaDirectExpendSummerCurrent|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             dat-esser3SeaDirectExpendAfterschoolCurrent="{{apr.esser3SeaDirectExpendAfterschoolCurrent}}">
                             {{apr.esser3SeaDirectExpendAfterschoolCurrent|dollars}}</td>
-                        <td data-esser3SeaDirectExpendEmergencyCurrent="{{apr.esser3SeaDirectExpendEmergencyCurrent}}">
+                        <td class="rightAlign" data-esser3SeaDirectExpendEmergencyCurrent="{{apr.esser3SeaDirectExpendEmergencyCurrent}}">
                             {{apr.esser3SeaDirectExpendEmergencyCurrent|dollars}}</td>
                     </tr>
                 </tbody>
@@ -613,32 +615,32 @@ Annual Report{% endblock title %}
                 <tbody>
                     <tr>
                         <th scope="row">Addressing Physical Health and Safety</th>
-                        <td
+                        <td class="rightAlign"
                             data-esser1SeaReserveRemainingPhysical{{loop.index}}="{{sub.esser1SeaReserveRemainingPhysical}}">
                             {{sub.esser1SeaReserveRemainingPhysical|percent}}</td>
                     </tr>
                     <tr>
                         <th scope="row">Meeting Students&apos; Academic, Social, Emotional, and Other Needs (Excluding
                             Mental Health Supports)</th>
-                        <td
+                        <td class="rightAlign"
                             data-esser1SeaReserveRemainingAcademic{{loop.index}}="{{sub.esser1SeaReserveRemainingAcademic}}">
                             {{sub.esser1SeaReserveRemainingAcademic|percent}}</td>
                     </tr>
                     <tr>
                         <th scope="row">Mental Health Supports for Students and Staff</th>
-                        <td
+                        <td class="rightAlign"
                             data-esser1SeaReserveRemainingMental{{loop.index}}="{{sub.esser1SeaReserveRemainingMental}}">
                             {{sub.esser1SeaReserveRemainingMental|percent}}</td>
                     </tr>
                     <tr>
                         <th scope="row">Operational Continuity and Other Uses</th>
-                        <td
+                        <td class="rightAlign"
                             data-esser1SeaReserveRemainingOperational{{loop.index}}="{{sub.esser1SeaReserveRemainingOperational}}">
                             {{sub.esser1SeaReserveRemainingOperational|percent}}</td>
                     </tr>
                     <tr>
                         <th scope="row">Not Yet Planned for Specific Use</th>
-                        <td
+                        <td class="rightAlign"
                             data-esser1SeaReserveRemainingUndetermined{{loop.index}}="{{sub.esser1SeaReserveRemainingUndetermined}}">
                             {{sub.esser1SeaReserveRemainingUndetermined|percent}}</td>
                     </tr>
@@ -708,32 +710,32 @@ Annual Report{% endblock title %}
                 <tbody>
                     <tr>
                         <th scope="row">Addressing Physical Health and Safety</th>
-                        <td
+                        <td class="rightAlign"
                             data-nonlea_esser1SeaReserveRemainingPhysical{{loop.index}}="{{sub.esser1SeaReserveRemainingPhysical}}">
                             {{sub.esser1SeaReserveRemainingPhysical|percent}}</td>
                     </tr>
                     <tr>
                         <th scope="row">Meeting Students&apos; Academic, Social, Emotional, and Other Needs (Excluding
                             Mental Health Supports)</th>
-                        <td
+                        <td class="rightAlign"
                             data-nonlea_esser1SeaReserveRemainingAcademic{{loop.index}}="{{sub.esser1SeaReserveRemainingAcademic}}">
                             {{sub.esser1SeaReserveRemainingAcademic|percent}}</td>
                     </tr>
                     <tr>
                         <th scope="row">Mental Health Supports for Students and Staff</th>
-                        <td
+                        <td class="rightAlign"
                             data-nonlea_esser1SeaReserveRemainingMental{{loop.index}}="{{sub.esser1SeaReserveRemainingMental}}">
                             {{sub.esser1SeaReserveRemainingMental|percent}}</td>
                     </tr>
                     <tr>
                         <th scope="row">Operational Continuity and Other Uses</th>
-                        <td
+                        <td class="rightAlign"
                             data-nonlea_esser1SeaReserveRemainingOperational{{loop.index}}="{{sub.esser1SeaReserveRemainingOperational}}">
                             {{sub.esser1SeaReserveRemainingOperational|percent}}</td>
                     </tr>
                     <tr>
                         <th scope="row">Not Yet Planned for Specific Use</th>
-                        <td
+                        <td class="rightAlign"
                             data-nonlea_esser1SeaReserveRemainingUndetermined{{loop.index}}="{{sub.esser1SeaReserveRemainingUndetermined}}">
                             {{sub.esser1SeaReserveRemainingUndetermined|percent}}</td>
                     </tr>
@@ -784,11 +786,6 @@ Annual Report{% endblock title %}
                 <label for="esser2SeaReserveUsedOperational{{loop.index}}">Operational Continuity and
                     Other Uses</label></p>
             <h3>2.5b Planned Uses of Remaining ESSER II SEA Reserve Awards to LEAs</h3>
-            <p><label for="esser2SeaReserveExpendedPrior{{loop.index}}">Total ESSER II SEA Reserve
-                    expenditures in prior reporting period</label>: <input readonly type="text"
-                    id="esser2SeaReserveExpendedPrior{{loop.index}}"
-                    data-esser2SeaReserveExpendedPrior{{loop.index}}="{{sub.esser2SeaReserveExpendedPrior}}" value="{{sub.esser2SeaReserveExpendedPrior|dollars}}"/>
-            </p>
             <p><label for="esser2SeaReserveRemaining{{loop.index}}">Remaining SEA Reserve
                     Funds</label>: <input readonly type="text" id="esser2SeaReserveRemaining{{loop.index}}"
                     data-esser2SeaReserveRemaining{{loop.index}}="{{sub.esser2SeaReserveRemaining}}" value="{{sub.esser2SeaReserveRemaining|dollars}}"/>
@@ -807,32 +804,32 @@ Annual Report{% endblock title %}
                 <tbody>
                     <tr>
                         <th scope="row">Addressing Physical Health and Safety</th>
-                        <td
+                        <td class="rightAlign"
                             data-esser2SeaReserveRemainingPhysical{{loop.index}}="{{sub.esser2SeaReserveRemainingPhysical}}">
                             {{sub.esser2SeaReserveRemainingPhysical|percent}}</td>
                     </tr>
                     <tr>
                         <th scope="row">Meeting Students&apos; Academic, Social, Emotional, and Other Needs (Excluding
                             Mental Health Supports)</th>
-                        <td
+                        <td class="rightAlign"
                             data-esser2SeaReserveRemainingAcademic{{loop.index}}="{{sub.esser2SeaReserveRemainingAcademic}}">
                             {{sub.esser2SeaReserveRemainingAcademic|percent}}</td>
                     </tr>
                     <tr>
                         <th scope="row">Mental Health Supports for Students and Staff</th>
-                        <td
+                        <td class="rightAlign"
                             data-esser2SeaReserveRemainingMental{{loop.index}}="{{sub.esser2SeaReserveRemainingMental}}">
                             {{sub.esser2SeaReserveRemainingMental|percent}}</td>
                     </tr>
                     <tr>
                         <th scope="row">Operational Continuity and Other Uses</th>
-                        <td
+                        <td class="rightAlign"
                             data-esser2SeaReserveRemainingOperational{{loop.index}}="{{sub.esser2SeaReserveRemainingOperational}}">
                             {{sub.esser2SeaReserveRemainingOperational|percent}}</td>
                     </tr>
                     <tr>
                         <th scope="row">Not Yet Planned for Specific Use</th>
-                        <td
+                        <td class="rightAlign"
                             data-esser2SeaReserveRemainingUndetermined{{loop.index}}="{{sub.esser2SeaReserveRemainingUndetermined}}">
                             {{sub.esser2SeaReserveRemainingUndetermined|percent}}</td>
                     </tr>
@@ -848,7 +845,7 @@ Annual Report{% endblock title %}
             sub.esser2SeaReserveAwarded is gt 0.0 %}
             <details>
             <summary data-crrsa_nonlea_entityName{{loop.index}}="{{sub.entityName|e}}" data-crrsa_nonlea_dunsNumber{{loop.index}}="{{sub.dunsNumber|e}}" data-crrsa_nonlea_ueiNumber{{loop.index}}="{{sub.ueiNumber|e}}">
-                    Unique Entity ID (SAM): value="{{sub.ueiNumber|e}} DUNS&#35;: {{sub.dunsNumber|e}} Non-LEA entity name: {{sub.entityName|e}}
+                    Unique Entity ID (SAM): {{sub.ueiNumber|e}} DUNS&#35;: {{sub.dunsNumber|e}} Non-LEA entity name: {{sub.entityName|e}}
             </summary>
             <p><label for="nonlea_esser2SeaReserveAwarded{{loop.index}}">Total amount awarded to the
                     non-LEA from the ESSER II SEA Reserve</label>:<a href="#endnote4"><sup>4</sup></a> <input readonly type="text"
@@ -879,11 +876,6 @@ Annual Report{% endblock title %}
                 <label for="nonlea_esser2SeaReserveUsedOperational{{loop.index}}">Operational
                     Continuity and Other Uses</label></p>
             <h3>2.5d Planned Uses of Remaining ESSER II SEA Reserve Awards to non-LEAs</h3>
-            <p><label for="nonlea_esser2SeaReserveExpendedPrior{{loop.index}}">Total ESSER II SEA
-                    Reserve expenditures in prior reporting period</label>: <input readonly type="text"
-                    id="nonlea_esser2SeaReserveExpendedPrior{{loop.index}}"
-                    data-nonlea_esser2SeaReserveExpendedPrior{{loop.index}}="{{sub.esser2SeaReserveExpendedPrior}}" value="{{sub.esser2SeaReserveExpendedPrior|dollars}}"/>
-            </p>
             <p><label for="nonlea_esser2SeaReserveRemaining{{loop.index}}">Remaining SEA Reserve
                     Funds</label>: <input readonly type="text" id="nonlea_esser2SeaReserveRemaining{{loop.index}}"
                     data-nonlea_esser2SeaReserveRemaining{{loop.index}}="{{sub.esser2SeaReserveRemaining}}" value="{{sub.esser2SeaReserveRemaining|dollars}}"/>
@@ -902,32 +894,32 @@ Annual Report{% endblock title %}
                 <tbody>
                     <tr>
                         <th scope="row">Addressing Physical Health and Safety</th>
-                        <td
+                        <td class="rightAlign"
                             data-nonlea_esser2SeaReserveRemainingPhysical{{loop.index}}="{{sub.esser2SeaReserveRemainingPhysical}}">
                             {{sub.esser2SeaReserveRemainingPhysical|percent}}</td>
                     </tr>_
                     <tr>
                         <th scope="row">Meeting Students&apos; Academic, Social, Emotional, and Other Needs (Excluding
                             Mental Health Supports)</th>
-                        <td
+                        <td class="rightAlign"
                             data-nonlea_esser2SeaReserveRemainingAcademic{{loop.index}}="{{sub.esser2SeaReserveRemainingAcademic}}">
                             {{sub.esser2SeaReserveRemainingAcademic|percent}}</td>
                     </tr>
                     <tr>
                         <th scope="row">Mental Health Supports for Students and Staff</th>
-                        <td
+                        <td class="rightAlign"
                             data-nonlea_esser2SeaReserveRemainingMental{{loop.index}}="{{sub.esser2SeaReserveRemainingMental}}">
                             {{sub.esser2SeaReserveRemainingMental|percent}}</td>
                     </tr>
                     <tr>
                         <th scope="row">Operational Continuity and Other Uses</th>
-                        <td
+                        <td class="rightAlign"
                             data-nonlea_esser2SeaReserveRemainingOperational{{loop.index}}="{{sub.esser2SeaReserveRemainingOperational}}">
                             {{sub.esser2SeaReserveRemainingOperational|percent}}</td>
                     </tr>
                     <tr>
                         <th scope="row">Not Yet Planned for Specific Use</th>
-                        <td
+                        <td class="rightAlign"
                             data-nonlea_esser2SeaReserveRemainingUndetermined{{loop.index}}="{{sub.esser2SeaReserveRemainingUndetermined}}">
                             {{sub.esser2SeaReserveRemainingUndetermined|percent}}</td>
                     </tr>
@@ -947,7 +939,7 @@ Annual Report{% endblock title %}
             sub.esser3SeaReserveTotalAwarded is gt 0.0 %}
             <details>
             <summary data-arp_ueiNumber{{loop.index}}="{{sub.ueiNumber|e}}" data-arp_dunsNumber{{loop.index}}="{{sub.dunsNumber|e}}" data-arp_ncesNumber{{loop.index}}="{{sub.ncesNumber|e}}" data-arp_entityName{{loop.index}}="{{sub.entityName|e}}" >
-                    Unique Entity ID (SAM): {{sub.ueiNumber|e}} DUNS&#35;: {{sub.dunsNumber|e}} NCES LEA ID: {{sub.ncesNumber|e}}" LEA name: {{sub.entityName|e}}
+                    Unique Entity ID (SAM): {{sub.ueiNumber|e}} DUNS&#35;: {{sub.dunsNumber|e}} NCES LEA ID: {{sub.ncesNumber|e}} LEA name: {{sub.entityName|e}}
             </summary>
             <p><label for="esser3SeaReserveAwarded{{loop.index}}">Total amount awarded to the LEA from
                     the ARP ESSER SEA Reserve</label>: <input readonly type="text" id="esser3SeaReserveTotalAwarded{{loop.index}}"
@@ -967,34 +959,34 @@ Annual Report{% endblock title %}
                 <tbody>
                     <tr>
                         <th scope="row">a. Learning Loss Activities Set-Aside</th>
-                        <td
+                        <td class="rightAlign"
                             data-esser3SeaReserveLostTimeAwarded{{loop.index}}="{{sub.esser3SeaReserveLostTimeAwarded}}">
                             {{sub.esser3SeaReserveLostTimeAwarded|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser3SeaReserveLostTimeExpendedCurrent{{loop.index}}="{{sub.esser3SeaReserveLostTimeExpendedCurrent}}">
                             {{sub.esser3SeaReserveLostTimeExpendedCurrent|dollars}}</td>
                     </tr>
                     <tr>
                         <th scope="row">b. Summer Enrichment Set-Aside</th>
-                        <td data-esser3SeaReserveSummerAwarded{{loop.index}}="{{sub.esser3SeaReserveSummerAwarded}}">
+                        <td class="rightAlign" data-esser3SeaReserveSummerAwarded{{loop.index}}="{{sub.esser3SeaReserveSummerAwarded}}">
                             {{sub.esser3SeaReserveSummerAwarded|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser3SeaReserveSummerExpendedCurrent{{loop.index}}="{{sub.esser3SeaReserveSummerExpendedCurrent}}">
                             {{sub.esser3SeaReserveSummerExpendedCurrent|dollars}}</td>
                     </tr>
                     <tr>
                         <th scope="row">c. Afterschool Programs Set-Aside</th>
-                        <td data-esser3SeaReserveAftSchAwarded{{loop.index}}="{{sub.esser3SeaReserveAftSchAwarded}}">
+                        <td class="rightAlign" data-esser3SeaReserveAftSchAwarded{{loop.index}}="{{sub.esser3SeaReserveAftSchAwarded}}">
                             {{sub.esser3SeaReserveAftSchAwarded|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser3SeaReserveAftSchExpendedCurrent{{loop.index}}="{{sub.esser3SeaReserveAftSchExpendedCurrent}}">
                             {{sub.esser3SeaReserveAftSchExpendedCurrent|dollars}}</td>
                     </tr>
                     <tr>
                         <th scope="row">d. Other SEA Reserve Award</th>
-                        <td data-esser3SeaReserveOtherAwarded{{loop.index}}="{{sub.esser3SeaReserveOtherAwarded}}">
+                        <td class="rightAlign" data-esser3SeaReserveOtherAwarded{{loop.index}}="{{sub.esser3SeaReserveOtherAwarded}}">
                             {{sub.esser3SeaReserveOtherAwarded|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser3SeaReserveOtherExpendedCurrent{{loop.index}}="{{sub.esser3SeaReserveOtherExpendedCurrent}}">
                             {{sub.esser3SeaReserveOtherExpendedCurrent|dollars}}</td>
                     </tr>
@@ -1038,32 +1030,32 @@ Annual Report{% endblock title %}
                 <tbody>
                     <tr>
                         <th scope="row">Addressing Physical Health and Safety</th>
-                        <td
+                        <td class="rightAlign"
                             data-esser3SeaReserveRemainingPhysical{{loop.index}}="{{sub.esser3SeaReserveRemainingPhysical}}">
                             {{sub.esser3SeaReserveRemainingPhysical|percent}}</td>
                     </tr>
                     <tr>
                         <th scope="row">Meeting Students&apos; Academic, Social, Emotional, and Other Needs (Excluding
                             Mental Health Supports)</th>
-                        <td
+                        <td class="rightAlign"
                             data-esser3SeaReserveRemainingAcademic{{loop.index}}="{{sub.esser3SeaReserveRemainingAcademic}}">
                             {{sub.esser3SeaReserveRemainingAcademic|percent}}</td>
                     </tr>
                     <tr>
                         <th scope="row">Mental Health Supports for Students and Staff</th>
-                        <td
+                        <td class="rightAlign"
                             data-esser3SeaReserveRemainingMental{{loop.index}}="{{sub.esser3SeaReserveRemainingMental}}">
                             {{sub.esser3SeaReserveRemainingMental|percent}}</td>
                     </tr>
                     <tr>
                         <th scope="row">Operational Continuity and Other Uses</th>
-                        <td
+                        <td class="rightAlign"
                             data-esser3SeaReserveRemainingOperational{{loop.index}}="{{sub.esser3SeaReserveRemainingOperational}}">
                             {{sub.esser3SeaReserveRemainingOperational|percent}}</td>
                     </tr>
                     <tr>
                         <th scope="row">Not Yet Planned for Specific Use</th>
-                        <td
+                        <td class="rightAlign"
                             data-esser3SeaReserveRemainingUndetermined{{loop.index}}="{{sub.esser3SeaReserveRemainingUndetermined}}">
                             {{sub.esser3SeaReserveRemainingUndetermined|percent}}</td>
                     </tr>
@@ -1102,37 +1094,37 @@ Annual Report{% endblock title %}
                 <tbody>
                     <tr>
                         <th scope="row">a. Learning Loss Activities Set-Aside</th>
-                        <td
+                        <td class="rightAlign"
                             data-nonlea_esser3SeaReserveLostTimeAwarded{{loop.index}}="{{sub.esser3SeaReserveLostTimeAwarded}}">
                             {{sub.esser3SeaReserveLostTimeAwarded|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-nonlea_esser3SeaReserveLostTimeExpendedCurrent{{loop.index}}="{{sub.esser3SeaReserveLostTimeExpendedCurrent}}">
                             {{sub.esser3SeaReserveLostTimeExpendedCurrent|dollars}}</td>
                     </tr>
                     <tr>
                         <th scope="row">b. Summer Enrichment Set-Aside</th>
-                        <td
+                        <td class="rightAlign"
                             data-nonlea_esser3SeaReserveSummerAwarded{{loop.index}}="{{sub.esser3SeaReserveSummerAwarded}}">
                             {{sub.esser3SeaReserveSummerAwarded|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-nonlea_esser3SeaReserveSummerExpendedCurrent{{loop.index}}="{{sub.esser3SeaReserveSummerExpendedCurrent}}">
                             {{sub.esser3SeaReserveSummerExpendedCurrent|dollars}}</td>
                     </tr>
                     <tr>
                         <th scope="row">c. Afterschool Programs Set-Aside</th>
-                        <td
+                        <td class="rightAlign"
                             data-nonlea_esser3SeaReserveAftSchAwarded{{loop.index}}="{{sub.esser3SeaReserveAftSchAwarded}}">
                             {{sub.esser3SeaReserveAftSchAwarded|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-nonlea_esser3SeaReserveAftSchExpendedCurrent{{loop.index}}="{{sub.esser3SeaReserveAftSchExpendedCurrent}}">
                             {{sub.esser3SeaReserveAftSchExpendedCurrent|dollars}}</td>
                     </tr>
                     <tr>
                         <th scope="row">d. Other SEA Reserve Award</th>
-                        <td
+                        <td class="rightAlign"
                             data-nonlea_esser3SeaReserveOtherAwarded{{loop.index}}="{{sub.esser3SeaReserveOtherAwarded}}">
                             {{sub.esser3SeaReserveOtherAwarded|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-nonlea_esser3SeaReserveOtherExpendedCurrent{{loop.index}}="{{sub.esser3SeaReserveOtherExpendedCurrent}}">
                             {{sub.esser3SeaReserveOtherExpendedCurrent|dollars}}</td>
                     </tr>
@@ -1176,32 +1168,32 @@ Annual Report{% endblock title %}
                 <tbody>
                     <tr>
                         <th scope="row">Addressing Physical Health and Safety</th>
-                        <td
+                        <td class="rightAlign"
                             data-nonlea_esser3SeaReserveRemainingPhysical{{loop.index}}="{{sub.esser3SeaReserveRemainingPhysical}}">
                             {{sub.esser3SeaReserveRemainingPhysical|percent}}</td>
                     </tr>
                     <tr>
                         <th scope="row">Meeting Students&apos; Academic, Social, Emotional, and Other Needs (Excluding
                             Mental Health Supports)</th>
-                        <td
+                        <td class="rightAlign"
                             data-nonlea_esser3SeaReserveRemainingAcademic{{loop.index}}="{{sub.esser3SeaReserveRemainingAcademic}}">
                             {{sub.esser3SeaReserveRemainingAcademic|percent}}</td>
                     </tr>
                     <tr>
                         <th scope="row">Mental Health Supports for Students and Staff</th>
-                        <td
+                        <td class="rightAlign"
                             data-nonlea_esser3SeaReserveRemainingMental{{loop.index}}="{{sub.esser3SeaReserveRemainingMental}}">
                             {{sub.esser3SeaReserveRemainingMental|percent}}</td>
                     </tr>
                     <tr>
                         <th scope="row">Operational Continuity and Other Uses</th>
-                        <td
+                        <td class="rightAlign"
                             data-nonlea_esser3SeaReserveRemainingOperational{{loop.index}}="{{sub.esser3SeaReserveRemainingOperational}}">
                             {{sub.esser3SeaReserveRemainingOperational|percent}}</td>
                     </tr>
                     <tr>
                         <th scope="row">Not Yet Planned for Specific Use</th>
-                        <td
+                        <td class="rightAlign"
                             data-nonlea_esser3SeaReserveRemainingUndetermined{{loop.index}}="{{sub.esser3SeaReserveRemainingUndetermined}}">
                             {{sub.esser3SeaReserveRemainingUndetermined|percent}}</td>
                     </tr>
@@ -1254,132 +1246,132 @@ Annual Report{% endblock title %}
                 <tbody>
                     <tr>
                         <th scope="row">a. Personnel Services - Salaries</th>
-                        <td
+                        <td class="rightAlign"
                             data-esser1MandPhysicalPersonnelSalaries{{loop.index}}="{{sub.esser1MandPhysicalPersonnelSalaries}}">
                             {{sub.esser1MandPhysicalPersonnelSalaries|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser2MandPhysicalPersonnelSalaries{{loop.index}}="{{sub.esser2MandPhysicalPersonnelSalaries}}">
                             {{sub.esser2MandPhysicalPersonnelSalaries|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser3MandPhysicalPersonnelSalaries{{loop.index}}="{{sub.esser3MandPhysicalPersonnelSalaries}}">
                             {{sub.esser3MandPhysicalPersonnelSalaries|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser3Mand20PhysicalPersonnelSalaries{{loop.index}}="{{sub.esser3Mand20PhysicalPersonnelSalaries}}">
                             {{sub.esser3Mand20PhysicalPersonnelSalaries|dollars}}</td>
                     </tr>
                     <tr>
                         <th scope="row">b. Personnel Services -- Benefits</th>
-                        <td
+                        <td class="rightAlign"
                             data-esser1MandPhysicalPersonnelBenefits{{loop.index}}="{{sub.esser1MandPhysicalPersonnelBenefits}}">
                             {{sub.esser1MandPhysicalPersonnelBenefits|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser2MandPhysicalPersonnelBenefits{{loop.index}}="{{sub.esser2MandPhysicalPersonnelBenefits}}">
                             {{sub.esser2MandPhysicalPersonnelBenefits|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser3MandPhysicalPersonnelBenefits{{loop.index}}="{{sub.esser3MandPhysicalPersonnelBenefits}}">
                             {{sub.esser3MandPhysicalPersonnelBenefits|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser3Mand20PhysicalPersonnelBenefits{{loop.index}}="{{sub.esser3Mand20PhysicalPersonnelBenefits}}">
                             {{sub.esser3Mand20PhysicalPersonnelBenefits|dollars}}</td>
                     </tr>
                     <tr>
                         <th scope="row">c. Purchased Professional and Technical Services</th>
-                        <td data-esser1MandPhysicalTechnical{{loop.index}}="{{sub.esser1MandPhysicalTechnical}}">
+                        <td class="rightAlign" data-esser1MandPhysicalTechnical{{loop.index}}="{{sub.esser1MandPhysicalTechnical}}">
                             {{sub.esser1MandPhysicalTechnical|dollars}}</td>
-                        <td data-esser2MandPhysicalTechnical{{loop.index}}="{{sub.esser2MandPhysicalTechnical}}">
+                        <td class="rightAlign" data-esser2MandPhysicalTechnical{{loop.index}}="{{sub.esser2MandPhysicalTechnical}}">
                             {{sub.esser2MandPhysicalTechnical|dollars}}</td>
-                        <td data-esser3MandPhysicalTechnical{{loop.index}}="{{sub.esser3MandPhysicalTechnical}}">
+                        <td class="rightAlign" data-esser3MandPhysicalTechnical{{loop.index}}="{{sub.esser3MandPhysicalTechnical}}">
                             {{sub.esser3MandPhysicalTechnical|dollars}}</td>
-                        <td data-esser3Mand20PhysicalTechnical{{loop.index}}="{{sub.esser3Mand20PhysicalTechnical}}">
+                        <td class="rightAlign" data-esser3Mand20PhysicalTechnical{{loop.index}}="{{sub.esser3Mand20PhysicalTechnical}}">
                             {{sub.esser3Mand20PhysicalTechnical|dollars}}</td>
                     </tr>
                     <tr>
                         <th scope="row">d. Purchased Property Services</th>
-                        <td
+                        <td class="rightAlign"
                             data-esser1MandPhysicalPropertyServices{{loop.index}}="{{sub.esser1MandPhysicalPropertyServices}}">
                             {{sub.esser1MandPhysicalPropertyServices|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser2MandPhysicalPropertyServices{{loop.index}}="{{sub.esser2MandPhysicalPropertyServices}}">
                             {{sub.esser2MandPhysicalPropertyServices|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser3MandPhysicalPropertyServices{{loop.index}}="{{sub.esser3MandPhysicalPropertyServices}}">
                             {{sub.esser3MandPhysicalPropertyServices|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser3Mand20PhysicalPropertyServices{{loop.index}}="{{sub.esser3Mand20PhysicalPropertyServices}}">
                             {{sub.esser3Mand20PhysicalPropertyServices|dollars}}</td>
                     </tr>
                     <tr>
                         <th scope="row">e. Other Purchased Services</th>
-                        <td
+                        <td class="rightAlign"
                             data-esser1MandPhysicalOtherServices{{loop.index}}="{{sub.esser1MandPhysicalOtherServices}}">
                             {{sub.esser1MandPhysicalOtherServices|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser2MandPhysicalOtherServices{{loop.index}}="{{sub.esser2MandPhysicalOtherServices}}">
                             {{sub.esser2MandPhysicalOtherServices|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser3MandPhysicalOtherServices{{loop.index}}="{{sub.esser3MandPhysicalOtherServices}}">
                             {{sub.esser3MandPhysicalOtherServices|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser3Mand20PhysicalOtherServices{{loop.index}}="{{sub.esser3Mand20PhysicalOtherServices}}">
                             {{sub.esser3Mand20PhysicalOtherServices|dollars}}</td>
                     </tr>
                     <tr>
                         <th scope="row">f. Supplies</th>
-                        <td data-esser1MandPhysicalSupplies{{loop.index}}="{{sub.esser1MandPhysicalSupplies}}">
+                        <td class="rightAlign" data-esser1MandPhysicalSupplies{{loop.index}}="{{sub.esser1MandPhysicalSupplies}}">
                             {{sub.esser1MandPhysicalSupplies|dollars}}</td>
-                        <td data-esser2MandPhysicalSupplies{{loop.index}}="{{sub.esser2MandPhysicalSupplies}}">
+                        <td class="rightAlign" data-esser2MandPhysicalSupplies{{loop.index}}="{{sub.esser2MandPhysicalSupplies}}">
                             {{sub.esser2MandPhysicalSupplies|dollars}}</td>
-                        <td data-esser3MandPhysicalSupplies{{loop.index}}="{{sub.esser3MandPhysicalSupplies}}">
+                        <td class="rightAlign" data-esser3MandPhysicalSupplies{{loop.index}}="{{sub.esser3MandPhysicalSupplies}}">
                             {{sub.esser3MandPhysicalSupplies|dollars}}</td>
-                        <td data-esser3Mand20PhysicalSupplies{{loop.index}}="{{sub.esser3Mand20PhysicalSupplies}}">
+                        <td class="rightAlign" data-esser3Mand20PhysicalSupplies{{loop.index}}="{{sub.esser3Mand20PhysicalSupplies}}">
                             {{sub.esser3Mand20PhysicalSupplies|dollars}}</td>
                     </tr>
                     <tr>
                         <th scope="row">g. Property</th>
-                        <td data-esser1MandPhysicalProperty{{loop.index}}="{{sub.esser1MandPhysicalProperty}}">
+                        <td class="rightAlign" data-esser1MandPhysicalProperty{{loop.index}}="{{sub.esser1MandPhysicalProperty}}">
                             {{sub.esser1MandPhysicalProperty|dollars}}</td>
-                        <td data-esser2MandPhysicalProperty{{loop.index}}="{{sub.esser2MandPhysicalProperty}}">
+                        <td class="rightAlign" data-esser2MandPhysicalProperty{{loop.index}}="{{sub.esser2MandPhysicalProperty}}">
                             {{sub.esser2MandPhysicalProperty|dollars}}</td>
-                        <td data-esser3MandPhysicalProperty{{loop.index}}="{{sub.esser3MandPhysicalProperty}}">
+                        <td class="rightAlign" data-esser3MandPhysicalProperty{{loop.index}}="{{sub.esser3MandPhysicalProperty}}">
                             {{sub.esser3MandPhysicalProperty|dollars}}</td>
-                        <td data-esser3Mand20PhysicalProperty{{loop.index}}="{{sub.esser3Mand20PhysicalProperty}}">
+                        <td class="rightAlign" data-esser3Mand20PhysicalProperty{{loop.index}}="{{sub.esser3Mand20PhysicalProperty}}">
                             {{sub.esser3Mand20PhysicalProperty|dollars}}</td>
                     </tr>
                     <tr>
                         <th scope="row">h. Debt Service and Miscellaneous</th>
-                        <td data-esser1MandPhysicalDebtService{{loop.index}}="{{sub.esser1MandPhysicalDebtService}}">
+                        <td class="rightAlign" data-esser1MandPhysicalDebtService{{loop.index}}="{{sub.esser1MandPhysicalDebtService}}">
                             {{sub.esser1MandPhysicalDebtService|dollars}}</td>
-                        <td data-esser2MandPhysicalDebtService{{loop.index}}="{{sub.esser2MandPhysicalDebtService}}">
+                        <td class="rightAlign" data-esser2MandPhysicalDebtService{{loop.index}}="{{sub.esser2MandPhysicalDebtService}}">
                             {{sub.esser2MandPhysicalDebtService|dollars}}</td>
-                        <td data-esser3MandPhysicalDebtService{{loop.index}}="{{sub.esser3MandPhysicalDebtService}}">
+                        <td class="rightAlign" data-esser3MandPhysicalDebtService{{loop.index}}="{{sub.esser3MandPhysicalDebtService}}">
                             {{sub.esser3MandPhysicalDebtService|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser3Mand20PhysicalDebtService{{loop.index}}="{{sub.esser3Mand20PhysicalDebtService}}">
                             {{sub.esser3Mand20PhysicalDebtService|dollars}}</td>
                     </tr>
                     <tr>
                         <th scope="row">i. Other Items</th>
-                        <td data-esser1MandPhysicalOtherItems{{loop.index}}="{{sub.esser1MandPhysicalOtherItems}}">
+                        <td class="rightAlign" data-esser1MandPhysicalOtherItems{{loop.index}}="{{sub.esser1MandPhysicalOtherItems}}">
                             {{sub.esser1MandPhysicalOtherItems|dollars}}</td>
-                        <td data-esser2MandPhysicalOtherItems{{loop.index}}="{{sub.esser2MandPhysicalOtherItems}}">
+                        <td class="rightAlign" data-esser2MandPhysicalOtherItems{{loop.index}}="{{sub.esser2MandPhysicalOtherItems}}">
                             {{sub.esser2MandPhysicalOtherItems|dollars}}</td>
-                        <td data-esser3MandPhysicalOtherItems{{loop.index}}="{{sub.esser3MandPhysicalOtherItems}}">
+                        <td class="rightAlign" data-esser3MandPhysicalOtherItems{{loop.index}}="{{sub.esser3MandPhysicalOtherItems}}">
                             {{sub.esser3MandPhysicalOtherItems|dollars}}</td>
-                        <td data-esser3Mand20PhysicalOtherItems{{loop.index}}="{{sub.esser3Mand20PhysicalOtherItems}}">
+                        <td class="rightAlign" data-esser3Mand20PhysicalOtherItems{{loop.index}}="{{sub.esser3Mand20PhysicalOtherItems}}">
                             {{sub.esser3Mand20PhysicalOtherItems|dollars}}</td>
                     </tr>
                     <tfoot>
                         <th scope="row">Total</th>
-                        <td
+                        <td class="rightAlign"
                             data-esser1MandPhysicalExpendedTotal{{loop.index}}="{{sub.esser1MandPhysicalExpendedTotal}}">
                             {{sub.esser1MandPhysicalExpendedTotal|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser2MandPhysicalExpendedTotal{{loop.index}}="{{sub.esser2MandPhysicalExpendedTotal}}">
                             {{sub.esser2MandPhysicalExpendedTotal|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser3MandPhysicalExpendedTotal{{loop.index}}="{{sub.esser3MandPhysicalExpendedTotal}}">
                             {{sub.esser3MandPhysicalExpendedTotal|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser3Mand20PhysicalExpendedTotal{{loop.index}}="{{sub.esser3Mand20PhysicalExpendedTotal}}">
                             {{sub.esser3Mand20PhysicalExpendedTotal|dollars}}</td>
                     </tfoot>
@@ -1404,132 +1396,132 @@ Annual Report{% endblock title %}
                 <tbody>
                     <tr>
                         <th scope="row">j. Personnel Services - Salaries</th>
-                        <td
+                        <td class="rightAlign"
                             data-esser1MandAcademicPersonnelSalaries{{loop.index}}="{{sub.esser1MandAcademicPersonnelSalaries}}">
                             {{sub.esser1MandAcademicPersonnelSalaries|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser2MandAcademicPersonnelSalaries{{loop.index}}="{{sub.esser2MandAcademicPersonnelSalaries}}">
                             {{sub.esser2MandAcademicPersonnelSalaries|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser3MandAcademicPersonnelSalaries{{loop.index}}="{{sub.esser3MandAcademicPersonnelSalaries}}">
                             {{sub.esser3MandAcademicPersonnelSalaries|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser3Mand20AcademicPersonnelSalaries{{loop.index}}="{{sub.esser3Mand20AcademicPersonnelSalaries}}">
                             {{sub.esser3Mand20AcademicPersonnelSalaries|dollars}}</td>
                     </tr>
                     <tr>
                         <th scope="row">k. Personnel Services - Benefits</th>
-                        <td
+                        <td class="rightAlign"
                             data-esser1MandAcademicPersonnelBenefits{{loop.index}}="{{sub.esser1MandAcademicPersonnelBenefits}}">
                             {{sub.esser1MandAcademicPersonnelBenefits|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser2MandAcademicPersonnelBenefits{{loop.index}}="{{sub.esser2MandAcademicPersonnelBenefits}}">
                             {{sub.esser2MandAcademicPersonnelBenefits|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser3MandAcademicPersonnelBenefits{{loop.index}}="{{sub.esser3MandAcademicPersonnelBenefits}}">
                             {{sub.esser3MandAcademicPersonnelBenefits|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser3Mand20AcademicPersonnelBenefits{{loop.index}}="{{sub.esser3Mand20AcademicPersonnelBenefits}}">
                             {{sub.esser3Mand20AcademicPersonnelBenefits|dollars}}</td>
                     </tr>
                     <tr>
                         <th scope="row">l. Purchased Professional and Technical Services</th>
-                        <td data-esser1MandAcademicTechnical{{loop.index}}="{{sub.esser1MandAcademicTechnical}}">
+                        <td class="rightAlign" data-esser1MandAcademicTechnical{{loop.index}}="{{sub.esser1MandAcademicTechnical}}">
                             {{sub.esser1MandAcademicTechnical|dollars}}</td>
-                        <td data-esser2MandAcademicTechnical{{loop.index}}="{{sub.esser2MandAcademicTechnical}}">
+                        <td class="rightAlign" data-esser2MandAcademicTechnical{{loop.index}}="{{sub.esser2MandAcademicTechnical}}">
                             {{sub.esser2MandAcademicTechnical|dollars}}</td>
-                        <td data-esser3MandAcademicTechnical{{loop.index}}="{{sub.esser3MandAcademicTechnical}}">
+                        <td class="rightAlign" data-esser3MandAcademicTechnical{{loop.index}}="{{sub.esser3MandAcademicTechnical}}">
                             {{sub.esser3MandAcademicTechnical|dollars}}</td>
-                        <td data-esser3Mand20AcademicTechnical{{loop.index}}="{{sub.esser3Mand20AcademicTechnical}}">
+                        <td class="rightAlign" data-esser3Mand20AcademicTechnical{{loop.index}}="{{sub.esser3Mand20AcademicTechnical}}">
                             {{sub.esser3Mand20AcademicTechnical|dollars}}</td>
                     </tr>
                     <tr>
                         <th scope="row">m. Purchased Property Services</th>
-                        <td
+                        <td class="rightAlign"
                             data-esser1MandAcademicPropertyServices{{loop.index}}="{{sub.esser1MandAcademicPropertyServices}}">
                             {{sub.esser1MandAcademicPropertyServices|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser2MandAcademicPropertyServices{{loop.index}}="{{sub.esser2MandAcademicPropertyServices}}">
                             {{sub.esser2MandAcademicPropertyServices|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser3MandAcademicPropertyServices{{loop.index}}="{{sub.esser3MandAcademicPropertyServices}}">
                             {{sub.esser3MandAcademicPropertyServices|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser3Mand20AcademicPropertyServices{{loop.index}}="{{sub.esser3Mand2AcademicPropertyServices0}}">
                             {{sub.esser3Mand20AcademicPropertyServices|dollars}}</td>
                     </tr>
                     <tr>
                         <th scope="row">n. Other Purchased Services</th>
-                        <td
+                        <td class="rightAlign"
                             data-esser1MandAcademicOtherServices{{loop.index}}="{{sub.esser1MandAcademicOtherServices}}">
                             {{sub.esser1MandAcademicOtherServices|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser2MandAcademicOtherServices{{loop.index}}="{{sub.esser2MandAcademicOtherServices}}">
                             {{sub.esser2MandAcademicOtherServices|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser3MandAcademicOtherServices{{loop.index}}="{{sub.esser3MandAcademicOtherServices}}">
                             {{sub.esser3MandAcademicOtherServices|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser3Mand20AcademicOtherServices{{loop.index}}="{{sub.esser3Mand20AcademicOtherServices}}">
                             {{sub.esser3Mand20AcademicOtherServices|dollars}}</td>
                     </tr>
                     <tr>
                         <th scope="row">o. Supplies</th>
-                        <td data-esser1MandAcademicSupplies{{loop.index}}="{{sub.esser1MandAcademicSupplies}}">
+                        <td class="rightAlign" data-esser1MandAcademicSupplies{{loop.index}}="{{sub.esser1MandAcademicSupplies}}">
                             {{sub.esser1MandAcademicSupplies|dollars}}</td>
-                        <td data-esser2MandAcademicSupplies{{loop.index}}="{{sub.esser2MandAcademicSupplies}}">
+                        <td class="rightAlign" data-esser2MandAcademicSupplies{{loop.index}}="{{sub.esser2MandAcademicSupplies}}">
                             {{sub.esser2MandAcademicSupplies|dollars}}</td>
-                        <td data-esser3MandAcademicSupplies{{loop.index}}="{{sub.esser3MandAcademicSupplies}}">
+                        <td class="rightAlign" data-esser3MandAcademicSupplies{{loop.index}}="{{sub.esser3MandAcademicSupplies}}">
                             {{sub.esser3MandAcademicSupplies|dollars}}</td>
-                        <td data-esser3Mand20AcademicSupplies{{loop.index}}="{{sub.esser3Mand20AcademicSupplies}}">
+                        <td class="rightAlign" data-esser3Mand20AcademicSupplies{{loop.index}}="{{sub.esser3Mand20AcademicSupplies}}">
                             {{sub.esser3Mand20AcademicSupplies|dollars}}</td>
                     </tr>
                     <tr>
                         <th scope="row">p. Property</th>
-                        <td data-esser1MandAcademicProperty{{loop.index}}="{{sub.esser1MandAcademicProperty}}">
+                        <td class="rightAlign" data-esser1MandAcademicProperty{{loop.index}}="{{sub.esser1MandAcademicProperty}}">
                             {{sub.esser1MandAcademicProperty|dollars}}</td>
-                        <td data-esser2MandAcademicProperty{{loop.index}}="{{sub.esser2MandAcademicProperty}}">
+                        <td class="rightAlign" data-esser2MandAcademicProperty{{loop.index}}="{{sub.esser2MandAcademicProperty}}">
                             {{sub.esser2MandAcademicProperty|dollars}}</td>
-                        <td data-esser3MandAcademicProperty{{loop.index}}="{{sub.esser3MandAcademicProperty}}">
+                        <td class="rightAlign" data-esser3MandAcademicProperty{{loop.index}}="{{sub.esser3MandAcademicProperty}}">
                             {{sub.esser3MandAcademicProperty|dollars}}</td>
-                        <td data-esser3Mand20AcademicProperty{{loop.index}}="{{sub.esser3Mand20AcademicProperty}}">
+                        <td class="rightAlign" data-esser3Mand20AcademicProperty{{loop.index}}="{{sub.esser3Mand20AcademicProperty}}">
                             {{sub.esser3Mand20AcademicProperty|dollars}}</td>
                     </tr>
                     <tr>
                         <th scope="row">q. Debt Service and Miscellaneous</th>
-                        <td data-esser1MandAcademicDebtService{{loop.index}}="{{sub.esser1MandAcademicDebtService}}">
+                        <td class="rightAlign" data-esser1MandAcademicDebtService{{loop.index}}="{{sub.esser1MandAcademicDebtService}}">
                             {{sub.esser1MandAcademicDebtService|dollars}}</td>
-                        <td data-esser2MandAcademicDebtService{{loop.index}}="{{sub.esser2MandAcademicDebtService}}">
+                        <td class="rightAlign" data-esser2MandAcademicDebtService{{loop.index}}="{{sub.esser2MandAcademicDebtService}}">
                             {{sub.esser2MandAcademicDebtService|dollars}}</td>
-                        <td data-esser3MandAcademicDebtService{{loop.index}}="{{sub.esser3MandAcademicDebtService}}">
+                        <td class="rightAlign" data-esser3MandAcademicDebtService{{loop.index}}="{{sub.esser3MandAcademicDebtService}}">
                             {{sub.esser3MandAcademicDebtService|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser3Mand20AcademicDebtService{{loop.index}}="{{sub.esser3Mand20AcademicDebtService}}">
                             {{sub.esser3Mand20AcademicDebtService|dollars}}</td>
                     </tr>
                     <tr>
                         <th scope="row">r. Other Items</th>
-                        <td data-esser1MandAcademicOtherItems{{loop.index}}="{{sub.esser1MandAcademicOtherItems}}">
+                        <td class="rightAlign" data-esser1MandAcademicOtherItems{{loop.index}}="{{sub.esser1MandAcademicOtherItems}}">
                             {{sub.esser1MandAcademicOtherItems|dollars}}</td>
-                        <td data-esser2MandAcademicOtherItems{{loop.index}}="{{sub.esser2MandAcademicOtherItems}}">
+                        <td class="rightAlign" data-esser2MandAcademicOtherItems{{loop.index}}="{{sub.esser2MandAcademicOtherItems}}">
                             {{sub.esser2MandAcademicOtherItems|dollars}}</td>
-                        <td data-esser3MandAcademicOtherItems{{loop.index}}="{{sub.esser3MandAcademicOtherItems}}">
+                        <td class="rightAlign" data-esser3MandAcademicOtherItems{{loop.index}}="{{sub.esser3MandAcademicOtherItems}}">
                             {{sub.esser3MandAcademicOtherItems|dollars}}</td>
-                        <td data-esser3Mand20AcademicOtherItems{{loop.index}}="{{sub.esser3Mand20AcademicOtherItems}}">
+                        <td class="rightAlign" data-esser3Mand20AcademicOtherItems{{loop.index}}="{{sub.esser3Mand20AcademicOtherItems}}">
                             {{sub.esser3Mand20AcademicOtherItems|dollars}}</td>
                     </tr>
                     <tfoot>
                         <th scope="row">Total</th>
-                        <td
+                        <td class="rightAlign"
                             data-esser1MandAcademicExpendedTotal{{loop.index}}="{{sub.esser1MandAcademicExpendedTotal}}">
                             {{sub.esser1MandAcademicExpendedTotal|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser2MandAcademicExpendedTotal{{loop.index}}="{{sub.esser2MandAcademicExpendedTotal}}">
                             {{sub.esser2MandAcademicExpendedTotal|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser3MandAcademicExpendedTotal{{loop.index}}="{{sub.esser3MandAcademicExpendedTotal}}">
                             {{sub.esser3MandAcademicExpendedTotal|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser3Mand20AcademicExpendedTotal{{loop.index}}="{{sub.esser3Mand20AcademicExpendedTotal}}">
                             {{sub.esser3Mand20AcademicExpendedTotal|dollars}}</td>
                     </tfoot>
@@ -1553,125 +1545,125 @@ Annual Report{% endblock title %}
                 <tbody>
                     <tr>
                         <th scope="row">s. Personnel Services - Salaries</th>
-                        <td
+                        <td class="rightAlign"
                             data-esser1MandMentalPersonnelSalaries{{loop.index}}="{{sub.esser1MandMentalPersonnelSalaries}}">
                             {{sub.esser1MandMentalPersonnelSalaries|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser2MandMentalPersonnelSalaries{{loop.index}}="{{sub.esser2MandMentalPersonnelSalaries}}">
                             {{sub.esser2MandMentalPersonnelSalaries|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser3MandMentalPersonnelSalaries{{loop.index}}="{{sub.esser3MandMentalPersonnelSalaries}}">
                             {{sub.esser3MandMentalPersonnelSalaries|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser3Mand20MentalPersonnelSalaries{{loop.index}}="{{sub.esser3Mand20MentalPersonnelSalaries}}">
                             {{sub.esser3Mand20MentalPersonnelSalaries|dollars}}</td>
                     </tr>
                     <tr>
                         <th scope="row">t. Personnel Services - Benefits</th>
-                        <td
+                        <td class="rightAlign"
                             data-esser1MandMentalPersonnelBenefits{{loop.index}}="{{sub.esser1MandMentalPersonnelBenefits}}">
                             {{sub.esser1MandMentalPersonnelBenefits|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser2MandMentalPersonnelBenefits{{loop.index}}="{{sub.esser2MandMentalPersonnelBenefits}}">
                             {{sub.esser2MandMentalPersonnelBenefits|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser3MandMentalPersonnelBenefits{{loop.index}}="{{sub.esser3MandMentalPersonnelBenefits}}">
                             {{sub.esser3MandMentalPersonnelBenefits|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser3Mand20MentalPersonnelBenefits{{loop.index}}="{{sub.esser3Mand20MentalPersonnelBenefits}}">
                             {{sub.esser3Mand20MentalPersonnelBenefits|dollars}}</td>
                     </tr>
                     <tr>
                         <th scope="row">u. Purchased Professional and Technical Services</th>
-                        <td data-esser1MandMentalTechnical{{loop.index}}="{{sub.esser1MandMentalTechnical}}">
+                        <td class="rightAlign" data-esser1MandMentalTechnical{{loop.index}}="{{sub.esser1MandMentalTechnical}}">
                             {{sub.esser1MandMentalTechnical|dollars}}</td>
-                        <td data-esser2MandMentalTechnical{{loop.index}}="{{sub.esser2MandMentalTechnical}}">
+                        <td class="rightAlign" data-esser2MandMentalTechnical{{loop.index}}="{{sub.esser2MandMentalTechnical}}">
                             {{sub.esser2MandMentalTechnical|dollars}}</td>
-                        <td data-esser3MandMentalTechnical{{loop.index}}="{{sub.esser3MandMentalTechnical}}">
+                        <td class="rightAlign" data-esser3MandMentalTechnical{{loop.index}}="{{sub.esser3MandMentalTechnical}}">
                             {{sub.esser3MandMentalTechnical|dollars}}</td>
-                        <td data-esser3Mand20MentalTechnical{{loop.index}}="{{sub.esser3Mand20MentalTechnical}}">
+                        <td class="rightAlign" data-esser3Mand20MentalTechnical{{loop.index}}="{{sub.esser3Mand20MentalTechnical}}">
                             {{sub.esser3Mand20MentalTechnical|dollars}}</td>
                     </tr>
                     <tr>
                         <th scope="row">v. Purchased Property Services</th>
-                        <td
+                        <td class="rightAlign"
                             data-esser1MandMentalPropertyServices{{loop.index}}="{{sub.esser1MandMentalPropertyServices}}">
                             {{sub.esser1MandMentalPropertyServices|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser2MandMentalPropertyServices{{loop.index}}="{{sub.esser2MandMentalPropertyServices}}">
                             {{sub.esser2MandMentalPropertyServices|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser3MandMentalPropertyServices{{loop.index}}="{{sub.esser3MandMentalPropertyServices}}">
                             {{sub.esser3MandMentalPropertyServices|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser3Mand20MentalPropertyServices{{loop.index}}="{{sub.esser3Mand20MentalPropertyServices}}">
                             {{sub.esser3Mand20MentalPropertyServices|dollars}}</td>
                     </tr>
                     <tr>
                         <th scope="row">w. Other Purchased Services</th>
-                        <td data-esser1MandMentalOtherServices{{loop.index}}="{{sub.esser1MandMentalOtherServices}}">
+                        <td class="rightAlign" data-esser1MandMentalOtherServices{{loop.index}}="{{sub.esser1MandMentalOtherServices}}">
                             {{sub.esser1MandMentalOtherServices|dollars}}</td>
-                        <td data-esser2MandMentalOtherServices{{loop.index}}="{{sub.esser2MandMentalOtherServices}}">
+                        <td class="rightAlign" data-esser2MandMentalOtherServices{{loop.index}}="{{sub.esser2MandMentalOtherServices}}">
                             {{sub.esser2MandMentalOtherServices|dollars}}</td>
-                        <td data-esser3MandMentalOtherServices{{loop.index}}="{{sub.esser3MandMentalOtherServices}}">
+                        <td class="rightAlign" data-esser3MandMentalOtherServices{{loop.index}}="{{sub.esser3MandMentalOtherServices}}">
                             {{sub.esser3MandMentalOtherServices|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser3Mand20MentalOtherServices{{loop.index}}="{{sub.esser3Mand20MentalOtherServices}}">
                             {{sub.esser3Mand20MentalOtherServices|dollars}}</td>
                     </tr>
                     <tr>
                         <th scope="row">x. Supplies</th>
-                        <td data-esser1MandMentalSupplies{{loop.index}}="{{sub.esser1MandMentalSupplies}}">
+                        <td class="rightAlign" data-esser1MandMentalSupplies{{loop.index}}="{{sub.esser1MandMentalSupplies}}">
                             {{sub.esser1MandMentalSupplies|dollars}}</td>
-                        <td data-esser2MandMentalSupplies{{loop.index}}="{{sub.esser2MandMentalSupplies}}">
+                        <td class="rightAlign" data-esser2MandMentalSupplies{{loop.index}}="{{sub.esser2MandMentalSupplies}}">
                             {{sub.esser2MandMentalSupplies|dollars}}</td>
-                        <td data-esser3MandMentalSupplies{{loop.index}}="{{sub.esser3MandMentalSupplies}}">
+                        <td class="rightAlign" data-esser3MandMentalSupplies{{loop.index}}="{{sub.esser3MandMentalSupplies}}">
                             {{sub.esser3MandMentalSupplies|dollars}}</td>
-                        <td data-esser3Mand20MentalSupplies{{loop.index}}="{{sub.esser3Mand20MentalSupplies}}">
+                        <td class="rightAlign" data-esser3Mand20MentalSupplies{{loop.index}}="{{sub.esser3Mand20MentalSupplies}}">
                             {{sub.esser3Mand20MentalSupplies|dollars}}</td>
                     </tr>
                     <tr>
                         <th scope="row">y. Property</th>
-                        <td data-esser1MandMentalProperty{{loop.index}}="{{sub.esser1MandMentalProperty}}">
+                        <td class="rightAlign" data-esser1MandMentalProperty{{loop.index}}="{{sub.esser1MandMentalProperty}}">
                             {{sub.esser1MandMentalProperty|dollars}}</td>
-                        <td data-esser2MandMentalProperty{{loop.index}}="{{sub.esser2MandMentalProperty}}">
+                        <td class="rightAlign" data-esser2MandMentalProperty{{loop.index}}="{{sub.esser2MandMentalProperty}}">
                             {{sub.esser2MandMentalProperty|dollars}}</td>
-                        <td data-esser3MandMentalProperty{{loop.index}}="{{sub.esser3MandMentalProperty}}">
+                        <td class="rightAlign" data-esser3MandMentalProperty{{loop.index}}="{{sub.esser3MandMentalProperty}}">
                             {{sub.esser3MandMentalProperty|dollars}}</td>
-                        <td data-esser3Mand20MentalProperty{{loop.index}}="{{sub.esser3Mand20MentalProperty}}">
+                        <td class="rightAlign" data-esser3Mand20MentalProperty{{loop.index}}="{{sub.esser3Mand20MentalProperty}}">
                             {{sub.esser3Mand20MentalProperty|dollars}}</td>
                     </tr>
                     <tr>
                         <th scope="row">z. Debt Service and Miscellaneous</th>
-                        <td data-esser1MandMentalDebtService{{loop.index}}="{{sub.esser1MandMentalDebtService}}">
+                        <td class="rightAlign" data-esser1MandMentalDebtService{{loop.index}}="{{sub.esser1MandMentalDebtService}}">
                             {{sub.esser1MandMentalDebtService|dollars}}</td>
-                        <td data-esser2MandMentalDebtService{{loop.index}}="{{sub.esser2MandMentalDebtService}}">
+                        <td class="rightAlign" data-esser2MandMentalDebtService{{loop.index}}="{{sub.esser2MandMentalDebtService}}">
                             {{sub.esser2MandMentalDebtService|dollars}}</td>
-                        <td data-esser3MandMentalDebtService{{loop.index}}="{{sub.esser3MandMentalDebtService}}">
+                        <td class="rightAlign" data-esser3MandMentalDebtService{{loop.index}}="{{sub.esser3MandMentalDebtService}}">
                             {{sub.esser3MandMentalDebtService|dollars}}</td>
-                        <td data-esser3Mand20MentalDebtService{{loop.index}}="{{sub.esser3Mand20MentalDebtService}}">
+                        <td class="rightAlign" data-esser3Mand20MentalDebtService{{loop.index}}="{{sub.esser3Mand20MentalDebtService}}">
                             {{sub.esser3Mand20MentalDebtService|dollars}}</td>
                     </tr>
                     <tr>
                         <th scope="row">aa. Other Items</th>
-                        <td data-esser1MandMentalOtherItems{{loop.index}}="{{sub.esser1MandMentalOtherItems}}">
+                        <td class="rightAlign" data-esser1MandMentalOtherItems{{loop.index}}="{{sub.esser1MandMentalOtherItems}}">
                             {{sub.esser1MandMentalOtherItems|dollars}}</td>
-                        <td data-esser2MandMentalOtherItems{{loop.index}}="{{sub.esser2MandMentalOtherItems}}">
+                        <td class="rightAlign" data-esser2MandMentalOtherItems{{loop.index}}="{{sub.esser2MandMentalOtherItems}}">
                             {{sub.esser2MandMentalOtherItems|dollars}}</td>
-                        <td data-esser3MandMentalOtherItems{{loop.index}}="{{sub.esser3MandMentalOtherItems}}">
+                        <td class="rightAlign" data-esser3MandMentalOtherItems{{loop.index}}="{{sub.esser3MandMentalOtherItems}}">
                             {{sub.esser3MandMentalOtherItems|dollars}}</td>
-                        <td data-esser3Mand20MentalOtherItems{{loop.index}}="{{sub.esser3Mand20MentalOtherItems}}">
+                        <td class="rightAlign" data-esser3Mand20MentalOtherItems{{loop.index}}="{{sub.esser3Mand20MentalOtherItems}}">
                             {{sub.esser3Mand20MentalOtherItems|dollars}}</td>
                     </tr>
                     <tfoot>
                         <th scope="row">Total</th>
-                        <td data-esser1MandMentalExpendedTotal{{loop.index}}="{{sub.esser1MandMentalExpendedTotal}}">
+                        <td class="rightAlign" data-esser1MandMentalExpendedTotal{{loop.index}}="{{sub.esser1MandMentalExpendedTotal}}">
                             {{sub.esser1MandMentalExpendedTotal|dollars}}</td>
-                        <td data-esser2MandMentalExpendedTotal{{loop.index}}="{{sub.esser2MandMentalExpendedTotal}}">
+                        <td class="rightAlign" data-esser2MandMentalExpendedTotal{{loop.index}}="{{sub.esser2MandMentalExpendedTotal}}">
                             {{sub.esser2MandMentalExpendedTotal|dollars}}</td>
-                        <td data-esser3MandMentalExpendedTotal{{loop.index}}="{{sub.esser3MandMentalExpendedTotal}}">
+                        <td class="rightAlign" data-esser3MandMentalExpendedTotal{{loop.index}}="{{sub.esser3MandMentalExpendedTotal}}">
                             {{sub.esser3MandMentalExpendedTotal|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser3Mand20MentalExpendedTotal{{loop.index}}="{{sub.esser3Mand20MentalExpendedTotal}}">
                             {{sub.esser3Mand20MentalExpendedTotal|dollars}}</td>
                     </tfoot>
@@ -1695,142 +1687,142 @@ Annual Report{% endblock title %}
                 <tbody>
                     <tr>
                         <th scope="row">bb. Personnel Services - Salaries</th>
-                        <td
+                        <td class="rightAlign"
                             data-esser1MandOperationalPersonnelSalaries{{loop.index}}="{{sub.esser1MandOperationalPersonnelSalaries}}">
                             {{sub.esser1MandOperationalPersonnelSalaries|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser2MandOperationalPersonnelSalaries{{loop.index}}="{{sub.esser2MandOperationalPersonnelSalaries}}">
                             {{sub.esser2MandOperationalPersonnelSalaries|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser3MandOperationalPersonnelSalaries{{loop.index}}="{{sub.esser3MandOperationalPersonnelSalaries}}">
                             {{sub.esser3MandOperationalPersonnelSalaries|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser3Mand20OperationalPersonnelSalaries{{loop.index}}="{{sub.esser3Mand20OperationalPersonnelSalaries}}">
                             {{sub.esser3Mand20OperationalPersonnelSalaries|dollars}}</td>
                     </tr>
                     <tr>
                         <th scope="row">cc. Personnel Services - Benefits</th>
-                        <td
+                        <td class="rightAlign"
                             data-esser1MandOperationalPersonnelBenefits{{loop.index}}="{{sub.esser1MandOperationalPersonnelBenefits}}">
                             {{sub.esser1MandOperationalPersonnelBenefits|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser2MandOperationalPersonnelBenefits{{loop.index}}="{{sub.esser2MandOperationalPersonnelBenefits}}">
                             {{sub.esser2MandOperationalPersonnelBenefits|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser3MandOperationalPersonnelBenefits{{loop.index}}="{{sub.esser3MandOperationalPersonnelBenefits}}">
                             {{sub.esser3MandOperationalPersonnelBenefits|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser3Mand20OperationalPersonnelBenefits{{loop.index}}="{{sub.esser3Mand20OperationalPersonnelBenefits}}">
                             {{sub.esser3Mand20OperationalPersonnelBenefits|dollars}}</td>
                     </tr>
                     <tr>
                         <th scope="row">dd. Purchased Professional and Technical Services</th>
-                        <td data-esser1MandOperationalTechnical{{loop.index}}="{{sub.esser1MandOperationalTechnical}}">
+                        <td class="rightAlign" data-esser1MandOperationalTechnical{{loop.index}}="{{sub.esser1MandOperationalTechnical}}">
                             {{sub.esser1MandOperationalTechnical|dollars}}</td>
-                        <td data-esser2MandOperationalTechnical{{loop.index}}="{{sub.esser2MandOperationalTechnical}}">
+                        <td class="rightAlign" data-esser2MandOperationalTechnical{{loop.index}}="{{sub.esser2MandOperationalTechnical}}">
                             {{sub.esser2MandOperationalTechnical|dollars}}</td>
-                        <td data-esser3MandOperationalTechnical{{loop.index}}="{{sub.esser3MandOperationalTechnical}}">
+                        <td class="rightAlign" data-esser3MandOperationalTechnical{{loop.index}}="{{sub.esser3MandOperationalTechnical}}">
                             {{sub.esser3MandOperationalTechnical|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser3Mand20OperationalTechnical{{loop.index}}="{{sub.esser3Mand20OperationalTechnical}}">
                             {{sub.esser3Mand20OperationalTechnical|dollars}}</td>
                     </tr>
                     <tr>
                         <th scope="row">ee. Purchased Property Services</th>
-                        <td
+                        <td class="rightAlign"
                             data-esser1MandOperationalPropertyServices{{loop.index}}="{{sub.esser1MandOperationalPropertyServices}}">
                             {{sub.esser1MandOperationalPropertyServices|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser2MandOperationalPropertyServices{{loop.index}}="{{sub.esser2MandOperationalPropertyServices}}">
                             {{sub.esser2MandOperationalPropertyServices|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser3MandOperationalPropertyServices{{loop.index}}="{{sub.esser3MandOperationalPropertyServices}}">
                             {{sub.esser3MandOperationalPropertyServices|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser3Mand20OperationalPropertyServices{{loop.index}}="{{sub.esser3Mand20OperationalPropertyServices}}">
                             {{sub.esser3Mand20OperationalPropertyServices|dollars}}</td>
                     </tr>
                     <tr>
                         <th scope="row">ff. Other Purchased Services</th>
-                        <td
+                        <td class="rightAlign"
                             data-esser1MandOperationalOtherServices{{loop.index}}="{{sub.esser1MandOperationalOtherServices}}">
                             {{sub.esser1MandOperationalOtherServices|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser2MandOperationalOtherServices{{loop.index}}="{{sub.esser2MandOperationalOtherServices}}">
                             {{sub.esser2MandOperationalOtherServices|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser3MandOperationalOtherServices{{loop.index}}="{{sub.esser3MandOperationalOtherServices}}">
                             {{sub.esser3MandOperationalOtherServices|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser3Mand20OperationalOtherServices{{loop.index}}="{{sub.esser3Mand20OperationalOtherServices}}">
                             {{sub.esser3Mand20OperationalOtherServices|dollars}}</td>
                     </tr>
                     <tr>
                         <th scope="row">gg. Supplies</th>
-                        <td data-esser1MandOperationalSupplies{{loop.index}}="{{sub.esser1MandOperationalSupplies}}">
+                        <td class="rightAlign" data-esser1MandOperationalSupplies{{loop.index}}="{{sub.esser1MandOperationalSupplies}}">
                             {{sub.esser1MandOperationalSupplies|dollars}}</td>
-                        <td data-esser2MandOperationalSupplies{{loop.index}}="{{sub.esser2MandOperationalSupplies}}">
+                        <td class="rightAlign" data-esser2MandOperationalSupplies{{loop.index}}="{{sub.esser2MandOperationalSupplies}}">
                             {{sub.esser2MandOperationalSupplies|dollars}}</td>
-                        <td data-esser3MandOperationalSupplies{{loop.index}}="{{sub.esser3MandOperationalSupplies}}">
+                        <td class="rightAlign" data-esser3MandOperationalSupplies{{loop.index}}="{{sub.esser3MandOperationalSupplies}}">
                             {{sub.esser3MandOperationalSupplies|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser3Mand20OperationalSupplies{{loop.index}}="{{sub.esser3Mand20OperationalSupplies}}">
                             {{sub.esser3Mand20OperationalSupplies|dollars}}</td>
                     </tr>
                     <tr>
                         <th scope="row">hh. Property</th>
-                        <td data-esser1MandOperationalProperty{{loop.index}}="{{sub.esser1MandOperationalProperty}}">
+                        <td class="rightAlign" data-esser1MandOperationalProperty{{loop.index}}="{{sub.esser1MandOperationalProperty}}">
                             {{sub.esser1MandOperationalProperty|dollars}}</td>
-                        <td data-esser2MandOperationalProperty{{loop.index}}="{{sub.esser2MandOperationalProperty}}">
+                        <td class="rightAlign" data-esser2MandOperationalProperty{{loop.index}}="{{sub.esser2MandOperationalProperty}}">
                             {{sub.esser2MandOperationalProperty|dollars}}</td>
-                        <td data-esser3MandOperationalProperty{{loop.index}}="{{sub.esser3MandOperationalProperty}}">
+                        <td class="rightAlign" data-esser3MandOperationalProperty{{loop.index}}="{{sub.esser3MandOperationalProperty}}">
                             {{sub.esser3MandOperationalProperty|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser3Mand20OperationalProperty{{loop.index}}="{{sub.esser3Mand20OperationalProperty}}">
                             {{sub.esser3Mand20OperationalProperty|dollars}}</td>
                     </tr>
                     <tr>
                         <th scope="row">ii. Debt Service and Miscellaneous</th>
-                        <td
+                        <td class="rightAlign"
                             data-esser1MandOperationalDebtService{{loop.index}}="{{sub.esser1MandOperationalDebtService}}">
                             {{sub.esser1MandOperationalDebtService|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser2MandOperationalDebtService{{loop.index}}="{{sub.esser2MandOperationalDebtService}}">
                             {{sub.esser2MandOperationalDebtService|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser3MandOperationalDebtService{{loop.index}}="{{sub.esser3MandOperationalDebtService}}">
                             {{sub.esser3MandOperationalDebtService|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser3Mand20OperationalDebtService{{loop.index}}="{{sub.esser3Mand20OperationalDebtService}}">
                             {{sub.esser3Mand20OperationalDebtService|dollars}}</td>
                     </tr>
                     <tr>
                         <th scope="row">jj. Other Items</th>
-                        <td
+                        <td class="rightAlign"
                             data-esser1MandOperationalOtherItems{{loop.index}}="{{sub.esser1MandOperationalOtherItems}}">
                             {{sub.esser1MandOperationalOtherItems|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser2MandOperationalOtherItems{{loop.index}}="{{sub.esser2MandOperationalOtherItems}}">
                             {{sub.esser2MandOperationalOtherItems|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser3MandOperationalOtherItems{{loop.index}}="{{sub.esser3MandOperationalOtherItems}}">
                             {{sub.esser3MandOperationalOtherItems|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser3Mand20OperationalOtherItems{{loop.index}}="{{sub.esser3Mand20OperationalOtherItems}}">
                             {{sub.esser3Mand20OperationalOtherItems|dollars}}</td>
                     </tr>
                     <tfoot>
                         <th scope="row">Total</th>
-                        <td
+                        <td class="rightAlign"
                             data-esser1MandOperationalExpendedTotal{{loop.index}}="{{sub.esser1MandOperationalExpendedTotal}}">
                             {{sub.esser1MandOperationalExpendedTotal|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser2MandOperationalExpendedTotal{{loop.index}}="{{sub.esser2MandOperationalExpendedTotal}}">
                             {{sub.esser2MandOperationalExpendedTotal|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser3MandOperationalExpendedTotal{{loop.index}}="{{sub.esser3MandOperationalExpendedTotal}}">
                             {{sub.esser3MandOperationalExpendedTotal|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser3Mand20OperationalExpendedTotal{{loop.index}}="{{sub.esser3Mand20OperationalExpendedTotal}}">
                             {{sub.esser3Mand20OperationalExpendedTotal|dollars}}</td>
                     </tfoot>
@@ -1856,22 +1848,22 @@ Annual Report{% endblock title %}
                 </thead>
                 <tbody>
                     <tr>
-                        <td data-esser1MandatoryExpendedPrior{{loop.index}}="{{sub.esser1MandatoryExpendedPrior}}">
+                        <td class="rightAlign" data-esser1MandatoryExpendedPrior{{loop.index}}="{{sub.esser1MandatoryExpendedPrior}}">
                             {{sub.esser1MandatoryExpendedPrior|dollars}}</td>
-                        <td data-esser1MandatoryRemaining{{loop.index}}="{{sub.esser1MandatoryRemaining}}">
+                        <td class="rightAlign" data-esser1MandatoryRemaining{{loop.index}}="{{sub.esser1MandatoryRemaining}}">
                             {{sub.esser1MandatoryRemaining|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser1MandatoryRemainingPhysical{{loop.index}}="{{sub.esser1MandatoryRemainingPhysical}}">
                             {{sub.esser1MandatoryRemainingPhysical|percent}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser1MandatoryRemainingAcademic{{loop.index}}="{{sub.esser1MandatoryRemainingAcademic}}">
                             {{sub.esser1MandatoryRemainingAcademic|percent}}</td>
-                        <td data-esser1MandatoryRemainingMental{{loop.index}}="{{sub.esser1MandatoryRemainingMental}}">
+                        <td class="rightAlign" data-esser1MandatoryRemainingMental{{loop.index}}="{{sub.esser1MandatoryRemainingMental}}">
                             {{sub.esser1MandatoryRemainingMental|percent}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser1MandatoryRemainingOperational{{loop.index}}="{{sub.esser1MandatoryRemainingOperational}}">
                             {{sub.esser1MandatoryRemainingOperational|percent}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser1MandatoryRemainingUndetermined{{loop.index}}="{{sub.esser1MandatoryRemainingUndetermined}}">
                             {{sub.esser1MandatoryRemainingUndetermined|percent}}</td>
                     </tr>
@@ -1896,20 +1888,20 @@ Annual Report{% endblock title %}
                 </thead>
                 <tbody>
                     <tr>
-                        <td data-esser2MandatoryRemaining{{loop.index}}="{{sub.esser2MandatoryRemaining}}">
+                        <td class="rightAlign" data-esser2MandatoryRemaining{{loop.index}}="{{sub.esser2MandatoryRemaining}}">
                             {{sub.esser2MandatoryRemaining|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser2MandatoryRemainingPhysical{{loop.index}}="{{sub.esser2MandatoryRemainingPhysical}}">
                             {{sub.esser2MandatoryRemainingPhysical|percent}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser2MandatoryRemainingAcademic{{loop.index}}="{{sub.esser2MandatoryRemainingAcademic}}">
                             {{sub.esser2MandatoryRemainingAcademic|percent}}</td>
-                        <td data-esser2MandatoryRemainingMental{{loop.index}}="{{sub.esser2MandatoryRemainingMental}}">
+                        <td class="rightAlign" data-esser2MandatoryRemainingMental{{loop.index}}="{{sub.esser2MandatoryRemainingMental}}">
                             {{sub.esser2MandatoryRemainingMental|percent}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser2MandatoryRemainingOperational{{loop.index}}="{{sub.esser2MandatoryRemainingOperational}}">
                             {{sub.esser2MandatoryRemainingOperational|percent}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser2MandatoryRemainingUndetermined{{loop.index}}="{{sub.esser2MandatoryRemainingUndetermined}}">
                             {{sub.esser2MandatoryRemainingUndetermined|percent}}</td>
                     </tr>
@@ -1934,20 +1926,20 @@ Annual Report{% endblock title %}
                 </thead>
                 <tbody>
                     <tr>
-                        <td data-esser3MandatoryRemaining{{loop.index}}="{{sub.esser3MandatoryRemaining}}">
+                        <td class="rightAlign" data-esser3MandatoryRemaining{{loop.index}}="{{sub.esser3MandatoryRemaining}}">
                             {{sub.esser3MandatoryRemaining|dollars}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser3MandatoryRemainingPhysical{{loop.index}}="{{sub.esser3MandatoryRemainingPhysical}}">
                             {{sub.esser3MandatoryRemainingPhysical|percent}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser3MandatoryRemainingAcademic{{loop.index}}="{{sub.esser3MandatoryRemainingAcademic}}">
                             {{sub.esser3MandatoryRemainingAcademic|percent}}</td>
-                        <td data-esser3MandatoryRemainingMental{{loop.index}}="{{sub.esser3MandatoryRemainingMental}}">
+                        <td class="rightAlign" data-esser3MandatoryRemainingMental{{loop.index}}="{{sub.esser3MandatoryRemainingMental}}">
                             {{sub.esser3MandatoryRemainingMental|percent}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser3MandatoryRemainingOperational{{loop.index}}="{{sub.esser3MandatoryRemainingOperational}}">
                             {{sub.esser3MandatoryRemainingOperational|percent}}</td>
-                        <td
+                        <td class="rightAlign"
                             data-esser3MandatoryRemainingUndetermined{{loop.index}}="{{sub.esser3MandatoryRemainingUndetermined}}">
                             {{sub.esser3MandatoryRemainingUndetermined|percent}}</td>
                     </tr>
@@ -2090,51 +2082,51 @@ Annual Report{% endblock title %}
                 <tbody>
                     <tr>
                         <th scope="row">Special educators and related service personnel</th>
-                        <td data-esserANumberEmployedSpecialEd{{loop.index}}="{{sub.esserANumberEmployedSpecialEd}}">
+                        <td class="rightAlign" data-esserANumberEmployedSpecialEd{{loop.index}}="{{sub.esserANumberEmployedSpecialEd}}">
                             {{sub.esserANumberEmployedSpecialEd}}</td>
                     </tr>
                     <tr>
                         <th scope="row">Paraprofessionals</th>
-                        <td
+                        <td class="rightAlign"
                             data-esserANumberEmployedParaprofessionals{{loop.index}}="{{sub.esserANumberEmployedParaprofessionals}}">
                             {{sub.esserANumberEmployedParaprofessionals}}</td>
                     </tr>
                     <tr>
                         <th scope="row">Bilingual or English as a second language educators</th>
-                        <td data-esserANumberEmployedBilingual{{loop.index}}="{{sub.esserANumberEmployedBilingual}}">
+                        <td class="rightAlign" data-esserANumberEmployedBilingual{{loop.index}}="{{sub.esserANumberEmployedBilingual}}">
                             {{sub.esserANumberEmployedBilingual}}</td>
                     </tr>
                     <tr>
                         <th scope="row">School counselors, school psychologists and/or social workers</th>
-                        <td data-esserANumberEmployedCounselors{{loop.index}}="{{sub.esserANumberEmployedCounselors}}">
+                        <td class="rightAlign" data-esserANumberEmployedCounselors{{loop.index}}="{{sub.esserANumberEmployedCounselors}}">
                             {{sub.esserANumberEmployedCounselors}}</td>
                     </tr>
                     <tr>
                         <th scope="row">Nurses</th>
-                        <td data-esserANumberEmployedNurses{{loop.index}}="{{sub.esserANumberEmployedNurses}}">
+                        <td class="rightAlign" data-esserANumberEmployedNurses{{loop.index}}="{{sub.esserANumberEmployedNurses}}">
                             {{sub.esserANumberEmployedNurses}}</td>
                     </tr>
                     <tr>
                         <th scope="row">Short term contractors</th>
-                        <td
+                        <td class="rightAlign"
                             data-esserANumberEmployedContractors{{loop.index}}="{{sub.esserANumberEmployedContractors}}">
                             {{sub.esserANumberEmployedContractors}}</td>
                     </tr>
                     <tr>
                         <th scope="row">Classroom educators, not covered by previous categories</th>
-                        <td
+                        <td class="rightAlign"
                             data-esserANumberEmployedOtherTeachers{{loop.index}}="{{sub.esserANumberEmployedOtherTeachers}}">
                             {{sub.esserANumberEmployedOtherTeachers}}</td>
                     </tr>
                     <tr>
                         <th scope="row">Support personnel, not covered by previous categories</th>
-                        <td
+                        <td class="rightAlign"
                             data-esserANumberEmployedSupportPersonnel{{loop.index}}="{{sub.esserANumberEmployedSupportPersonnel}}">
                             {{sub.esserANumberEmployedSupportPersonnel}}</td>
                     </tr>
                     <tr>
                         <th scope="row">Administrative staff, not covered by previous categories</th>
-                        <td data-esserANumberEmployedAdminStaff{{loop.index}}="{{sub.esserANumberEmployedAdminStaff}}">
+                        <td class="rightAlign" data-esserANumberEmployedAdminStaff{{loop.index}}="{{sub.esserANumberEmployedAdminStaff}}">
                             {{sub.esserANumberEmployedAdminStaff}}</td>
                     </tr>
                 </tbody>
@@ -2314,22 +2306,22 @@ Annual Report{% endblock title %}
                     <tr>
                         <th scope="row">Special educators and related service personnel, including paraprofessionals
                         </th>
-                        <td data-esserASchoolFteSpecialEd{{loop.index}}="{{sub.esserASchoolFteSpecialEd}}">
+                        <td class="rightAlign" data-esserASchoolFteSpecialEd{{loop.index}}="{{sub.esserASchoolFteSpecialEd}}">
                             {{sub.esserASchoolFteSpecialEd}}</td>
                     </tr>
                     <tr>
                         <th scope="row">Bilingual educators or English as a second language educators</th>
-                        <td data-esserASchoolFteBilingual{{loop.index}}="{{sub.esserASchoolFteBilingual}}">
+                        <td class="rightAlign" data-esserASchoolFteBilingual{{loop.index}}="{{sub.esserASchoolFteBilingual}}">
                             {{sub.esserASchoolFteBilingual}}</td>
                     </tr>
                     <tr>
                         <th scope="row">School counselors, social workers, or school psychologists</th>
-                        <td data-esserASchoolFteCounselors{{loop.index}}="{{sub.esserASchoolFteCounselors}}">
+                        <td class="rightAlign" data-esserASchoolFteCounselors{{loop.index}}="{{sub.esserASchoolFteCounselors}}">
                             {{sub.esserASchoolFteCounselors}}</td>
                     </tr>
                     <tr>
                         <th scope="row">Nurses</th>
-                        <td data-esserASchoolFteNurses{{loop.index}}="{{sub.esserASchoolFteNurses}}">
+                        <td class="rightAlign" data-esserASchoolFteNurses{{loop.index}}="{{sub.esserASchoolFteNurses}}">
                             {{sub.esserASchoolFteNurses}}</td>
                     </tr>
                 </tbody>
@@ -2367,15 +2359,15 @@ Annual Report{% endblock title %}
                         <td data-dunsNumber{{loop.index}}="{{sub.dunsNumber|e}}">{{sub.dunsNumber|e}}</td>
                         <td data-ueiNumber{{loop.index}}="{{sub.ueiNumber|e}}">{{sub.ueiNumber|e}}</td>
                         <td data-ncesNumber{{loop.index}}="{{sub.ncesNumber|e}}">{{sub.ncesNumber|e}}</td>
-                        <td data-ftePositionsAsOf09302018{{loop.index}}="{{sub.ftePositionsAsOf09302018}}">
+                        <td class="rightAlign" data-ftePositionsAsOf09302018{{loop.index}}="{{sub.ftePositionsAsOf09302018}}">
                             {{sub.ftePositionsAsOf09302018}}</td>
-                        <td data-ftePositionsAsOf09302019{{loop.index}}="{{sub.ftePositionsAsOf09302019}}">
+                        <td class="rightAlign" data-ftePositionsAsOf09302019{{loop.index}}="{{sub.ftePositionsAsOf09302019}}">
                             {{sub.ftePositionsAsOf09302019}}</td>
-                        <td data-ftePositionsAsOf03132020{{loop.index}}="{{sub.ftePositionsAsOf03132020}}">
+                        <td class="rightAlign" data-ftePositionsAsOf03132020{{loop.index}}="{{sub.ftePositionsAsOf03132020}}">
                             {{sub.ftePositionsAsOf03132020}}</td>
-                        <td data-ftePositionsAsOf09302020{{loop.index}}="{{sub.ftePositionsAsOf09302020}}">
+                        <td class="rightAlign" data-ftePositionsAsOf09302020{{loop.index}}="{{sub.ftePositionsAsOf09302020}}">
                             {{sub.ftePositionsAsOf09302020}}</td>
-                        <td data-ftePositionsAsOf09302021{{loop.index}}="{{sub.ftePositionsAsOf09302021}}">
+                        <td class="rightAlign" data-ftePositionsAsOf09302021{{loop.index}}="{{sub.ftePositionsAsOf09302021}}">
                             {{sub.ftePositionsAsOf09302021}}</td>
                     </tr>
                     {% endfor %}
@@ -2413,10 +2405,10 @@ Annual Report{% endblock title %}
                         <td data-moe_dunsNumber{{loop.index}}="{{sub.dunsNumber|e}}">{{sub.dunsNumber|e}}</td>
                         <td data-moe_ueiNumber{{loop.index}}="{{sub.ueiNumber|e}}">{{sub.ueiNumber|e}}</td>
                         <td data-moe_ncesNumber{{loop.index}}="{{sub.ncesNumber|e}}">{{sub.ncesNumber|e}}</td>
-                        <td data-esser3PerPupilStateFundingFy21{{loop.index}}="{{sub.esser3PerPupilStateFundingFy21}}">{{sub.esser3PerPupilStateFundingFy21|dollars}}</td>
-                        <td data-esser3PerPupilStateFundingFy22{{loop.index}}="{{sub.esser3PerPupilStateFundingFy22}}">{{sub.esser3PerPupilStateFundingFy22|dollars}}</td>
-                        <td data-esser3HighNeedLeaReduction{{loop.index}}="{{sub.esser3HighNeedLeaReduction}}">{{sub.esser3HighNeedLeaReduction|dollars}}</td>
-                        <td data-isEsser3HighNeedMaintainEquity{{loop.index}}="{{sub.isEsser3HighNeedMaintainEquity|yes_no}}">{{sub.isEsser3HighNeedMaintainEquity|yes_no}}</td>
+                        <td class="rightAlign" data-esser3PerPupilStateFundingFy21{{loop.index}}="{{sub.esser3PerPupilStateFundingFy21}}">{{sub.esser3PerPupilStateFundingFy21|dollars}}</td>
+                        <td class="rightAlign" data-esser3PerPupilStateFundingFy22{{loop.index}}="{{sub.esser3PerPupilStateFundingFy22}}">{{sub.esser3PerPupilStateFundingFy22|dollars}}</td>
+                        <td class="rightAlign" data-esser3HighNeedLeaReduction{{loop.index}}="{{sub.esser3HighNeedLeaReduction}}">{{sub.esser3HighNeedLeaReduction|dollars}}</td>
+                        <td class="rightAlign" data-isEsser3HighNeedMaintainEquity{{loop.index}}="{{sub.isEsser3HighNeedMaintainEquity|yes_no}}">{{sub.isEsser3HighNeedMaintainEquity|yes_no}}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -2443,10 +2435,10 @@ Annual Report{% endblock title %}
                         <td data-moe_dunsNumber{{loop.index}}="{{sub.dunsNumber|e}}">{{sub.dunsNumber|e}}</td>
                         <td data-moe_ueiNumber{{loop.index}}="{{sub.ueiNumber|e}}">{{sub.ueiNumber|e}}</td>
                         <td data-moe_ncesNumber{{loop.index}}="{{sub.ncesNumber|e}}">{{sub.ncesNumber|e}}</td>
-                        <td data-esser3PerPupilStateFundingFY19{{loop.index}}="{{sub.esser3PerPupilStateFundingFY19}}">{{sub.esser3PerPupilStateFundingFY19|dollars}}</td>
-                        <td data-esser3PerPupilStateFundingFy22{{loop.index}}="{{sub.esser3PerPupilStateFundingFy22}}">{{sub.esser3PerPupilStateFundingFy22|dollars}}</td>
-                        <td data-esser3HighestPovertyLeaReduction{{loop.index}}="{{sub.esser3HighestPovertyLeaReduction}}">{{sub.esser3HighestPovertyLeaReduction|dollars}}</td>
-                        <td data-isEsser3HighestPovertyMaintainEquity{{loop.index}}="{{sub.isEsser3HighestPovertyMaintainEquity|yes_no}}">{{sub.isEsser3HighestPovertyMaintainEquity|yes_no}}</td>
+                        <td class="rightAlign" data-esser3PerPupilStateFundingFY19{{loop.index}}="{{sub.esser3PerPupilStateFundingFY19}}">{{sub.esser3PerPupilStateFundingFY19|dollars}}</td>
+                        <td class="rightAlign" data-esser3PerPupilStateFundingFy22{{loop.index}}="{{sub.esser3PerPupilStateFundingFy22}}">{{sub.esser3PerPupilStateFundingFy22|dollars}}</td>
+                        <td class="rightAlign" data-esser3HighestPovertyLeaReduction{{loop.index}}="{{sub.esser3HighestPovertyLeaReduction}}">{{sub.esser3HighestPovertyLeaReduction|dollars}}</td>
+                        <td class="rightAlign" data-isEsser3HighestPovertyMaintainEquity{{loop.index}}="{{sub.isEsser3HighestPovertyMaintainEquity|yes_no}}">{{sub.isEsser3HighestPovertyMaintainEquity|yes_no}}</td>
                     </tr>
                     {% endfor %}
                 </tbody>

@@ -1,4 +1,4 @@
-<!-- # templates/eans_apr.html # -->
+<!-- # templates/eans_year2_apr.html # -->
 {% extends "common.html" %}
 {% block title %}{{apr.stateCode|e}} {{apr.reportingYear|e}} Emergency Assistance to Non-Public Schools Annual Report{% endblock title %}
 {% block apr_title %}
@@ -15,14 +15,12 @@
             <li><a href="#section5">SEA Obligations (including reimbursements) by allowable activity for CRRSA EANS</a></li>
             <li><a href="#section6">SEA Obligations by allowable activity for ARP EANS</a></li>
             <li><a href="#section7">Non-public schools receiving services or assistance under CRRSA EANS</a></li>
-            <li><a href="#section8">Non-public schools receiving services or assistance under ARP EANS</a></li>
-            <li><a href="#section9">Subawards/Subcontracts</a></li>
         </ol>
 {% endblock apr_sections %}
 {% block apr %}
 <main>
-    <form name="introduction" action="" aria-labelled-by="introduction">
-        <h1 id="introduction">Emergency Assistance to Non-Public Schools Annual Reporting Form</h1>
+    <form name="introduction" action="" aria-label="introduction">
+        <h1>Emergency Assistance to Non-Public Schools Annual Reporting Form</h1>
         <p><label >State: <input type="text" readonly id="stateName" data-stateName="{{apr.stateName|e}}" value="{{apr.stateName|e}}"></label></p>
         <p><label >CRRSAA EANS PR/Award number: <input type="text" readonly id="eans2AwardNumber" data-eans2AwardNumber="{{ apr.eans2AwardNumber|e }}" value="{{ apr.eans2AwardNumber|e }}"></label></p>
         <p><label >ARP EANS PR/Award number: <input type="text" readonly  id="eans3AwardNumber" data-eans3AwardNumber="{{ apr.eans3AwardNumber|e }}" value="{{ apr.eans3AwardNumber|e }}"></label></p>
@@ -250,10 +248,10 @@
                         <p><label ><input type="checkbox" readonly id="eans2FundsLeaExpendedOther"
                             data-eans2FundsLeaExpendedOther="{{apr.eans2FundsLeaExpendedOther|yes_no}}" {{apr.eans2FundsLeaExpendedOther|check}}>Other</label> 
                             {% if apr.eans2FundsLeaExpendedOther %} 
-                                <p><label >Description: 
+                                <label >Description: 
                                 <textarea readonly rows="4" cols="72" id="eans2FundsLeaExpendedOtherDescription"
                                     data-eans2FundsLeaExpendedOtherDescription="{{apr.eans2FundsLeaExpendedOtherDescription|e}}">
-                                    {{apr.eans2FundsLeaExpendedOtherDescription|e}}</textarea></label></p>
+                                    {{apr.eans2FundsLeaExpendedOtherDescription|e}}</textarea></label>
                             {% endif %}
                         </p>
                 {% endif %}
@@ -284,9 +282,9 @@
                         <p><label ><input type="checkbox" readonly id="eans2FundsIheExpendedOther"
                             data-eans2FundsIheExpendedOther="{{apr.eans2FundsIheExpendedOther|yes_no}}" {{apr.eans2FundsIheExpendedOther|check}}/>Other</label>
                             {% if apr.eans2FundsIheExpendedOther %} 
-                                <p><label  for="eans2FundsIheExpendedOtherDescription">Description:</label> 
+                                <label  for="eans2FundsIheExpendedOtherDescription">Description:</label> 
                                 <textarea readonly id="eans2FundsIheExpendedOtherDescription"
-                                data-eans2FundsIheExpendedOtherDescription="eans2FundsIheExpendedOtherDescription|e">{{apr.eans2FundsIheExpendedOtherDescription|e}}</textarea></label></p>
+                                data-eans2FundsIheExpendedOtherDescription="eans2FundsIheExpendedOtherDescription|e">{{apr.eans2FundsIheExpendedOtherDescription|e}}</textarea></label>
                             {% endif %}
                         </p>
                 {% endif %}
@@ -327,10 +325,10 @@
                         <p><label ><input type="checkbox" readonly id="eans2FundsEntityExpendedOther"
                             data-eans2FundsEntityExpendedOther="{{apr.eans2FundsEntityExpendedOther|yes_no}}" {{apr.eans2FundsEntityExpendedOther|check}}/>Other</label> 
                             {% if apr.eans2FundsEntityExpendedOther %} 
-                                <p><label  for="eans2FundsEntityExpendedOtherDescription">Description:</label> 
+                                <label  for="eans2FundsEntityExpendedOtherDescription">Description:</label> 
                                 <textarea readonly rows="4" cols="72" id="eans2FundsEntityExpendedOtherDescription"
                                     data-eans2FundsEntityExpendedOtherDescription="{{apr.eans2FundsEntityExpendedOtherDescription|e}}">
-                                    {{apr.eans2FundsEntityExpendedOtherDescription|e}}</textarea></p>
+                                    {{apr.eans2FundsEntityExpendedOtherDescription|e}}</textarea>
                             {% endif %}
                         </p>
                 {% endif %}
@@ -374,9 +372,9 @@
             <p> <label class="question"><input type="checkbox" readonly id="anyEans2RequestOtherData"
                 data-anyEans2RequestOtherData="{{apr.anyEans2RequestOtherData|yes_no}}" {{apr.anyEans2RequestOtherData|check}}/>other data</label>
                 {% if apr.anyEans2RequestOtherData %} 
-                    <p><label >Description:
+                    <label >Description:
                      <textarea readonly rows="4" cols="72" id="eans2OtherDataDescription"
-                        data-eans2OtherDataDescription="{{apr.eans2OtherDataDescription|e}}">{{apr.eans2OtherDataDescription|e}}</textarea></label></p>
+                        data-eans2OtherDataDescription="{{apr.eans2OtherDataDescription|e}}">{{apr.eans2OtherDataDescription|e}}</textarea></label>
                 {% endif %}
                 </p>
 
@@ -397,9 +395,9 @@
                 attributable to the disruption of instruction caused by COVID-19</label>  </p>
             <p><label ><input type="checkbox" readonly id="anyEans2OtherFactor" data-anyEans2OtherFactor="{{apr.anyEans2OtherFactor|yes_no}}" {{apr.anyEans2OtherFactor|check}}/>other</label>  
                 {% if apr.anyEans2OtherFactor %} 
-                    <p><label  for="eans2OtherFactorDescription">Description:
-                    <textarea readonly rows="4" cols="72" id="eans2OtherFactorDescription"
-                        data-eans2OtherFactorDescription="{{apr.eans2OtherFactorDescription|e}}">{{apr.eans2OtherFactorDescription|e}}</textarea></label></p>
+                    <label  for="eans2OtherFactorDescription">Description:
+                    <textarea readonly id="eans2OtherFactorDescription"
+                        data-eans2OtherFactorDescription="{{apr.eans2OtherFactorDescription|e}}">{{apr.eans2OtherFactorDescription|e}}</textarea></label>
                 {% endif %}
             </p>
     </form>
