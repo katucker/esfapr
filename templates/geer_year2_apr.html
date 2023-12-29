@@ -7,15 +7,17 @@
 {% endblock apr_title %}
 {% block apr_sections %}
 <p><a href="#introduction">Introduction</a></p>
-<p><a href="#section1">State Fiscal Year</a></p>
-<p><a href="#section2">Overall GEER Fund Grants</a></p>
-<p><a href="#item3">Prior reporting period expenditures</a></p>
-<p><a href="#item4">Entity types awarded funds</a></p>
-<p><a href="#item5">Changes to award conditions</a></p>
-<p><a href="#item6">LEA expenditures</a></p>
-<p><a href="#item7">IHE expenditures</a></p>
-<p><a href="#item8">Other education-related entity expenditures</a></p>
-<p><a href="#item9">Number schools receiving GEER funds</a></p>
+<ol>
+<li><a href="#section1">State Fiscal Year</a></li>
+<li><a href="#section2">Overall GEER Fund Grants</a></li>
+<li><a href="#item3">Prior reporting period expenditures</a></li>
+<li><a href="#item4">Entity types awarded funds</a></li>
+<li><a href="#item5">Changes to award conditions</a></li>
+<li><a href="#item6">LEA expenditures</a></li>
+<li><a href="#item7">IHE expenditures</a></li>
+<li><a href="#item8">Other education-related entity expenditures</a></li>
+<li><a href="#item9">Number schools receiving GEER funds</a></li>
+</ol>
 {% endblock apr_sections %}
 {% block apr %}
 <main>
@@ -24,11 +26,11 @@
         <p><label for="stateCode">State or Outlying Area:</label> <input readonly type="text" id="stateCode" data-stateCode="{{apr.stateCode|e}}" value="{{apr.stateCode|e }}"/></p>
         <p><label for="prNumber">GEER I PR/Award number:</label> <input readonly type="text" id="geer1AwardNumber" data-geer1AwardNumber="{{ apr.geer1AwardNumber|e }}" value="{{apr.geer1AwardNumber|e }}"/></p>
         <p><label for="prNumber">GEER II PR/Award number:</label> <input readonly type="text" id="geer2AwardNumber" data-geer2AwardNumber="{{ apr.geer2AwardNumber|e }}" value="{{apr.geer2AwardNumber|e }}"/></p>
-        <p><label for="repName">State Director:</label> <input readonly type="text" id="stateDirectorName" data-stateDirectorName="{{ apr.stateDirectorName|e }}" value="{{apr.stateDirectorName|e }}"/></p>
-        <p><label for="repPosition">Position:</label> <input readonly type="text" size="72" id="stateDirectorPosition" data-stateDirectorPosition="{{apr.stateDirectorPosition|e}}" value="{{apr.stateDirectorPosition|e }}"/></p>
-        <p><label for="repOffice">Office:</label> <input readonly type="text" size="72" id="stateDirectorOffice" data-stateDirectorOffice="{{apr.stateDirectorOffice|e}}" value="{{apr.stateDirectorOffice|e }}"/></p>
+        <p><label for="repName">State Director:</label> <input readonly type="text" {% if apr.stateDirectorName is defined and apr.stateDirectorName is not none %} size="{{apr.stateDirectorName|length}}" {% endif %} id="stateDirectorName" data-stateDirectorName="{{ apr.stateDirectorName|e }}" value="{{apr.stateDirectorName|e }}"/></p>
+        <p><label for="repPosition">Position:</label> <input readonly type="text" {% if apr.stateDirectorPosition is defined and apr.stateDirectorPosition is not none %} size="{{apr.stateDirectorPosition|length}}" {% endif %} id="stateDirectorPosition" data-stateDirectorPosition="{{apr.stateDirectorPosition|e}}" value="{{apr.stateDirectorPosition|e }}"/></p>
+        <p><label for="repOffice">Office:</label> <input readonly type="text" {% if apr.stateDirectorOffice is defined and apr.stateDirectorOffice is not none %} size="{{apr.stateDirectorOffice|length}}" {% endif %} id="stateDirectorOffice" data-stateDirectorOffice="{{apr.stateDirectorOffice|e}}" value="{{apr.stateDirectorOffice|e }}"/></p>
         <p><label for="repPhone">Telephone:</label> <input readonly type="text" id="stateDirectorTelephone" data-stateDirectorTelephone="{{apr.stateDirectorTelephone|e}}" value="{{apr.stateDirectorTelephone|e }}"/></p>
-        <p><label for="repEmail">E-mail Address:</label> <input readonly type="text" size="72" id="stateDirectorEmailAddress" data-stateDirectorEmailAddress="{{apr.stateDirectorEmailAddress|e}}" value="{{apr.stateDirectorEmailAddress|e }}"/></p>
+        <p><label for="repEmail">E-mail Address:</label> <input readonly type="text" {% if apr.stateDirectorEmailAddress is defined and apr.stateDirectorEmailAddress is not none %} size="{{apr.stateDirectorEmailAddress|length}}" {% endif %} id="stateDirectorEmailAddress" data-stateDirectorEmailAddress="{{apr.stateDirectorEmailAddress|e}}" value="{{apr.stateDirectorEmailAddress|e }}"/></p>
         <p><b>Instructions:</b> States and outlying areas that received Governors Emergency Education Relief (GEER I and GEER II) or Education Stabilization Fund-Governors (ESF-Governor and ESF II-Governor) funds should fill out this form. To fulfill the annual GEER fund reporting requirements, answer all questions based on the reporting period shown in the Annual Reporting table below.</p>
         <details>
             <summary>Definitions

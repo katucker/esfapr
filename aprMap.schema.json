@@ -1,0 +1,212 @@
+{
+    "$schema":"https://json-schema.org/draft/2020-12/schema",
+    "$id":"https://data.ed.gov/schemas/aprMap.schema.json",
+    "title":"Annual Performance Report Map",
+    "description":"Specifies parameters for extracting data values from a workbook of consolidated Annual Performance Report responses and constructing HTML files, each containing the text of a corresponding approved Information Collection Instrument and the data values provided in a given response.",
+    "type": "object",
+    "properties": {
+        "subfund": {
+            "title": "Subfund",
+            "description": "The abbreviation of the subfund corresponding to the data values reported.",
+            "enum": [
+                "EANS",
+                "ESF-Gov",
+                "ESF-SEA",
+                "ESSER",
+                "GEER",
+                "HEER"
+            ]
+        },
+        "reporting_year": {
+            "title": "Reporting year",
+            "description": "The performance year for which the data values were reported.",
+            "type":"string"
+        },
+        "datafile_pattern":{
+            "title": "Datafile pattern",
+            "description": "Filename glob pattern for the datafile containing the values to use for constructing Annual Performance Reports.",
+            "type":"string",
+            "pattern": "^(\\.[/\\\\]|(\\.\\.[/\\\\])+|[a-zA-Z]:[/\\\\])?([a-zA-Z0-9_ \\-\\.\\*\\?\\[\\]]+[/\\\\])*[a-zA-Z0-9_ \\-\\.\\*\\?\\[\\]]+(xls|xlsx)$"
+        },
+        "template_path":{
+            "title":"Template path",
+            "description": "Path to a older containing templates in Jinja2 syntax to use in constructing the HTML Annual Performance Reports.",
+            "type":"string",
+            "pattern": "^(\\.[/\\\\]/|(\\.\\.[/\\\\])+|[a-zA-Z]:[/\\\\])?([a-zA-Z0-9_ \\-\\.]+[/\\\\])+$"
+        },
+        "template_name": {
+            "title": "Template name",
+            "description": "Name of the specific template to use for generating APRs.",
+            "type": "string",
+            "pattern": "^[a-zA-Z0-9_ \\-\\.]+(htm|html)"
+        },
+        "output_path":{
+            "title":"Output path",
+            "description": "Path to a folder to use for storing the HTML Annual Performance Reports.",
+            "type":"string",
+            "pattern": "^(\\.[/\\\\]/|(\\.\\.[/\\\\])+|[a-zA-Z]:[/\\\\])?([a-zA-Z0-9_ \\-\\.]+[/\\\\])+$"
+        },
+        "primary_grantee_worksheet_name": {
+            "title": "Primary grantee worksheet name",
+            "description": "The name of the worksheet containing the data values relevant to the prime grantees.",
+            "type": "string"
+        },
+        "primary_grantee_key_worksheet_column": {
+            "title": "Primary grantee key worksheet column",
+            "description": "The column within the primary grantee worksheet containing the key value identifying the grantee, to use in correlating subawards from other worksheets.",
+            "type": "integer"
+        },
+        "primary_grantee_key_name": {
+            "title": "Primary grantee key name",
+            "description": "The name assigned to the key value in the column listed above.",
+            "type": "string"
+        },
+        "primary_grantee_keys": {
+            "title": "Primary grantee keys",
+            "description": "if present, this specifies a list of key values for which to generate output. If not present, output is produced for all primary grantees in the datafile.",
+            "type": "array",
+            "items" : {
+                "type": "string",
+                "minItems": 1,
+                "uniqueItems": true
+            }
+        },
+        "omb_control_number": {
+            "title": "OMB control number",
+            "description": "The identifier assigned to the approved Information Collection Instrument.",
+            "type": "string"
+        },
+        "expiration_date": {
+            "title": "Expiration date",
+            "description": "The official date when approval to use the Information Collection Instrument ends.",
+            "type": "string"
+        },
+        "cui_official": {
+            "title": "CUI Official",
+            "description": "The name of the official charged with maintaining the Controlled Unclassified Information in the Annual Performance Report.",
+            "type": "string"
+        },
+        "filename_components": {
+            "title": "Filename components",
+            "description": "An array of data value names, from the field map, to use in generating a name for the HTML file. The subfund and reporting_year values are always used in the HTML file name. The additional components listed here help distinguish between the generated files and typically include at least the primary grantee key name.",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "minItems": 1
+            }
+        },
+        "main": {
+            "title": "Main field map",
+            "description": "The map of field locations for data values in the primary grantee worksheet.",
+            "type": "array",
+            "items": {
+                "$ref": "/schemas/fieldMap.schema.json",
+                "minItems": 1,
+                "uniqueItems": true
+            }
+        },
+        "subs": {
+            "title": "",
+            "description": "",
+            "type": "array",
+            "items": {
+                "$ref": "/schemas/subawardsMap.schema.json"
+            },
+            "minItems": 0,
+            "uniqueItems": true
+        }
+    },
+    "required": [
+        "subfund",
+        "reporting_year",
+        "datafile_pattern",
+        "template_path",
+        "template_name",
+        "primary_grantee_worksheet_name",
+        "primary_grantee_key_worksheet_column",
+        "primary_grantee_key_name",
+        "omb_control_number",
+        "expiration_date",
+        "cui_official",
+        "filename_components",
+        "main"
+    ],
+    "$defs": {
+        "/schemas/fieldMap.schema.json": {
+            "$schema":"https://json-schema.org/draft/2020-12/schema",
+            "$id":"https://data.ed.gov/schemas/fieldMap.schema.json",
+            "title":"Annual Performance Report Field Map",
+            "description":"Specifies parameters for a data value location within a worksheet, and the type of data contained there.",
+            "type": "object",
+            "properties": {
+                "name": {
+                    "title": "Name",
+                    "description": "The name of the field. The name is used in a template to identify where to write a data value in the generated HTML file.",
+                    "type": "string"
+                },
+                "index": {
+                    "title": "Index",
+                    "description": "The column index (starting at 1) within the worksheet where the data value is located.",
+                    "type": "integer"
+                },
+                "type": {
+                    "title": "Type",
+                    "description": "The type of data stored in the field.",
+                    "enum": [
+                        "bool",
+                        "float",
+                        "int",
+                        "str"
+                    ]
+                }
+            },
+            "required": ["name","index","type"]
+        },
+        "/schemas/subawardsMap.schema.json": {
+            "$schema":"https://json-schema.org/draft/2020-12/schema",
+            "$id":"https://data.ed.gov/schemas/subawardsMap.schema.json",
+            "title":"Annual Performance Report Subawards Map",
+            "description":"Specifies parameters for extracting data values from potentially multiple workbooks of consolidated Annual Performance Report subaward responses.",
+            "type": "object",
+            "properties": {
+                "name": {
+                    "title": "Name",
+                    "description": "The name to use for the list of subawards. This name is used in the template to identify where to write subaward data values from this list.",
+                    "type": "string"
+                },
+                "children": {
+                    "title": "Children",
+                    "description": "A list of worksheet mappings to combine into the named list of subawards. This allows combining data values from multiple worksheets into a single subaward list for use in the template.",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "worksheet_name": {
+                                "title": "Worksheet name",
+                                "description": "The names of the worksheet containing the child subaward data values.",
+                                "type": "string"
+                            },
+                            "key_offset": {
+                                "title": "Key offset",
+                                "description": "The column offset in which the primary grantee key value is stored. This column is expected to contain the same value as one of the primary grantees, to distinguish which subawards correspond to a given primary grantee.",
+                                "type": "integer"
+                            },
+                            "field_map": {
+                                "title": "Field map",
+                                "description": "A list of field mappings for the subaward worksheet.",
+                                "type": "array",
+                                "items": {
+                                    "$ref": "/schemas/fieldMap.schema.json",
+                                    "minItems": 1,
+                                    "uniqueItems": true
+                                }
+                            }
+                        },
+                        "required": ["worksheet_name","key_offset","field_map"]
+                    }
+                }
+            },
+            "required": ["name","children"]
+        }
+    }
+}

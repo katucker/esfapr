@@ -8,11 +8,13 @@ Report{% endblock title %}
 {% endblock apr_title %}
 {% block apr_sections %}
 <p><a href="#intro">Introduction</a></p>
-<p><a href="#section1">Section 1 - Overall ESSER Fund Grant for SEA</a></p>
-<p><a href="#section2">Section 2 - SEA Reserve (up to 10% of total allocation)</a></p>
-<p><a href="#section3">Section 3 - Mandatory Subgrants to LEAs, Section 18003(c)</a></p>
-<p><a href="#section4">Section 4 - Student Participation and Engagement</a></p>
-<p><a href="#section5">Section 5 - Full-Time Equivalent (FTE) Positions</a></p>
+<ol>
+    <li><a href="#section1">Overall ESSER Fund Grant for SEA</a></li>
+    <li><a href="#section2">SEA Reserve (up to 10% of total allocation)</a></li>
+    <li><a href="#section3">Mandatory Subgrants to LEAs, Section 18003(c)</a></li>
+    <li><a href="#section4">Student Participation and Engagement</a></li>
+    <li><a href="#section5">Full-Time Equivalent (FTE) Positions</a></li>
+</ol>
 {% endblock apr_sections %}
 {% block apr %}
 <main>
@@ -22,15 +24,15 @@ Report{% endblock title %}
                 data-stateCode="{{apr.stateCode|e}}" value="{{ apr.stateCode|e }}" /></p>
         <p><label for="prNumber">PR/Award number:</label> <input readonly type="text" id="prNumber"
                 data-prNumber="{{ apr.prNumber|e }}" value="{{ apr.prNumber|e }}" /></p>
-        <p><label for="repName">State Director:</label> <input readonly type="text" size="72" id="repName"
+        <p><label for="repName">State Director:</label> <input readonly type="text" {% if apr.repName is defined and apr.repName is not none %} size="{{apr.repName|length}}" {% endif %} id="repName"
                 data-repName="{{ apr.repName|e }}" value="{{ apr.repName|e }}" /></p>
-        <p><label for="repPosition">Position:</label> <input readonly type="text" size="72" id="repPosition"
+        <p><label for="repPosition">Position:</label> <input readonly type="text" {% if apr.repPosition is defined and apr.repPosition is not none %} size="{{apr.repPosition|length}}" {% endif %} id="repPosition"
                 data-repPosition="{{apr.repPosition|e}}" value="{{ apr.repPosition|e }}" /></p>
-        <p><label for="repOffice">Office:</label> <input readonly type="text" size="72" id="repOffice"
+        <p><label for="repOffice">Office:</label> <input readonly type="text" {% if apr.repOffice is defined and apr.repOffice is not none %} size="{{apr.repOffice|length}}" {% endif %} id="repOffice"
                 data-repOffice="{{apr.repOffice|e}}" value="{{ apr.repOffice|e }}" /></p>
         <p><label for="repPhone">Telephone:</label> <input readonly type="text" id="repPhone"
                 data-repPhone="{{apr.repPhone|e}}" value="{{ apr.repPhone|e }}" /></p>
-        <p><label for="repEmail">E-mail Address:</label> <input readonly type="text" size="72" id="repEmail"
+        <p><label for="repEmail">E-mail Address:</label> <input readonly type="text" {% if apr.repEmail is defined and apr.repEmail is not none %} size="{{apr.repEmail|length}}" {% endif %} id="repEmail"
                 data-repEmail="{{apr.repEmail|e}}" value="{{ apr.repEmail|e }}" /></p>
 
         <p>Instructions: States and outlying areas that received Elementary and Secondary School Emergency Relief
@@ -131,7 +133,7 @@ Report{% endblock title %}
                         data-res_lea_awarded{{loop.index}}="{{sub.awardedAmountToLeaFromSeaReserve}}"
                         value="{{sub.awardedAmountToLeaFromSeaReserve|dollars}}" /></label></p>
             <p><label>Who the LEA is serving from these funds: <input readonly type="text"
-                        size="50" id="res_lea_pop_served{{loop.index}}"
+                        {% if sub.servedPopulation is defined and sub.servedPopulation is not none %} size="{{sub.servedPopulation|length}}" {% endif %} id="res_lea_pop_served{{loop.index}}"
                         data-lea_pop_served{{loop.index}}="{{sub.servedPopulation|e}}"
                         value="{{sub.servedPopulation|e}}" /></label></p>
             <p><label>Amount expended by the LEA for Public Schools: <input readonly type="text"
@@ -571,73 +573,73 @@ Report{% endblock title %}
                         <td>Submission of assignments</td>
                         <td id="lea_participation_elementary_submission{{loop.index}}"
                             data-lea_participation_elementary_submission{{loop.index}}="sub.elementarySubmissionOfAssignments|yes_no">
-                            {{sub.elementarySubmissionOfAssignments|check}}</td>
+                            {{sub.elementarySubmissionOfAssignments|yes_no}}</td>
                         <td id="lea_participation_secondary_submission{{loop.index}}"
                             data-lea_participation_secondary_submission{{loop.index}}="sub.secondarySubmissionOfAssignments|yes_no">
-                            {{sub.secondarySubmissionOfAssignments|check}}</td>
+                            {{sub.secondarySubmissionOfAssignments|yes_no}}</td>
                     </tr>
                     <tr>
                         <td>Participation in assessments</td>
                         <td id="lea_participation_elementary_assessment{{loop.index}}"
                             data-lea_participation_elementary_assessment{{loop.index}}="sub.elementaryParticipationInAssignments|yes_no">
-                            {{sub.elementaryParticipationInAssignments|check}}</td>
+                            {{sub.elementaryParticipationInAssignments|yes_no}}</td>
                         <td id="lea_participation_secondary_assessment{{loop.index}}"
                             data-lea_participation_secondary_assessment{{loop.index}}="sub.secondaryParticipationInAssignments|yes_no">
-                            {{sub.secondaryParticipationInAssignments|check}}</td>
+                            {{sub.secondaryParticipationInAssignments|yes_no}}</td>
                     </tr>
                     <tr>
                         <td>Tracking student logins to online learning platforms</td>
                         <td id="lea_participation_elementary_login{{loop.index}}"
                             data-lea_participation_elementary_login{{loop.index}}="sub.elementaryTrackingStudentLogins|yes_no">
-                            {{sub.elementaryTrackingStudentLogins|check}}</td>
+                            {{sub.elementaryTrackingStudentLogins|yes_no}}</td>
                         <td id="lea_participation_secondary_login{{loop.index}}"
                             data-lea_participation_secondary_login{{loop.index}}="sub.secondaryTrackingStudentLogins|yes_no">
-                            {{sub.secondaryTrackingStudentLogins|check}}</td>
+                            {{sub.secondaryTrackingStudentLogins|yes_no}}</td>
                     </tr>
                     <tr>
                         <td>Participation in individual coaching or check ins</td>
                         <td id="lea_participation_elementary_coaching{{loop.index}}"
                             data-lea_participation_elementary_coaching{{loop.index}}="sub.elementaryParticipationInCoaching|yes_no">
-                            {{sub.elementaryParticipationInCoaching|check}}</td>
+                            {{sub.elementaryParticipationInCoaching|yes_no}}</td>
                         <td id="lea_participation_secondary_coaching{{loop.index}}"
                             data-lea_participation_secondary_coaching{{loop.index}}="sub.secondaryParticipationInCoaching|yes_no">
-                            {{sub.secondaryParticipationInCoaching|check}}</td>
+                            {{sub.secondaryParticipationInCoaching|yes_no}}</td>
                     </tr>
                     <tr>
                         <td>Participation in email, text or other electronic communication</td>
                         <td id="lea_participation_elementary_communication{{loop.index}}"
                             data-lea_participation_elementary_communication{{loop.index}}="sub.elementaryParticipationInCommunication|yes_no">
-                            {{sub.elementaryParticipationInCommunication|check}}</td>
+                            {{sub.elementaryParticipationInCommunication|yes_no}}</td>
                         <td id="lea_participation_secondary_communication{{loop.index}}"
                             data-lea_participation_secondary_communication{{loop.index}}="sub.secondaryParticipationInCommunication|yes_no">
-                            {{sub.secondaryParticipationInCommunication|check}}</td>
+                            {{sub.secondaryParticipationInCommunication|yes_no}}</td>
                     </tr>
                     <tr>
                         <td>Participation in help lines or hot lines for help with remote learning.</td>
                         <td id="lea_participation_elementary_help{{loop.index}}"
                             data-lea_participation_elementary_help{{loop.index}}="sub.elementaryParticiptionInRemoteHelp|yes_no">
-                            {{sub.elementaryParticiptionInRemoteHelp|check}}</td>
+                            {{sub.elementaryParticiptionInRemoteHelp|yes_no}}</td>
                         <td id="lea_participation_secondary_help{{loop.index}}"
                             data-lea_participation_secondary_help{{loop.index}}="sub.secondaryParticiptionInRemoteHelp|yes_no">
-                            {{sub.secondaryParticiptionInRemoteHelp|check}}</td>
+                            {{sub.secondaryParticiptionInRemoteHelp|yes_no}}</td>
                     </tr>
                     <tr>
                         <td>Participation in synchronous online classes</td>
                         <td id="lea_participation_elementary_online{{loop.index}}"
                             data-lea_participation_elementary_online{{loop.index}}="sub.elementaryParticipationInOnlineClass|yes_no">
-                            {{sub.elementaryParticipationInOnlineClass|check}}</td>
+                            {{sub.elementaryParticipationInOnlineClass|yes_no}}</td>
                         <td id="lea_participation_secondary_online{{loop.index}}"
                             data-lea_participation_secondary_online{{loop.index}}="sub.secondaryParticipationInOnlineClass|yes_no">
-                            {{sub.secondaryParticipationInOnlineClass|check}}</td>
+                            {{sub.secondaryParticipationInOnlineClass|yes_no}}</td>
                     </tr>
                     <tr>
                         <td>Other</td>
                         <td id="lea_participation_elementary_other{{loop.index}}"
                             data-lea_participation_elementary_other{{loop.index}}="sub.elementaryOtherParticipation|yes_no">
-                            {{sub.elementaryOtherParticipation|check}}</td>
+                            {{sub.elementaryOtherParticipation|yes_no}}</td>
                         <td id="lea_participation_secondary_other{{loop.index}}"
                             data-lea_participation_secondary_other{{loop.index}}="sub.secondaryOtherParticipation|yes_no">
-                            {{sub.secondaryOtherParticipation|check}}</td>
+                            {{sub.secondaryOtherParticipation|yes_no}}</td>
                     </tr>
                 </tbody>
             </table>

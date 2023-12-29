@@ -7,10 +7,19 @@
 {% endblock apr_title %}
 {% block apr_sections %}
 <p><a href="#introduction">Introduction</a></p>
-<p><a href="#students_aided">Emergency Financial Aid Grants Awarded to Students</a></p>
-<p><a href="#expenses_categorized">Expenditures by category</a></p>
-<p><a href="#enrollment_status">HEERF Grant Recipient Enrollment Status</a></p>
-<p><a href="#fte">Full-Time Equivalents</a></p>
+<ol>
+    <li><a href="#1">Institutional Identifiers and Contact Information</a></li>
+    <li><a href="#2">All funds expended?</a></li>
+    <li><a href="#3">Reporting on institution websites</a></li>
+    <li><a href="#4">Determining student eligibility</a></li>
+    <li><a href="#5">Determining which students received grants</a></li>
+    <li><a href="#6">Grant distribution</a></li>
+    <li><a href="#7">Instructions provided</a></li>
+    <li><a href="#8">Direct grants and amount reimbursed</a></li>
+    <li><a href="#9">Expenditures</a></li>
+    <li><a href="#10">Student counts</a></li>
+    <li><a href="#11">Full-Time Equivalent positions</a></li>
+</ol>
 {% endblock apr_sections %}
 
 {% block apr %}
@@ -62,25 +71,25 @@
             </table>
         </details>
         
-        <p class="question">1. Institutional Identifiers and Contact Information</p>
-        <p><label>a) Institution Name: <input readonly type="text" size="72" id="ihename" data-iheName="{{apr.iheName|e}}" value="{{ apr.iheName|e }}"/></label></p>
+        <p id="1" class="question">1. Institutional Identifiers and Contact Information</p>
+        <p><label>a) Institution Name: <input readonly type="text" {% if apr.iheName is defined and apr.iheName is not none %} size="{{apr.iheName|length}}" {% endif %} id="ihename" data-iheName="{{apr.iheName|e}}" value="{{ apr.iheName|e }}"/></label></p>
         <p><label>DUNS &#35;: <input readonly type="text" id="dunsNumber" data-dunsNumber="{{apr.dunsNumber|e}}" value="{{ apr.dunsNumber|e }}"/></label></p>
-        <p><label>b) Please identify the OPEID(s) for this institution: <input readonly type="text" size="72" id="opeIds" data-opeIds="{{apr.opeIds|e}}" value="{{apr.opeIds|e}}"/></label></p>
-        <p><label>c) Please report on these HEERF grant PR/Award Numbers:: <input readonly type="text" size="72" id="prNumbers" data-prNumbers="{{apr.prNumbers|e|replace('|',',')}}" value="{{apr.prNumbers|e|replace('|',',')}}"/></label></p>
+        <p><label>b) Please identify the OPEID(s) for this institution: <input readonly type="text" {% if apr.opeIds is defined and apr.opeIds is not none %} size="{{apr.opeIds|length}}" {% endif %} id="opeIds" data-opeIds="{{apr.opeIds|e}}" value="{{apr.opeIds|e}}"/></label></p>
+        <p><label>c) Please report on these HEERF grant PR/Award Numbers:: <input readonly type="text" {% if apr.prNumbers is defined and apr.prNumbers is not none %} size="{{apr.prNumbers|length}}" {% endif %} id="prNumbers" data-prNumbers="{{apr.prNumbers|e|replace('|',',')}}" value="{{apr.prNumbers|e|replace('|',',')}}"/></label></p>
         <details><summary class="question">d) Who is the lead contact for this annual data collection?</summary>
-            <p><label>Name: <input readonly type="text" size="72" id="repName" data-repName="{{apr.repName|e}}" value="{{apr.repName|e}}"/></label></p>
-            <p><label>Title: <input readonly type="text" size="72" id="repTitle" data-repTitle="{{apr.repTitle|e}}" value="{{apr.repTitle|e}}"/></label></p>
+            <p><label>Name: <input readonly type="text" {% if apr.repName is defined and apr.repName is not none %} size="{{apr.repName|length}}" {% endif %} id="repName" data-repName="{{apr.repName|e}}" value="{{apr.repName|e}}"/></label></p>
+            <p><label>Title: <input readonly type="text" {% if apr.repTitle is defined and apr.repTitle is not none %} size="{{apr.repTitle|length}}" {% endif %} id="repTitle" data-repTitle="{{apr.repTitle|e}}" value="{{apr.repTitle|e}}"/></label></p>
             <p><label>Phone: <input readonly type="text" id="repPhone" data-repPhone="{{apr.repPhone|e}}" value="{{apr.repPhone|e}}"/></label></p>
-            <p><label>Email: <input readonly type="text" size="72" id="repEmail" data-repEmail="{{apr.repEmail|e}}" value="{{apr.repEmail|e}}"/></label></p>
+            <p><label>Email: <input readonly type="text" {% if apr.repEmail is defined and apr.repEmail is not none %} size="{{apr.repEmail|length}}" {% endif %} id="repEmail" data-repEmail="{{apr.repEmail|e}}" value="{{apr.repEmail|e}}"/></label></p>
         </details>
-        <p><label>2. Did you expend all of your HEERF funds prior to the end of the reporting period, making this your final annual report?: <input readonly type="text" id="wereAllFundsExpended" data-wereAllFundsExpended="{{apr.wereAllFundsExpended|yes_no}}" value="{{apr.wereAllFundsExpended|yes_no}}"/></label></p>
-        <p class="question">3. Reporting on institution websites</p>
-        <p><label>a) CARES HEERF quarterly reporting webpage URL: <input readonly type="text" size="72" id="quarterlyReportingWebPageUrl" data-quarterlyReportingWebPageUrl="{{apr.quarterlyReportingWebPageUrl|e}}" value="{{apr.quarterlyReportingWebPageUrl|e}}"/></label></p>
+        <p id="2"><label>2. Did you expend all of your HEERF funds prior to the end of the reporting period, making this your final annual report?: <input readonly type="text" id="wereAllFundsExpended" data-wereAllFundsExpended="{{apr.wereAllFundsExpended|yes_no}}" value="{{apr.wereAllFundsExpended|yes_no}}"/></label></p>
+        <p id="3" class="question">3. Reporting on institution websites</p>
+        <p><label>a) CARES HEERF quarterly reporting webpage URL: <input readonly type="text" {% if apr.quarterlyReportingWebPageUrl is defined and apr.quarterlyReportingWebPageUrl is not none %} size="{{apr.quarterlyReportingWebPageUrl|length}}" {% endif %} id="quarterlyReportingWebPageUrl" data-quarterlyReportingWebPageUrl="{{apr.quarterlyReportingWebPageUrl|e}}" value="{{apr.quarterlyReportingWebPageUrl|e}}"/></label></p>
         <p class="question">b) Student portion reporting: Provide all active website URLs posted by your campus, or by the institution on behalf of your campus(es), as required by the August 31 notice in the Federal Register<sup><a href="#endnote1">1</a></sup> (including any URLs that are still active that provide archived information).</p>
         <ul data-studentReportingWebUrls="{{apr.studentReportingWebUrls|e}}"><li>{{apr.studentReportingWebUrls|e|replace('|','</li><li>)')}}</li></ul>
         <p class="question">c) Institutional Portion, (a)(2), and (a)(3) Reporting: Provide all active website URLs posted by your campus, or by institutions on behalf of your campus(es) as required by the quarterly Higher Education Emergency Relief Fund (HEERF) Data Collection Form<sup><a href="#endnote2">2</a></sup> (include any URLs that are still active that provide archived information</p>
         <ul data-institutionallyReportedWebUrls="{{apr.institutionallyReportedWebUrls|e}}"><li>{{apr.institutionallyReportedWebUrls|e|replace('|','</li><li>')}}</li></ul>
-        <p class="question">4) How did your institution determine which students were eligible<sup><a href="#endnote3">3</a></sup> to receive emergency financial aid grants under any of the CARES Act HEERF programs?</p>
+        <p id="4" class="question">4) How did your institution determine which students were eligible<sup><a href="#endnote3">3</a></sup> to receive emergency financial aid grants under any of the CARES Act HEERF programs?</p>
         <p><label><input readonly type="checkbox" id="isEligibleCaresActTitleIVAid" data-isEligibleCaresActTitleIVAid="{{apr.isEligibleCaresActTitleIVAid|yes_no}}" {{apr.isEligibleCaresActTitleIVAid|check}}/> a) My institution has received an Institutional Student Information Record (ISIR) or Student Aid Report (SAR) on file that verifies student eligibility for Title IV, federal student aid (Title IV aid).</label></p>
         <p><label><input readonly type="checkbox" id="isEligibleCaresActAlternateApplication" data-isEligibleCaresActAlternateApplication="{{apr.isEligibleCaresActAlternateApplication|yes_no}}" {{apr.isEligibleCaresActAlternateApplication|check}}/> b) My institution allowed students to attest to their eligibility for Title IV aid by completing an alternative application form developed by the institution for this purpose.</label></p>
         <p><label><input readonly type="checkbox" id="isEligibleCaresActAnotherMethod" data-isEligibleCaresActAnotherMethod="{{apr.isEligibleCaresActAnotherMethod|yes_no}}" {{apr.isEligibleCaresActAnotherMethod|check}}/> c) My institution used another method for determining which students were eligible to receive emergency financial aid grants under the CARES Act.</label></p>
@@ -92,7 +101,7 @@
             </label>
         </p>
         {% endif %}
-        <p class="question">5) How did your institution determine which students received emergency financial aid grants to students and how much each student would receive?</p>
+        <p id="5" class="question">5) How did your institution determine which students received emergency financial aid grants to students and how much each student would receive?</p>
         <p>Please indicate if any of the following strategies were used.</p>
         <p><label>Did you distribute different amounts to eligible students<sup><a href="#endnote4">4</a></sup> based on circumstances? <input readonly type="text" id="areFundsDistributedBasedonCircumstances" data-areFundsDistributedBasedonCircumstances="{{apr.areFundsDistributedBasedonCircumstances|yes_no}}" value="{{ apr.areFundsDistributedBasedonCircumstances|yes_no}}"/></label></p>
         {% if apr.areFundsDistributedBasedonCircumstances %}
@@ -143,7 +152,7 @@
                 {% endif %}
             {% endif %}
         {% endif %}
-        <p class="question">6) How did your institution distribute the emergency financial aid grants to students?</p>
+        <p id="6" class="question">6) How did your institution distribute the emergency financial aid grants to students?</p>
         <p><label><input readonly type="checkbox" id="isDistributionAidCheck" data-isDistributionAidCheck="{{apr.isDistributionAidCheck|yes_no}}" {{apr.isDistributionAidCheck|check}}/> Checks</label></p>
         <p><label><input readonly type="checkbox" id="isDistributionAidElectronicFundTransfer" data-isDistributionAidElectronicFundTransfer="{{apr.isDistributionAidElectronicFundTransfer|yes_no}}" {{apr.isDistributionAidElectronicFundTransfer|check}}/> Electronic funds transfer/Direct deposit</label></p>
         <p><label><input readonly type="checkbox" id="isDistributionAidDebitCards" data-isDistributionAidDebitCards="{{apr.isDistributionAidDebitCards|yes_no}}" {{apr.isDistributionAidDebitCards|check}}/> Debit cards</label></p>
@@ -156,14 +165,14 @@
                     data-otherDistributionAidTypeReason="{{apr.otherDistributionAidTypeReason|e}}">{{apr.otherDistributionAidTypeReason|e}}</textarea>
                 </label></p>
         {% endif %}
-        <p><label>7) Did your institution provide any instructions, directions, or guidance to students (e.g. FAQs) about the emergency financial aid grants upon disbursement? <input readonly type="text" id="didInstitutionProvideGrantInstructions" data-didInstitutionProvideGrantInstructions="{{apr.didInstitutionProvideGrantInstructions|yes_no}}" value="{{apr.didInstitutionProvideGrantInstructions|yes_no}}"/></label></p>
+        <p id="7"><label>7) Did your institution provide any instructions, directions, or guidance to students (e.g. FAQs) about the emergency financial aid grants upon disbursement? <input readonly type="text" id="didInstitutionProvideGrantInstructions" data-didInstitutionProvideGrantInstructions="{{apr.didInstitutionProvideGrantInstructions|yes_no}}" value="{{apr.didInstitutionProvideGrantInstructions|yes_no}}"/></label></p>
         {% if apr.didInstitutionProvideGrantInstructions %}
             <p><label>Instruction file name: <input readonly type="text" id="uploadedFileName" data-uploadedFileName="{{apr.uploadedFileName|e}}" value="{{apr.uploadedFileName|e}}"/></label></p>
             <p><label>Instructions URL(s): <textarea readonly rows="4" cols="72" id="grantUrls" data-grantUrls="{{apr.grantUrls|e}}">{{apr.grantUrls|e}}</textarea></label></p>
         {% endif %}
     </form>
-    <form name="student_awards_categorized" action="" aria-labeled-by="students_aided">
-        <h1 id="students_aided">8) Emergency Financial Aid Grants Awarded to Students (direct grants and amounts reimbursed)</h1>
+    <form name="student_awards_categorized" action="" aria-labeled-by="8">
+        <h1 id="8">8) Emergency Financial Aid Grants Awarded to Students (direct grants and amounts reimbursed)</h1>
         <table cellspacing="0" width="100%" id="students_aided_by_category"
         summary="The number of students that received aid in distinct categories." repeat="1">
             <thead>
@@ -323,8 +332,8 @@
         </table>
     </form>
 
-    <form name="expenses_by_category" action="" aria-labelledby="expenses_categorized">
-        <p id="expenses_categorized" class="question">9) Provide the total amount of HEERF funds expended on the categories provided.</p>
+    <form name="expenses_by_category" action="" aria-labelledby="9">
+        <p id="9" class="question">9) Provide the total amount of HEERF funds expended on the categories provided.</p>
         <table cellspacing="0" width="100%" id="students_aided_by_category"
         summary="The expenditures in distinct categories." repeat="1">
             <thead>
@@ -464,8 +473,8 @@
 
     </form>
 
-    <form name="enrollment" action="" aria-labelledby="enrollment_status">
-        <p id="enrollment_status" class="question">10) Provide the number of students who ever received HEERF grant funds in the reporting period and their enrollment status at the end reporting period.</p>
+    <form name="enrollment" action="" aria-labelledby="10">
+        <p id="10" class="question">10) Provide the number of students who ever received HEERF grant funds in the reporting period and their enrollment status at the end reporting period.</p>
         <table cellspacing="0" width="100%" id="enrollment_status_table"
         summary="The enrollment status for students that received assistance from HEERF grants." repeat="1">
             <thead>
@@ -488,8 +497,8 @@
             </tbody>
         </table>
     </form>
-    <form name="number_positions" action="" aria-labelledby="fte">
-        <p id="fte" class="question">11) Provide the number of full-time equivalent (FTE) positions as of the listed reporting dates. (The number of FTE positions includes all staff regardless of whether the position is funded by Federal, State, local, or other funds—including instructional and non-instructional staff and contractors—and equals the sum of the number of full-time positions plus the full-time equivalent of the number of part-time positions.)</p>
+    <form name="number_positions" action="" aria-labelledby="11">
+        <p id="11" class="question">11) Provide the number of full-time equivalent (FTE) positions as of the listed reporting dates. (The number of FTE positions includes all staff regardless of whether the position is funded by Federal, State, local, or other funds—including instructional and non-instructional staff and contractors—and equals the sum of the number of full-time positions plus the full-time equivalent of the number of part-time positions.)</p>
         <table cellspacing="0" width="100%" id="fte_table"
         summary="The number of full-time equivalent positions at the institution at various points in time." repeat="1">
             <thead>
