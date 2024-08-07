@@ -1,0 +1,23 @@
+<!-- # templates/geer_year1_apr.html # -->
+{% extends "common.html" %}
+{% block title %}{{apr.stateCode|e}} {{apr.reportingYear|e}} Governor's Emergency Education Assistance Annual Report{% endblock title %}
+{% block apr_title %}
+<p style="text-align:center;">Education Stabiliztion Fund - Governor's Emergency Education Assistance (GEER) Program
+    Recipient Annual Reporting Data Collection Form</p>
+{% endblock apr_title %}
+{% block apr %}
+<main>
+    <section id="intro" role="region" aria-label="introduction">
+        <h1>Governor's Emergency Education Assistance Annual Reporting Form</h1>
+        <p><label class="question" for="stateCode">State:</label> <span id="stateCode" data-stateCode="{{apr.stateCode|e}}">{{ apr.stateCode|e }}</span></p>
+        <p><label class="question" for="geer1AwardNumber">PR/Award number:</label> <span id="geer1AwardNumber" data-geer1AwardNumber="{{ apr.geer1AwardNumber|e }}">{{ apr.geer1AwardNumber|e }}</span></p>
+        <p><label class="question" for="stateDirectorName">State Director:</label> <span id="stateDirectorName" data-stateDirectorName="{{ apr.stateDirectorName|e }}">{{ apr.stateDirectorName|e }}</span></p>
+        <p><label class="question" for="stateDirectorPosition">Position:</label> <span id="stateDirectorPosition" data-stateDirectorPosition="{{apr.stateDirectorPosition|e}}">{{ apr.stateDirectorPosition|e }}</span></p>
+        <p><label class="question" for="stateDirectorOffice">Office:</label> <span id="stateDirectorOffice" data-stateDirectorOffice="{{apr.stateDirectorOffice|e}}">{{ apr.stateDirectorOffice|e }}</span></p>
+        <p><label class="question" for="stateDirectorTelephone">Telephone:</label> <span id="stateDirectorTelephone" data-stateDirectorTelephone="{{apr.stateDirectorTelephone|e}}">{{ apr.stateDirectorTelephone|e }}</span></p>
+        <p><label class="question" for="stateDirectorEmailAddress">E-mail Address:</label> <span id="stateDirectorEmailAddress" data-stateDirectorEmailAddress="{{apr.stateDirectorEmailAddress|e}}">
+            {{ apr.stateDirectorEmailAddress|e }}</span></p>
+    </section>
+
+</main>
+{% endblock apr %}

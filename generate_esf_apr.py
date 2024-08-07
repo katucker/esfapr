@@ -78,6 +78,19 @@ def yes_no(value):
         return 'No'
 
 def check(value):
+    """ Return the string 'checked' if the input value is "truthy". 
+    Useful for setting HTML input elements of type "checkbox" to the checked state.
+
+    Usage examples:
+    >>> check(True)
+    'checked'
+    >>> check(False)
+    ''
+    >>> check(1)
+    'checked'
+    >>> check(0)
+    ''
+    """
     try:
         if value is not None:
             if value:
@@ -88,6 +101,16 @@ def check(value):
         return ''
 
 def dollars(value):
+    """Convert the input value to a string representing the passed value as a dollar value.
+
+    Usage examples:
+    >>> dollars(0.45)
+    '$0.45'
+    >>> dollars(120.1)
+    '$120.10'
+    >>> dollars('20.50')
+    '$20.50'
+    """
     try:
         if value is not None:
             if type(value) != float:
@@ -104,6 +127,16 @@ def dollars(value):
 
 
 def percent(value):
+    """Convert the input value to a string representing the passed value as a percentage.
+
+    Usage examples:
+    >>> percent(0.45)
+    '0.4500'
+    >>> percent(1)
+    '1.0000'
+    >>> percent('0.50')
+    '0.5000'
+    """
     try:
         if value is not None:
             if type(value) != float:

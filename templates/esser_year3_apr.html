@@ -1,0 +1,25 @@
+<!-- # templates/geer_year1_apr.html # -->
+{% extends "common.html" %}
+{% block title %}{{apr.stateCode|e}} {{apr.stateDirectorortingYear|e}} Elementary and Secondary School Emergency Relief Annual Report{% endblock title %}
+{% block apr_title %}
+<p style="text-align:center;">Education Stabiliztion Fund - Elementary and Secondary School Emergency Relief Fund
+    (ESSER I/ESSER II/ARP ESSER) Recipient Data Collection Form</p>
+{% endblock apr_title %}
+{% block apr %}
+<main>
+    <section id="intro" role="region" aria-label="introduction">
+        <h1>ESSER Reporting Form</h1>
+        <p><label class="question" for="stateCode">State ID:</label> <span id="stateCode" data-stateCode="{{apr.stateCode|e}}">{{ apr.stateCode|e }}</span></p>
+        <p><label class="question" for="esser1AwardNumber">ESSER I PR/Award number:</label> <span id="esser1AwardNumber" data-esser1AwardNumber="{{ apr.esser1AwardNumber|e }}">{{ apr.esser1AwardNumber|e }}</span></p>
+        <p><label class="question" for="esser2AwardNumber">ESSER II PR/Award number:</label> <span id="esser2AwardNumber" data-esser2AwardNumber="{{ apr.esser2AwardNumber|e }}">{{ apr.esser2AwardNumber|e }}</span></p>
+        <p><label class="question" for="esser3AwardNumber">ARP ESSER PR/Award number:</label> <span id="esser3AwardNumber" data-esser3AwardNumber="{{ apr.esser3AwardNumber|e }}">{{ apr.esser3AwardNumber|e }}</span></p>
+        <p><label class="question" for="stateDirectorName">State Director:</label> <span id="stateDirectorName" data-stateDirectorName="{{ apr.stateDirectorName|e }}">{{ apr.stateDirectorName|e }}</span></p>
+        <p><label class="question" for="stateDirectorPosition">Position:</label> <span id="stateDirectorPosition" data-stateDirectorPosition="{{apr.stateDirectorPosition|e}}">{{ apr.stateDirectorPosition|e }}</span></p>
+        <p><label class="question" for="stateDirectorOffice">Office:</label> <span id="stateDirectorOffice" data-stateDirectorOffice="{{apr.stateDirectorOffice|e}}">{{ apr.stateDirectorOffice|e }}</span></p>
+        <p><label class="question" for="stateDirectorTelephone">Telephone:</label> <span id="stateDirectorTelephone" data-stateDirectorTelephone="{{apr.stateDirectorTelephone|e}}">{{ apr.stateDirectorTelephone|e }}</span></p>
+        <p><label class="question" for="stateDirectorEmailAddress">E-mail Address:</label> <span id="stateDirectorEmailAddress" data-stateDirectorEmailAddress="{{apr.stateDirectorEmailAddress|e}}">
+            {{ apr.stateDirectorEmailAddress|e }}</span></p>
+    </section>
+
+</main>
+{% endblock apr %}
